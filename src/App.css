@@ -1,4 +1,7 @@
-.App {
+.subtitle {
+  color: #7a7a7a;
+}
+/* .App {
   text-align: center;
 }
 
@@ -29,4 +32,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+} */
