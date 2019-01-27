@@ -2,6 +2,7 @@
   "name": "stats",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://nanexcool.github.io/daistats"
   "dependencies": {
     "bulma": "^0.7.2",
     "react": "^16.7.0",
