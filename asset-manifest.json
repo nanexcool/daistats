@@ -1,0 +1,14 @@
+{
+  "main.css": "/daistats/static/css/main.5ef97897.chunk.css",
+  "main.js": "/daistats/static/js/main.3ec4442d.chunk.js",
+  "main.js.map": "/daistats/static/js/main.3ec4442d.chunk.js.map",
+  "static/js/1.5bd9e6a4.chunk.js": "/daistats/static/js/1.5bd9e6a4.chunk.js",
+  "static/js/1.5bd9e6a4.chunk.js.map": "/daistats/static/js/1.5bd9e6a4.chunk.js.map",
+  "runtime~main.js": "/daistats/static/js/runtime~main.cbf416bd.js",
+  "runtime~main.js.map": "/daistats/static/js/runtime~main.cbf416bd.js.map",
+  "static/media/dai.svg": "/daistats/static/media/dai.cfb65a48.svg",
+  "static/css/main.5ef97897.chunk.css.map": "/daistats/static/css/main.5ef97897.chunk.css.map",
+  "index.html": "/daistats/index.html",
+  "precache-manifest.f021034804086384cff514f917ad3524.js": "/daistats/precache-manifest.f021034804086384cff514f917ad3524.js",
+  "service-worker.js": "/daistats/service-worker.js"
+}
