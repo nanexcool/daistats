@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import web3 from './web3';
+import Main from './Main'
 import daiLogo from './dai.svg'
 import './App.css';
 
@@ -36,17 +37,6 @@ window.weth = weth
 window.tub = tub
 window.mkr = mkr
 
-const formatCurr = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 2
-})
-
-const formatAmount = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 2
-})
-
 class App extends Component {
   state = {
     daiSupply: null,
@@ -61,12 +51,18 @@ class App extends Component {
     blockHash: null,
   }
 
-  eventEth = null
-  eventMkr = null
+  isLoaded = () => {
+    return this.state.daiSupply !== null &&
+      this.state.ethSupply !== null &&
+      this.state.wethSupply !== null &&
+      this.state.ethUsd !== null &&
+      this.state.mkrUsd !== null &&
+      this.state.lockedPeth !== null &&
+      this.state.lockedWeth !== null &&
+      this.state.gemPit !== null
+  }
 
   componentDidMount() {
-    console.log('did mount')
-    // initWeb3(eth)
     window.web3 = web3
     // window.eth = eth
     // window.utils = utils
@@ -82,47 +78,23 @@ class App extends Component {
       if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
         const { src, dst, wad } = event.returnValues
         // console.log(web3.utils.fromWei(event.raw.data))
-        console.log(`BOOM! ${web3.utils.fromWei(wad.toString())} moved into the tub!`)
+        // console.log(`BOOM! ${web3.utils.fromWei(wad.toString())} moved into the tub!`)
         setTimeout(this.doLockedWeth, 1000)
       }
     })
     dai.events.allEvents({}, (err, event) => {
       if (event.event === "Transfer") {
         const { src, dst, wad } = event.returnValues
-        console.log(`${web3.utils.fromWei(wad.toString())} moved from ${src} to ${dst}`)
+        // console.log(`${web3.utils.fromWei(wad.toString())} moved from ${src} to ${dst}`)
         window.lastEvent = event
       } else {
         setTimeout(this.doDaiSupply, 1000)
       }
     })
-    // weth.events.Transfer({filter: { dst: addresses.tub }}, (err, event) => {
-    //   console.log(web3.utils.fromWei(event.raw.data) + " WETH locked at " + event.transactionHash);
-    // })
-    // this.eventEth = weth.events.Transfer({}, (err, event) => {
-    //   if (event) {
-    //     if (event.returnValues.dst === addresses.tub) {
-    //       console.log(web3.utils.fromWei(event.raw.data) + " WETH locked at " + event.transactionHash);
-    //       this.doLockedWeth()
-    //     } else if (event.returnValues.src === addresses.tub) {
-    //       console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
-    //       this.doLockedWeth()
-    //     }
-    //     // console.log(event.returnValues.src, event.returnValues.dst, web3.utils.fromWei(event.raw.data))
-    //   }
-    // })
-    // this.eventMkr = mkr.events.Transfer({}, (err, event) => {
-    //   if (event) {
-    //     if (event.returnValues.dst === addresses.tub || event.returnValues.src === addresses.tub) {
-    //       console.log(web3.utils.fromWei(event.raw.data) + " MKR sent to burn " + Date.now());
-    //       this.doGemPit()
-    //     }
-    //   }
-    // })
   }
 
   componentWillUnmount() {
-    this.eventEth && this.eventEth.unsubscribe()
-    this.eventMkr && this.eventMkr.unsubscribe()
+
   }
 
   init = () => {
@@ -168,7 +140,6 @@ class App extends Component {
     this.setState({
       daiSupply
     })
-    console.log('daisupply!!')
   }
 
   doWethSupply = async () => {
@@ -192,7 +163,6 @@ class App extends Component {
     this.setState({
       ethSupply
     })
-    console.log('ethsupply!!')
   }
 
   doEthUsd = async () => {
@@ -212,114 +182,18 @@ class App extends Component {
   }
 
   render() {
-    const { daiSupply, ethSupply, wethSupply, pethSupply, ethUsd, mkrUsd, lockedPeth, lockedWeth, gemPit } = this.state
+    if (this.isLoaded()) {
+      return <Main {...this.state} />
+    }
+    else
     return (
-      <div>
-        <section className="section">
-          <div className="container">
+
+      <section className="section">
+        <div className="container has-text-centered">
           <progress className="progress is-small is-primary" max="100">15%</progress>
           <p>Juuuust a sec my friend</p>
-            <div className="columns">
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(daiSupply)}</h3>
-                  <p className="subtitle is-size-4">Dai Supply</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(ethSupply)}</h3>
-                  <p className="subtitle is-size-4">Total Eth Supply</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(lockedWeth)}</h3>
-                  <p className="subtitle is-size-4">Eth Locked</p>
-                </div>
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(lockedWeth / ethSupply * 100)} %</h3>
-                  <p className="subtitle is-size-4">% Eth Locked</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(wethSupply)}</h3>
-                  <p className="subtitle is-size-4">WETH Supply</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(lockedWeth / wethSupply * 100)} %</h3>
-                  <p className="subtitle is-size-4">% WETH in Dai System</p>
-                </div>
-              </div>
-            </div>
-            <div className="columns">
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatAmount.format(gemPit)}</h3>
-                  <p className="subtitle is-size-4">MKR in Burner</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatCurr.format(mkrUsd)}</h3>
-                  <p className="subtitle is-size-4">MKR Price</p>
-                </div>
-              </div>
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">{formatCurr.format(gemPit * mkrUsd)}</h3>
-                  <p className="subtitle is-size-4">Burner in USD</p>
-                </div>
-              </div>
-            </div>
-            {/* <div className="columns">
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">Current block/hash</h3>
-                  <p className="subtitle is-size-4">
-                    {this.state.blockNumber}
-                  </p>
-                  <p className="subtitle is-size-4">
-                    {this.state.blockHash}
-                  </p>
-                </div>
-              </div>
-            </div> */}
-            {/* <p>{formatAmount.format(ethUsd * lockedWeth / daiSupply * 100)}</p> */}
-            {/* <div className="columns">
-              <div className="column">
-                <p>ethUsd: {formatCurr.format(ethUsd)}</p>
-                <p>value: {formatCurr.format(lockedWeth * ethUsd)}</p>
-                <p>wethSupply: {formatAmount.format(wethSupply)}</p>
-                <p>% {lockedWeth / wethSupply * 100}</p>
-                <p>pethSupply: {formatAmount.format(pethSupply)}</p>
-                <p>lockedPeth: {formatAmount.format(lockedPeth)}</p>
-                <p>% {lockedWeth / ethSupply * 100}</p>
-                <p>PETH/ETH Ratio: {lockedWeth / pethSupply}</p>
-                <p>Current block: {this.state.blockNumber}</p>
-                <p><button onClick={this.doLockedWeth}>Zomg</button></p>
-              </div>
-            </div> */}
-          </div>
-        </section>
-        <footer className="footer">
-          <div className="content has-text-centered">
-            <p>
-            Made by <a className="" href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">
-                  @nanexcool
-                </a> who loves numbers and loves you
-            </p>
-            <p><a className="" href="https://github.com/nanexcool/daistats" target="_blank" rel="noopener noreferrer">Source code</a></p>
-          </div>
-        </footer>
-      </div>
+        </div>
+      </section>
     );
   }
 }
