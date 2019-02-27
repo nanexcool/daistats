@@ -1,23 +1,20 @@
-import Eth from 'web3-eth'
-import web3utils from 'web3-utils'
+import Web3 from 'web3'
 
-const eth = new Eth()
-console.log(eth)
-export default eth
+let web3 = new Web3("wss://parity1.makerfoundation.com:18546")
+// let eth = new Eth("wss://mainnet.infura.io/ws")
+// if (window.ethereum) {
+//   eth = new Eth(window.ethereum)
+//   console.log('modern ethereum browser')
+// }
+// else if (window.web3) {
+//   eth = new Eth(window.web3.currentProvider)
+//   console.log('legacy ethereum browser')
+// }
+// else {
+//   console.log('Non-Ethereum browser detected.')
+//   eth = new Eth("wss://mainnet.infura.io/ws")
+// }
+export default web3
 
-export const utils = web3utils
+// export const utils = Utils
 
-export const initWeb3 = eth => {
-  if (window.ethereum) {
-    eth.setProvider(window.ethereum)
-    console.log('modern ethereum browser')
-  }
-  else if (window.web3) {
-    eth.setProvider(window.web3.currentProvider)
-    console.log('legacy ethereum browser')
-  }
-  else {
-    console.log('Non-Ethereum browser detected.')
-    eth.setProvider(new Eth.providers.WebsocketProvider("wss://mainnet.infura.io/ws"))
-  }
-}
