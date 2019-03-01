@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import web3 from './web3';
 import Main from './Main'
 import daiLogo from './dai.svg'
-import './App.css';
 
 const jsonFetch = url => fetch(url).then(res => res.json())
 const etherscanSupply = async () => {
@@ -73,6 +72,10 @@ class App extends Component {
     //     blockHash: r.hash
     //   })
     // })
+    // this.startEvents()
+  }
+
+  startEvents = () => {
     weth.events.Transfer({}, (err, event) => {
       // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
       if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
@@ -190,8 +193,12 @@ class App extends Component {
 
       <section className="section">
         <div className="container has-text-centered">
+          <figure className="image is-128x128">
+            <img src={daiLogo} alt="Dai Logo" />
+          </figure>
           <progress className="progress is-small is-primary" max="100">15%</progress>
           <p>Juuuust a sec my friend</p>
+          <p>Fetching data straight from Ethereum Mainnet</p>
         </div>
       </section>
     );
