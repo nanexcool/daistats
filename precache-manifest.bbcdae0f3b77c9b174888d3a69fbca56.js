@@ -16,7 +16,7 @@ self.__precacheManifest = [
     "url": "/static/media/dai.cfb65a48.svg"
   },
   {
-    "revision": "5abdaf57af2877d45823f76f3690740d",
+    "revision": "8a11b0c654dbfff0cb8fec09557a7089",
     "url": "/index.html"
   }
 ];
