@@ -1,8 +1,9 @@
 import Web3 from 'web3'
 
-let web3 = new Web3("wss://parity1.makerfoundation.com:18546")
+let web3 = new Web3("wss://parity2.makerfoundation.com:18546")
+
 // let web3 = new Web3("https://parity1.makerfoundation.com:18545")
-// let eth = new Eth("wss://mainnet.infura.io/ws")
+// let web3 = new Web3("wss://mainnet.infura.io/ws")
 // if (window.ethereum) {
 //   eth = new Eth(window.ethereum)
 //   console.log('modern ethereum browser')

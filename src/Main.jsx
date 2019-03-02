@@ -26,34 +26,56 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(ethSupply)}</h3>
-                <p className="subtitle is-size-4">Total Eth Supply</p>
+                <h3 className="title">{formatAmount.format(lockedWeth)}</h3>
+                <p className="subtitle is-size-4">ETH Locked</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(lockedWeth)}</h3>
-                <p className="subtitle is-size-4">Eth Locked</p>
+                <h3 className="title">{formatCurr.format(ethUsd * lockedWeth)}</h3>
+                <p className="subtitle is-size-4">Value Locked in USD</p>
               </div>
             </div>
           </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(lockedWeth / ethSupply * 100)} %</h3>
-                <p className="subtitle is-size-4">% Eth Locked</p>
+                <h3 className="title">{formatAmount.format(ethSupply)}</h3>
+                <p className="subtitle is-size-4">Total ETH Supply</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title">{formatAmount.format(lockedWeth / ethSupply * 100)} %</h3>
+                <p className="subtitle is-size-4">% ETH Locked</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title">{formatAmount.format(wethSupply)}</h3>
-                <p className="subtitle is-size-4">WETH Supply</p>
+                <p className="subtitle is-size-4">Total WETH Supply</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title">{formatAmount.format(lockedWeth / wethSupply * 100)} %</h3>
-                <p className="subtitle is-size-4">% WETH in Dai System</p>
+                <p className="subtitle is-size-4">% WETH Locked</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">{formatCurr.format(ethUsd)}</h3>
+                <p className="subtitle is-size-4">ETH Price</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">{formatCurr.format(mkrUsd)}</h3>
+                <p className="subtitle is-size-4">MKR Price</p>
               </div>
             </div>
           </div>
@@ -62,12 +84,6 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title">{formatAmount.format(gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title">{formatCurr.format(mkrUsd)}</h3>
-                <p className="subtitle is-size-4">MKR Price</p>
               </div>
             </div>
             <div className="column">

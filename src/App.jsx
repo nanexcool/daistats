@@ -70,7 +70,7 @@ class App extends Component {
         blockHash: block.hash
       })
     })
-    // this.startEvents()
+    this.startEvents()
   }
 
   startEvents = () => {
@@ -88,7 +88,8 @@ class App extends Component {
         const { src, dst, wad } = event.returnValues
         // console.log(`${web3.utils.fromWei(wad.toString())} moved from ${src} to ${dst}`)
         window.lastEvent = event
-      } else {
+      } else if (event.event === "Mint" || event.event === "Burn") {
+        console.log(event.event + ' some Dai ' + web3.utils.fromWei(event.returnValues.wad))
         setTimeout(this.doDaiSupply, 1000)
       }
     })
