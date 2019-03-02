@@ -64,16 +64,18 @@ class App extends Component {
   componentDidMount() {
     window.web3 = web3
     this.init()
+    if (web3.canSubscribe) {
+      this.startEvents()
+    }
+  }
+
+  startEvents = () => {
     web3.eth.subscribe("newBlockHeaders").on('data', (block) => {
       this.setState({
         blockNumber: block.number,
         blockHash: block.hash
       })
     })
-    this.startEvents()
-  }
-
-  startEvents = () => {
     weth.events.Transfer({}, (err, event) => {
       // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
       if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
