@@ -77,19 +77,15 @@ const Main = (props) => {
               </div>
             </div>
           </div>
-          {/* <div className="columns">
-              <div className="column">
-                <div className="box has-text-centered">
-                  <h3 className="title">Current block/hash</h3>
-                  <p className="subtitle is-size-4">
-                    {this.state.blockNumber}
-                  </p>
-                  <p className="subtitle is-size-4">
-                    {this.state.blockHash}
-                  </p>
-                </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <p className="">
+                  Current block: {props.blockNumber}
+                </p>
               </div>
-            </div> */}
+            </div>
+          </div>
           {/* <p>{formatAmount.format(ethUsd * lockedWeth / daiSupply * 100)}</p> */}
           {/* <div className="columns">
               <div className="column">
@@ -107,16 +103,6 @@ const Main = (props) => {
             </div> */}
         </div>
       </section>
-      <footer className="footer">
-        <div className="content has-text-centered">
-          <p>
-            Made by <a className="" href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">
-              @nanexcool
-                </a> who loves numbers and loves you
-            </p>
-          <p><a className="" href="https://github.com/nanexcool/daistats" target="_blank" rel="noopener noreferrer">Source code</a></p>
-        </div>
-      </footer>
     </div>
   )
 }

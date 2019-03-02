@@ -58,20 +58,18 @@ class App extends Component {
       this.state.mkrUsd !== null &&
       this.state.lockedPeth !== null &&
       this.state.lockedWeth !== null &&
-      this.state.gemPit !== null
+      this.state.gemPit != null
   }
 
   componentDidMount() {
     window.web3 = web3
-    // window.eth = eth
-    // window.utils = utils
     this.init()
-    // web3.eth.subscribe("newBlockHeaders", (e, r) => {
-    //   this.setState({
-    //     blockNumber: r.number,
-    //     blockHash: r.hash
-    //   })
-    // })
+    web3.eth.subscribe("newBlockHeaders").on('data', (block) => {
+      this.setState({
+        blockNumber: block.number,
+        blockHash: block.hash
+      })
+    })
     // this.startEvents()
   }
 
@@ -193,12 +191,12 @@ class App extends Component {
 
       <section className="section">
         <div className="container has-text-centered">
-          <figure className="image is-128x128">
+          <figure className="image is-128x128 container">
             <img src={daiLogo} alt="Dai Logo" />
           </figure>
+          <br />
           <progress className="progress is-small is-primary" max="100">15%</progress>
-          <p>Juuuust a sec my friend</p>
-          <p>Fetching data straight from Ethereum Mainnet</p>
+          <p>One sec, fetching data from Ethereum Mainnet</p>
         </div>
       </section>
     );
