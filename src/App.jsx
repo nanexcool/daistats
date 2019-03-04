@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import web3 from './web3';
 import Main from './Main'
 import daiLogo from './dai.svg'
+import Web3 from 'web3';
+import BigNumber from "bignumber.js"
 
 const jsonFetch = url => fetch(url).then(res => res.json())
 const etherscanSupply = async () => {
@@ -46,6 +48,7 @@ class App extends Component {
     lockedPeth: null,
     lockedWeth: null,
     gemPit: null,
+    fee: null,
     blockNumber: null,
     blockHash: null,
   }
@@ -53,20 +56,16 @@ class App extends Component {
   isLoaded = () => {
     return this.state.daiSupply !== null &&
       this.state.ethSupply !== null &&
-      this.state.wethSupply !== null &&
-      this.state.ethUsd !== null &&
-      this.state.mkrUsd !== null &&
-      this.state.lockedPeth !== null &&
       this.state.lockedWeth !== null &&
-      this.state.gemPit != null
+      this.state.ethUsd !== null
   }
 
   componentDidMount() {
-    window.web3 = web3
     this.init()
-    if (web3.canSubscribe) {
-      this.startEvents()
-    }
+    // if (typeof web3.currentProvider === Web3.providers.WebsocketProvider) {
+    //   console.log('is websocket')
+    //   this.startEvents()
+    // }
   }
 
   startEvents = () => {
@@ -77,6 +76,7 @@ class App extends Component {
       })
     })
     weth.events.Transfer({}, (err, event) => {
+      console.log(event)
       // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
       if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
         const { src, dst, wad } = event.returnValues
@@ -111,6 +111,7 @@ class App extends Component {
     this.doMkrUsd()
     this.doLockedPeth()
     this.doGemPit()
+    this.doTubData()
     setInterval(this.doEthSupply, 60000)
   }
 
@@ -185,9 +186,27 @@ class App extends Component {
     })
   }
 
+  doTubData = async () => {
+    let fee = await tub.methods.fee().call()
+    // fee = web3.utils.toWei(web3.utils.fromWei(fee).pow(60 * 60 * 24 * 365)).times(100).minus(web3.utils.toWei(100))
+    this.setState({
+      fee
+    })
+    fee = new BigNumber(fee).div("1000000000000000000000000000").pow(60*60*24).toString(10)
+    // fee = fee.pow(60*60*24*365).minus(1).times(100).toString()
+    window.fee = fee
+  }
+
   render() {
     if (this.isLoaded()) {
-      return <Main {...this.state} />
+      return (
+        <div>
+          <Main {...this.state} />
+          <p>
+            Stability fee: {this.state.fee}
+          </p>
+        </div>
+      )
     }
     else
     return (
@@ -200,6 +219,9 @@ class App extends Component {
           <br />
           <progress className="progress is-small is-primary" max="100">15%</progress>
           <p>One sec, fetching data from Ethereum Mainnet</p>
+          {window.navigator.userAgent.indexOf('Firefox') !== -1  &&
+          <p>Site is not working in Firefox! Please use another browser!</p>
+          }
         </div>
       </section>
     );

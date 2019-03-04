@@ -93,7 +93,7 @@ const Main = (props) => {
               </div>
             </div>
           </div>
-          <div className="columns">
+          {/* <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
                 <p className="">
@@ -101,7 +101,7 @@ const Main = (props) => {
                 </p>
               </div>
             </div>
-          </div>
+          </div> */}
           {/* <p>{formatAmount.format(ethUsd * lockedWeth / daiSupply * 100)}</p> */}
           {/* <div className="columns">
               <div className="column">

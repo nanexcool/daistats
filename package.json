@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://daistats.com",
   "dependencies": {
+    "bignumber.js": "git+https://github.com/frozeman/bignumber.js-nolookahead.git",
     "gh-pages": "^2.0.1",
     "react": "^16.8.3",
     "react-dom": "^16.8.3",
