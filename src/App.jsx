@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
-import web3 from './web3';
+import eth from './web3';
 import Main from './Main'
 import daiLogo from './dai.svg'
-import Web3 from 'web3';
-import BigNumber from "bignumber.js"
+// import BigNumber from "bignumber.js"
+const ethers = require('ethers')
 
 const jsonFetch = url => fetch(url).then(res => res.json())
 const etherscanSupply = async () => {
   const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=zomg')
-  return web3.utils.fromWei(json.result)
+  return ethers.utils.formatEther(json.result)
 }
 
 const addresses = {
@@ -26,13 +26,13 @@ window.addresses = addresses
 const tokenAbi = require('./abi/token.json')
 const valueAbi = require('./abi/value.json')
 const tubAbi = require('./abi/tub.json')
-const dai = new web3.eth.Contract(tokenAbi, addresses.dai)
-const peth = new web3.eth.Contract(tokenAbi, addresses.peth)
-const mkr = new web3.eth.Contract(tokenAbi, addresses.mkr)
-const weth = new web3.eth.Contract(tokenAbi, addresses.weth)
-const ethUsd = new web3.eth.Contract(valueAbi, addresses.pip)
-const mkrUsd = new web3.eth.Contract(valueAbi, addresses.pep)
-const tub = new web3.eth.Contract(tubAbi, addresses.tub)
+const dai = new ethers.Contract(addresses.dai, tokenAbi, eth)
+const peth = new ethers.Contract(addresses.peth, tokenAbi, eth)
+const mkr = new ethers.Contract(addresses.mkr, tokenAbi, eth)
+const weth = new ethers.Contract(addresses.weth, tokenAbi, eth)
+const ethUsd = new ethers.Contract(addresses.pip, valueAbi, eth)
+const mkrUsd = new ethers.Contract(addresses.pep, valueAbi, eth)
+const tub = new ethers.Contract(addresses.tub, tubAbi, eth)
 window.dai = dai
 window.weth = weth
 window.tub = tub
@@ -69,32 +69,32 @@ class App extends Component {
   }
 
   startEvents = () => {
-    web3.eth.subscribe("newBlockHeaders").on('data', (block) => {
-      this.setState({
-        blockNumber: block.number,
-        blockHash: block.hash
-      })
-    })
-    weth.events.Transfer({}, (err, event) => {
-      console.log(event)
-      // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
-      if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
-        const { src, dst, wad } = event.returnValues
-        // console.log(web3.utils.fromWei(event.raw.data))
-        // console.log(`BOOM! ${web3.utils.fromWei(wad.toString())} moved into the tub!`)
-        setTimeout(this.doLockedWeth, 1000)
-      }
-    })
-    dai.events.allEvents({}, (err, event) => {
-      if (event.event === "Transfer") {
-        const { src, dst, wad } = event.returnValues
-        // console.log(`${web3.utils.fromWei(wad.toString())} moved from ${src} to ${dst}`)
-        window.lastEvent = event
-      } else if (event.event === "Mint" || event.event === "Burn") {
-        console.log(event.event + ' some Dai ' + web3.utils.fromWei(event.returnValues.wad))
-        setTimeout(this.doDaiSupply, 1000)
-      }
-    })
+    // web3.eth.subscribe("newBlockHeaders").on('data', (block) => {
+    //   this.setState({
+    //     blockNumber: block.number,
+    //     blockHash: block.hash
+    //   })
+    // })
+    // weth.events.Transfer({}, (err, event) => {
+    //   console.log(event)
+    //   // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
+    //   if (event.event === "Transfer" && event.returnValues.dst === addresses.tub) {
+    //     const { src, dst, wad } = event.returnValues
+    //     // console.log(web3.utils.fromWei(event.raw.data))
+    //     // console.log(`BOOM! ${web3.utils.fromWei(wad.toString())} moved into the tub!`)
+    //     setTimeout(this.doLockedWeth, 1000)
+    //   }
+    // })
+    // dai.events.allEvents({}, (err, event) => {
+    //   if (event.event === "Transfer") {
+    //     const { src, dst, wad } = event.returnValues
+    //     // console.log(`${web3.utils.fromWei(wad.toString())} moved from ${src} to ${dst}`)
+    //     window.lastEvent = event
+    //   } else if (event.event === "Mint" || event.event === "Burn") {
+    //     console.log(event.event + ' some Dai ' + web3.utils.fromWei(event.returnValues.wad))
+    //     setTimeout(this.doDaiSupply, 1000)
+    //   }
+    // })
   }
 
   componentWillUnmount() {
@@ -116,48 +116,48 @@ class App extends Component {
   }
 
   doGemPit = async () => {
-    let gemPit = await mkr.methods.balanceOf(addresses.pit).call()
-    gemPit = web3.utils.fromWei(gemPit)
+    let gemPit = await mkr.balanceOf(addresses.pit)
+    gemPit = ethers.utils.formatEther(gemPit)
     this.setState({
       gemPit
     })
   }
 
   doLockedWeth = async () => {
-    let lockedWeth = await tub.methods.pie().call()
-    lockedWeth = web3.utils.fromWei(lockedWeth)
+    let lockedWeth = await tub.pie()
+    lockedWeth = ethers.utils.formatEther(lockedWeth)
     this.setState({
       lockedWeth
     })
   }
 
   doLockedPeth = async () => {
-    let lockedPeth = await tub.methods.air().call()
-    lockedPeth = web3.utils.fromWei(lockedPeth)
+    let lockedPeth = await tub.air()
+    lockedPeth = ethers.utils.formatEther(lockedPeth)
     this.setState({
       lockedPeth
     })
   }
 
   doDaiSupply = async () => {
-    let daiSupply = await dai.methods.totalSupply().call()
-    daiSupply = web3.utils.fromWei(daiSupply)
+    let daiSupply = await dai.totalSupply()
+    daiSupply = ethers.utils.formatEther(daiSupply)
     this.setState({
       daiSupply
     })
   }
 
   doWethSupply = async () => {
-    let wethSupply = await weth.methods.totalSupply().call()
-    wethSupply = web3.utils.fromWei(wethSupply)
+    let wethSupply = await weth.totalSupply()
+    wethSupply = ethers.utils.formatEther(wethSupply)
     this.setState({
       wethSupply
     })
   }
 
   doPethSupply = async () => {
-    let pethSupply = await peth.methods.totalSupply().call()
-    pethSupply = web3.utils.fromWei(pethSupply)
+    let pethSupply = await peth.totalSupply()
+    pethSupply = ethers.utils.formatEther(pethSupply)
     this.setState({
       pethSupply
     })
@@ -171,28 +171,29 @@ class App extends Component {
   }
 
   doEthUsd = async () => {
-    let value = await ethUsd.methods.read().call()
-    value = web3.utils.fromWei(value)
+    let value = await ethUsd.read()
+    value = ethers.utils.formatEther(value)
     this.setState({
       ethUsd: value
     })
   }
 
   doMkrUsd = async () => {
-    let value = await mkrUsd.methods.read().call()
-    value = web3.utils.fromWei(value)
+    let value = await mkrUsd.read()
+    value = ethers.utils.formatEther(value)
     this.setState({
       mkrUsd: value
     })
   }
 
   doTubData = async () => {
-    let fee = await tub.methods.fee().call()
+    let fee = await tub.fee()
+    fee = ethers.utils.formatEther(fee)
     // fee = web3.utils.toWei(web3.utils.fromWei(fee).pow(60 * 60 * 24 * 365)).times(100).minus(web3.utils.toWei(100))
     this.setState({
       fee
     })
-    fee = new BigNumber(fee).div("1000000000000000000000000000").pow(60*60*24).toString(10)
+    // fee = new BigNumber(fee).div("1000000000000000000000000000").pow(60*60*24).toString(10)
     // fee = fee.pow(60*60*24*365).minus(1).times(100).toString()
     window.fee = fee
   }
@@ -202,9 +203,9 @@ class App extends Component {
       return (
         <div>
           <Main {...this.state} />
-          <p>
+          {/* <p>
             Stability fee: {this.state.fee}
-          </p>
+          </p> */}
         </div>
       )
     }
@@ -219,9 +220,6 @@ class App extends Component {
           <br />
           <progress className="progress is-small is-primary" max="100">15%</progress>
           <p>One sec, fetching data from Ethereum Mainnet</p>
-          {window.navigator.userAgent.indexOf('Firefox') !== -1  &&
-          <p>Site is not working in Firefox! Please use another browser!</p>
-          }
         </div>
       </section>
     );
