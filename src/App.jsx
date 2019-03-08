@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import eth from './web3';
 import Main from './Main'
 import daiLogo from './dai.svg'
-// import BigNumber from "bignumber.js"
 const ethers = require('ethers')
 
 const jsonFetch = url => fetch(url).then(res => res.json())
@@ -106,10 +105,10 @@ class App extends Component {
     this.doEthSupply()
     this.doLockedWeth()
     this.doWethSupply()
-    this.doPethSupply()
+    // this.doPethSupply()
+    // this.doLockedPeth()
     this.doEthUsd()
     this.doMkrUsd()
-    this.doLockedPeth()
     this.doGemPit()
     this.doTubData()
     setInterval(this.doEthSupply, 60000)
@@ -188,14 +187,10 @@ class App extends Component {
 
   doTubData = async () => {
     let fee = await tub.fee()
-    fee = ethers.utils.formatEther(fee)
-    // fee = web3.utils.toWei(web3.utils.fromWei(fee).pow(60 * 60 * 24 * 365)).times(100).minus(web3.utils.toWei(100))
+    fee = parseFloat(ethers.utils.formatUnits(fee, 27)) ** (60*60*24*365) * 100 - 100
     this.setState({
       fee
     })
-    // fee = new BigNumber(fee).div("1000000000000000000000000000").pow(60*60*24).toString(10)
-    // fee = fee.pow(60*60*24*365).minus(1).times(100).toString()
-    window.fee = fee
   }
 
   render() {
