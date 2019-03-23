@@ -193,11 +193,22 @@ class App extends Component {
     })
   }
 
+  getMkrRoi() {
+    if (this.isLoaded()) {
+      const mkrSupply = 1000000 - this.state.gemPit
+      const feesPerYear = this.state.fee / 100.0 * this.state.daiSupply
+      return feesPerYear / (this.state.mkrUsd * mkrSupply) * 100.0
+    } else {
+      return null;
+    }
+  }
+
   render() {
     if (this.isLoaded()) {
+
       return (
         <div>
-          <Main {...this.state} />
+          <Main {...this.state} mkrRoi={this.getMkrRoi()} />
           {/* <p>
             Stability fee: {this.state.fee}
           </p> */}
