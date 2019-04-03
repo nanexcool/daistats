@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
 import eth from './web3';
 import Main from './Main'
 import daiLogo from './dai.svg'
@@ -61,19 +61,11 @@ class App extends Component {
 
   componentDidMount() {
     this.init()
-    // if (typeof web3.currentProvider === Web3.providers.WebsocketProvider) {
-    //   console.log('is websocket')
-    //   this.startEvents()
-    // }
+    setInterval(this.init, 120000)
+    this.startEvents()
   }
 
-  startEvents = () => {
-    // web3.eth.subscribe("newBlockHeaders").on('data', (block) => {
-    //   this.setState({
-    //     blockNumber: block.number,
-    //     blockHash: block.hash
-    //   })
-    // })
+  startEvents = async () => {
     // weth.events.Transfer({}, (err, event) => {
     //   console.log(event)
     //   // console.log(web3.utils.fromWei(event.raw.data) + " WETH unlocked at " + event.transactionHash);
@@ -111,7 +103,6 @@ class App extends Component {
     this.doMkrUsd()
     this.doGemPit()
     this.doTubData()
-    setInterval(this.doEthSupply, 60000)
   }
 
   doGemPit = async () => {
@@ -198,15 +189,11 @@ class App extends Component {
       return (
         <div>
           <Main {...this.state} />
-          {/* <p>
-            Stability fee: {this.state.fee}
-          </p> */}
         </div>
       )
     }
     else
     return (
-
       <section className="section">
         <div className="container has-text-centered">
           <figure className="image is-128x128 container">
