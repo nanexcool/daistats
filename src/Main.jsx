@@ -12,7 +12,7 @@ const formatAmount = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
-  const { daiSupply, ethSupply, wethSupply, fee, pethSupply, ethUsd, mkrUsd, lockedPeth, lockedWeth, gemPit } = props
+  const { daiSupply, ethSupply, wethSupply, fee, pethSupply, ethUsd, mkrUsd, lockedPeth, lockedWeth, gemPit, mkrRoi } = props
   return (
     <div>
       <section className="section">
@@ -92,6 +92,14 @@ const Main = (props) => {
                 <p className="subtitle is-size-4">Stability Fee</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">{formatAmount.format(mkrRoi)} %</h3>
+                <p className="subtitle is-size-4">MKR ROI</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={gemPit}>{formatAmount.format(gemPit)}</h3>

@@ -48,6 +48,7 @@ class App extends Component {
     lockedWeth: null,
     gemPit: null,
     fee: null,
+    mkrRoi: null,
     blockNumber: null,
     blockHash: null,
   }
@@ -56,13 +57,15 @@ class App extends Component {
     return this.state.daiSupply !== null &&
       this.state.ethSupply !== null &&
       this.state.lockedWeth !== null &&
-      this.state.ethUsd !== null
+      this.state.ethUsd !== null &&
+      this.state.gemPit !== null &&
+      this.state.mkrUsd !== null
   }
 
   componentDidMount() {
     this.init()
     setInterval(this.init, 120000)
-    this.startEvents()
+    // this.startEvents()
   }
 
   startEvents = async () => {
@@ -92,96 +95,87 @@ class App extends Component {
 
   }
 
-  init = () => {
-    this.doDaiSupply()
-    this.doEthSupply()
-    this.doLockedWeth()
-    this.doWethSupply()
-    // this.doPethSupply()
-    // this.doLockedPeth()
-    this.doEthUsd()
-    this.doMkrUsd()
-    this.doGemPit()
-    this.doTubData()
+  init = async () => {
+    const all = await Promise.all([
+      this.doDaiSupply(),
+      this.doEthSupply(),
+      this.doLockedWeth(),
+      this.doWethSupply(),
+      // this.doPethSupply(),
+      // this.doLockedPeth(),
+      this.doEthUsd(),
+      this.doMkrUsd(),
+      this.doGemPit(),
+      this.doTubData(),
+    ])
+    this.setState({
+      daiSupply: all[0],
+      ethSupply: all[1],
+      lockedWeth: all[2],
+      wethSupply: all[3],
+      ethUsd: all[4],
+      mkrUsd: all[5],
+      gemPit: all[6],
+      fee: all[7],
+    })
+    const mkrRoi = await this.doMkrRoi()
+    this.setState({ mkrRoi })
   }
 
   doGemPit = async () => {
     let gemPit = await mkr.balanceOf(addresses.pit)
-    gemPit = ethers.utils.formatEther(gemPit)
-    this.setState({
-      gemPit
-    })
+    return ethers.utils.formatEther(gemPit)
   }
 
   doLockedWeth = async () => {
     let lockedWeth = await tub.pie()
-    lockedWeth = ethers.utils.formatEther(lockedWeth)
-    this.setState({
-      lockedWeth
-    })
+    return ethers.utils.formatEther(lockedWeth)
   }
 
   doLockedPeth = async () => {
     let lockedPeth = await tub.air()
-    lockedPeth = ethers.utils.formatEther(lockedPeth)
-    this.setState({
-      lockedPeth
-    })
+    return ethers.utils.formatEther(lockedPeth)
   }
 
   doDaiSupply = async () => {
     let daiSupply = await dai.totalSupply()
-    daiSupply = ethers.utils.formatEther(daiSupply)
-    this.setState({
-      daiSupply
-    })
+    return ethers.utils.formatEther(daiSupply)
   }
 
   doWethSupply = async () => {
     let wethSupply = await weth.totalSupply()
-    wethSupply = ethers.utils.formatEther(wethSupply)
-    this.setState({
-      wethSupply
-    })
+    return ethers.utils.formatEther(wethSupply)
   }
 
   doPethSupply = async () => {
     let pethSupply = await peth.totalSupply()
-    pethSupply = ethers.utils.formatEther(pethSupply)
-    this.setState({
-      pethSupply
-    })
+    return ethers.utils.formatEther(pethSupply)
   }
 
   doEthSupply = async () => {
     const ethSupply = await etherscanSupply()
-    this.setState({
-      ethSupply
-    })
+    return ethSupply
   }
 
   doEthUsd = async () => {
     let value = await ethUsd.read()
-    value = ethers.utils.formatEther(value)
-    this.setState({
-      ethUsd: value
-    })
+    return ethers.utils.formatEther(value)
   }
 
   doMkrUsd = async () => {
     let value = await mkrUsd.read()
-    value = ethers.utils.formatEther(value)
-    this.setState({
-      mkrUsd: value
-    })
+    return ethers.utils.formatEther(value)
   }
 
   doTubData = async () => {
     let fee = await tub.fee()
-    fee = parseFloat(ethers.utils.formatUnits(fee, 27)) ** (60*60*24*365) * 100 - 100
-    this.setState({
-      fee
-    })
+    return parseFloat(ethers.utils.formatUnits(fee, 27)) ** (60*60*24*365) * 100 - 100
+  }
+
+  doMkrRoi() {
+    const mkrSupply = 1000000 - this.state.gemPit
+    const feesPerYear = this.state.fee / 100.0 * this.state.daiSupply
+    return feesPerYear / (this.state.mkrUsd * mkrSupply) * 100.0
   }
 
   render() {
