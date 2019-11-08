@@ -40,6 +40,7 @@ window.mkr = mkr
 class App extends Component {
   state = {
     daiSupply: null,
+    cap: null,
     ethSupply: null,
     wethSupply: null,
     ethUsd: null,
@@ -56,6 +57,7 @@ class App extends Component {
   isLoaded = () => {
     return this.state.daiSupply !== null &&
       this.state.ethSupply !== null &&
+      this.state.cap !== null &&
       this.state.lockedWeth !== null &&
       this.state.ethUsd !== null &&
       this.state.gemPit !== null &&
@@ -64,7 +66,7 @@ class App extends Component {
 
   componentDidMount() {
     this.init()
-    setInterval(this.init, 120000)
+    setInterval(this.init, 60000)
     // this.startEvents()
   }
 
@@ -98,6 +100,7 @@ class App extends Component {
   init = async () => {
     const all = await Promise.all([
       this.doDaiSupply(),
+      this.doCap(),
       this.doEthSupply(),
       this.doLockedWeth(),
       this.doWethSupply(),
@@ -110,13 +113,14 @@ class App extends Component {
     ])
     this.setState({
       daiSupply: all[0],
-      ethSupply: all[1],
-      lockedWeth: all[2],
-      wethSupply: all[3],
-      ethUsd: all[4],
-      mkrUsd: all[5],
-      gemPit: all[6],
-      fee: all[7],
+      cap: all[1],
+      ethSupply: all[2],
+      lockedWeth: all[3],
+      wethSupply: all[4],
+      ethUsd: all[5],
+      mkrUsd: all[6],
+      gemPit: all[7],
+      fee: all[8],
     })
     const mkrRoi = await this.doMkrRoi()
     this.setState({ mkrRoi })
@@ -135,6 +139,11 @@ class App extends Component {
   doLockedPeth = async () => {
     let lockedPeth = await tub.air()
     return ethers.utils.formatEther(lockedPeth)
+  }
+
+  doCap = async () => {
+    let cap = await tub.cap()
+    return ethers.utils.formatEther(cap)
   }
 
   doDaiSupply = async () => {
