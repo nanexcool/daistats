@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<link rel="shortcut icon" href="favicon.ico" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<link rel="stylesheet" href="flipclock.css">
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="flipclock.js"></script>
+	<link rel="stylesheet" href="bulma.min.css">
+	<meta name="theme-color" content="#000000" />
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:creator" content="@nanexcool" />
+	<meta name="twitter:site" content="@nanexcool" />
+	<meta name="twitter:title" content="Dai Stats" />
+	<meta name="twitter:description" content="Dai numbers at a glance" />
+	<meta name="twitter:image" content="https://daistats.com/dai.png" />
+	<title>Dai Stats</title>
+</head>
+
+<body>
+	<section class="section">
+		<div class="container has-text-centered">
+			<figure class="image is-128x128 container">
+				<img src="dai.png" alt="Dai Logo" />
+			</figure>
+			<br />
+			<h2 class="title is-2">Dai Stats will be back soon!</h2>
+			<br />
+			<div class="clock is-centered" style="margin:0 auto; width:650px"></div>
+			<br />
+			<h3 class="title is-3">
+				In the meantime, go to <a class="" href="https://saistats.com" target="_blank"
+					rel="noopener noreferrer">saistats.com</a>
+			</h3>
+		</div>
+	</section>
+	<div class="columns is-centered">
+		<div class="column">
+			
+		</div>
+	</div>
+	<script type="text/javascript">
+		var clock;
+
+		$(document).ready(function () {
+
+			var currentDate = new Date();
+			var futureDate = new Date("November 18, 2019 11:13:00")
+			var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
+
+			clock = $('.clock').FlipClock(diff, {
+				clockFace: 'DailyCounter',
+				countdown: true
+			});
+		});
+	</script>
+	<footer class="footer">
+		<div class="content has-text-centered">
+			<p>
+				Made by <a class="" href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">
+					@nanexcool
+				</a> who loves numbers and loves you
+			</p>
+			<p><a class="" href="https://github.com/nanexcool/daistats" target="_blank" rel="noopener noreferrer">Source
+					code</a></p>
+			<p>Other great projects:</p>
+			<p><a class="" href="https://mkr.tools/" target="_blank" rel="noopener noreferrer">MKR Tools</a> by <a
+					class="" href="https://twitter.com/mikeraymcdonald" target="_blank"
+					rel="noopener noreferrer">@mikeraymcdonald</a></p>
+			<p><a class="" href="https://makerscan.io/" target="_blank" rel="noopener noreferrer">MakerScan</a> by <a
+					class="" href="https://twitter.com/instadapp" target="_blank"
+					rel="noopener noreferrer">@instadapp</a></p>
+			<p><a class="" href="https://dai.stablecoin.science/" target="_blank"
+					rel="noopener noreferrer">dai.stablecoin.science</a></p>
+			<p><a class="" href="https://defipulse.com/" target="_blank" rel="noopener noreferrer">DeFi Pulse</a></p>
+			<p><a class="" href="https://www.daiprice.info" target="_blank" rel="noopener noreferrer">Dai Price</a></p>
+			<p><a class="" href="http://makerdao.descipher.io/" target="_blank"
+					rel="noopener noreferrer">makerdao.descipher.io</a> by <a class=""
+					href="https://twitter.com/visavishesh" target="_blank" rel="noopener noreferrer">@visavishesh</a>
+			</p>
+			<p><a class="" href="http://dai.descipher.io/" target="_blank"
+					rel="noopener noreferrer">dai.descipher.io</a> by <a class="" href="https://twitter.com/visavishesh"
+					target="_blank" rel="noopener noreferrer">@visavishesh</a></p>
+			<p><a class="" href="https://defiprime.com" target="_blank" rel="noopener noreferrer">Defiprime</a></p>
+
+		</div>
+	</footer>
+</body>
+
+</html>
