@@ -66,25 +66,42 @@
 			<p><a class="" href="https://github.com/nanexcool/daistats" target="_blank" rel="noopener noreferrer">Source
 					code</a></p>
 			<p>Other great projects:</p>
-			<p><a class="" href="https://mkr.tools/" target="_blank" rel="noopener noreferrer">MKR Tools</a> by <a
-					class="" href="https://twitter.com/mikeraymcdonald" target="_blank"
-					rel="noopener noreferrer">@mikeraymcdonald</a></p>
-			<p><a class="" href="https://makerscan.io/" target="_blank" rel="noopener noreferrer">MakerScan</a> by <a
-					class="" href="https://twitter.com/instadapp" target="_blank"
-					rel="noopener noreferrer">@instadapp</a></p>
-			<p><a class="" href="https://dai.stablecoin.science/" target="_blank"
-					rel="noopener noreferrer">dai.stablecoin.science</a></p>
-			<p><a class="" href="https://defipulse.com/" target="_blank" rel="noopener noreferrer">DeFi Pulse</a></p>
-			<p><a class="" href="https://www.daiprice.info" target="_blank" rel="noopener noreferrer">Dai Price</a></p>
-			<p><a class="" href="http://makerdao.descipher.io/" target="_blank"
-					rel="noopener noreferrer">makerdao.descipher.io</a> by <a class=""
-					href="https://twitter.com/visavishesh" target="_blank" rel="noopener noreferrer">@visavishesh</a>
-			</p>
-			<p><a class="" href="http://dai.descipher.io/" target="_blank"
-					rel="noopener noreferrer">dai.descipher.io</a> by <a class="" href="https://twitter.com/visavishesh"
-					target="_blank" rel="noopener noreferrer">@visavishesh</a></p>
-			<p><a class="" href="https://defiprime.com" target="_blank" rel="noopener noreferrer">Defiprime</a></p>
+			<div id="other-sites"></div>
+      <script>
+        const shuffle = function (array) {
 
+          let currentIndex = array.length;
+          let temporaryValue, randomIndex;
+
+          // While there remain elements to shuffle...
+          while (0 !== currentIndex) {
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex] = temporaryValue;
+          }
+
+          return array;
+
+        };
+        let sites = [
+          '<p><a class="" href="https://mkr.tools/" target="_blank" rel="noopener noreferrer">MKR Tools</a> by <a class="" href="https://twitter.com/mikeraymcdonald" target="_blank" rel="noopener noreferrer">@mikeraymcdonald</a></p>',
+          '<p><a class="" href="https://makerscan.io/" target="_blank" rel="noopener noreferrer">MakerScan</a> by <a class="" href="https://twitter.com/InstaDApp" target="_blank" rel="noopener noreferrer">@InstaDApp</a></p>',
+          '<p><a class="" href="https://dai.stablecoin.science/" target="_blank" rel="noopener noreferrer">dai.stablecoin.science</a></p>',
+          '<p><a class="" href="https://defipulse.com/" target="_blank" rel="noopener noreferrer">DeFi Pulse</a> by <a class="" href="https://twitter.com/defipulse" target="_blank" rel="noopener noreferrer">@defipulse</a></p>',
+          '<p><a class="" href="https://www.daiprice.info" target="_blank" rel="noopener noreferrer">Dai Price</a></p>',
+          '<p><a class="" href="http://makerdao.descipher.io/" target="_blank" rel="noopener noreferrer">makerdao.descipher.io</a> by <a class="" href="https://twitter.com/visavishesh" target="_blank" rel="noopener noreferrer">@visavishesh</a></p>',
+          '<p><a class="" href="http://dai.descipher.io/" target="_blank" rel="noopener noreferrer">dai.descipher.io</a> by <a class="" href="https://twitter.com/visavishesh" target="_blank" rel="noopener noreferrer">@visavishesh</a></p>',
+          '<p><a class="" href="https://defiprime.com" target="_blank" rel="noopener noreferrer">Defiprime</a></p>',
+          '<p><a class="" href="https://www.daiembassy.online/" target="_blank" rel="noopener noreferrer">Dai Embassy</a> by <a class="" href="https://twitter.com/DaiEmbassy" target="_blank" rel="noopener noreferrer">@DaiEmbassy</a>/<a class="" href="https://twitter.com/Cryptonomik" target="_blank" rel="noopener noreferrer">@Cryptonomik</a></p>'
+        ]
+        shuffle(sites)
+        document.getElementById('other-sites').innerHTML = sites.join('')
+      </script>
 		</div>
 	</footer>
 </body>
