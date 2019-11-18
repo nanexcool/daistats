@@ -54,11 +54,9 @@ class App extends Component {
   }
 
   getDebt = async () => {
-      // sub(sub(vat.sin(address(this)), Sin), Ash)
       const sin = await vat.sin(vow.address);
       const bigSin = await vow.Sin();
       const Ash = await vow.Ash();
-      console.log(ethers.utils.formatUnits(sin, 45), ethers.utils.formatUnits(bigSin, 45), ethers.utils.formatUnits(Ash, 45));
       return sin.sub(bigSin).sub(Ash);
   }
 
