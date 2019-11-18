@@ -1,0 +1,1 @@
+[{"constant":false,"inputs":[],"name":"newDad","outputs":[{"internalType":"contract DSGuard","name":"dad","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]

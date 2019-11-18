@@ -1,0 +1,1 @@
+[{"constant":false,"inputs":[{"internalType":"bytes32","name":"name","type":"bytes32"}],"name":"newTok","outputs":[{"internalType":"contract DSToken","name":"token","type":"address"}],"payable":false,"stateMutability":"nonpayable","type":"function"}]

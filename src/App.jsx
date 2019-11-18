@@ -1,9 +1,109 @@
 import React, { Component } from 'react'
+import eth from './web3';
+import Main from './Main'
 import daiLogo from './dai.png'
+const ethers = require('ethers')
+
+const add = require('./addresses.json')
+add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
+
+const vat = build(add.MCD_VAT, "Vat")
+const pot = build(add.MCD_POT, "Pot")
+const weth = build(add.ETH, "ERC20")
+const bat = build(add.BAT, "ERC20")
+const sai = build(add.SAI, "ERC20")
+const dai = build(add.MCD_DAI, "Dai")
+const mkr = build(add.MCD_GOV, "ERC20")
+const manager = build(add.CDP_MANAGER, "DssCdpManager")
+window.utils = ethers.utils
+window.add = add
+window.vat = vat
 
 class App extends Component {
+  state = {
+    savingsDai: null,
+    daiSupply: null,
+    ethLocked: null,
+    batLocked: null,
+    saiLocked: null,
+    gemPit: null,
+    Line: null,
+    debt: null,
+    live: null,
+    ilks: null,
+    cdps: null
+  }
+
+  componentDidMount() {
+    this.init()
+    setInterval(this.init, 60000)
+  }
+
+  isLoaded = () => {
+    return this.state.Line !== null &&
+      this.state.debt !== null &&
+      this.state.ilks !== null
+  }
+
+  init = async () => {
+    const Line = await vat.Line()
+    const debt = await vat.debt()
+    const ethIlk = await vat.ilks(ethers.utils.formatBytes32String("ETH-A"))
+    const batIlk = await vat.ilks(ethers.utils.formatBytes32String("BAT-A"))
+    const saiIlk = await vat.ilks(ethers.utils.formatBytes32String("SAI"))
+    const daiSupply = await dai.totalSupply()
+    const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
+    const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
+    const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
+    const gemPit = await mkr.balanceOf(add.GEM_PIT)
+    const savingsDai = await pot.Pie()
+    const cdps = await manager.cdpi()
+    this.setState({
+      daiSupply: ethers.utils.formatEther(daiSupply),
+      ethLocked: ethers.utils.formatEther(ethLocked),
+      batLocked: ethers.utils.formatEther(batLocked),
+      saiLocked: ethers.utils.formatEther(saiLocked),
+      gemPit: ethers.utils.formatEther(gemPit),
+      Line: Line.toString(),
+      debt: debt.toString(),
+      cdps: cdps.toString(),
+      savingsDai: ethers.utils.formatEther(savingsDai),
+      ilks: [
+        {
+          Art: ethers.utils.formatEther( ethIlk.Art),
+          rate: ethers.utils.formatUnits(ethIlk.rate, 27),
+          spot: ethers.utils.formatUnits(ethIlk.spot, 27),
+          line: ethers.utils.formatUnits(ethIlk.line, 45),
+          dust: ethers.utils.formatUnits(ethIlk.dust, 45)
+        },
+        {
+          Art: ethers.utils.formatEther( batIlk.Art),
+          rate: ethers.utils.formatUnits(batIlk.rate, 27),
+          spot: ethers.utils.formatUnits(batIlk.spot, 27),
+          line: ethers.utils.formatUnits(batIlk.line, 45),
+          dust: ethers.utils.formatUnits(batIlk.dust, 45)
+        },
+        {
+          Art: ethers.utils.formatEther( saiIlk.Art),
+          rate: ethers.utils.formatUnits(saiIlk.rate, 27),
+          spot: ethers.utils.formatUnits(saiIlk.spot, 27),
+          line: ethers.utils.formatUnits(saiIlk.line, 45),
+          dust: ethers.utils.formatUnits(saiIlk.dust, 45)
+        }
+      ]
+    })
+  }
 
   render() {
+    if (this.isLoaded()) {
+      return (
+        <div>
+          <Main {...this.state} />
+        </div>
+      )
+    }
+    else
     return (
       <section className="section">
         <div className="container has-text-centered">
@@ -11,13 +111,11 @@ class App extends Component {
             <img src={daiLogo} alt="Dai Logo" />
           </figure>
           <br />
-          <h2 className="title is-2">Dai Stats will be back soon!</h2>
-          <h3 className="title is-3">
-            In the meantime, enjoy <a class="" href="https://saistats.com" target="_blank" rel="noopener noreferrer">saistats.com</a>
-          </h3>
+          <progress className="progress is-small is-primary" max="100">15%</progress>
+          <p>One sec, fetching data from Ethereum Mainnet</p>
         </div>
       </section>
-    )
+    );
   }
 }
 
