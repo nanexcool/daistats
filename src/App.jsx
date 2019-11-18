@@ -11,6 +11,7 @@ const build = (address, name) => new ethers.Contract(address, require(`./abi/${n
 
 const vat = build(add.MCD_VAT, "Vat")
 const pot = build(add.MCD_POT, "Pot")
+const jug = build(add.MCD_JUG, "Jug")
 const vow = build(add.MCD_VOW, "Vow")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
@@ -20,6 +21,9 @@ const mkr = build(add.MCD_GOV, "ERC20")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
+const ethIlkBytes = ethers.utils.formatBytes32String("ETH-A");
+const batIlkBytes = ethers.utils.formatBytes32String("BAT-A")
+const saiIlkBytes = ethers.utils.formatBytes32String("SAI")
 window.utils = ethers.utils
 window.add = add
 window.vat = vat
@@ -62,12 +66,14 @@ class App extends Component {
       return sin.sub(bigSin).sub(Ash);
   }
 
+  unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
+
   init = async () => {
     const Line = await vat.Line()
     const debt = await vat.debt()
-    const ethIlk = await vat.ilks(ethers.utils.formatBytes32String("ETH-A"))
-    const batIlk = await vat.ilks(ethers.utils.formatBytes32String("BAT-A"))
-    const saiIlk = await vat.ilks(ethers.utils.formatBytes32String("SAI"))
+    const ethIlk = await vat.ilks(ethIlkBytes)
+    const batIlk = await vat.ilks(batIlkBytes)
+    const saiIlk = await vat.ilks(saiIlkBytes)
     const daiSupply = await dai.totalSupply()
     const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
@@ -78,6 +84,8 @@ class App extends Component {
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
     const potDrip = await pot.rho();
+    const jugEthDrip = await jug.ilks(ethIlkBytes);
+    const jugBatDrip = await jug.ilks(batIlkBytes);
     const cdps = await manager.cdpi();
     const sysSurplus = await this.getSurplus();
     const sysDebt = await this.getDebt();
@@ -95,7 +103,9 @@ class App extends Component {
       savingsPie: ethers.utils.formatEther(savingsPie),
       savingsDai: ethers.utils.formatUnits(savingsDai, 45),
       uniswapDai: ethers.utils.formatEther(uniswapDai),
-      potDrip: new Date(potDrip.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(potDrip.toNumber() * 1000).toLocaleTimeString("en-US"),
+      potDrip: this.unixToDateTime(potDrip.toNumber()),
+      jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
+      jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
       sysSurplus: ethers.utils.formatUnits(sysSurplus, 45),
       sysDebt: ethers.utils.formatUnits(sysDebt, 45),
       batKicks: batKicks.toNumber(),
