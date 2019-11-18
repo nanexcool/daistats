@@ -109,13 +109,15 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="subtitle is-size-4">Dai in DSR (Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                <p className="title subtitle is-size-4">Dai in DSR</p>
+                <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Uniswap</p>
+                <h3 className="title" title={2}>2%</h3>
+                <p className="title subtitle is-size-4">Dai Savings Rate</p>
+                <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
               </div>
             </div>
           </div>
@@ -130,6 +132,12 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
+                <p className="subtitle is-size-4">Dai in Uniswap</p>
               </div>
             </div>
           </div>
