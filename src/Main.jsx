@@ -92,6 +92,12 @@ const Main = (props) => {
                 <p className="subtitle is-size-4">SAI Stability Fee</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={2}>2%</h3>
+                <p className="subtitle is-size-4">Dai Savings Rate</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">
@@ -108,8 +114,8 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={2}>2%</h3>
-                <p className="subtitle is-size-4">Dai Savings Rate</p>
+                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
+                <p className="subtitle is-size-4">Dai in Uniswap</p>
               </div>
             </div>
           </div>

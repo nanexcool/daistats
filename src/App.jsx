@@ -6,6 +6,7 @@ const ethers = require('ethers')
 
 const add = require('./addresses.json')
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+add["UNISWAP_EXCHANGE"] = "0x2a1530c4c41db0b0b2bb646cb5eb1a67b7158667"
 const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
 
 const vat = build(add.MCD_VAT, "Vat")
@@ -23,6 +24,7 @@ window.vat = vat
 class App extends Component {
   state = {
     savingsDai: null,
+    uniswapDai: null,
     daiSupply: null,
     ethLocked: null,
     batLocked: null,
@@ -58,6 +60,7 @@ class App extends Component {
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
     const savingsDai = await pot.Pie()
+    const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
     const cdps = await manager.cdpi()
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
@@ -69,6 +72,7 @@ class App extends Component {
       debt: debt.toString(),
       cdps: cdps.toString(),
       savingsDai: ethers.utils.formatEther(savingsDai),
+      uniswapDai: ethers.utils.formatEther(uniswapDai),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
