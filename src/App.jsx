@@ -59,7 +59,9 @@ class App extends Component {
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
-    const savingsDai = await pot.Pie()
+    const savingsPie = await pot.Pie()
+    const pieChi = await pot.chi();
+    const savingsDai = savingsPie.mul(pieChi);
     const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
     const cdps = await manager.cdpi()
     this.setState({
@@ -71,7 +73,8 @@ class App extends Component {
       Line: ethers.utils.formatUnits(Line, 45),
       debt: ethers.utils.formatUnits(debt, 45),
       cdps: cdps.toString(),
-      savingsDai: ethers.utils.formatEther(savingsDai),
+      savingsPie: ethers.utils.formatEther(savingsPie),
+      savingsDai: ethers.utils.formatUnits(savingsDai, 45),
       uniswapDai: ethers.utils.formatEther(uniswapDai),
       ilks: [
         {

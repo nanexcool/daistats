@@ -109,7 +109,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="subtitle is-size-4">Dai in DSR</p>
+                <p className="subtitle is-size-4">Dai in DSR (Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>
             <div className="column">
