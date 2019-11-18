@@ -18,6 +18,8 @@ const sai = build(add.SAI, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "ERC20")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
+const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
+const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 window.utils = ethers.utils
 window.add = add
 window.vat = vat
@@ -80,6 +82,8 @@ class App extends Component {
     const cdps = await manager.cdpi();
     const sysSurplus = await this.getSurplus();
     const sysDebt = await this.getDebt();
+    const batKicks = await batFlip.kicks();
+    const ethKicks = await ethFlip.kicks();
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
@@ -95,6 +99,8 @@ class App extends Component {
       potDrip: new Date(potDrip.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(potDrip.toNumber() * 1000).toLocaleTimeString("en-US"),
       sysSurplus: ethers.utils.formatUnits(sysSurplus, 45),
       sysDebt: ethers.utils.formatUnits(sysDebt, 45),
+      batKicks: batKicks.toNumber(),
+      ethKicks: ethKicks.toNumber(),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
