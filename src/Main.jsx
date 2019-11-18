@@ -37,19 +37,19 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethLocked}>{formatAmount.format(props.ethLocked)}</h3>
-                <p className="subtitle is-size-4">ETH Locked</p>
+                <p className="subtitle is-size-4">ETH Locked (in ETH)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
               <h3 className="title" title={props.batLocked}>{formatAmount.format(props.batLocked)}</h3>
-                <p className="subtitle is-size-4">BAT Locked</p>
+                <p className="subtitle is-size-4">BAT Locked (in BAT)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
               <h3 className="title" title={props.saiLocked}>{formatAmount.format(props.saiLocked)}</h3>
-                <p className="subtitle is-size-4">SAI Locked</p>
+                <p className="subtitle is-size-4">SAI Locked (in SAI)</p>
               </div>
             </div>
           </div>
@@ -77,19 +77,19 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
-                <p className="subtitle is-size-4">ETH Ceiling</p>
+                <p className="subtitle is-size-4">ETH Ceiling (in Dai)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
-                <p className="subtitle is-size-4">BAT Ceiling</p>
+                <p className="subtitle is-size-4">BAT Ceiling (in Dai)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
-                <p className="subtitle is-size-4">SAI Ceiling</p>
+                <p className="subtitle is-size-4">SAI Ceiling (in Dai)</p>
               </div>
             </div>
           </div>
