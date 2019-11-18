@@ -131,7 +131,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={2}>2%</h3>
+                <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
                 <p className="title subtitle is-size-4">Dai Savings Rate</p>
                 <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
               </div>
