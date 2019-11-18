@@ -77,7 +77,6 @@ class App extends Component {
     const savingsPie = await pot.Pie()
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
-    const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
     const potDrip = await pot.rho();
     const cdps = await manager.cdpi();
     const sysSurplus = await this.getSurplus();
