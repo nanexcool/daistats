@@ -63,6 +63,7 @@ class App extends Component {
     const savingsPie = await pot.Pie()
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
+    const potDrip = await pot.rho();
     const cdps = await manager.cdpi()
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
@@ -76,6 +77,7 @@ class App extends Component {
       savingsPie: ethers.utils.formatEther(savingsPie),
       savingsDai: ethers.utils.formatUnits(savingsDai, 45),
       uniswapDai: ethers.utils.formatEther(uniswapDai),
+      potDrip: new Date(potDrip.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(potDrip.toNumber() * 1000).toLocaleTimeString("en-US"),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
