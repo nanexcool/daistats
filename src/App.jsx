@@ -66,6 +66,8 @@ class App extends Component {
       return sin.sub(bigSin).sub(Ash);
   }
 
+  unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
+
   init = async () => {
     const Line = await vat.Line()
     const debt = await vat.debt()
@@ -101,9 +103,9 @@ class App extends Component {
       savingsPie: ethers.utils.formatEther(savingsPie),
       savingsDai: ethers.utils.formatUnits(savingsDai, 45),
       uniswapDai: ethers.utils.formatEther(uniswapDai),
-      potDrip: new Date(potDrip.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(potDrip.toNumber() * 1000).toLocaleTimeString("en-US"),
-      jugEthDrip: new Date(jugEthDrip.rho.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(jugEthDrip.rho.toNumber() * 1000).toLocaleTimeString("en-US"),
-      jugBatDrip: new Date(jugBatDrip.rho.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(jugBatDrip.rho.toNumber() * 1000).toLocaleTimeString("en-US"),
+      potDrip: this.unixToDateTime(potDrip.toNumber()),
+      jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
+      jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
       sysSurplus: ethers.utils.formatUnits(sysSurplus, 45),
       sysDebt: ethers.utils.formatUnits(sysDebt, 45),
       batKicks: batKicks.toNumber(),
