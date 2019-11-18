@@ -37,7 +37,7 @@ class App extends Component {
 
   componentDidMount() {
     this.init()
-    setInterval(this.init, 60000)
+    setInterval(this.init, 15000)
   }
 
   isLoaded = () => {
@@ -65,8 +65,8 @@ class App extends Component {
       batLocked: ethers.utils.formatEther(batLocked),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
-      Line: Line.toString(),
-      debt: debt.toString(),
+      Line: ethers.utils.formatUnits(Line, 45),
+      debt: ethers.utils.formatUnits(debt, 45),
       cdps: cdps.toString(),
       savingsDai: ethers.utils.formatEther(savingsDai),
       ilks: [
