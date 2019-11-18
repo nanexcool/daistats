@@ -6,6 +6,7 @@ const ethers = require('ethers')
 
 const add = require('./addresses.json')
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+add["UNISWAP_EXCHANGE"] = "0x2a1530c4c41db0b0b2bb646cb5eb1a67b7158667"
 const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
 
 const vat = build(add.MCD_VAT, "Vat")
@@ -23,6 +24,7 @@ window.vat = vat
 class App extends Component {
   state = {
     savingsDai: null,
+    uniswapDai: null,
     daiSupply: null,
     ethLocked: null,
     batLocked: null,
@@ -37,7 +39,7 @@ class App extends Component {
 
   componentDidMount() {
     this.init()
-    setInterval(this.init, 60000)
+    setInterval(this.init, 15000)
   }
 
   isLoaded = () => {
@@ -60,6 +62,7 @@ class App extends Component {
     const savingsPie = await pot.Pie()
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
+    const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
     const cdps = await manager.cdpi()
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
@@ -67,11 +70,12 @@ class App extends Component {
       batLocked: ethers.utils.formatEther(batLocked),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
-      Line: Line.toString(),
-      debt: debt.toString(),
+      Line: ethers.utils.formatUnits(Line, 45),
+      debt: ethers.utils.formatUnits(debt, 45),
       cdps: cdps.toString(),
       savingsPie: ethers.utils.formatEther(savingsPie),
       savingsDai: ethers.utils.formatUnits(savingsDai, 45),
+      uniswapDai: ethers.utils.formatEther(uniswapDai),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
