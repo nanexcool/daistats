@@ -21,13 +21,7 @@ const Main = (props) => {
           <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.debt}>{formatAmount.format(props.debt)}</h3>
-                <p className="subtitle is-size-4">Total Dai in Vat</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.Line}>{formatAmount.format(props.Line)}</h3>
-                <p className="subtitle is-size-4">Global Debt Ceiling</p>
+                <h4 className="subtitle is-size-3">Total Dai</h4>
               </div>
             </div>
           </div>
@@ -112,6 +106,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.saiFee}>{props.saiFee}%</h3>
                 <p className="subtitle is-size-4">SAI Stability Fee</p>
+                <p className="subtitle is-size-6"> </p>
               </div>
             </div>
           </div>
@@ -120,8 +115,11 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
                 <p className="subtitle is-size-4">Dai (ERC20) Supply</p>
+                <p className="subtitle is-size-6"> </p>
               </div>
             </div>
+          </div>
+          <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
@@ -153,13 +151,13 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-                <p className="subtitle is-size-4">Number of BAT Kicks</p>
+                <p className="subtitle is-size-4">BAT Vault Auctions</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-                <p className="subtitle is-size-4">Number of ETH Kicks</p>
+                <p className="subtitle is-size-4">ETH Vault Auctions</p>
               </div>
             </div>
           </div>
