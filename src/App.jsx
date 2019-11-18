@@ -71,6 +71,7 @@ class App extends Component {
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
+    const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
     const savingsPie = await pot.Pie()
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
