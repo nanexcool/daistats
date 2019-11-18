@@ -132,6 +132,18 @@ const Main = (props) => {
                 <p className="subtitle is-size-4">System Debt (Dai)</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
+                <p className="subtitle is-size-4">Number of BAT Kicks</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
+                <p className="subtitle is-size-4">Number of ETH Kicks</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">
