@@ -122,6 +122,20 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
+                <p className="subtitle is-size-4">System Surplus (Dai)</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
+                <p className="subtitle is-size-4">System Debt (Dai)</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.cdps}>{props.cdps}</h3>
                 <p className="subtitle is-size-4">Vaults Opened</p>
               </div>

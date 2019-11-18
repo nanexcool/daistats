@@ -11,6 +11,7 @@ const build = (address, name) => new ethers.Contract(address, require(`./abi/${n
 
 const vat = build(add.MCD_VAT, "Vat")
 const pot = build(add.MCD_POT, "Pot")
+const vow = build(add.MCD_VOW, "Vow")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
@@ -48,6 +49,19 @@ class App extends Component {
       this.state.ilks !== null
   }
 
+  getSurplus = async () => {
+    return await vat.dai(vow.address);
+  }
+
+  getDebt = async () => {
+      // sub(sub(vat.sin(address(this)), Sin), Ash)
+      const sin = await vat.sin(vow.address);
+      const bigSin = await vow.Sin();
+      const Ash = await vow.Ash();
+      console.log(ethers.utils.formatUnits(sin, 45), ethers.utils.formatUnits(bigSin, 45), ethers.utils.formatUnits(Ash, 45));
+      return sin.sub(bigSin).sub(Ash);
+  }
+
   init = async () => {
     const Line = await vat.Line()
     const debt = await vat.debt()
@@ -63,7 +77,10 @@ class App extends Component {
     const pieChi = await pot.chi();
     const savingsDai = savingsPie.mul(pieChi);
     const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
-    const cdps = await manager.cdpi()
+    const potDrip = await pot.rho();
+    const cdps = await manager.cdpi();
+    const sysSurplus = await this.getSurplus();
+    const sysDebt = await this.getDebt();
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
@@ -76,6 +93,9 @@ class App extends Component {
       savingsPie: ethers.utils.formatEther(savingsPie),
       savingsDai: ethers.utils.formatUnits(savingsDai, 45),
       uniswapDai: ethers.utils.formatEther(uniswapDai),
+      potDrip: new Date(potDrip.toNumber() * 1000).toLocaleDateString("en-US") + " " + new Date(potDrip.toNumber() * 1000).toLocaleTimeString("en-US"),
+      sysSurplus: ethers.utils.formatUnits(sysSurplus, 45),
+      sysDebt: ethers.utils.formatUnits(sysDebt, 45),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
