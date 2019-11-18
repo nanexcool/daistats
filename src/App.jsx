@@ -59,11 +59,25 @@ class App extends Component {
     return await vat.dai(vow.address);
   }
 
+  calcFee = rate => parseFloat(ethers.utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
+
   getDebt = async () => {
       const sin = await vat.sin(vow.address);
       const bigSin = await vow.Sin();
       const Ash = await vow.Ash();
       return sin.sub(bigSin).sub(Ash);
+  }
+
+  getFee = async ilk => {
+    const base = await jug.base();
+    const {duty} = await jug.ilks(ilk);
+    const combo = duty.add(base);
+    return this.calcFee(combo);
+  }
+
+  getPotFee = async () => {
+    const dsr = await pot.dsr();
+    return this.calcFee(dsr);
   }
 
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
@@ -91,6 +105,10 @@ class App extends Component {
     const sysDebt = await this.getDebt();
     const batKicks = await batFlip.kicks();
     const ethKicks = await ethFlip.kicks();
+    const potFee = await this.getPotFee();
+    const ethFee = await this.getFee(ethIlkBytes);
+    const batFee = await this.getFee(batIlkBytes);
+    const saiFee = await this.getFee(saiIlkBytes);
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
@@ -110,6 +128,10 @@ class App extends Component {
       sysDebt: ethers.utils.formatUnits(sysDebt, 45),
       batKicks: batKicks.toNumber(),
       ethKicks: ethKicks.toNumber(),
+      ethFee: ethFee.toFixed(2),
+      batFee: batFee.toFixed(2),
+      saiFee: saiFee.toFixed(2),
+      potFee: potFee.toFixed(2),
       ilks: [
         {
           Art: ethers.utils.formatEther( ethIlk.Art),
