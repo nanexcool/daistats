@@ -96,21 +96,21 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={4.0}>4%</h3>
+                <h3 className="title" title={props.ethFee}>{props.ethFee}%</h3>
                 <p className="title subtitle is-size-4">ETH Stability Fee</p>
                 <p className="subtitle is-size-6">Last Drip: {props.jugEthDrip}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={4.0}>4%</h3>
+                <h3 className="title" title={props.batFee}>{props.batFee}%</h3>
                 <p className="title subtitle is-size-4">BAT Stability Fee</p>
                 <p className="subtitle is-size-6">Last Drip: {props.jugBatDrip}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={0}>0%</h3>
+                <h3 className="title" title={props.saiFee}>{props.saiFee}%</h3>
                 <p className="subtitle is-size-4">SAI Stability Fee</p>
               </div>
             </div>
