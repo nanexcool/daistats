@@ -12,7 +12,7 @@ const formatAmount = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
-  document.title = `Dai Stats - ${formatAmount.format(props.daiSupply)}`
+  document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   return (
     <div>
       <section className="section">
