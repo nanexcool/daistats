@@ -184,7 +184,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <a href="https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f#code" target="_blank">
+                <a href="https://etherscan.io/address/0x6b175474e89094c44da98b954eedeac495271d0f#code" target="_blank" rel="noopener noreferrer">
                   <h3 className="title"><i className="fal fa-file-code"></i> Dai</h3>
                   <p className="subtitle is-size-7">0x6b175474e89094c44da98b954eedeac495271d0f</p>
                 </a>
@@ -192,7 +192,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <a href="https://etherscan.io/address/0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359#code" target="_blank">
+                <a href="https://etherscan.io/address/0x89d24a6b4ccb1b6faa2625fe562bdd9a23260359#code" target="_blank" rel="noopener noreferrer">
                   <h3 className="title"><i className="fal fa-file-code"></i> Sai</h3>
                   <p className="subtitle is-size-7">0x89d24A6b4CcB1B6fAA2625fE562bDD9a23260359</p>
                 </a>
@@ -200,7 +200,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <a href="https://etherscan.io/address/0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2#code" target="_blank">
+                <a href="https://etherscan.io/address/0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2#code" target="_blank" rel="noopener noreferrer">
                   <h3 className="title"><i className="fal fa-file-code"></i> MKR</h3>
                   <p className="subtitle is-size-7">0x9f8f72aa9304c8b593d555f12ef6589cc3a579a2</p>
                 </a>
