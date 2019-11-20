@@ -3,18 +3,10 @@
 
 <head>
   <meta charset="utf-8" />
-  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-  <link rel="stylesheet" href="bulma.min.css">
-  <link rel="stylesheet" href="flipclock.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-  <script src="flipclock.min.js"></script>
-  <script src="https://unpkg.com/emojisplosion/lib/global.js"></script>
+  <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico" />
+  <link rel="stylesheet" href="%PUBLIC_URL%/bulma.min.css">
   <meta name="theme-color" content="#000000" />
-  <!--
-      manifest.json provides metadata used when your web app is added to the
-      homescreen on Android. See https://developers.google.com/web/fundamentals/web-app-manifest/
-    -->
   <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
   <meta name="twitter:card" content="summary" />
   <meta name="twitter:creator" content="@nanexcool" />
@@ -42,25 +34,6 @@
       <p>Other great projects:</p>
       <div id="other-sites"></div>
       <script>
-        var clock;
-
-        $(document).ready(function () {
-
-          var currentDate = new Date();
-          var futureDate = new Date("November 18, 2019 16:00:00 UTC")
-          var diff = futureDate.getTime() / 1000 - currentDate.getTime() / 1000;
-          if (diff > 0) {
-            clock = $('.clock').FlipClock(diff, {
-            clockFace: 'DailyCounter',
-            countdown: true,
-            callbacks: {
-		        	stop: function() {
-		        		emojisplosions();
-		        	}
-		        }
-          });
-          }
-        });
         const shuffle = function (array) {
 
           let currentIndex = array.length;
