@@ -15,6 +15,9 @@ const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   return (
     <div>
+      <div className="notification is-primary has-text-centered">
+        This page updates automatically every {props.interval / 1000} seconds. Give Infura a break :D
+      </div>
       <section className="section">
         <div className="container">
           <div className="columns">
