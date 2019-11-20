@@ -54,19 +54,19 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].Art}>{formatAmount.format(props.ilks[0].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from ETH</p>
+                <p className="subtitle is-size-4">Dai from ETH ({formatAmount.format(props.ilks[0].Art / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[1].Art}>{formatAmount.format(props.ilks[1].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from BAT</p>
+                <p className="subtitle is-size-4">Dai from BAT ({formatAmount.format(props.ilks[1].Art / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from SAI</p>
+                <p className="subtitle is-size-4">Dai from SAI ({formatAmount.format(props.ilks[2].Art / props.debt * 100)}%)</p>
               </div>
             </div>
           </div>
