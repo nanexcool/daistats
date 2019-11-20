@@ -44,9 +44,11 @@ class App extends Component {
     cdps: null
   }
 
+  INTERVAL = 30000
+
   componentDidMount() {
     this.init()
-    setInterval(this.init, 15000)
+    setInterval(this.init, this.INTERVAL)
   }
 
   isLoaded = () => {
@@ -162,7 +164,7 @@ class App extends Component {
     if (this.isLoaded()) {
       return (
         <div>
-          <Main {...this.state} {...add} />
+          <Main {...this.state} {...add} interval={this.INTERVAL} />
         </div>
       )
     }

@@ -15,6 +15,12 @@ const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   return (
     <div>
+      <div className="notification is-primary">
+        <button className="delete"></button>
+        This page updates automatically every {props.interval} seconds.
+        adipiscing elit lorem ipsum dolor. <strong>Pellentesque risus mi</strong>, tempus quis placerat ut, porta nec nulla. Vestibulum rhoncus ac ex sit amet fringilla. Nullam gravida purus diam, et dictum <a>felis venenatis</a> efficitur. Sit amet,
+        consectetur adipiscing elit
+      </div>
       <section className="section">
         <div className="container">
           <div className="columns">
