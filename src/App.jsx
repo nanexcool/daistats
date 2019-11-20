@@ -168,7 +168,7 @@ class App extends Component {
     if (this.isLoaded()) {
       return (
         <div>
-          <Main {...this.state} />
+          <Main {...this.state} {...add} />
         </div>
       )
     }
