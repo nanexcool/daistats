@@ -139,25 +139,29 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
-                <p className="subtitle is-size-4">System Surplus (Dai)</p>
+                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
+                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
-                <p className="subtitle is-size-4">System Debt (Dai)</p>
+                <p className="title subtitle is-size-4">System Debt (Dai)</p>
+                <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
                 <p className="subtitle is-size-4">BAT Vault Auctions</p>
+                <p className="subtitle is-size-6"> </p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
                 <p className="subtitle is-size-4">ETH Vault Auctions</p>
+                <p className="subtitle is-size-6"> </p>
               </div>
             </div>
           </div>

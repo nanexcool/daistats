@@ -101,8 +101,12 @@ class App extends Component {
     const jugEthDrip = await jug.ilks(ethIlkBytes);
     const jugBatDrip = await jug.ilks(batIlkBytes);
     const cdps = await manager.cdpi();
+
     const sysSurplus = await this.getSurplus();
     const sysDebt = await this.getDebt();
+    const surplusBuffer = await vow.hump();
+    const debtSize = await vow.sump();
+
     const batKicks = await batFlip.kicks();
     const ethKicks = await ethFlip.kicks();
     const potFee = await this.getPotFee();
@@ -126,6 +130,8 @@ class App extends Component {
       jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
       sysSurplus: ethers.utils.formatUnits(sysSurplus, 45),
       sysDebt: ethers.utils.formatUnits(sysDebt, 45),
+      surplusBuffer: ethers.utils.formatUnits(surplusBuffer, 45),
+      debtSize: ethers.utils.formatUnits(debtSize, 45),
       batKicks: batKicks.toNumber(),
       ethKicks: ethKicks.toNumber(),
       ethFee: ethFee.toFixed(2),
