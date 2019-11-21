@@ -110,7 +110,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.saiFee}>{props.saiFee}%</h3>
                 <p className="title subtitle is-size-4">SAI Stability Fee</p>
-                <p className="subtitle is-size-6">(for MCD, see <a target="_blank" href="http://saistats.com">Sai Stats</a> for info about SCD)</p>
+                <p className="subtitle is-size-6">(for MCD, see <a href="http://saistats.com" target="_blank" rel="noopener noreferrer">Sai Stats</a> for info about SCD)</p>
               </div>
             </div>
           </div>
