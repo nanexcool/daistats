@@ -1,16 +1,15 @@
 import React from 'react'
 
-const formatCurr = new Intl.NumberFormat('en-US', {
-  style: 'currency',
-  currency: 'USD',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 2
-})
-
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 0,
   maximumFractionDigits: 2
+})
+
+const formatNoDecimals = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 0
 })
 
 const Main = (props) => {
@@ -35,19 +34,19 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethLocked}>{formatAmount.format(props.ethLocked)}</h3>
+                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
                 <p className="subtitle is-size-4">ETH Locked (in ETH)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-              <h3 className="title" title={props.batLocked}>{formatAmount.format(props.batLocked)}</h3>
+              <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
                 <p className="subtitle is-size-4">BAT Locked (in BAT)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-              <h3 className="title" title={props.saiLocked}>{formatAmount.format(props.saiLocked)}</h3>
+              <h3 className="title" title={props.saiLocked}>{formatNoDecimals.format(props.saiLocked)}</h3>
                 <p className="subtitle is-size-4">SAI Locked (in SAI)</p>
               </div>
             </div>
