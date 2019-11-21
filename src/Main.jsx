@@ -109,8 +109,8 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.saiFee}>{props.saiFee}%</h3>
-                <p className="subtitle is-size-4">SAI Stability Fee</p>
-                <p className="subtitle is-size-6"> </p>
+                <p className="title subtitle is-size-4">SAI Stability Fee</p>
+                <p className="subtitle is-size-6">(for MCD, see <a target="_blank" href="http://saistats.com">Sai Stats</a> for info about SCD)</p>
               </div>
             </div>
           </div>
