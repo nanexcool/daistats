@@ -75,19 +75,22 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
-                <p className="subtitle is-size-4">ETH Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">ETH Ceiling (in Dai)</p>
+                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art / props.ilks[0].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
-                <p className="subtitle is-size-4">BAT Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">BAT Ceiling (in Dai)</p>
+                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art / props.ilks[1].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
-                <p className="subtitle is-size-4">SAI Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">SAI Ceiling (in Dai)</p>
+                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[2].Art / props.ilks[2].line * 100)}%</p>
               </div>
             </div>
           </div>
