@@ -58,7 +58,9 @@ class App extends Component {
   }
 
   getSurplus = async () => {
-    return await vat.dai(vow.address);
+    const dai = await vat.dai(vow.address);
+    const sin = await vat.sin(vow.address);
+    return await dai.sub(sin);
   }
 
   calcFee = rate => parseFloat(ethers.utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
