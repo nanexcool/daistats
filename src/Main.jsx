@@ -34,26 +34,6 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
-                <p className="subtitle is-size-4">ETH Locked (in ETH)</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-              <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
-                <p className="subtitle is-size-4">BAT Locked (in BAT)</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-              <h3 className="title" title={props.saiLocked}>{formatNoDecimals.format(props.saiLocked)}</h3>
-                <p className="subtitle is-size-4">SAI Locked (in SAI)</p>
-              </div>
-            </div>
-          </div>
-          <div className="columns">
-            <div className="column">
-              <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].Art}>{formatAmount.format(props.ilks[0].Art)}</h3>
                 <p className="subtitle is-size-4">Dai from ETH ({formatAmount.format(props.ilks[0].Art / props.debt * 100)}%)</p>
               </div>
@@ -67,16 +47,37 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from SAI ({formatAmount.format(props.ilks[2].Art / props.debt * 100)}%)</p>
+                <p className="subtitle is-size-4">Dai from Migration Contract</p>
               </div>
             </div>
           </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
+                <p className="subtitle is-size-4">ETH Locked (in ETH)</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
                 <p className="title subtitle is-size-4">ETH Ceiling (in Dai)</p>
                 <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art / props.ilks[0].line * 100)}%</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ethFee}>{props.ethFee}%</h3>
+                <p className="title subtitle is-size-4">ETH Stability Fee</p>
+                <p className="subtitle is-size-6">Last Drip: {props.jugEthDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+              <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
+                <p className="subtitle is-size-4">BAT Locked (in BAT)</p>
               </div>
             </div>
             <div className="column">
@@ -88,32 +89,9 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
-                <p className="title subtitle is-size-4">SAI Ceiling (in Dai)</p>
-                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[2].Art / props.ilks[2].line * 100)}%</p>
-              </div>
-            </div>
-          </div>
-          <div className="columns">
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.ethFee}>{props.ethFee}%</h3>
-                <p className="title subtitle is-size-4">ETH Stability Fee</p>
-                <p className="subtitle is-size-6">Last Drip: {props.jugEthDrip}</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
                 <h3 className="title" title={props.batFee}>{props.batFee}%</h3>
                 <p className="title subtitle is-size-4">BAT Stability Fee</p>
                 <p className="subtitle is-size-6">Last Drip: {props.jugBatDrip}</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.saiFee}>{props.saiFee}%</h3>
-                <p className="title subtitle is-size-4">SAI Stability Fee</p>
-                <p className="subtitle is-size-6">(for MCD, see <a href="http://saistats.com" target="_blank" rel="noopener noreferrer">Sai Stats</a> for info about SCD)</p>
               </div>
             </div>
           </div>
