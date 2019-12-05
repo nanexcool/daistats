@@ -1,4 +1,5 @@
 import React from 'react'
+import './Main.css';
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
