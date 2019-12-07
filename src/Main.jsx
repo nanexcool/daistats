@@ -13,6 +13,12 @@ const formatNoDecimals = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 })
 
+const formatPercent = new Intl.NumberFormat('en-US', {
+  style: 'percent',
+  minimumFractionDigits: 3,
+  maximumFractionDigits: 3
+})
+
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   return (
@@ -56,7 +62,8 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
-                <p className="subtitle is-size-4">ETH Locked (in ETH)</p>
+                <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
+                <p className="subtitle is-size-6">ETH Supply Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
               </div>
             </div>
             <div className="column">
@@ -78,7 +85,8 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
               <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
-                <p className="subtitle is-size-4">BAT Locked (in BAT)</p>
+                <p className="title subtitle is-size-4">BAT Locked (in BAT)</p>
+                <p className="subtitle is-size-6">BAT Supply Locked: {formatPercent.format(props.batLocked / props.batSupply)}</p>
               </div>
             </div>
             <div className="column">
