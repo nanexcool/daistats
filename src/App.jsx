@@ -102,6 +102,7 @@ class App extends Component {
     const daiSupply = await dai.totalSupply()
     const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
     const ethSupply = await this.etherscanEthSupply()
+    const batSupply = await bat.totalSupply()
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
@@ -129,7 +130,7 @@ class App extends Component {
       daiSupply: ethers.utils.formatEther(daiSupply),
       ethSupply: ethers.utils.formatEther(ethSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
-      batSupply: 1500000000,
+      batSupply: ethers.utils.formatEther(batSupply),
       batLocked: ethers.utils.formatEther(batLocked),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
