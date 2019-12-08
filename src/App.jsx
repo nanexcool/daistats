@@ -4,6 +4,8 @@ import Main from './Main'
 import daiLogo from './dai.png'
 const ethers = require('ethers')
 
+const jsonFetch = url => fetch(url).then(res => res.json())
+
 const add = require('./addresses.json')
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
 add["UNISWAP_EXCHANGE"] = "0x2a1530c4c41db0b0b2bb646cb5eb1a67b7158667"
@@ -84,6 +86,11 @@ class App extends Component {
     return this.calcFee(dsr);
   }
 
+  etherscanEthSupply = async () => {
+    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=zomg')
+    return json.result
+  }
+
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   init = async () => {
@@ -94,6 +101,8 @@ class App extends Component {
     const saiIlk = await vat.ilks(saiIlkBytes)
     const daiSupply = await dai.totalSupply()
     const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
+    const ethSupply = await this.etherscanEthSupply()
+    const batSupply = await bat.totalSupply()
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
@@ -119,7 +128,9 @@ class App extends Component {
     const saiFee = await this.getFee(saiIlkBytes);
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
+      ethSupply: ethers.utils.formatEther(ethSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
+      batSupply: ethers.utils.formatEther(batSupply),
       batLocked: ethers.utils.formatEther(batLocked),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
