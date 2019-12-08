@@ -21,6 +21,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
+  const flip = parseFloat(props.saiSupply) - parseFloat(props.debt)
   return (
     <div>
       <div className="notification is-primary has-text-centered">
@@ -29,11 +30,25 @@ const Main = (props) => {
       <section className="section">
         <div className="container">
           <div className="columns">
-          <div className="column">
+            <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.debt}>{formatAmount.format(props.debt)}</h3>
                 <h4 className="subtitle is-size-3">Total Dai</h4>
               </div>
+            </div>
+            <div className="column">
+                {flip >= 0 &&
+                  <div className="box has-text-centered">
+                    <h3 className="title">Need {formatNoDecimals.format(flip)} more Dai</h3>
+                    <h4 className="subtitle is-size-3">for the FLIPPENING!</h4>
+                  </div>
+                }
+                {flip < 0 &&
+                  <div className="box has-text-centered">
+                    <h3 className="title">{formatNoDecimals.format(flip * -1 )} Dai over Sai</h3>
+                    <h4 className="subtitle is-size-3"> Dai has FLIPPED Sai!</h4>
+                  </div>
+                }
             </div>
           </div>
         </div>
