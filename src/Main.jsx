@@ -15,8 +15,8 @@ const formatNoDecimals = new Intl.NumberFormat('en-US', {
 
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
-  minimumFractionDigits: 3,
-  maximumFractionDigits: 3
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
 })
 
 const Main = (props) => {
