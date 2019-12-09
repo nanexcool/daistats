@@ -39,13 +39,13 @@ const Main = (props) => {
             <div className="column">
                 {flip >= 0 &&
                   <div className="box has-text-centered">
-                    <h3 className="title">Need {formatNoDecimals.format(flip)} more Dai</h3>
-                    <h4 className="subtitle is-size-3">for the FLIPPENING!</h4>
+                    <h3 className="title">{formatNoDecimals.format(flip)} more Dai</h3>
+                    <h4 className="subtitle is-size-3">til the FLIPPENING!</h4>
                   </div>
                 }
                 {flip < 0 &&
                   <div className="box has-text-centered">
-                    <h3 className="title">{formatNoDecimals.format(flip * -1 )} Dai over Sai</h3>
+                    <h3 className="title">Sai + {formatNoDecimals.format(flip * -1 )} = Dai</h3>
                     <h4 className="subtitle is-size-3"> Dai has FLIPPED Sai!</h4>
                   </div>
                 }
