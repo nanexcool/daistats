@@ -51,8 +51,6 @@ const Main = (props) => {
                 }
             </div>
           </div>
-        </div>
-        <div className="container">
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
