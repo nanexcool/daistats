@@ -100,8 +100,10 @@ class App extends Component {
     const batIlk = await vat.ilks(batIlkBytes)
     const saiIlk = await vat.ilks(saiIlkBytes)
     const daiSupply = await dai.totalSupply()
+    const saiSupply = await sai.totalSupply()
     const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
     const ethSupply = await this.etherscanEthSupply()
+    const batSupply = await bat.totalSupply()
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
@@ -127,9 +129,10 @@ class App extends Component {
     const saiFee = await this.getFee(saiIlkBytes);
     this.setState({
       daiSupply: ethers.utils.formatEther(daiSupply),
+      saiSupply: ethers.utils.formatEther(saiSupply),
       ethSupply: ethers.utils.formatEther(ethSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
-      batSupply: 1500000000,
+      batSupply: ethers.utils.formatEther(batSupply),
       batLocked: ethers.utils.formatEther(batLocked),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
