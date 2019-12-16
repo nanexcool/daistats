@@ -89,8 +89,8 @@ class App extends Component {
   }
 
   etherscanEthSupply = async () => {
-    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=zomg')
-    return json.result
+    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=zomg');
+    return json.result;
   }
 
   getOSMPrice = async (osm, position) => {
@@ -143,12 +143,12 @@ class App extends Component {
       saiSupply: ethers.utils.formatEther(saiSupply),
       ethSupply: ethers.utils.formatEther(ethSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
-      ethPrice:  ethers.utils.formatEther(ethPrice),
-      ethPriceNxt:  ethers.utils.formatEther(ethPriceNxt),
+      ethPrice: ethers.utils.formatEther(ethPrice),
+      ethPriceNxt: ethers.utils.formatEther(ethPriceNxt),
       batSupply: ethers.utils.formatEther(batSupply),
       batLocked: ethers.utils.formatEther(batLocked),
-      batPrice:  ethers.utils.formatEther(batPrice),
-      batPriceNxt:  ethers.utils.formatEther(batPriceNxt),
+      batPrice: ethers.utils.formatEther(batPrice),
+      batPriceNxt: ethers.utils.formatEther(batPriceNxt),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
       Line: ethers.utils.formatUnits(Line, 45),
