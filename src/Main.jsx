@@ -13,6 +13,12 @@ const formatNoDecimals = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 })
 
+const formatCurrency = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 4
+})
+
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
@@ -123,6 +129,20 @@ const Main = (props) => {
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
                 <p className="subtitle is-size-4">Dai (ERC20) Supply</p>
                 <p className="subtitle is-size-6"> </p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ethPrice}>${formatAmount.format(props.ethPrice)}</h3>
+                <p className="title subtitle is-size-4">ETH Price</p>
+                <p className="subtitle is-size-6">Next OSM Price: ${formatAmount.format(props.ethPriceNxt)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.batPrice}>${formatCurrency.format(props.batPrice)}</h3>
+                <p className="title subtitle is-size-4">BAT Price</p>
+                <p className="subtitle is-size-6">Next OSM Price: ${formatCurrency.format(props.batPriceNxt)}</p>
               </div>
             </div>
           </div>

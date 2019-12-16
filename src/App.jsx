@@ -47,6 +47,8 @@ class App extends Component {
   }
 
   INTERVAL = 30000
+  POSITION_CUR = 3
+  POSITION_NXT = 4
 
   componentDidMount() {
     this.init()
@@ -91,6 +93,11 @@ class App extends Component {
     return json.result
   }
 
+  getOSMPrice = async (osm, position) => {
+      const val = await eth.getStorageAt(osm, position);
+      return ethers.utils.bigNumberify('0x' + val.substring(34));
+  }
+
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   init = async () => {
@@ -103,8 +110,12 @@ class App extends Component {
     const saiSupply = await sai.totalSupply()
     const ethLocked = await weth.balanceOf(add.MCD_JOIN_ETH_A)
     const ethSupply = await this.etherscanEthSupply()
+    const ethPrice = await this.getOSMPrice(add.PIP_ETH, this.POSITION_CUR)
+    const ethPriceNxt = await this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     const batSupply = await bat.totalSupply()
     const batLocked = await bat.balanceOf(add.MCD_JOIN_BAT_A)
+    const batPrice = await this.getOSMPrice(add.PIP_BAT, this.POSITION_CUR)
+    const batPriceNxt = await this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
     const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
     const gemPit = await mkr.balanceOf(add.GEM_PIT)
     const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
@@ -132,8 +143,12 @@ class App extends Component {
       saiSupply: ethers.utils.formatEther(saiSupply),
       ethSupply: ethers.utils.formatEther(ethSupply),
       ethLocked: ethers.utils.formatEther(ethLocked),
+      ethPrice:  ethers.utils.formatEther(ethPrice),
+      ethPriceNxt:  ethers.utils.formatEther(ethPriceNxt),
       batSupply: ethers.utils.formatEther(batSupply),
       batLocked: ethers.utils.formatEther(batLocked),
+      batPrice:  ethers.utils.formatEther(batPrice),
+      batPriceNxt:  ethers.utils.formatEther(batPriceNxt),
       saiLocked: ethers.utils.formatEther(saiLocked),
       gemPit: ethers.utils.formatEther(gemPit),
       Line: ethers.utils.formatUnits(Line, 45),
