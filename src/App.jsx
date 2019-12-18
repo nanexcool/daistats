@@ -131,6 +131,7 @@ class App extends Component {
     const sysDebt = await this.getDebt();
     const surplusBuffer = await vow.hump();
     const debtSize = await vow.sump();
+    const sysLocked = await ethPrice.mul(ethLocked).add(batPrice.mul(batLocked)).add(saiLocked);
 
     const batKicks = await batFlip.kicks();
     const ethKicks = await ethFlip.kicks();
@@ -150,6 +151,7 @@ class App extends Component {
       batPrice: ethers.utils.formatEther(batPrice),
       batPriceNxt: ethers.utils.formatEther(batPriceNxt),
       saiLocked: ethers.utils.formatEther(saiLocked),
+      sysLocked: ethers.utils.formatUnits(sysLocked, 36),
       gemPit: ethers.utils.formatEther(gemPit),
       Line: ethers.utils.formatUnits(Line, 45),
       debt: ethers.utils.formatUnits(debt, 45),
