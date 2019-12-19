@@ -28,6 +28,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   const flip = parseFloat(props.saiSupply) - parseFloat(props.debt)
+  const sysCollat = props.sysLocked / props.debt
   return (
     <div>
       <div className="notification is-primary has-text-centered">
@@ -143,6 +144,13 @@ const Main = (props) => {
                 <h3 className="title" title={props.batPrice}>${formatCurrency.format(props.batPrice)}</h3>
                 <p className="title subtitle is-size-4">BAT Price</p>
                 <p className="subtitle is-size-6">Next OSM Price: ${formatCurrency.format(props.batPriceNxt)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">{formatPercent.format(sysCollat)}</h3>
+                <p className="title subtitle is-size-4">Collat. Ratio</p>
+                <p className="subtitle is-size-6">Total Locked: ${formatAmount.format(props.sysLocked)}</p>
               </div>
             </div>
           </div>
