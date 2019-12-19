@@ -29,6 +29,7 @@ const saiIlkBytes = ethers.utils.formatBytes32String("SAI")
 window.utils = ethers.utils
 window.add = add
 window.vat = vat
+window.vow = vow
 
 class App extends Component {
   state = {
