@@ -47,7 +47,7 @@ class App extends Component {
     cdps: null
   }
 
-  INTERVAL = 30000
+  INTERVAL = 60 * 1000
   POSITION_CUR = 3
   POSITION_NXT = 4
 
