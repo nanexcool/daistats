@@ -276,6 +276,7 @@ class App extends Component {
             <img src={daiLogo} alt="Dai Logo" />
           </figure>
           <br />
+          <progress className="progress is-small is-primary" max="100">15%</progress>
           <p>One sec, fetching data from Ethereum Mainnet</p>
         </div>
       </section>
