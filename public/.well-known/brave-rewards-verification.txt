@@ -1,4 +1,0 @@
-This is a Brave Rewards publisher verification file.
-
-Domain: daistats.com
-Token: 28de6be036774a44c020ceb60fec76ab7b75e7e9e05346db515a426d3c81d7f4
