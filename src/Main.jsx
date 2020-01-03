@@ -132,7 +132,7 @@ const Main = (props) => {
                 <p className="subtitle is-size-6"> </p>
               </div>
             </div>
-            {/* <div className="column">
+            <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethPrice}>${formatAmount.format(props.ethPrice)}</h3>
                 <p className="title subtitle is-size-4">ETH Price</p>
@@ -152,7 +152,7 @@ const Main = (props) => {
                 <p className="title subtitle is-size-4">Collat. Ratio</p>
                 <p className="subtitle is-size-6">Total Locked: ${formatAmount.format(props.sysLocked)}</p>
               </div>
-            </div> */}
+            </div>
           </div>
           <div className="columns">
             <div className="column">

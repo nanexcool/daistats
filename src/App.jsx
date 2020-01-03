@@ -86,7 +86,12 @@ class App extends Component {
       [add.MCD_FLIP_BAT_A, batFlip.interface.functions.kicks.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
-    let [res, ethSupply] = await Promise.all([p1, p2])
+    let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_CUR)
+    let p4 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
+    let p5 = this.getOSMPrice(add.PIP_BAT, this.POSITION_CUR)
+    let p6 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
+    let [res, ethSupply, ethPrice, ethPriceNxt, batPrice, batPriceNxt] = await Promise.all([p1, p2, p3, p4, p5, p6])
+
     const blockNumber = res[0].toString()
     res = res[1]
     const ethIlk = vat.interface.functions.ilks.decode(res[2])
@@ -97,6 +102,8 @@ class App extends Component {
     const ethLocked = weth.interface.functions.balanceOf.decode(res[12])
     const batSupply = bat.interface.functions.totalSupply.decode(res[13])
     const batLocked = bat.interface.functions.balanceOf.decode(res[14])
+    const saiLocked = sai.interface.functions.balanceOf.decode(res[10])
+    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0]);
     const gemPit = mkr.interface.functions.balanceOf.decode(res[11])
     const uniswapDai = dai.interface.functions.balanceOf.decode(res[8])
     const base = jug.interface.functions.base.decode(res[19])
@@ -152,6 +159,7 @@ class App extends Component {
       ethLocked: utils.formatEther(ethLocked[0]),
       batSupply: utils.formatEther(batSupply[0]),
       batLocked: utils.formatEther(batLocked[0]),
+      saiLocked: utils.formatEther(saiLocked[0]),
       gemPit: utils.formatEther(gemPit[0]),
       uniswapDai: utils.formatEther(uniswapDai[0]),
       ethFee: ethFee.toFixed(2),
@@ -170,12 +178,19 @@ class App extends Component {
       ethKicks: ethKicks.toNumber(),
       batKicks: batKicks.toNumber(),
       cdps: cdps.toString(),
+      ethPrice: utils.formatEther(ethPrice),
+      ethPriceNxt: utils.formatEther(ethPriceNxt),
+      batPrice: utils.formatEther(batPrice),
+      batPriceNxt: utils.formatEther(batPriceNxt),
+      sysLocked: utils.formatUnits(sysLocked, 36),
     })
   }
 
   isLoaded = () => {
     return this.state.blockNumber !== null
   }
+  unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
+
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
 
   getFee = (base, ilk) => {
@@ -193,72 +208,6 @@ class App extends Component {
       const val = await eth.getStorageAt(osm, position);
       return utils.bigNumberify('0x' + val.substring(34));
   }
-
-  unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
-
-  // init = async () => {
-  //   const ethPrice = await this.getOSMPrice(add.PIP_ETH, this.POSITION_CUR)
-  //   const ethPriceNxt = await this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
-  //   const batPrice = await this.getOSMPrice(add.PIP_BAT, this.POSITION_CUR)
-  //   const batPriceNxt = await this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
-  //   const saiLocked = await sai.balanceOf(add.MCD_JOIN_SAI)
-  //   const gemPit = await mkr.balanceOf(add.GEM_PIT)
-  //   const uniswapDai = await dai.balanceOf(add.UNISWAP_EXCHANGE)
-  //   const savingsPie = await pot.Pie()
-  //   const pieChi = await pot.chi();
-  //   const savingsDai = savingsPie.mul(pieChi);
-  //   const potDrip = await pot.rho();
-  //   const jugEthDrip = await jug.ilks(ethIlkBytes);
-  //   const jugBatDrip = await jug.ilks(batIlkBytes);
-  //   const cdps = await manager.cdpi();
-
-  //   const sysSurplus = await this.getSurplus();
-  //   const sysDebt = await this.getDebt();
-  //   const surplusBuffer = await vow.hump();
-  //   const debtSize = await vow.sump();
-  //   const sysLocked = await ethPrice.mul(ethLocked).add(batPrice.mul(batLocked)).add(saiLocked);
-
-  //   const ethKicks = await ethFlip.kicks();
-  //   const batKicks = await batFlip.kicks();
-  //   const potFee = await this.getPotFee();
-  //   const ethFee = await this.getFee(ethIlkBytes);
-  //   const batFee = await this.getFee(batIlkBytes);
-  //   const saiFee = await this.getFee(saiIlkBytes);
-  //   this.setState({
-  //     daiSupply: utils.formatEther(daiSupply),
-  //     saiSupply: utils.formatEther(saiSupply),
-  //     ethSupply: utils.formatEther(ethSupply),
-  //     ethLocked: utils.formatEther(ethLocked),
-  //     ethPrice: utils.formatEther(ethPrice),
-  //     ethPriceNxt: utils.formatEther(ethPriceNxt),
-  //     batSupply: utils.formatEther(batSupply),
-  //     batLocked: utils.formatEther(batLocked),
-  //     batPrice: utils.formatEther(batPrice),
-  //     batPriceNxt: utils.formatEther(batPriceNxt),
-  //     saiLocked: utils.formatEther(saiLocked),
-  //     sysLocked: utils.formatUnits(sysLocked, 36),
-  //     gemPit: utils.formatEther(gemPit),
-  //     Line: utils.formatUnits(Line, 45),
-  //     debt: utils.formatUnits(debt, 45),
-  //     cdps: cdps.toString(),
-  //     savingsPie: utils.formatEther(savingsPie),
-  //     savingsDai: utils.formatUnits(savingsDai, 45),
-  //     uniswapDai: utils.formatEther(uniswapDai),
-  //     potDrip: this.unixToDateTime(potDrip.toNumber()),
-  //     jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
-  //     jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
-  //     sysSurplus: utils.formatUnits(sysSurplus, 45),
-  //     sysDebt: utils.formatUnits(sysDebt, 45),
-  //     surplusBuffer: utils.formatUnits(surplusBuffer, 45),
-  //     debtSize: utils.formatUnits(debtSize, 45),
-  //     batKicks: batKicks.toNumber(),
-  //     ethKicks: ethKicks.toNumber(),
-  //     ethFee: ethFee.toFixed(2),
-  //     batFee: batFee.toFixed(2),
-  //     saiFee: saiFee.toFixed(2),
-  //     potFee: potFee.toFixed(2),
-  //   })
-  // }
 
   render() {
     if (this.isLoaded()) {
