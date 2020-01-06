@@ -1,6 +1,13 @@
 import React, { Component } from 'react'
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import eth from './web3';
 import Main from './Main'
+import Calc from './Calc'
 import daiLogo from './dai.png'
 const ethers = require('ethers')
 const utils = ethers.utils
@@ -20,6 +27,7 @@ const pot = build(add.MCD_POT, "Pot")
 const jug = build(add.MCD_JUG, "Jug")
 const vow = build(add.MCD_VOW, "Vow")
 const cat = build(add.MCD_CAT, "Cat")
+const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
@@ -38,12 +46,14 @@ window.vow = vow
 window.cat = cat
 window.multi = multi
 
+const RAY = utils.bigNumberify("1000000000000000000000000000")
+
 class App extends Component {
   state = {
     blockNumber: null
   }
 
-  INTERVAL = 15 * 1000
+  INTERVAL = 60 * 1000
   POSITION_CUR = 3
   POSITION_NXT = 4
 
@@ -53,6 +63,7 @@ class App extends Component {
   }
 
   all = async () => {
+    const time = Date.now()
     let p1 = multi.aggregate([
       [add.MCD_VAT, vat.interface.functions.Line.encode([])],
       [add.MCD_VAT, vat.interface.functions.debt.encode([])],
@@ -84,13 +95,13 @@ class App extends Component {
       [add.MCD_POT, pot.interface.functions.dsr.encode([])],
       [add.MCD_FLIP_ETH_A, ethFlip.interface.functions.kicks.encode([])],
       [add.MCD_FLIP_BAT_A, batFlip.interface.functions.kicks.encode([])],
+      [add.MCD_SPOT, spot.interface.functions.ilks.encode([ethIlkBytes])],
+      [add.MCD_SPOT, spot.interface.functions.ilks.encode([batIlkBytes])],
     ])
     let p2 = this.etherscanEthSupply()
-    let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_CUR)
-    let p4 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
-    let p5 = this.getOSMPrice(add.PIP_BAT, this.POSITION_CUR)
-    let p6 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
-    let [res, ethSupply, ethPrice, ethPriceNxt, batPrice, batPriceNxt] = await Promise.all([p1, p2, p3, p4, p5, p6])
+    let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
+    let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
+    let [res, ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
 
     const blockNumber = res[0].toString()
     res = res[1]
@@ -103,7 +114,6 @@ class App extends Component {
     const batSupply = bat.interface.functions.totalSupply.decode(res[13])
     const batLocked = bat.interface.functions.balanceOf.decode(res[14])
     const saiLocked = sai.interface.functions.balanceOf.decode(res[10])
-    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0]);
     const gemPit = mkr.interface.functions.balanceOf.decode(res[11])
     const uniswapDai = dai.interface.functions.balanceOf.decode(res[8])
     const base = jug.interface.functions.base.decode(res[19])
@@ -126,6 +136,11 @@ class App extends Component {
     const ethKicks = ethFlip.interface.functions.kicks.decode(res[28])[0]
     const batKicks = batFlip.interface.functions.kicks.decode(res[29])[0]
     const cdps = manager.interface.functions.cdpi.decode(res[18])
+    const ethMat = spot.interface.functions.ilks.decode(res[30])
+    const batMat = spot.interface.functions.ilks.decode(res[31])
+    const ethPrice = ethMat.mat.mul(ethIlk.spot).div(RAY)
+    const batPrice = batMat.mat.mul(batIlk.spot).div(RAY)
+    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0])
     this.setState({
       blockNumber,
       Line: utils.formatUnits(res[0], 45),
@@ -178,12 +193,13 @@ class App extends Component {
       ethKicks: ethKicks.toNumber(),
       batKicks: batKicks.toNumber(),
       cdps: cdps.toString(),
-      ethPrice: utils.formatEther(ethPrice),
+      ethPrice: utils.formatUnits(ethPrice, 27),
       ethPriceNxt: utils.formatEther(ethPriceNxt),
-      batPrice: utils.formatEther(batPrice),
+      batPrice: utils.formatUnits(batPrice, 27),
       batPriceNxt: utils.formatEther(batPriceNxt),
-      sysLocked: utils.formatUnits(sysLocked, 36),
+      sysLocked: utils.formatUnits(sysLocked, 45),
     })
+    console.log(`Updated in ${(Date.now() - time) / 1000 } seconds`)
   }
 
   isLoaded = () => {
@@ -212,25 +228,46 @@ class App extends Component {
   render() {
     if (this.isLoaded()) {
       return (
-        <div>
-          <Main {...this.state} {...add} interval={this.INTERVAL} />
-        </div>
+        <Router>
+
+          <Switch>
+            <Route path="/calc">
+              <Calc {...this.state} {...add} />
+            </Route>
+            <Route path="/">
+              <Main {...this.state} {...add} interval={this.INTERVAL} />
+            </Route>
+          </Switch>
+        </Router>
+      )
+    } else {
+      return (
+        <section className="section">
+         <div className="container has-text-centered">
+           <figure className="image is-128x128 container">
+             <img src={daiLogo} alt="Dai Logo" />
+           </figure>
+           <br />
+           <progress className="progress is-small is-primary" max="100">15%</progress>
+           <p>One sec, fetching data from Ethereum Mainnet</p>
+         </div>
+       </section>
       )
     }
-    else
-    return (
-      <section className="section">
-        <div className="container has-text-centered">
-          <figure className="image is-128x128 container">
-            <img src={daiLogo} alt="Dai Logo" />
-          </figure>
-          <br />
-          <progress className="progress is-small is-primary" max="100">15%</progress>
-          <p>One sec, fetching data from Ethereum Mainnet</p>
-        </div>
-      </section>
-    );
   }
+}
+
+const NavBar = () => {
+  return (
+    <nav className="navbar" role="navigation" aria-label="main navigation">
+      <div className="container">
+      <div className="navbar-brand">
+        <Link className="navbar-item" to="/">Home</Link>
+        <Link className="navbar-item" to="/calc">Calculator</Link>
+      </div>
+      </div>
+    </nav>
+  )
 }
 
 export default App;
