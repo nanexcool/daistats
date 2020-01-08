@@ -8,7 +8,7 @@ import {
 import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
-import daiLogo from './dai.png'
+import daiLogo from './dai.svg'
 const ethers = require('ethers')
 const utils = ethers.utils
 
@@ -16,8 +16,9 @@ const jsonFetch = url => fetch(url).then(res => res.json())
 
 const add = require('./addresses.json')
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
-add["UNISWAP_EXCHANGE"] = "0x2a1530c4c41db0b0b2bb646cb5eb1a67b7158667"
+add["UNISWAP_EXCHANGE"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
+add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
 const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
 
@@ -33,6 +34,7 @@ const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "ERC20")
+const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
@@ -53,17 +55,18 @@ class App extends Component {
     blockNumber: null
   }
 
-  INTERVAL = 60 * 1000
-  POSITION_CUR = 3
   POSITION_NXT = 4
 
   componentDidMount() {
     this.all()
-    setInterval(this.all, this.INTERVAL)
+    eth.on('block', this.all)
+  }
+
+  componentWillUnmount() {
+    eth.removeAllListeners()
   }
 
   all = async () => {
-    const time = Date.now()
     let p1 = multi.aggregate([
       [add.MCD_VAT, vat.interface.functions.Line.encode([])],
       [add.MCD_VAT, vat.interface.functions.debt.encode([])],
@@ -97,6 +100,8 @@ class App extends Component {
       [add.MCD_FLIP_BAT_A, batFlip.interface.functions.kicks.encode([])],
       [add.MCD_SPOT, spot.interface.functions.ilks.encode([ethIlkBytes])],
       [add.MCD_SPOT, spot.interface.functions.ilks.encode([batIlkBytes])],
+      [add.CHAI, chai.interface.functions.totalSupply.encode([])],
+      [add.MCD_GOV, mkr.interface.functions.totalSupply.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -141,65 +146,70 @@ class App extends Component {
     const ethPrice = ethMat.mat.mul(ethIlk.spot).div(RAY)
     const batPrice = batMat.mat.mul(batIlk.spot).div(RAY)
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0])
-    this.setState({
-      blockNumber,
-      Line: utils.formatUnits(res[0], 45),
-      debt: utils.formatUnits(res[1], 45),
-      ilks: [
-        {
-          Art: utils.formatEther( ethIlk.Art),
-          rate: utils.formatUnits(ethIlk.rate, 27),
-          spot: utils.formatUnits(ethIlk.spot, 27),
-          line: utils.formatUnits(ethIlk.line, 45),
-          dust: utils.formatUnits(ethIlk.dust, 45)
-        },
-        {
-          Art: utils.formatEther( batIlk.Art),
-          rate: utils.formatUnits(batIlk.rate, 27),
-          spot: utils.formatUnits(batIlk.spot, 27),
-          line: utils.formatUnits(batIlk.line, 45),
-          dust: utils.formatUnits(batIlk.dust, 45)
-        },
-        {
-          Art: utils.formatEther( saiIlk.Art),
-          rate: utils.formatUnits(saiIlk.rate, 27),
-          spot: utils.formatUnits(saiIlk.spot, 27),
-          line: utils.formatUnits(saiIlk.line, 45),
-          dust: utils.formatUnits(saiIlk.dust, 45)
-        },
-      ],
-      daiSupply: utils.formatEther(daiSupply[0]),
-      saiSupply: utils.formatEther(saiSupply[0]),
-      ethSupply: utils.formatEther(ethSupply),
-      ethLocked: utils.formatEther(ethLocked[0]),
-      batSupply: utils.formatEther(batSupply[0]),
-      batLocked: utils.formatEther(batLocked[0]),
-      saiLocked: utils.formatEther(saiLocked[0]),
-      gemPit: utils.formatEther(gemPit[0]),
-      uniswapDai: utils.formatEther(uniswapDai[0]),
-      ethFee: ethFee.toFixed(2),
-      batFee: batFee.toFixed(2),
-      saiFee: saiFee.toFixed(2),
-      jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
-      jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
-      sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
-      sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
-      surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
-      debtSize: utils.formatUnits(debtSize[0], 45),
-      potFee: potFee.toFixed(2),
-      savingsPie: utils.formatEther(savingsPie),
-      savingsDai: utils.formatUnits(savingsDai, 45),
-      potDrip: this.unixToDateTime(potDrip.toNumber()),
-      ethKicks: ethKicks.toNumber(),
-      batKicks: batKicks.toNumber(),
-      cdps: cdps.toString(),
-      ethPrice: utils.formatUnits(ethPrice, 27),
-      ethPriceNxt: utils.formatEther(ethPriceNxt),
-      batPrice: utils.formatUnits(batPrice, 27),
-      batPriceNxt: utils.formatEther(batPriceNxt),
-      sysLocked: utils.formatUnits(sysLocked, 45),
+    const chaiSupply = chai.interface.functions.totalSupply.decode(res[32])
+    const mkrSupply = mkr.interface.functions.totalSupply.decode(res[33])
+    this.setState(state => {
+      return {
+        blockNumber,
+        Line: utils.formatUnits(res[0], 45),
+        debt: utils.formatUnits(res[1], 45),
+        ilks: [
+          {
+            Art: utils.formatEther( ethIlk.Art),
+            rate: utils.formatUnits(ethIlk.rate, 27),
+            spot: utils.formatUnits(ethIlk.spot, 27),
+            line: utils.formatUnits(ethIlk.line, 45),
+            dust: utils.formatUnits(ethIlk.dust, 45)
+          },
+          {
+            Art: utils.formatEther( batIlk.Art),
+            rate: utils.formatUnits(batIlk.rate, 27),
+            spot: utils.formatUnits(batIlk.spot, 27),
+            line: utils.formatUnits(batIlk.line, 45),
+            dust: utils.formatUnits(batIlk.dust, 45)
+          },
+          {
+            Art: utils.formatEther( saiIlk.Art),
+            rate: utils.formatUnits(saiIlk.rate, 27),
+            spot: utils.formatUnits(saiIlk.spot, 27),
+            line: utils.formatUnits(saiIlk.line, 45),
+            dust: utils.formatUnits(saiIlk.dust, 45)
+          },
+        ],
+        daiSupply: utils.formatEther(daiSupply[0]),
+        saiSupply: utils.formatEther(saiSupply[0]),
+        ethSupply: utils.formatEther(ethSupply),
+        ethLocked: utils.formatEther(ethLocked[0]),
+        batSupply: utils.formatEther(batSupply[0]),
+        batLocked: utils.formatEther(batLocked[0]),
+        saiLocked: utils.formatEther(saiLocked[0]),
+        gemPit: utils.formatEther(gemPit[0]),
+        uniswapDai: utils.formatEther(uniswapDai[0]),
+        ethFee: ethFee.toFixed(2),
+        batFee: batFee.toFixed(2),
+        saiFee: saiFee.toFixed(2),
+        jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
+        jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
+        sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
+        sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
+        surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
+        debtSize: utils.formatUnits(debtSize[0], 45),
+        potFee: potFee.toFixed(2),
+        savingsPie: utils.formatEther(savingsPie),
+        savingsDai: utils.formatUnits(savingsDai, 45),
+        potDrip: this.unixToDateTime(potDrip.toNumber()),
+        ethKicks: ethKicks.toNumber(),
+        batKicks: batKicks.toNumber(),
+        cdps: cdps.toString(),
+        ethPrice: utils.formatUnits(ethPrice, 27),
+        ethPriceNxt: utils.formatEther(ethPriceNxt),
+        batPrice: utils.formatUnits(batPrice, 27),
+        batPriceNxt: utils.formatEther(batPriceNxt),
+        sysLocked: utils.formatUnits(sysLocked, 45),
+        chaiSupply: utils.formatEther(chaiSupply[0]),
+        mkrSupply: utils.formatEther(mkrSupply[0])
+      }
     })
-    console.log(`Updated in ${(Date.now() - time) / 1000 } seconds`)
   }
 
   isLoaded = () => {
@@ -229,13 +239,13 @@ class App extends Component {
     if (this.isLoaded()) {
       return (
         <Router>
-
+          {/* <NavBar /> */}
           <Switch>
             <Route path="/calc">
               <Calc {...this.state} {...add} />
             </Route>
             <Route path="/">
-              <Main {...this.state} {...add} interval={this.INTERVAL} />
+              <Main {...this.state} {...add} />
             </Route>
           </Switch>
         </Router>

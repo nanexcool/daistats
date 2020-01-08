@@ -27,36 +27,35 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
-  const flip = parseFloat(props.saiSupply) - parseFloat(props.debt)
   const sysCollat = props.sysLocked / props.debt
   return (
     <div>
       <div className="notification is-primary has-text-centered">
-        Current block: {props.blockNumber}. This page updates automatically every {props.interval / 1000} seconds.
+        Current block: {props.blockNumber}. This page updates automatically every block.
       </div>
       <section className="section">
         <div className="container">
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.debt}>{formatAmount.format(props.debt)}</h3>
+                <h3 className="title" title={props.debt}>
+                  {formatAmount.format(props.debt)}
+                </h3>
                 <h4 className="subtitle is-size-3">Total Dai</h4>
               </div>
             </div>
             <div className="column">
-                {flip >= 0 &&
-                  <div className="box has-text-centered">
-                    <h3 className="title">{formatNoDecimals.format(flip)} more Dai</h3>
-                    <h4 className="subtitle is-size-3">til the FLIPPENING!</h4>
-                  </div>
-                }
-                {flip < 0 &&
-                  <div className="box has-text-centered">
-                    <h3 className="title">Sai + {formatNoDecimals.format(flip * -1 )} = Dai</h3>
-                    <h4 className="subtitle is-size-3"> Dai has FLIPPED Sai!</h4>
-                  </div>
-                }
+              <div className="box has-text-centered">
+                <h3 className="title">{formatAmount.format(props.saiSupply)}</h3>
+                <h4 className="subtitle is-size-3">Total Sai</h4>
+              </div>
             </div>
+            {/* <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">{formatAmount.format(props.chaiSupply)}</h3>
+                <h4 className="subtitle is-size-3">Total Chai</h4>
+              </div>
+            </div> */}
           </div>
           <div className="columns">
             <div className="column">
@@ -211,6 +210,12 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
+                <p className="subtitle is-size-4">MKR Supply</p>
               </div>
             </div>
             <div className="column">

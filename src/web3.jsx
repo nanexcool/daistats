@@ -1,4 +1,5 @@
 const ethers = require('ethers')
+ethers.errors.setLogLevel("error")
 window.ethers = ethers
-const eth = new ethers.providers.InfuraProvider('homestead','4525cb9262b24bbcaf6ac079efd887bf')
+const eth = ethers.getDefaultProvider()
 export default eth
