@@ -9,6 +9,7 @@ import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
 import daiLogo from './dai.svg'
+const Web3 = require('web3');
 const ethers = require('ethers')
 const utils = ethers.utils
 
@@ -20,7 +21,21 @@ add["UNISWAP_EXCHANGE"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
-const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
+let web3;
+let provider;
+if (typeof window.ethereum !== 'undefined') {
+  window.ethereum.autoRefreshOnNetworkChange = false;
+  web3 = new Web3(window.ethereum);
+  provider = new ethers.providers.Web3Provider(web3.currentProvider);
+}
+
+const build = (address, name) => {
+  return new ethers.Contract(
+    address,
+    require(`./abi/${name}.json`),
+    provider ? provider : eth
+  );
+}
 
 const multi = build(add.MULTICALL, "Multicall")
 const vat = build(add.MCD_VAT, "Vat")
@@ -192,6 +207,7 @@ class App extends Component {
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
+        sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
         debtSize: utils.formatUnits(debtSize[0], 45),
         potFee: potFee.toFixed(2),

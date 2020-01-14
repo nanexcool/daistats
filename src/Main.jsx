@@ -1,5 +1,7 @@
-import React from 'react'
+import React from 'react';
 import './Main.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import HealButton from './HealButton';
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -26,7 +28,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
-  document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
+  document.title = `Dai Stats`
   const sysCollat = props.sysLocked / props.debt
   return (
     <div>
@@ -182,6 +184,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">System Debt (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
+                <HealButton sysDebtRaw={props.sysDebtRaw}/>
               </div>
             </div>
             <div className="column">
