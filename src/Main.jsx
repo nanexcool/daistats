@@ -28,15 +28,37 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   const sysCollat = props.sysLocked / props.debt
+
+  const toggleDarkTheme = () => {
+    let goDark = document.body.style.backgroundColor !== "rgb(21, 32, 43)"
+    document.body.style.backgroundColor = goDark ? 'rgb(21, 32, 43)' : 'white'
+    document.getElementsByClassName('notification')[0].style.backgroundColor = goDark ? '#018470' : '#00d1b2'
+    Array.prototype.forEach.call(document.getElementsByClassName('box'),
+      function (element) {
+        element.style.backgroundColor = goDark ? '#192734' : '#fff'
+      }
+    )
+    Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
+      element.style.color = goDark ? '#fff' : '#000'
+    })
+    Array.prototype.forEach.call(document.getElementsByClassName('subtitle'), function (element) {
+      element.style.color = goDark ? '#a0a2af' : '#4a4a4a'
+    })
+    document.getElementsByTagName('footer')[0].style.backgroundColor = goDark ? '#15202b' : '#fafafa'
+  };
+
   return (
     <div>
       <div className="notification is-primary has-text-centered">
         Current block: {props.blockNumber}. This page updates automatically every block.<br />
-        added GoatCounter for simple web statistics, no tracking of personal data
+        lol dark mode, thanks Marto!
       </div>
       <section className="section">
         <div className="container">
-        <div className="columns">
+          <div className="theme-btn">
+            <a onClick={toggleDarkTheme}><img alt="Dark Mode" src='darth-vader-btn.png' /></a>
+          </div>
+          <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title">
@@ -121,7 +143,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-              <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
+                <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
                 <p className="title subtitle is-size-4">BAT Locked (in BAT)</p>
                 <p className="subtitle is-size-6">BAT Supply Locked: {formatPercent.format(props.batLocked / props.batSupply)}</p>
               </div>
@@ -175,7 +197,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="title subtitle is-size-4">Dai in DSR ({formatAmount.format(props.savingsDai/ props.debt * 100)}%)</p>
+                <p className="title subtitle is-size-4">Dai in DSR ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
                 <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>

@@ -1,3 +1,14 @@
 .box {
     height: 100%;
 }
+
+.theme-btn {
+    float: right;
+    margin-top: -30px;
+    opacity: 0.8;
+    width: 24px;
+}
+
+.theme-btn:hover {
+    opacity: 1;
+}
