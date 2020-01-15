@@ -31,10 +31,22 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
-        Current block: {props.blockNumber}. This page updates automatically every block.
+        Current block: {props.blockNumber}. This page updates automatically every block.<br />
+        added GoatCounter for simple web statistics, no tracking of personal data
       </div>
       <section className="section">
         <div className="container">
+        <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title">
+                  {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)} + {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)} + {formatAmount.format(props.ilks[2].Art)} + {formatAmount.format(props.vice)} = {formatAmount.format(props.debt)}
+                </h3>
+                <h4 className="subtitle is-size-4">(Dai from ETH + Dai from BAT + Dai from Sai + Unbacked Dai) = Total Dai</h4>
+                <h4 className="subtitle is-size-3">The Fundamental Equation of Dai</h4>
+              </div>
+            </div>
+          </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
@@ -66,14 +78,14 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[0].Art}>{formatAmount.format(props.ilks[0].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from ETH ({formatAmount.format(props.ilks[0].Art / props.debt * 100)}%)</p>
+                <h3 className="title" title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
+                <p className="subtitle is-size-4">Dai from ETH ({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[1].Art}>{formatAmount.format(props.ilks[1].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from BAT ({formatAmount.format(props.ilks[1].Art / props.debt * 100)}%)</p>
+                <h3 className="title" title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
+                <p className="subtitle is-size-4">Dai from BAT ({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">

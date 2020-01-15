@@ -102,6 +102,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.functions.ilks.encode([batIlkBytes])],
       [add.CHAI, chai.interface.functions.totalSupply.encode([])],
       [add.MCD_GOV, mkr.interface.functions.totalSupply.encode([])],
+      [add.MCD_VAT, vat.interface.functions.vice.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -148,6 +149,7 @@ class App extends Component {
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0])
     const chaiSupply = chai.interface.functions.totalSupply.decode(res[32])
     const mkrSupply = mkr.interface.functions.totalSupply.decode(res[33])
+    const vice = vat.interface.functions.vice.decode(res[34])
     this.setState(state => {
       return {
         blockNumber,
@@ -207,7 +209,8 @@ class App extends Component {
         batPriceNxt: utils.formatEther(batPriceNxt),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply[0]),
-        mkrSupply: utils.formatEther(mkrSupply[0])
+        mkrSupply: utils.formatEther(mkrSupply[0]),
+        vice: utils.formatUnits(vice[0], 45)
       }
     })
   }
