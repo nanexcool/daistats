@@ -2,8 +2,7 @@ import React, { Component } from 'react'
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 import eth from './web3';
 import Main from './Main'
@@ -270,6 +269,7 @@ class App extends Component {
   }
 }
 
+/*
 const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
@@ -282,5 +282,6 @@ const NavBar = () => {
     </nav>
   )
 }
+*/
 
 export default App;
