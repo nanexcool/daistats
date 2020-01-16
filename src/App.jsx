@@ -220,10 +220,6 @@ class App extends Component {
     return this.state.blockNumber !== null
   }
 
-  toggleDarkMode = (mode) => {
-    this.setState({darkMode: mode})
-  }
-
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
