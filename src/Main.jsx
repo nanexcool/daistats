@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Main.css';
 
 const formatAmount = new Intl.NumberFormat('en-US', {
@@ -28,24 +28,33 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   const sysCollat = props.sysLocked / props.debt
+  const [ darkMode, setDarkMode ] = useState(props.darkMode)
 
   const toggleDarkTheme = () => {
-    let goDark = document.body.style.backgroundColor !== "rgb(21, 32, 43)"
-    document.body.style.backgroundColor = goDark ? 'rgb(21, 32, 43)' : 'white'
-    document.getElementsByClassName('notification')[0].style.backgroundColor = goDark ? '#018470' : '#00d1b2'
+    localStorage.setItem("ds-darkmode", !darkMode)
+    setDarkMode(!darkMode)
+  };
+
+  const applyDarkTheme = (isDark) => {
+    document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
+    document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
     Array.prototype.forEach.call(document.getElementsByClassName('box'),
       function (element) {
-        element.style.backgroundColor = goDark ? '#192734' : '#fff'
+        element.style.backgroundColor = isDark ? '#192734' : '#fff'
       }
     )
     Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
-      element.style.color = goDark ? '#fff' : '#000'
+      element.style.color = isDark ? '#fff' : '#000'
     })
     Array.prototype.forEach.call(document.getElementsByClassName('subtitle'), function (element) {
-      element.style.color = goDark ? '#a0a2af' : '#4a4a4a'
+      element.style.color = isDark ? '#a0a2af' : '#4a4a4a'
     })
-    document.getElementsByTagName('footer')[0].style.backgroundColor = goDark ? '#15202b' : '#fafafa'
-  };
+    document.getElementsByTagName('footer')[0].style.backgroundColor = isDark ? '#15202b' : '#fafafa'
+  }
+
+  useEffect(() => {
+    applyDarkTheme(darkMode)
+  }, [darkMode]);
 
   return (
     <div>
