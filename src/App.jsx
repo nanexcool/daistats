@@ -210,7 +210,8 @@ class App extends Component {
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply[0]),
         mkrSupply: utils.formatEther(mkrSupply[0]),
-        vice: utils.formatUnits(vice[0], 45)
+        vice: utils.formatUnits(vice[0], 45),
+        darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
     })
   }
@@ -218,6 +219,11 @@ class App extends Component {
   isLoaded = () => {
     return this.state.blockNumber !== null
   }
+
+  toggleDarkMode = (mode) => {
+    this.setState({darkMode: mode})
+  }
+
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
