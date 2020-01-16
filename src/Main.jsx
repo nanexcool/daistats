@@ -56,7 +56,7 @@ const Main = (props) => {
       <section className="section">
         <div className="container">
           <div className="theme-btn">
-            <a onClick={toggleDarkTheme}><img alt="Dark Mode" src='darth-vader-btn.png' /></a>
+            <img alt="Dark Mode" onClick={toggleDarkTheme} src='darth-vader-btn.png' />
           </div>
           <div className="columns">
             <div className="column">
