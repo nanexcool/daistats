@@ -1,1 +1,0 @@
-{"version":3,"sources":["Main.css"],"names":[],"mappings":"AAAA,KACI,WACJ,CAEA,WACI,WAAY,CACZ,gBAAiB,CACjB,UAAY,CACZ,UACJ,CAEA,iBACI,SACJ","file":"main.13ff7d24.chunk.css","sourcesContent":[".box {\n    height: 100%;\n}\n\n.theme-btn {\n    float: right;\n    margin-top: -30px;\n    opacity: 0.8;\n    width: 24px;\n}\n\n.theme-btn:hover {\n    opacity: 1;\n}"]}
