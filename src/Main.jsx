@@ -1,5 +1,7 @@
 import React from 'react'
 import './Main.css';
+import darkBtn from './darth-vader.svg'
+import lightBtn from './mandalorian.svg'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -31,12 +33,19 @@ const Main = (props) => {
 
   const toggleDarkTheme = () => {
     let goDark = document.body.style.backgroundColor !== "rgb(21, 32, 43)"
+    if (goDark){
+      document.getElementsByClassName('dark-icon')[0].style.display = "none"
+      document.getElementsByClassName('light-icon')[0].style.display = "block"
+      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrase the light side"
+    } else {
+      document.getElementsByClassName('dark-icon')[0].style.display = "block"
+      document.getElementsByClassName('light-icon')[0].style.display = "none"
+      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrase the dark side"
+    }
     document.body.style.backgroundColor = goDark ? 'rgb(21, 32, 43)' : 'white'
     document.getElementsByClassName('notification')[0].style.backgroundColor = goDark ? '#018470' : '#00d1b2'
-    Array.prototype.forEach.call(document.getElementsByClassName('box'),
-      function (element) {
-        element.style.backgroundColor = goDark ? '#192734' : '#fff'
-      }
+    Array.prototype.forEach.call(document.getElementsByClassName('box'),function (element) {
+      element.style.backgroundColor = goDark ? '#192734' : '#fff'}
     )
     Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
       element.style.color = goDark ? '#fff' : '#000'
@@ -50,13 +59,16 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
-        Current block: {props.blockNumber}. This page updates automatically every block.<br />
+        Current block: {props.blockNumber}. This page updates automatically every block.<br/>
         lol dark mode, thanks Marto!
       </div>
       <section className="section">
         <div className="container">
           <div className="theme-btn">
-            <a onClick={toggleDarkTheme}><img alt="Dark Mode" src='darth-vader-btn.png' /></a>
+            <a onClick={toggleDarkTheme} title="Embrase the dark side">
+              <img className="light-icon" src={lightBtn} alt="Light side button"/>
+              <img className="dark-icon" src={darkBtn} alt="Dark side button"/>
+            </a>
           </div>
           <div className="columns">
             <div className="column">
@@ -64,7 +76,8 @@ const Main = (props) => {
                 <h3 className="title">
                   {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)} + {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)} + {formatAmount.format(props.ilks[2].Art)} + {formatAmount.format(props.vice)} = {formatAmount.format(props.debt)}
                 </h3>
-                <h4 className="subtitle is-size-4">(Dai from ETH + Dai from BAT + Dai from Sai + Unbacked Dai) = Total Dai</h4>
+                <h4 className="subtitle is-size-4">(Dai from ETH + Dai from BAT + Dai from Sai + Unbacked Dai) = Total
+                  Dai</h4>
                 <h4 className="subtitle is-size-3">The Fundamental Equation of Dai</h4>
               </div>
             </div>
@@ -86,7 +99,8 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(Number.parseFloat(props.debt) + Number.parseFloat(props.saiSupply))}</h3>
+                <h3
+                  className="title">{formatAmount.format(Number.parseFloat(props.debt) + Number.parseFloat(props.saiSupply))}</h3>
                 <h4 className="subtitle is-size-3">Dai + Sai</h4>
               </div>
             </div>
@@ -100,14 +114,18 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
-                <p className="subtitle is-size-4">Dai from ETH ({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
+                <h3 className="title"
+                    title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
+                <p className="subtitle is-size-4">Dai from ETH
+                  ({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
-                <p className="subtitle is-size-4">Dai from BAT ({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
+                <h3 className="title"
+                    title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
+                <p className="subtitle is-size-4">Dai from BAT
+                  ({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
@@ -122,14 +140,16 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
                 <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
-                <p className="subtitle is-size-6">ETH Supply Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
+                <p className="subtitle is-size-6">ETH Supply
+                  Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
                 <p className="title subtitle is-size-4">ETH Ceiling (in Dai)</p>
-                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art / props.ilks[0].line * 100)}%</p>
+                <p
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art / props.ilks[0].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
@@ -145,14 +165,16 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
                 <p className="title subtitle is-size-4">BAT Locked (in BAT)</p>
-                <p className="subtitle is-size-6">BAT Supply Locked: {formatPercent.format(props.batLocked / props.batSupply)}</p>
+                <p className="subtitle is-size-6">BAT Supply
+                  Locked: {formatPercent.format(props.batLocked / props.batSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
                 <p className="title subtitle is-size-4">BAT Ceiling (in Dai)</p>
-                <p className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art / props.ilks[1].line * 100)}%</p>
+                <p
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art / props.ilks[1].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
@@ -168,7 +190,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
                 <p className="subtitle is-size-4">Dai (ERC20) Supply</p>
-                <p className="subtitle is-size-6"> </p>
+                <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
@@ -197,7 +219,8 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="title subtitle is-size-4">Dai in DSR ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
+                <p className="title subtitle is-size-4">Dai in DSR
+                  ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
                 <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>
@@ -228,14 +251,14 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
                 <p className="subtitle is-size-4">BAT Vault Auctions</p>
-                <p className="subtitle is-size-6"> </p>
+                <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
                 <p className="subtitle is-size-4">ETH Vault Auctions</p>
-                <p className="subtitle is-size-6"> </p>
+                <p className="subtitle is-size-6"></p>
               </div>
             </div>
           </div>
