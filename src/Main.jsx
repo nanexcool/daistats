@@ -167,8 +167,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
-                <p className="subtitle is-size-4">Dai (ERC20) Supply</p>
-                <p className="subtitle is-size-6"> </p>
+                <p className="subtitle is-size-4">Dai (ERC20) Supply ({formatAmount.format(props.daiSupply / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
