@@ -36,11 +36,11 @@ const Main = (props) => {
     if (goDark){
       document.getElementsByClassName('dark-icon')[0].style.display = "none"
       document.getElementsByClassName('light-icon')[0].style.display = "block"
-      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrase the light side"
+      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrace the light side"
     } else {
       document.getElementsByClassName('dark-icon')[0].style.display = "block"
       document.getElementsByClassName('light-icon')[0].style.display = "none"
-      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrase the dark side"
+      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrace the dark side"
     }
     document.body.style.backgroundColor = goDark ? 'rgb(21, 32, 43)' : 'white'
     document.getElementsByClassName('notification')[0].style.backgroundColor = goDark ? '#018470' : '#00d1b2'
