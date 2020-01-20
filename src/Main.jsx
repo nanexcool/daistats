@@ -65,7 +65,7 @@ const Main = (props) => {
       <section className="section">
         <div className="container">
           <div className="theme-btn">
-            <a onClick={toggleDarkTheme} title="Embrase the dark side">
+            <a onClick={toggleDarkTheme} title="Embrace the dark side">
               <img className="light-icon" src={lightBtn} alt="Light side button"/>
               <img className="dark-icon" src={darkBtn} alt="Dark side button"/>
             </a>
@@ -149,7 +149,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
                 <p className="title subtitle is-size-4">ETH Ceiling (in Dai)</p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art / props.ilks[0].line * 100)}%</p>
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.ilks[0].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
@@ -174,7 +174,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
                 <p className="title subtitle is-size-4">BAT Ceiling (in Dai)</p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art / props.ilks[1].line * 100)}%</p>
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art * props.ilks[0].rate / props.ilks[1].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
