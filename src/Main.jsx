@@ -39,8 +39,6 @@ const Main = (props) => {
 
   const applyDarkTheme = (isDark) => {
     document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
-    document.getElementsByClassName('dark-icon')[0].style.display = isDark ? "none" : "block"
-    document.getElementsByClassName('light-icon')[0].style.display = isDark ? "block" : "none"
     document.getElementsByClassName('theme-btn')[0].children[0].title = isDark ? "Embrace the light side" : "Embrace the dark side"
     document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
     document.getElementsByTagName('footer')[0].style.backgroundColor = isDark ? '#15202b' : '#fafafa'
@@ -70,10 +68,9 @@ const Main = (props) => {
       <section className="section">
         <div className="container">
           <div className="theme-btn">
-            <a onClick={toggleDarkTheme} title="Embrace the dark side">
-              <img className="light-icon" src={lightBtn} alt="Light side button"/>
-              <img className="dark-icon" src={darkBtn} alt="Dark side button"/>
-            </a>
+            <figure className="image is-32x32" onClick={toggleDarkTheme} title="Embrace the dark side">
+              { darkMode ? <img className="light-icon" src={lightBtn} alt="Light side button"/> : <img className="dark-icon" src={darkBtn} alt="Dark side button"/> }
+            </figure>
           </div>
           <div className="columns">
             <div className="column">
