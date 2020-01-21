@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import HealButton from './HealButton';
 import './Main.css';
 import darkBtn from './img/darth-vader.svg'
 import lightBtn from './img/mandalorian.svg'
@@ -28,7 +29,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
-  document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
+  document.title = `Dai Stats`
   const sysCollat = props.sysLocked / props.debt
   const [ darkMode, setDarkMode ] = useState(props.darkMode)
 
@@ -245,6 +246,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">System Debt (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
+                <HealButton sysDebtRaw={props.sysDebtRaw}/>
               </div>
             </div>
             <div className="column">
