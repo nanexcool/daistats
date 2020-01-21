@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Main.css';
-import darkBtn from './darth-vader.svg'
-import lightBtn from './mandalorian.svg'
+import darkBtn from './img/darth-vader.svg'
+import lightBtn from './img/mandalorian.svg'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
