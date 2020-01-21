@@ -45,13 +45,13 @@ const Main = (props) => {
       function (element) {
         element.style.backgroundColor = isDark ? '#192734' : '#fff'
       }
-    )    
+    )
     Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
       element.style.color = isDark ? '#fff' : '#000'
     })
     Array.prototype.forEach.call(document.getElementsByClassName('subtitle'), function (element) {
       element.style.color = isDark ? '#a0a2af' : '#4a4a4a'
-    })    
+    })
   }
 
   useEffect(() => {
@@ -62,7 +62,7 @@ const Main = (props) => {
     <div>
       <div className="notification is-primary has-text-centered">
         Current block: {props.blockNumber}. This page updates automatically every block.<br/>
-        lol dark mode, thanks Marto!
+        participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
       </div>
       <section className="section">
         <div className="container">
