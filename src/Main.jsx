@@ -68,7 +68,7 @@ const Main = (props) => {
         <div className="container">
           <div className="theme-btn">
             <figure className="image is-32x32" onClick={toggleDarkTheme} title={ darkMode ? "Embrace the light side" : "Embrace the dark side"}>
-              { darkMode ? <img className="light-icon" src={lightBtn} alt="Light side button"/> : <img className="dark-icon" src={darkBtn} alt="Dark side button"/> }
+              <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
             </figure>
           </div>
           <div className="columns">
