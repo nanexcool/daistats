@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import './Main.css';
-import darkBtn from './darth-vader.svg'
-import lightBtn from './mandalorian.svg'
+import darkBtn from './img/darth-vader.svg'
+import lightBtn from './img/mandalorian.svg'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -30,31 +30,33 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 const Main = (props) => {
   document.title = `Dai Stats - ${formatAmount.format(props.debt)}`
   const sysCollat = props.sysLocked / props.debt
+  const [ darkMode, setDarkMode ] = useState(props.darkMode)
 
   const toggleDarkTheme = () => {
-    let goDark = document.body.style.backgroundColor !== "rgb(21, 32, 43)"
-    if (goDark){
-      document.getElementsByClassName('dark-icon')[0].style.display = "none"
-      document.getElementsByClassName('light-icon')[0].style.display = "block"
-      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrace the light side"
-    } else {
-      document.getElementsByClassName('dark-icon')[0].style.display = "block"
-      document.getElementsByClassName('light-icon')[0].style.display = "none"
-      document.getElementsByClassName('theme-btn')[0].children[0].title = "Embrace the dark side"
-    }
-    document.body.style.backgroundColor = goDark ? 'rgb(21, 32, 43)' : 'white'
-    document.getElementsByClassName('notification')[0].style.backgroundColor = goDark ? '#018470' : '#00d1b2'
-    Array.prototype.forEach.call(document.getElementsByClassName('box'),function (element) {
-      element.style.backgroundColor = goDark ? '#192734' : '#fff'}
-    )
+    localStorage.setItem("ds-darkmode", !darkMode)
+    setDarkMode(!darkMode)
+  };
+
+  const applyDarkTheme = (isDark) => {
+    document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
+    document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
+    document.getElementsByTagName('footer')[0].style.backgroundColor = isDark ? '#15202b' : '#fafafa'
+    Array.prototype.forEach.call(document.getElementsByClassName('box'),
+      function (element) {
+        element.style.backgroundColor = isDark ? '#192734' : '#fff'
+      }
+    )    
     Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
-      element.style.color = goDark ? '#fff' : '#000'
+      element.style.color = isDark ? '#fff' : '#000'
     })
     Array.prototype.forEach.call(document.getElementsByClassName('subtitle'), function (element) {
-      element.style.color = goDark ? '#a0a2af' : '#4a4a4a'
-    })
-    document.getElementsByTagName('footer')[0].style.backgroundColor = goDark ? '#15202b' : '#fafafa'
-  };
+      element.style.color = isDark ? '#a0a2af' : '#4a4a4a'
+    })    
+  }
+
+  useEffect(() => {
+    applyDarkTheme(darkMode)
+  }, [darkMode]);
 
   return (
     <div>
@@ -65,10 +67,9 @@ const Main = (props) => {
       <section className="section">
         <div className="container">
           <div className="theme-btn">
-            <a onClick={toggleDarkTheme} title="Embrace the dark side">
-              <img className="light-icon" src={lightBtn} alt="Light side button"/>
-              <img className="dark-icon" src={darkBtn} alt="Dark side button"/>
-            </a>
+            <figure className="image is-32x32" onClick={toggleDarkTheme} title={ darkMode ? "Embrace the light side" : "Embrace the dark side"}>
+              <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
+            </figure>
           </div>
           <div className="columns">
             <div className="column">
