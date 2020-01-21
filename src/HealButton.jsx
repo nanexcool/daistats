@@ -35,7 +35,7 @@ function HealButton(props) {
 
   return (
     <button
-      className={`button ${props.isDark ? "is-dark" : "is-light"}`}
+      className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
       disabled={isHealing}
 
       onClick={!isHealing ? handleClick : null}
