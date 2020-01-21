@@ -3,12 +3,21 @@
 }
 
 .theme-btn {
-    float: right;
-    margin-top: -30px;
-    opacity: 0.8;
-    width: 24px;
+    opacity: 0.75;
+    position: absolute;
+    right: -6px;
+    top: -35px;
 }
 
 .theme-btn:hover {
     opacity: 1;
+}
+
+.theme-btn a .dark-icon {
+    transform: scale(0.55);
+}
+
+.theme-btn a .light-icon {
+    display: none;
+    transform: scale(0.54);
 }
