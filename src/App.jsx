@@ -21,7 +21,7 @@ add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
 let provider;
-if (typeof window.ethereum !== 'undefined') {
+if (typeof window.ethereum !== 'undefined' && window.ethereum.chainId === 1) {
   window.ethereum.autoRefreshOnNetworkChange = false;
   provider = new ethers.providers.Web3Provider(window.ethereum);
 }
