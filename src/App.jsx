@@ -8,7 +8,6 @@ import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
 import daiLogo from './dai.svg'
-import confetti from './confetti'
 
 const ethers = require('ethers')
 const utils = ethers.utils
@@ -228,7 +227,6 @@ class App extends Component {
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
     })
-    if (parseInt(utils.formatUnits(res[1], 45)) >= 100000000) confetti.rain()
   }
 
   isLoaded = () => {
