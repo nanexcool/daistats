@@ -78,7 +78,7 @@ const Main = (props) => {
                 <h3 className="title">
                   {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)} + {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)} + {formatAmount.format(props.ilks[2].Art)} + {formatAmount.format(props.vice)} = {formatAmount.format(props.debt)}
                 </h3>
-                <h4 className="subtitle is-size-4">(Dai from ETH + Dai from BAT + Dai from Sai + Unbacked Dai) = Total
+                <h4 className="subtitle is-size-4">(Dai from ETH + Dai from BAT + Dai from Sai + System Debt) = Total
                   Dai</h4>
                 <h4 className="subtitle is-size-3">The Fundamental Equation of Dai</h4>
               </div>
@@ -244,7 +244,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
-                <p className="title subtitle is-size-4">System Debt (Dai)</p>
+                <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
                 {window.ethereum && <HealButton sysDebtRaw={props.sysDebtRaw}/>}
               </div>
