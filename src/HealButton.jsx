@@ -3,16 +3,20 @@ import React, { useState, useEffect } from 'react';
 export { HealButton as default };
 
 async function healMakerProtocol(debt) {
+  const title = document.title
   try {
     console.log(debt);
     const provider = window.vow.provider;
+    document.title = "Dai Stats"
     await window.ethereum.enable()
+    document.title = title
     const signer = provider.getSigner();
     const vowWrite = window.vow.connect(signer);
     const tx = await vowWrite.heal(debt);
     await provider.waitForTransaction(tx.hash);
   } catch (error) {
     console.error(error)
+    document.title = title
   }
 }
 

@@ -29,7 +29,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
-  document.title = `Dai Stats`
+  document.title = `${formatAmount.format(props.debt)} - Dai Stats`
   const sysCollat = props.sysLocked / props.debt
   const [ darkMode, setDarkMode ] = useState(props.darkMode)
 
