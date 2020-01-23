@@ -39,6 +39,7 @@ function HealButton(props) {
 
   return (
     <button
+      title="Reduce System Debt by taking from System Surplus"
       className="button"
       disabled={isHealing}
       onClick={!isHealing ? handleClick : null}

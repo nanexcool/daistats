@@ -62,7 +62,8 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
-        Current block: {props.blockNumber}. This page updates automatically every block.<br/>
+        Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
+        <br/>
         participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
       </div>
       <section className="section">
