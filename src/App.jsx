@@ -21,9 +21,13 @@ add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
 let provider;
-if (typeof window.ethereum !== 'undefined' && window.ethereum.chainId === 1) {
+let networkId;
+if (typeof window.ethereum !== 'undefined') {
+  networkId = parseInt(window.ethereum.chainId);
   window.ethereum.autoRefreshOnNetworkChange = false;
-  provider = new ethers.providers.Web3Provider(window.ethereum);
+  if (networkId === 1) {
+    provider = new ethers.providers.Web3Provider(window.ethereum);
+  }
 }
 
 const build = (address, name) => {
@@ -164,6 +168,7 @@ class App extends Component {
     const vice = vat.interface.functions.vice.decode(res[34])
     this.setState(state => {
       return {
+        networkId: networkId,
         blockNumber,
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
