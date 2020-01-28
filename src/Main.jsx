@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import HealButton from './HealButton';
+import HealButton from './components/HealButton';
+import MeetingTime from './components/MeetingTime'
 import './Main.css';
 import darkBtn from './img/darth-vader.svg'
 import lightBtn from './img/mandalorian.svg'
@@ -65,6 +66,9 @@ const Main = (props) => {
         Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
         participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
+        <div className="container">
+          <MeetingTime />
+        </div>
       </div>
       <section className="section">
         <div className="container">
