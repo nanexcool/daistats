@@ -66,9 +66,6 @@ const Main = (props) => {
         Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
         participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
-        <div className="container">
-          <MeetingTime />
-        </div>
       </div>
       <section className="section">
         <div className="container">
@@ -77,6 +74,7 @@ const Main = (props) => {
               <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
             </figure>
           </div>
+          <MeetingTime />
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
