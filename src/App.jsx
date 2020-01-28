@@ -241,7 +241,9 @@ class App extends Component {
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
     })
-    if (parseInt(utils.formatUnits(res[1], 45)) >= 100000000) confetti.rain()
+    // if (parseInt(utils.formatEther(ethLocked[0])) >= 2000000) {
+    //   confetti.rain()
+    // }
   }
 
   isLoaded = () => {

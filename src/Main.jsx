@@ -141,7 +141,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
+                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)} 🚀</h3>
                 <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
                 <p className="subtitle is-size-6">ETH Supply
                   Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
