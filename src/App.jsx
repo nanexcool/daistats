@@ -64,7 +64,8 @@ const RAY = utils.bigNumberify("1000000000000000000000000000")
 
 class App extends Component {
   state = {
-    blockNumber: null
+    blockNumber: null,
+    paused: false,
   }
 
   POSITION_NXT = 4
@@ -76,6 +77,18 @@ class App extends Component {
 
   componentWillUnmount() {
     eth.removeAllListeners()
+  }
+
+  togglePause = () => {
+    if (this.state.paused) {
+      this.all()
+      eth.on('block', this.all)
+    } else {
+      eth.removeAllListeners()
+    }
+    this.setState({
+      paused: !this.state.paused
+    })
   }
 
   all = async () => {
@@ -263,7 +276,7 @@ class App extends Component {
               <Calc {...this.state} {...add} />
             </Route>
             <Route path="/">
-              <Main {...this.state} {...add} />
+              <Main {...this.state} {...add} togglePause={this.togglePause} />
             </Route>
           </Switch>
         </Router>
