@@ -42,7 +42,6 @@ function HealButton(props) {
       className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
       title="Reduce System Debt by taking from System Surplus"
       disabled={isHealing}
-      title="Call heal on the Dai Stablecoin System to cancel out system surplus and system debt."
       onClick={!isHealing ? handleClick : null}
     >
       {isHealing ? 'Healing…' : 'Heal'}
