@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/static/css/main.7f067a0d.chunk.css",
-    "main.js": "/static/js/main.6721a6a0.chunk.js",
-    "main.js.map": "/static/js/main.6721a6a0.chunk.js.map",
+    "main.css": "/static/css/main.4ef804a9.chunk.css",
+    "main.js": "/static/js/main.8113af16.chunk.js",
+    "main.js.map": "/static/js/main.8113af16.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.aa5af6bd.js",
     "runtime-main.js.map": "/static/js/runtime-main.aa5af6bd.js.map",
     "static/js/2.8df20820.chunk.js": "/static/js/2.8df20820.chunk.js",
     "static/js/2.8df20820.chunk.js.map": "/static/js/2.8df20820.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.de4b59dd0e63c85a072a2f2ca1d8931e.js": "/precache-manifest.de4b59dd0e63c85a072a2f2ca1d8931e.js",
+    "precache-manifest.fb9fbf69247d290e535446bbaba8ccf2.js": "/precache-manifest.fb9fbf69247d290e535446bbaba8ccf2.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.7f067a0d.chunk.css.map": "/static/css/main.7f067a0d.chunk.css.map",
+    "static/css/main.4ef804a9.chunk.css.map": "/static/css/main.4ef804a9.chunk.css.map",
     "static/js/2.8df20820.chunk.js.LICENSE": "/static/js/2.8df20820.chunk.js.LICENSE",
     "static/media/dai.svg": "/static/media/dai.021a5b14.svg",
     "static/media/darth-vader.svg": "/static/media/darth-vader.70521b73.svg",
@@ -19,7 +19,7 @@
   "entrypoints": [
     "static/js/runtime-main.aa5af6bd.js",
     "static/js/2.8df20820.chunk.js",
-    "static/css/main.7f067a0d.chunk.css",
-    "static/js/main.6721a6a0.chunk.js"
+    "static/css/main.4ef804a9.chunk.css",
+    "static/js/main.8113af16.chunk.js"
   ]
 }
