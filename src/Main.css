@@ -7,6 +7,7 @@
     position: absolute;
     right: -6px;
     top: -35px;
+    cursor: pointer;
 }
 
 .theme-btn:hover {
