@@ -3,8 +3,6 @@ import React from 'react';
 export { MeetingTime as default };
 
 var now = new Date()
-console.log(now.getDay())
-console.log(now.getUTCHours())
 
 // Community Meeting - 5:00 PM UTC Tuesdays
 var communityMeeting = now.getDay() === 2 && now.getUTCHours() === 17
