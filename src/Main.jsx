@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
-import HealButton from './HealButton';
+import HealButton from './components/HealButton';
+import MeetingTime from './components/MeetingTime'
 import './Main.css';
 import darkBtn from './img/darth-vader.svg'
 import lightBtn from './img/mandalorian.svg'
@@ -73,6 +74,7 @@ const Main = (props) => {
               <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
             </figure>
           </div>
+          <MeetingTime />
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
