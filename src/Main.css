@@ -1,3 +1,24 @@
 .box {
     height: 100%;
 }
+
+.theme-btn {
+    opacity: 0.75;
+    position: absolute;
+    right: -6px;
+    top: -35px;
+    cursor: pointer;
+}
+
+.theme-btn:hover {
+    opacity: 1;
+}
+
+.theme-btn a .dark-icon {
+    transform: scale(0.55);
+}
+
+.theme-btn a .light-icon {
+    display: none;
+    transform: scale(0.54);
+}
