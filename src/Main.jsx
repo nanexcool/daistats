@@ -249,7 +249,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
-                {window.ethereum && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>}
+                {(props.networkId === 1) && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>}
               </div>
             </div>
             <div className="column">
