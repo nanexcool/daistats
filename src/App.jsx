@@ -44,6 +44,7 @@ const vat = build(add.MCD_VAT, "Vat")
 const pot = build(add.MCD_POT, "Pot")
 const jug = build(add.MCD_JUG, "Jug")
 const vow = build(add.MCD_VOW, "Vow")
+const pit = build(add.GEM_PIT, "GemPit")
 const cat = build(add.MCD_CAT, "Cat")
 const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
@@ -62,6 +63,7 @@ window.utils = utils
 window.add = add
 window.vat = vat
 window.vow = vow
+window.pit = pit
 window.cat = cat
 window.multi = multi
 
