@@ -28,7 +28,7 @@ function BurnButton(props) {
         setBurning(false);
       });
     }
-  }, [isBurning]);
+  }, [isBurning, props.gov]);
 
   const handleClick = () => {
     setBurning(true);
