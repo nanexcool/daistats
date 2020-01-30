@@ -137,10 +137,9 @@ class App extends Component {
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
-    let [res, ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
 
-    const blockNumber = res[0].toString()
-    res = res[1]
+    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
+
     const ethIlk = vat.interface.functions.ilks.decode(res[2])
     const batIlk = vat.interface.functions.ilks.decode(res[3])
     const saiIlk = vat.interface.functions.ilks.decode(res[4])
@@ -183,7 +182,7 @@ class App extends Component {
     this.setState(state => {
       return {
         networkId: networkId,
-        blockNumber,
+        blockNumber: blockNumber.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
         ilks: [
