@@ -64,6 +64,7 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
+        { /* eslint-disable-next-line */ }
         Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
         participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
@@ -144,6 +145,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
+                { /* eslint-disable-next-line */ }
                 <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)} 🚀</h3>
                 <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
                 <p className="subtitle is-size-6">ETH Supply
