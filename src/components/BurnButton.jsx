@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react';
 
-const add = require('../addresses.json')
-
 export { BurnButton as default };
 
-async function burnMakerProtocol() {
+async function burnMakerProtocol(gov) {
   const title = document.title
   try {
     const provider = window.pit.provider;
@@ -13,7 +11,7 @@ async function burnMakerProtocol() {
     document.title = title
     const signer = provider.getSigner();
     const pitWrite = window.pit.connect(signer);
-    const tx = await pitWrite.burn(add.MCD_GOV); 
+    const tx = await pitWrite.burn(gov);
     await provider.waitForTransaction(tx.hash);
   } catch (error) {
     console.error(error)
@@ -26,7 +24,7 @@ function BurnButton(props) {
 
   useEffect(() => {
     if (isBurning) {
-      burnMakerProtocol().then(() => {
+      burnMakerProtocol(props.gov).then(() => {
         setBurning(false);
       });
     }
@@ -39,7 +37,7 @@ function BurnButton(props) {
   return (
     <button
       className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
-      title="Burn MKR in GemPit"
+      title="Burn MKR from SCD Fees"
       disabled={isBurning}
       onClick={!isBurning ? handleClick : null}
     >
