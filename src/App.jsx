@@ -135,6 +135,7 @@ class App extends Component {
       [add.CHAI, chai.interface.functions.totalSupply.encode([])],
       [add.MCD_GOV, mkr.interface.functions.totalSupply.encode([])],
       [add.MCD_VAT, vat.interface.functions.vice.encode([])],
+      [add.MCD_VOW, vow.interface.functions.bump.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -164,6 +165,7 @@ class App extends Component {
     const ash = vow.interface.functions.Ash.decode(res[25])
     const sin = vow.interface.functions.Sin.decode(res[26])
     const surplusBuffer = vow.interface.functions.hump.decode(res[5])
+    const surplusBump = vow.interface.functions.bump.decode(res[35])
     const debtSize = vow.interface.functions.sump.decode(res[6])
     const potFee = this.calcFee(pot.interface.functions.dsr.decode(res[27])[0])
     const savingsPie = pot.interface.functions.Pie.decode(res[15])[0]
@@ -228,6 +230,7 @@ class App extends Component {
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
+        surplusBump: utils.formatUnits(surplusBump[0], 45),
         debtSize: utils.formatUnits(debtSize[0], 45),
         potFee: potFee.toFixed(2),
         savingsPie: utils.formatEther(savingsPie),
