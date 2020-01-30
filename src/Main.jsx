@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import HealButton from './components/HealButton';
+import FlapButton from './components/FlapButton';
 import BurnButton from './components/BurnButton';
 import MeetingTime from './components/MeetingTime'
 import './Main.css';
@@ -244,6 +245,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)}</p>
+                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">
