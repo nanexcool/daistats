@@ -238,6 +238,13 @@ const Main = (props) => {
                 <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
+                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
+                <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">

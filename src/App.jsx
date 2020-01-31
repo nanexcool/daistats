@@ -56,6 +56,7 @@ const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
+const flap = build(add.MCD_FLAP, "Flapper");
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const saiIlkBytes = utils.formatBytes32String("SAI")
@@ -136,6 +137,7 @@ class App extends Component {
       [add.MCD_GOV, mkr.interface.functions.totalSupply.encode([])],
       [add.MCD_VAT, vat.interface.functions.vice.encode([])],
       [add.MCD_VOW, vow.interface.functions.bump.encode([])],
+      [add.MCD_FLAP, flap.interface.functions.kicks.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -183,6 +185,7 @@ class App extends Component {
     const chaiSupply = chai.interface.functions.totalSupply.decode(res[32])
     const mkrSupply = mkr.interface.functions.totalSupply.decode(res[33])
     const vice = vat.interface.functions.vice.decode(res[34])
+    const flapKicks = flap.interface.functions.kicks.decode(res[36])[0]
     this.setState(state => {
       return {
         networkId: networkId,
@@ -229,6 +232,7 @@ class App extends Component {
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
+        sin: utils.formatUnits(sin[0], 45),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
         surplusBump: utils.formatUnits(surplusBump[0], 45),
         debtSize: utils.formatUnits(debtSize[0], 45),
@@ -238,6 +242,7 @@ class App extends Component {
         potDrip: this.unixToDateTime(potDrip.toNumber()),
         ethKicks: ethKicks.toNumber(),
         batKicks: batKicks.toNumber(),
+        flapKicks: flapKicks.toNumber(),
         cdps: cdps.toString(),
         ethPrice: utils.formatUnits(ethPrice, 27),
         ethPriceNxt: utils.formatEther(ethPriceNxt),
