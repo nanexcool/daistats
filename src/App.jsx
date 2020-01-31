@@ -44,6 +44,7 @@ const vat = build(add.MCD_VAT, "Vat")
 const pot = build(add.MCD_POT, "Pot")
 const jug = build(add.MCD_JUG, "Jug")
 const vow = build(add.MCD_VOW, "Vow")
+const pit = build(add.GEM_PIT, "GemPit")
 const cat = build(add.MCD_CAT, "Cat")
 const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
@@ -62,6 +63,7 @@ window.utils = utils
 window.add = add
 window.vat = vat
 window.vow = vow
+window.pit = pit
 window.cat = cat
 window.multi = multi
 
@@ -133,14 +135,14 @@ class App extends Component {
       [add.CHAI, chai.interface.functions.totalSupply.encode([])],
       [add.MCD_GOV, mkr.interface.functions.totalSupply.encode([])],
       [add.MCD_VAT, vat.interface.functions.vice.encode([])],
+      [add.MCD_VOW, vow.interface.functions.bump.encode([])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
-    let [res, ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
 
-    const blockNumber = res[0].toString()
-    res = res[1]
+    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
+
     const ethIlk = vat.interface.functions.ilks.decode(res[2])
     const batIlk = vat.interface.functions.ilks.decode(res[3])
     const saiIlk = vat.interface.functions.ilks.decode(res[4])
@@ -163,6 +165,7 @@ class App extends Component {
     const ash = vow.interface.functions.Ash.decode(res[25])
     const sin = vow.interface.functions.Sin.decode(res[26])
     const surplusBuffer = vow.interface.functions.hump.decode(res[5])
+    const surplusBump = vow.interface.functions.bump.decode(res[35])
     const debtSize = vow.interface.functions.sump.decode(res[6])
     const potFee = this.calcFee(pot.interface.functions.dsr.decode(res[27])[0])
     const savingsPie = pot.interface.functions.Pie.decode(res[15])[0]
@@ -183,7 +186,7 @@ class App extends Component {
     this.setState(state => {
       return {
         networkId: networkId,
-        blockNumber,
+        blockNumber: blockNumber.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
         ilks: [
@@ -227,6 +230,7 @@ class App extends Component {
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
+        surplusBump: utils.formatUnits(surplusBump[0], 45),
         debtSize: utils.formatUnits(debtSize[0], 45),
         potFee: potFee.toFixed(2),
         savingsPie: utils.formatEther(savingsPie),

@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import HealButton from './components/HealButton';
+import FlapButton from './components/FlapButton';
+import BurnButton from './components/BurnButton';
 import MeetingTime from './components/MeetingTime'
 import './Main.css';
 import darkBtn from './img/darth-vader.svg'
@@ -63,9 +65,10 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
+        { /* eslint-disable-next-line */ }
         Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
-        participated in AZTEC Ignition Ceremony? <a href="https://nanexcool.github.io/aztec-airdrop/" target="_blank" rel="noopener noreferrer">I'll give you 1 Chai</a>
+        on the way to 1 Billion Dai <span role="img" aria-label="up">📈</span>
       </div>
       <section className="section">
         <div className="container">
@@ -143,7 +146,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)} 🚀</h3>
+                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)} <span role="img" aria-label="rocket">🚀</span></h3>
                 <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
                 <p className="subtitle is-size-6">ETH Supply
                   Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
@@ -241,7 +244,8 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
-                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)}</p>
+                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
+                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">
@@ -278,6 +282,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
+                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
               </div>
             </div>
             <div className="column">
