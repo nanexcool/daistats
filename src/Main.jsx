@@ -233,22 +233,6 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
-                <p className="title subtitle is-size-4">Dai Savings Rate</p>
-                <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
-                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
-                <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
-              </div>
-            </div>
-          </div>
-          <div className="columns">
-            <div className="column">
-              <div className="box has-text-centered">
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
@@ -257,10 +241,26 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
+                <p className="title subtitle is-size-4">Dai Savings Rate</p>
+                <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
                 {(props.networkId === 1) && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>}
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
+                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
+                <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
               </div>
             </div>
             <div className="column">
