@@ -66,7 +66,7 @@ const Main = (props) => {
     <div>
       <div className="notification is-primary has-text-centered">
         { /* eslint-disable-next-line */ }
-        Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
+        Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
         coming to ETHDenver? sign up for <a href="https://kickback.events/event/0x76ab1ba4901e691876da79cbe8dbda4e5b3a2bdc" target="_blank" rel="noopener noreferrer">Much Cooler Dappy Hour</a>
       </div>

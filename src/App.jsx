@@ -51,7 +51,7 @@ const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
-const mkr = build(add.MCD_GOV, "ERC20")
+const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
@@ -67,6 +67,7 @@ window.vow = vow
 window.pit = pit
 window.cat = cat
 window.chai = chai
+window.mkr = mkr
 window.pot = pot
 window.multi = multi
 
