@@ -66,6 +66,8 @@ window.vat = vat
 window.vow = vow
 window.pit = pit
 window.cat = cat
+window.chai = chai
+window.pot = pot
 window.multi = multi
 
 const RAY = utils.bigNumberify("1000000000000000000000000000")
@@ -182,7 +184,8 @@ class App extends Component {
     const ethPrice = ethMat.mat.mul(ethIlk.spot).div(RAY)
     const batPrice = batMat.mat.mul(batIlk.spot).div(RAY)
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0])
-    const chaiSupply = chai.interface.functions.totalSupply.decode(res[32])
+    const chaiSupply = chai.interface.functions.totalSupply.decode(res[32])[0]
+    const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.functions.totalSupply.decode(res[33])
     const vice = vat.interface.functions.vice.decode(res[34])
     const flapKicks = flap.interface.functions.kicks.decode(res[36])[0]
@@ -249,14 +252,15 @@ class App extends Component {
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
         sysLocked: utils.formatUnits(sysLocked, 45),
-        chaiSupply: utils.formatEther(chaiSupply[0]),
+        chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
         vice: utils.formatUnits(vice[0], 45),
+        daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
     })
+      // confetti.rain()
     // if (parseInt(utils.formatEther(ethLocked[0])) >= 2000000) {
-    //   confetti.rain()
     // }
   }
 

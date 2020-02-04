@@ -68,7 +68,7 @@ const Main = (props) => {
         { /* eslint-disable-next-line */ }
         Current block: {props.blockNumber}. {props.paused ? 'Paused' : 'Updating every block.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
-        on the way to 1 Billion Dai <span role="img" aria-label="up">📈</span>
+        coming to ETHDenver? sign up for <a href="https://kickback.events/event/0x76ab1ba4901e691876da79cbe8dbda4e5b3a2bdc" target="_blank" rel="noopener noreferrer">Much Cooler Dappy Hour</a>
       </div>
       <section className="section">
         <div className="container">
@@ -233,6 +233,13 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
+                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
@@ -258,7 +265,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
+                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)} 😃</h3>
                 <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
                 <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
               </div>
