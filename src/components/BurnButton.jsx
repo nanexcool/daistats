@@ -1,47 +1,72 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import MetaMaskContext from './MetaMaskContext';
 
 export { BurnButton as default };
 
-async function burnMakerProtocol(gov) {
-  const title = document.title
-  try {
-    const provider = window.pit.provider;
-    document.title = "Dai Stats"
-    await window.ethereum.enable()
-    document.title = title
-    const signer = provider.getSigner();
-    const pitWrite = window.pit.connect(signer);
-    const tx = await pitWrite.burn(gov);
-    await provider.waitForTransaction(tx.hash);
-  } catch (error) {
-    console.error(error)
-    document.title = title
-  }
-}
-
 function BurnButton(props) {
   const [ isBurning, setBurning ] = useState(false);
+  const { web3, accounts, error, awaiting, openMetaMask } = useContext(
+    MetaMaskContext,
+  );
 
-  useEffect(() => {
-    if (isBurning) {
-      burnMakerProtocol(props.gov).then(() => {
-        setBurning(false);
-      });
-    }
-  }, [isBurning, props.gov]);
+  async function burnMakerProtocol(gov) {
+    const pitContract = new web3.eth.Contract(require(`../abi/GemPit.json`), web3.utils.toChecksumAddress(window.pit.address))
+    pitContract.methods.burn(gov).send({from: accounts[0]})
+      .then(function(receipt) {
+        console.log(receipt)
+      })
+      .finally(function() {
+        setBurning(false)
+      })
+  }
 
   const handleClick = () => {
     setBurning(true);
+    burnMakerProtocol(props.gov)
   }
 
-  return (
-    <button
-      className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
-      title="Burn MKR from SCD Fees"
-      disabled={isBurning}
-      onClick={!isBurning ? handleClick : null}
-    >
-      {isBurning ? 'Burning…' : 'Burn'}
-    </button>
-  );
+  if ((error && error.message === "MetaMask not installed")) {
+    return (
+      ""
+    );
+  } else if ((error && error.message === "User denied account authorization") || (error && error.message === "MetaMask is locked")) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        Please allow MetaMask to connect.
+      </button>
+    );
+  } else if (error) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        UNHANDLED ERROR: {error.message}
+      </button>
+    );
+  } else if (!web3 && awaiting) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        MetaMask is loading...
+      </button>
+    );
+  } else if (!web3) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        Enable MetaMask to Burn
+      </button>
+    );
+  } else if (accounts.length === 0) {
+    // No wallet :(
+    return ""
+  } else {
+    // `web3` and `account` loaded 🎉
+    return (
+      <button
+        className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
+        title="Burn MKR from SCD Fees"
+        disabled={isBurning}
+        onClick={!isBurning ? handleClick : null}
+      >
+        {isBurning ? 'Burning…' : 'Burn'}
+      </button>
+    );
+  }
 }
