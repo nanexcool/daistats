@@ -257,9 +257,7 @@ class App extends Component {
         mkrSupply: utils.formatEther(mkrSupply[0]),
         vice: utils.formatUnits(vice[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
-        darkMode: JSON.parse(localStorage.getItem("ds-darkmode")),
-        chaiURL: "https://chai.money/",
-        oasisSaveURL: "https://oasis.app/save"
+        darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
     })
       // confetti.rain()

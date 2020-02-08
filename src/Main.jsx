@@ -132,8 +132,10 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from Migration Contract</p>
+                <a href="https://migrate.makerdao.com/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
+                  <p className="subtitle is-size-4">Dai from Migration Contract</p>
+                </a>
               </div>
             </div>
           </div>
@@ -219,7 +221,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <a href={props.oasisSaveURL} target="_blank" rel="noopener noreferrer">
+                <a href="https://oasis.app/save" target="_blank" rel="noopener noreferrer">
                   <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
                   <p className="title subtitle is-size-4">Dai in DSR
                     ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
@@ -229,7 +231,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <a href={props.chaiURL} target="_blank" rel="noopener noreferrer">
+                <a href="https://chai.money/" target="_blank" rel="noopener noreferrer">
                   <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
                   <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
                   <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
@@ -305,8 +307,10 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Uniswap</p>
+                <a href="https://uniswap.exchange/swap/0x6b175474e89094c44da98b954eedeac495271d0f" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
+                  <p className="subtitle is-size-4">Dai in Uniswap</p>
+                </a>
               </div>
             </div>
           </div>
