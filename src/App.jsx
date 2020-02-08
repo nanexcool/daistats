@@ -22,8 +22,8 @@ add["UNISWAP_EXCHANGE"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
-let provider;
-let networkId;
+const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
+/*
 if (typeof window.ethereum !== 'undefined') {
   networkId = parseInt(window.ethereum.chainId);
   window.ethereum.autoRefreshOnNetworkChange = false;
@@ -39,6 +39,7 @@ const build = (address, name) => {
     provider ? provider : eth
   );
 }
+*/
 
 const multi = build(add.MULTICALL, "Multicall")
 const vat = build(add.MCD_VAT, "Vat")
@@ -193,7 +194,6 @@ class App extends Component {
     const flapKicks = flap.interface.functions.kicks.decode(res[36])[0]
     this.setState(state => {
       return {
-        networkId: networkId,
         blockNumber: blockNumber.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
