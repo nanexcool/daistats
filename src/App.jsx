@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import eth from './web3';
+import MetaMaskContext from "./components/MetaMaskContext";
 import Main from './Main'
 import Calc from './Calc'
 import daiLogo from './dai.svg'
@@ -299,7 +300,9 @@ class App extends Component {
               <Calc {...this.state} {...add} />
             </Route>
             <Route path="/">
-              <Main {...this.state} {...add} togglePause={this.togglePause} />
+              <MetaMaskContext.Provider>
+                <Main {...this.state} {...add} togglePause={this.togglePause} />
+              </MetaMaskContext.Provider>
             </Route>
           </Switch>
         </Router>
