@@ -112,12 +112,6 @@ const Main = (props) => {
                 <h4 className="subtitle is-size-3">Dai + Sai</h4>
               </div>
             </div>
-            {/* <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(props.chaiSupply)}</h3>
-                <h4 className="subtitle is-size-3">Total Chai</h4>
-              </div>
-            </div> */}
           </div>
           <div className="columns">
             <div className="column">
