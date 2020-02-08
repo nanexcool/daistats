@@ -219,17 +219,21 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="title subtitle is-size-4">Dai in DSR
-                  ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
-                <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                <a href={props.oasisSaveURL} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
+                  <p className="title subtitle is-size-4">Dai in DSR
+                    ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
+                  <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                </a>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
-                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
-                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                <a href={props.chaiURL} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                  <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
+                  <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                </a>
               </div>
             </div>
             <div className="column">
