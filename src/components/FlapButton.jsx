@@ -1,41 +1,31 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import MetaMaskContext from './MetaMaskContext';
 
 export { FlapButton as default };
 
-async function flapMakerProtocol(debt, surplus) {
-  const title = document.title
-  try {
-    console.log('debtAmt', debt);
-    console.log('surplusAmt', surplus);
-    const provider = window.vow.provider;
-    document.title = "Dai Stats"
-    await window.ethereum.enable()
-    document.title = title
-    const signer = provider.getSigner();
-    const vowWrite = window.vow.connect(signer);
-    const tx = await vowWrite.flap();
-    await provider.waitForTransaction(tx.hash);
-  } catch (error) {
-    console.error(error)
-    document.title = title
-  }
-}
-
 function FlapButton(props) {
   const [ isFlapping, setFlapping ] = useState(false);
-  const [ debtAmount, surplusAmount ] = useState('');
   const minSurplus = Number(props.surplusBuffer) + Number(props.surplusBump);
+  const { web3, accounts, error, awaiting, openMetaMask } = useContext(
+    MetaMaskContext,
+  );
 
-  useEffect(() => {
-    if (isFlapping) {
-      flapMakerProtocol().then(() => {
-        setFlapping(false);
-      });
-    }
-  }, [isFlapping, debtAmount, surplusAmount]);
+  async function flapMakerProtocol(debt, surplus) {
+    console.log('debtAmt', debt);
+    console.log('surplusAmt', surplus);
+    const vowContract = new web3.eth.Contract(require(`../abi/Vow.json`), web3.utils.toChecksumAddress(window.vow.address))
+    vowContract.methods.flap().send({from: accounts[0]})
+      .then(function(receipt) {
+        console.log(receipt)
+      })
+      .finally(function() {
+        setFlapping(false)
+      })
+  }
 
   const handleClick = () => {
     setFlapping(true);
+    flapMakerProtocol(props.sysDebt, props.sysSurplus);
   }
 
   const canFlap = () => {
@@ -56,14 +46,49 @@ function FlapButton(props) {
     }
   }
 
-  return (
-    <button
-      className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
-      title="Start a System Surplus Auction"
-      disabled={!canFlap()}
-      onClick={canFlap() ? handleClick : null}
-    >
-      {getMessage()}
-    </button>
-  );
+  if ((error && error.message === "MetaMask not installed")) {
+    return (
+      ""
+    );
+  } else if ((error && error.message === "User denied account authorization") || (error && error.message === "MetaMask is locked")) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        Please allow MetaMask to connect.
+      </button>
+    );
+  } else if (error) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        UNHANDLED ERROR: {error.message}
+      </button>
+    );
+  } else if (!web3 && awaiting) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        MetaMask is loading...
+      </button>
+    );
+  } else if (!web3) {
+    return (
+      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
+        Enable MetaMask to Flap
+      </button>
+    );
+  } else if (accounts.length === 0) {
+    // No wallet :(
+    return ""
+  } else {
+    // `web3` and `account` loaded 🎉
+    return (
+      <button
+        className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
+        title="Start a System Surplus Auction"
+        disabled={!canFlap()}
+        onClick={canFlap() ? handleClick : null}
+      >
+        {getMessage()}
+      </button>
+
+    );
+  }
 }
