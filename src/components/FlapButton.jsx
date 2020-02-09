@@ -1,12 +1,13 @@
 import React, { useState, useContext } from 'react';
 import MetaMaskContext from './MetaMaskContext';
+import MetaMaskButton from './MetaMaskButton';
 
 export { FlapButton as default };
 
 function FlapButton(props) {
   const [ isFlapping, setFlapping ] = useState(false);
   const minSurplus = Number(props.surplusBuffer) + Number(props.surplusBump);
-  const { web3, accounts, error, awaiting, openMetaMask } = useContext(
+  const { web3, accounts } = useContext(
     MetaMaskContext,
   );
 
@@ -46,49 +47,13 @@ function FlapButton(props) {
     }
   }
 
-  if ((error && error.message === "MetaMask not installed")) {
-    return (
-      ""
-    );
-  } else if ((error && error.message === "User denied account authorization") || (error && error.message === "MetaMask is locked")) {
-    return (
-      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
-        Please allow MetaMask to connect.
-      </button>
-    );
-  } else if (error) {
-    return (
-      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
-        UNHANDLED ERROR: {error.message}
-      </button>
-    );
-  } else if (!web3 && awaiting) {
-    return (
-      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
-        MetaMask is loading...
-      </button>
-    );
-  } else if (!web3) {
-    return (
-      <button className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`} onClick={openMetaMask}>
-        Enable MetaMask to Flap
-      </button>
-    );
-  } else if (accounts.length === 0) {
-    // No wallet :(
-    return ""
-  } else {
-    // `web3` and `account` loaded 🎉
-    return (
-      <button
-        className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
-        title="Start a System Surplus Auction"
-        disabled={!canFlap()}
-        onClick={canFlap() ? handleClick : null}
-      >
-        {getMessage()}
-      </button>
-
-    );
-  }
+  return (
+    <MetaMaskButton
+      isDark={props.isDark}
+      title="Start a System Surplus Auction"
+      disabled={!canFlap()}
+      text={getMessage()}
+      onClick={canFlap() ? handleClick : null}
+    />
+  )
 }
