@@ -47,6 +47,7 @@ function MetaMaskButton(props) {
         className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
         title={props.title}
         disabled={props.disabled}
+        onClick={props.onClick}
       >
         {props.text}
       </button>
