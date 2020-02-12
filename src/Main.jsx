@@ -41,6 +41,9 @@ const Main = (props) => {
     setDarkMode(!darkMode)
   };
 
+  const nextFlap = () =>
+    formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt)) - Number(props.sysSurplus))
+
   const applyDarkTheme = (isDark) => {
     document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
     document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
@@ -267,7 +270,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)} <span role="img" aria-label="smiley">😃</span></h3>
                 <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
-                <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
+                <p className="subtitle is-size-6">Till next Flap: {nextFlap()}</p>
               </div>
             </div>
             <div className="column">
