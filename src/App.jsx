@@ -236,7 +236,6 @@ class App extends Component {
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
-        sin: utils.formatUnits(sin[0], 45),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
         surplusBump: utils.formatUnits(surplusBump[0], 45),
         debtSize: utils.formatUnits(debtSize[0], 45),
