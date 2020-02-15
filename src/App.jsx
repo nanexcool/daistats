@@ -279,7 +279,7 @@ class App extends Component {
   }
 
   etherscanEthSupply = async () => {
-    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=zomg');
+    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=N5TICDBVG4MHDS7CGPJ9MHXRYC1Y84963N');
     return json.result;
   }
 
