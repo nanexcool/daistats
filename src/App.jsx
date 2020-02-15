@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import eth from './web3';
+import MetaMaskContext from "./components/MetaMaskContext";
 import Main from './Main'
 import Calc from './Calc'
 import daiLogo from './dai.svg'
@@ -21,23 +22,7 @@ add["UNISWAP_EXCHANGE"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
-let provider;
-let networkId;
-if (typeof window.ethereum !== 'undefined') {
-  networkId = parseInt(window.ethereum.chainId);
-  window.ethereum.autoRefreshOnNetworkChange = false;
-  if (networkId === 1) {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
-  }
-}
-
-const build = (address, name) => {
-  return new ethers.Contract(
-    address,
-    require(`./abi/${name}.json`),
-    provider ? provider : eth
-  );
-}
+const build = (address, name) => new ethers.Contract(address, require(`./abi/${name}.json`), eth)
 
 const multi = build(add.MULTICALL, "Multicall")
 const vat = build(add.MCD_VAT, "Vat")
@@ -192,7 +177,6 @@ class App extends Component {
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
     this.setState(state => {
       return {
-        networkId: networkId,
         blockNumber: blockNumber.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
@@ -298,7 +282,9 @@ class App extends Component {
               <Calc {...this.state} {...add} />
             </Route>
             <Route path="/">
-              <Main {...this.state} {...add} togglePause={this.togglePause} />
+              <MetaMaskContext.Provider>
+                <Main {...this.state} {...add} togglePause={this.togglePause} />
+              </MetaMaskContext.Provider>
             </Route>
           </Switch>
         </Router>

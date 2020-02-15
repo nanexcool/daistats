@@ -1,50 +1,38 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import MetaMaskContext from './MetaMaskContext';
+import MetaMaskButton from './MetaMaskButton';
 
 export { HealButton as default };
 
-async function healMakerProtocol(debt) {
-  const title = document.title
-  try {
-    console.log(debt);
-    const provider = window.vow.provider;
-    document.title = "Dai Stats"
-    await window.ethereum.enable()
-    document.title = title
-    const signer = provider.getSigner();
-    const vowWrite = window.vow.connect(signer);
-    const tx = await vowWrite.heal(debt);
-    await provider.waitForTransaction(tx.hash);
-  } catch (error) {
-    console.error(error)
-    document.title = title
-  }
-}
-
 function HealButton(props) {
   const [ isHealing, setHealing ] = useState(false);
-  const [ healAmount, setHealAmount ] = useState('');
+  const { web3, accounts } = useContext(
+    MetaMaskContext,
+  );
 
-  useEffect(() => {
-    if (isHealing) {
-      healMakerProtocol(healAmount).then(() => {
-        setHealing(false);
-      });
-    }
-  }, [isHealing, healAmount]);
+  async function healMakerProtocol(debt) {
+    const vowContract = new web3.eth.Contract(require(`../abi/Vow.json`), web3.utils.toChecksumAddress(window.vow.address))
+    vowContract.methods.heal(debt).send({from: accounts[0]})
+      .then(function(receipt) {
+        console.log(receipt)
+      })
+      .finally(function() {
+        setHealing(false)
+      })
+  }
 
   const handleClick = () => {
-    setHealAmount(props.sysDebtRaw);
     setHealing(true);
+    healMakerProtocol(props.sysDebtRaw);
   }
 
   return (
-    <button
-      className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
+    <MetaMaskButton
+      isDark={props.isDark}
       title="Reduce System Debt by taking from System Surplus"
       disabled={isHealing}
+      text={isHealing ? 'Healing…' : 'Heal'}
       onClick={!isHealing ? handleClick : null}
-    >
-      {isHealing ? 'Healing…' : 'Heal'}
-    </button>
-  );
+      />
+  )
 }

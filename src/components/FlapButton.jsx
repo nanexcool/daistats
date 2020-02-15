@@ -1,41 +1,32 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
+import MetaMaskContext from './MetaMaskContext';
+import MetaMaskButton from './MetaMaskButton';
 
 export { FlapButton as default };
 
-async function flapMakerProtocol(debt, surplus) {
-  const title = document.title
-  try {
-    console.log('debtAmt', debt);
-    console.log('surplusAmt', surplus);
-    const provider = window.vow.provider;
-    document.title = "Dai Stats"
-    await window.ethereum.enable()
-    document.title = title
-    const signer = provider.getSigner();
-    const vowWrite = window.vow.connect(signer);
-    const tx = await vowWrite.flap();
-    await provider.waitForTransaction(tx.hash);
-  } catch (error) {
-    console.error(error)
-    document.title = title
-  }
-}
-
 function FlapButton(props) {
   const [ isFlapping, setFlapping ] = useState(false);
-  const [ debtAmount, surplusAmount ] = useState('');
   const minSurplus = Number(props.surplusBuffer) + Number(props.surplusBump);
+  const { web3, accounts } = useContext(
+    MetaMaskContext,
+  );
 
-  useEffect(() => {
-    if (isFlapping) {
-      flapMakerProtocol().then(() => {
-        setFlapping(false);
-      });
-    }
-  }, [isFlapping, debtAmount, surplusAmount]);
+  async function flapMakerProtocol(debt, surplus) {
+    console.log('debtAmt', debt);
+    console.log('surplusAmt', surplus);
+    const vowContract = new web3.eth.Contract(require(`../abi/Vow.json`), web3.utils.toChecksumAddress(window.vow.address))
+    vowContract.methods.flap().send({from: accounts[0]})
+      .then(function(receipt) {
+        console.log(receipt)
+      })
+      .finally(function() {
+        setFlapping(false)
+      })
+  }
 
   const handleClick = () => {
     setFlapping(true);
+    flapMakerProtocol(props.sysDebt, props.sysSurplus);
   }
 
   const canFlap = () => {
@@ -57,13 +48,12 @@ function FlapButton(props) {
   }
 
   return (
-    <button
-      className={`button is-fullwidth ${props.isDark ? "is-dark" : "is-light"}`}
+    <MetaMaskButton
+      isDark={props.isDark}
       title="Start a System Surplus Auction"
       disabled={!canFlap()}
+      text={getMessage()}
       onClick={canFlap() ? handleClick : null}
-    >
-      {getMessage()}
-    </button>
-  );
+    />
+  )
 }
