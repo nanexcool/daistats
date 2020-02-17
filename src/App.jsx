@@ -145,8 +145,9 @@ class App extends Component {
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
+    let p5 = this.getMarketPrices()
 
-    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
+    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -188,6 +189,8 @@ class App extends Component {
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[32])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[33])
+    const mkrPrice = marketPrices.maker.usd
+    const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
     this.setState(state => {
@@ -198,21 +201,21 @@ class App extends Component {
         debt: utils.formatUnits(res[1], 45),
         ilks: [
           {
-            Art: utils.formatEther( ethIlk.Art),
+            Art:  utils.formatEther(ethIlk.Art),
             rate: utils.formatUnits(ethIlk.rate, 27),
             spot: utils.formatUnits(ethIlk.spot, 27),
             line: utils.formatUnits(ethIlk.line, 45),
             dust: utils.formatUnits(ethIlk.dust, 45)
           },
           {
-            Art: utils.formatEther( batIlk.Art),
+            Art:  utils.formatEther(batIlk.Art),
             rate: utils.formatUnits(batIlk.rate, 27),
             spot: utils.formatUnits(batIlk.spot, 27),
             line: utils.formatUnits(batIlk.line, 45),
             dust: utils.formatUnits(batIlk.dust, 45)
           },
           {
-            Art: utils.formatEther( saiIlk.Art),
+            Art:  utils.formatEther(saiIlk.Art),
             rate: utils.formatUnits(saiIlk.rate, 27),
             spot: utils.formatUnits(saiIlk.spot, 27),
             line: utils.formatUnits(saiIlk.line, 45),
@@ -251,6 +254,8 @@ class App extends Component {
         ethPriceNxt: utils.formatEther(ethPriceNxt),
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
+        mkrPrice: mkrPrice,
+        daiPrice: daiPrice,
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
@@ -286,6 +291,11 @@ class App extends Component {
   getOSMPrice = async (osm, position) => {
       const val = await eth.getStorageAt(osm, position);
       return ethers.BigNumber.from('0x' + val.substring(34));
+  }
+
+  getMarketPrices = async () => {
+    const json = await jsonFetch('https://api.coingecko.com/api/v3/simple/price?ids=maker%2Cdai&vs_currencies=usd');
+    return json;
   }
 
   render() {
