@@ -238,21 +238,7 @@ const Main = (props) => {
                 <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
-                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
-                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
-                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
-                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
-                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
-              </div>
-            </div>
+
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
@@ -272,23 +258,17 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
+                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
+                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
+                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)} <span role="img" aria-label="smiley">😃</span></h3>
                 <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
                 <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-                <p className="subtitle is-size-4">BAT Vault Auctions</p>
-                <p className="subtitle is-size-6"></p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-                <p className="subtitle is-size-4">ETH Vault Auctions</p>
-                <p className="subtitle is-size-6"></p>
               </div>
             </div>
           </div>
@@ -301,15 +281,40 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
+                <p className="subtitle is-size-4">ETH Vault Auctions</p>
+                <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
+                <p className="subtitle is-size-4">BAT Vault Auctions</p>
+                <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
+                <p className="subtitle is-size-4">MKR Supply</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
                 {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
               </div>
             </div>
+          </div>
+          <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
-                <p className="subtitle is-size-4">MKR Supply</p>
+                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
+                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
               </div>
             </div>
             <div className="column">
