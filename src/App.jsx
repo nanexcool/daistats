@@ -259,6 +259,7 @@ class App extends Component {
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
+        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
@@ -289,13 +290,35 @@ class App extends Component {
   }
 
   getOSMPrice = async (osm, position) => {
-      const val = await eth.getStorageAt(osm, position);
-      return ethers.BigNumber.from('0x' + val.substring(34));
+    const val = await eth.getStorageAt(osm, position);
+    return ethers.BigNumber.from('0x' + val.substring(34));
   }
 
   getMarketPrices = async () => {
     const json = await jsonFetch('https://api.coingecko.com/api/v3/simple/price?ids=maker%2Cdai&vs_currencies=usd');
     return json;
+  }
+
+  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, saiSupply, savingsDai, potFee, mkrPrice) => {
+    const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
+    const stabilityETH = ethFee / 100
+    const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
+    const stabilityBAT = batFee / 100
+    const daiFromSai = utils.formatEther(saiSupply)
+    const stabilitySai = 9 / 100    // TODO: get info from chain
+    const dsrDai = utils.formatUnits(savingsDai, 45)
+    const dsrRate = potFee / 100
+
+    const mkrAnnualBurn = (
+    (  (daiFromETH * stabilityETH)
+     + (daiFromBAT * stabilityBAT)
+     + (daiFromSai * stabilitySai)
+     - (dsrDai * dsrRate)
+    )
+    / mkrPrice
+    )
+
+    return mkrAnnualBurn
   }
 
   render() {

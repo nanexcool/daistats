@@ -323,6 +323,13 @@ const Main = (props) => {
                 {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.mkrAnnualBurn}>{formatAmount.format(props.mkrAnnualBurn)}</h3>
+                <p className="title subtitle is-size-4">Annual MKR Burn Rate</p>
+                <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)}</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">
