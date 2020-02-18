@@ -327,7 +327,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrAnnualBurn}>{formatAmount.format(props.mkrAnnualBurn)}</h3>
                 <p className="title subtitle is-size-4">Annual MKR Burn Rate</p>
-                <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)}</p>
+                <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)} USD</p>
               </div>
             </div>
           </div>

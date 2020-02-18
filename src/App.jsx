@@ -50,6 +50,7 @@ const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
+const sai_tub = build(add.SAI_TUB, "SaiTub")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -141,6 +142,8 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
+      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('tax'), []],
+      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('fee'), []],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -193,6 +196,9 @@ class App extends Component {
     const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
+    const saiTubTax = this.calcFee(sai_tub.interface.decodeFunctionResult('tax', res[37])[0])
+    const saiTubFee = this.calcFee(sai_tub.interface.decodeFunctionResult('fee', res[38])[0])
+    const scdFee = saiTubTax + saiTubFee
     this.setState(state => {
       return {
         networkId: networkId,
@@ -234,6 +240,7 @@ class App extends Component {
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
+        scdFee: scdFee,
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
@@ -259,7 +266,7 @@ class App extends Component {
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
-        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], savingsDai, potFee, mkrPrice),
+        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], scdFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
@@ -299,13 +306,14 @@ class App extends Component {
     return json;
   }
 
-  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, saiSupply, savingsDai, potFee, mkrPrice) => {
+  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, saiSupply, scdFee, savingsDai, potFee, mkrPrice) => {
+
     const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
     const stabilityETH = ethFee / 100
     const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
     const stabilityBAT = batFee / 100
     const daiFromSai = utils.formatEther(saiSupply)
-    const stabilitySai = 9 / 100    // TODO: get info from chain
+    const stabilitySai = scdFee / 100
     const dsrDai = utils.formatUnits(savingsDai, 45)
     const dsrRate = potFee / 100
 
