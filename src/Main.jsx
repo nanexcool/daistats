@@ -75,7 +75,7 @@ const Main = (props) => {
         { /* eslint-disable-next-line */ }
         Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
-        coming to ETHDenver? sign up for <a href="https://kickback.events/event/0x76ab1ba4901e691876da79cbe8dbda4e5b3a2bdc" target="_blank" rel="noopener noreferrer">Much Cooler Dappy Hour</a>
+        <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;)
       </div>
       <section className="section">
         <div className="container">
