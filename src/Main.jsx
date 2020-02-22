@@ -119,12 +119,6 @@ const Main = (props) => {
                 <h4 className="subtitle is-size-3">Dai + Sai</h4>
               </div>
             </div>
-            {/* <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title">{formatAmount.format(props.chaiSupply)}</h3>
-                <h4 className="subtitle is-size-3">Total Chai</h4>
-              </div>
-            </div> */}
           </div>
           <div className="columns">
             <div className="column">
@@ -145,8 +139,10 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from Migration Contract</p>
+                <a href="https://migrate.makerdao.com/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
+                  <p className="subtitle is-size-4">Dai from Migration Contract</p>
+                </a>
               </div>
             </div>
           </div>
@@ -242,18 +238,18 @@ const Main = (props) => {
                 <p className="title subtitle is-size-4">MKR Price</p>
               </div>
             </div>
-
           </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="title subtitle is-size-4">Dai in DSR
-                  ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
-                <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                <a href="https://oasis.app/save" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
+                  <p className="title subtitle is-size-4">Dai in DSR
+                    ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
+                  <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                </a>
               </div>
             </div>
-
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
@@ -334,15 +330,19 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
-                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
-                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                <a href="https://chai.money/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                  <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
+                  <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                </a>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Uniswap</p>
+                <a href="https://uniswap.exchange/swap/0x6b175474e89094c44da98b954eedeac495271d0f" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
+                  <p className="subtitle is-size-4">Dai in Uniswap</p>
+                </a>
               </div>
             </div>
           </div>
