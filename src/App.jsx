@@ -50,6 +50,7 @@ const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
+const sai_tub = build(add.SAI_TUB, "SaiTub")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -142,12 +143,15 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
+      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('tax'), []],
+      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('fee'), []],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
+    let p5 = this.getMarketPrices()
 
-    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt] = await Promise.all([p1, p2, p3, p4])
+    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -189,8 +193,13 @@ class App extends Component {
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[32])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[33])
+    const mkrPrice = marketPrices.maker.usd
+    const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
+    const saiTubTax = this.calcFee(sai_tub.interface.decodeFunctionResult('tax', res[37])[0])
+    const saiTubFee = this.calcFee(sai_tub.interface.decodeFunctionResult('fee', res[38])[0])
+    const scdFee = saiTubTax + saiTubFee
     this.setState(state => {
       return {
         networkId: networkId,
@@ -199,21 +208,21 @@ class App extends Component {
         debt: utils.formatUnits(res[1], 45),
         ilks: [
           {
-            Art: utils.formatEther( ethIlk.Art),
+            Art:  utils.formatEther(ethIlk.Art),
             rate: utils.formatUnits(ethIlk.rate, 27),
             spot: utils.formatUnits(ethIlk.spot, 27),
             line: utils.formatUnits(ethIlk.line, 45),
             dust: utils.formatUnits(ethIlk.dust, 45)
           },
           {
-            Art: utils.formatEther( batIlk.Art),
+            Art:  utils.formatEther(batIlk.Art),
             rate: utils.formatUnits(batIlk.rate, 27),
             spot: utils.formatUnits(batIlk.spot, 27),
             line: utils.formatUnits(batIlk.line, 45),
             dust: utils.formatUnits(batIlk.dust, 45)
           },
           {
-            Art: utils.formatEther( saiIlk.Art),
+            Art:  utils.formatEther(saiIlk.Art),
             rate: utils.formatUnits(saiIlk.rate, 27),
             spot: utils.formatUnits(saiIlk.spot, 27),
             line: utils.formatUnits(saiIlk.line, 45),
@@ -232,6 +241,7 @@ class App extends Component {
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
+        scdFee: scdFee,
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
@@ -252,9 +262,12 @@ class App extends Component {
         ethPriceNxt: utils.formatEther(ethPriceNxt),
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
+        mkrPrice: mkrPrice,
+        daiPrice: daiPrice,
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
+        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], scdFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
@@ -285,8 +298,36 @@ class App extends Component {
   }
 
   getOSMPrice = async (osm, position) => {
-      const val = await eth.getStorageAt(osm, position);
-      return ethers.BigNumber.from('0x' + val.substring(34));
+    const val = await eth.getStorageAt(osm, position);
+    return ethers.BigNumber.from('0x' + val.substring(34));
+  }
+
+  getMarketPrices = async () => {
+    const json = await jsonFetch('https://api.coingecko.com/api/v3/simple/price?ids=maker%2Cdai&vs_currencies=usd');
+    return json;
+  }
+
+  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, saiSupply, scdFee, savingsDai, potFee, mkrPrice) => {
+
+    const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
+    const stabilityETH = ethFee / 100
+    const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
+    const stabilityBAT = batFee / 100
+    const daiFromSai = utils.formatEther(saiSupply)
+    const stabilitySai = scdFee / 100
+    const dsrDai = utils.formatUnits(savingsDai, 45)
+    const dsrRate = potFee / 100
+
+    const mkrAnnualBurn = (
+    (  (daiFromETH * stabilityETH)
+     + (daiFromBAT * stabilityBAT)
+     + (daiFromSai * stabilitySai)
+     - (dsrDai * dsrRate)
+    )
+    / mkrPrice
+    )
+
+    return mkrAnnualBurn
   }
 
   render() {
