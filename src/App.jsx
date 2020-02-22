@@ -69,6 +69,7 @@ window.cat = cat
 window.chai = chai
 window.mkr = mkr
 window.pot = pot
+window.jug = jug
 window.multi = multi
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
