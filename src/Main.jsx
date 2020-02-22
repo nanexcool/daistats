@@ -41,6 +41,13 @@ const Main = (props) => {
     setDarkMode(!darkMode)
   };
 
+  const nextFlap = () =>
+    formatAmount.format(
+      (Number(props.surplusBuffer)
+      + Number(props.surplusBump))
+      - Number(props.sysSurplus)
+    )
+
   const applyDarkTheme = (isDark) => {
     document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
     document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
@@ -68,7 +75,7 @@ const Main = (props) => {
         { /* eslint-disable-next-line */ }
         Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
-        coming to ETHDenver? sign up for <a href="https://kickback.events/event/0x76ab1ba4901e691876da79cbe8dbda4e5b3a2bdc" target="_blank" rel="noopener noreferrer">Much Cooler Dappy Hour</a>
+        <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;)
       </div>
       <section className="section">
         <div className="container">
@@ -198,6 +205,21 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title">{formatPercent.format(sysCollat)}</h3>
+                <p className="title subtitle is-size-4">Collat. Ratio</p>
+                <p className="subtitle is-size-6">Total Locked: ${formatAmount.format(props.sysLocked)}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.daiPrice}>${formatCurrency.format(props.daiPrice)}</h3>
+                <p className="title subtitle is-size-4">Dai Price</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.ethPrice}>${formatAmount.format(props.ethPrice)}</h3>
                 <p className="title subtitle is-size-4">ETH Price</p>
                 <p className="subtitle is-size-6">Next OSM Price: ${formatAmount.format(props.ethPriceNxt)}</p>
@@ -212,9 +234,8 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatPercent.format(sysCollat)}</h3>
-                <p className="title subtitle is-size-4">Collat. Ratio</p>
-                <p className="subtitle is-size-6">Total Locked: ${formatAmount.format(props.sysLocked)}</p>
+                <h3 className="title" title={props.mkrPrice}>${formatCurrency.format(props.mkrPrice)}</h3>
+                <p className="title subtitle is-size-4">MKR Price</p>
               </div>
             </div>
           </div>
@@ -227,23 +248,6 @@ const Main = (props) => {
                     ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
                   <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
                 </a>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <a href="https://chai.money/" target="_blank" rel="noopener noreferrer">
-                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
-                  <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
-                  <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
-                </a>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
-                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
-                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
-                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">
@@ -265,23 +269,17 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
+                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
+                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
+                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)} <span role="img" aria-label="smiley">😃</span></h3>
                 <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
-                <p className="subtitle is-size-6">Till next Flap: {formatAmount.format((Number(props.surplusBuffer) + Number(props.surplusBump) + Number(props.sysDebt) + Number(props.sin)) - Number(props.sysSurplus))}</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-                <p className="subtitle is-size-4">BAT Vault Auctions</p>
-                <p className="subtitle is-size-6"></p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-                <p className="subtitle is-size-4">ETH Vault Auctions</p>
-                <p className="subtitle is-size-6"></p>
+                <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
               </div>
             </div>
           </div>
@@ -294,6 +292,28 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
+                <p className="subtitle is-size-4">ETH Vault Auctions</p>
+                <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
+                <p className="subtitle is-size-4">BAT Vault Auctions</p>
+                <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
+                <p className="subtitle is-size-4">MKR Supply</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
                 {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
@@ -301,8 +321,20 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
-                <p className="subtitle is-size-4">MKR Supply</p>
+                <h3 className="title" title={props.mkrAnnualBurn}>{formatAmount.format(props.mkrAnnualBurn)}</h3>
+                <p className="title subtitle is-size-4">Annual MKR Burn Rate</p>
+                <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)} USD</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <a href="https://chai.money/" target="_blank" rel="noopener noreferrer">
+                  <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                  <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
+                  <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                </a>
               </div>
             </div>
             <div className="column">
@@ -325,9 +357,9 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <a href={`https://etherscan.io/token/${props.SAI}`} target="_blank" rel="noopener noreferrer">
-                  <h3 className="title"><i className="fal fa-file-code"></i> Sai</h3>
-                  <p className="subtitle is-size-7">{props.SAI}</p>
+                <a href={`https://etherscan.io/token/${props.BAT}`} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title"><i className="fal fa-file-code"></i> BAT</h3>
+                  <p className="subtitle is-size-7">{props.BAT}</p>
                 </a>
               </div>
             </div>
