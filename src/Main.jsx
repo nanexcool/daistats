@@ -146,7 +146,8 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from Migration Contract</p>
+                <p className="subtitle is-size-4">Dai from Migration
+                ({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
           </div>
