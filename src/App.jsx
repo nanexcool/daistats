@@ -60,6 +60,7 @@ const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
+const usdcPip = build(add.PIP_USDC, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
@@ -155,6 +156,7 @@ class App extends Component {
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_A])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
+      [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -216,6 +218,7 @@ class App extends Component {
     const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[40]))
     const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[42])
     const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[43])
+    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[46])[0]
     const scdFee = saiTubTax + saiTubFee
     this.setState(state => {
       return {
@@ -294,6 +297,7 @@ class App extends Component {
         batPriceNxt: utils.formatEther(batPriceNxt),
         mkrPrice: mkrPrice,
         daiPrice: daiPrice,
+        usdcPrice: utils.formatEther(usdcPrice),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),

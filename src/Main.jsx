@@ -273,6 +273,12 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.usdcPrice}>${formatCurrency.format(props.usdcPrice)}</h3>
+                <p className="title subtitle is-size-4">USDC Price</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrPrice}>${formatCurrency.format(props.mkrPrice)}</h3>
                 <p className="title subtitle is-size-4">MKR Price</p>
               </div>
