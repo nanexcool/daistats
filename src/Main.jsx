@@ -343,6 +343,13 @@ const Main = (props) => {
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.flopKicks}>{formatAmount.format(props.flopKicks)}</h3>
+                <p className="title subtitle is-size-4">Debt (Flop) Auctions</p>
+                <p className="subtitle is-size-6">Initial Lot Size: {formatAmount.format(props.debtDump)} MKR Initial&#160;Price:&#160;${formatAmount.format(props.debtSize / props.debtDump)}</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">

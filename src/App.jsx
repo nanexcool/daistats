@@ -59,6 +59,7 @@ const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
+const flop = build(add.MCD_FLOP, "Flopper");
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
@@ -152,6 +153,8 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
       [add.USDC, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_A])],
+      [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -185,6 +188,7 @@ class App extends Component {
     const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[5])
     const surplusBump = vow.interface.decodeFunctionResult('bump', res[35])
     const debtSize = vow.interface.decodeFunctionResult('sump', res[6])
+    const debtDump = vow.interface.decodeFunctionResult('dump', res[45])
     const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[27])[0])
     const savingsPie = pot.interface.decodeFunctionResult('Pie', res[15])[0]
     const pieChi = pot.interface.decodeFunctionResult('chi', res[16])[0]
@@ -205,6 +209,7 @@ class App extends Component {
     const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
+    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[44])[0]
     const saiTubTax = this.calcFee(sai_tub.interface.decodeFunctionResult('tax', res[37])[0])
     const saiTubFee = this.calcFee(sai_tub.interface.decodeFunctionResult('fee', res[38])[0])
     const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[39])
@@ -272,6 +277,7 @@ class App extends Component {
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
         surplusBump: utils.formatUnits(surplusBump[0], 45),
+        debtDump: utils.formatEther(debtDump[0]),
         debtSize: utils.formatUnits(debtSize[0], 45),
         potFee: potFee.toFixed(2),
         savingsPie: utils.formatEther(savingsPie),
@@ -280,6 +286,7 @@ class App extends Component {
         ethKicks: ethKicks.toNumber(),
         batKicks: batKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
+        flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
         ethPrice: utils.formatUnits(ethPrice, 27),
         ethPriceNxt: utils.formatEther(ethPriceNxt),
