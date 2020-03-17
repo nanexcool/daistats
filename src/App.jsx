@@ -50,6 +50,7 @@ const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
+const usdc = build(add.USDC, "ERC20")
 const sai_tub = build(add.SAI_TUB, "SaiTub")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -61,6 +62,7 @@ const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
+const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const saiIlkBytes = utils.formatBytes32String("SAI")
 window.utils = utils
 window.add = add
@@ -146,6 +148,11 @@ class App extends Component {
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
       [add.SAI_TUB, sai_tub.interface.encodeFunctionData('tax'), []],
       [add.SAI_TUB, sai_tub.interface.encodeFunctionData('fee'), []],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
+      [add.USDC, usdc.interface.encodeFunctionData('totalSupply', [])],
+      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_A])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
     ])
@@ -173,6 +180,7 @@ class App extends Component {
     const saiFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[22]))
     const jugEthDrip = jug.interface.decodeFunctionResult('ilks', res[20])
     const jugBatDrip = jug.interface.decodeFunctionResult('ilks', res[21])
+    const jugUsdcDrip = jug.interface.decodeFunctionResult('ilks', res[40])
     const vow_dai = vat.interface.decodeFunctionResult('dai', res[23])
     const vow_sin = vat.interface.decodeFunctionResult('dai', res[24])
     const ash = vow.interface.decodeFunctionResult('Ash', res[25])
@@ -180,7 +188,7 @@ class App extends Component {
     const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[5])
     const surplusBump = vow.interface.decodeFunctionResult('bump', res[35])
     const debtSize = vow.interface.decodeFunctionResult('sump', res[6])
-    const debtDump = vow.interface.decodeFunctionResult('dump', res[40])
+    const debtDump = vow.interface.decodeFunctionResult('dump', res[45])
     const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[27])[0])
     const savingsPie = pot.interface.decodeFunctionResult('Pie', res[15])[0]
     const pieChi = pot.interface.decodeFunctionResult('chi', res[16])[0]
@@ -201,9 +209,13 @@ class App extends Component {
     const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
-    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[39])[0]
+    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[44])[0]
     const saiTubTax = this.calcFee(sai_tub.interface.decodeFunctionResult('tax', res[37])[0])
     const saiTubFee = this.calcFee(sai_tub.interface.decodeFunctionResult('fee', res[38])[0])
+    const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[39])
+    const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[40]))
+    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[42])
+    const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[43])
     const scdFee = saiTubTax + saiTubFee
     this.setState(state => {
       return {
@@ -233,6 +245,13 @@ class App extends Component {
             line: utils.formatUnits(saiIlk.line, 45),
             dust: utils.formatUnits(saiIlk.dust, 45)
           },
+          {
+            Art:  utils.formatEther(usdcIlk.Art),
+            rate: utils.formatUnits(usdcIlk.rate, 27),
+            spot: utils.formatUnits(usdcIlk.spot, 27),
+            line: utils.formatUnits(usdcIlk.line, 45),
+            dust: utils.formatUnits(usdcIlk.dust, 45)
+          },
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
         saiSupply: utils.formatEther(saiSupply[0]),
@@ -240,15 +259,19 @@ class App extends Component {
         ethLocked: utils.formatEther(ethLocked[0]),
         batSupply: utils.formatEther(batSupply[0]),
         batLocked: utils.formatEther(batLocked[0]),
+        usdcSupply: utils.formatUnits(usdcSupply[0], 6),
+        usdcLocked: utils.formatUnits(usdcLocked[0], 6),
         saiLocked: utils.formatEther(saiLocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
+        usdcFee: usdcFee.toFixed(2),
         scdFee: scdFee,
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
+        jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
