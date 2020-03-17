@@ -75,7 +75,8 @@ const Main = (props) => {
         { /* eslint-disable-next-line */ }
         Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
         <br/>
-        <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;)
+        USDC is here, lock it up!
+        {/* <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;) */}
       </div>
       <section className="section">
         <div className="container">
@@ -85,7 +86,7 @@ const Main = (props) => {
             </figure>
           </div>
           <MeetingTime />
-          <div className="columns">
+          {/* <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title">
@@ -96,7 +97,7 @@ const Main = (props) => {
                 <h4 className="subtitle is-size-3">The Fundamental Equation of Dai</h4>
               </div>
             </div>
-          </div>
+          </div> */}
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
@@ -150,11 +151,19 @@ const Main = (props) => {
                 ({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title"
+                    title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
+                <p className="subtitle is-size-4">Dai from USDC
+                  ({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)} <span role="img" aria-label="rocket">🚀</span></h3>
+                <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
                 <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
                 <p className="subtitle is-size-6">ETH Supply
                   Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
@@ -190,7 +199,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
                 <p className="title subtitle is-size-4">BAT Ceiling (in Dai)</p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art * props.ilks[0].rate / props.ilks[1].line * 100)}%</p>
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.ilks[1].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
@@ -198,6 +207,31 @@ const Main = (props) => {
                 <h3 className="title" title={props.batFee}>{props.batFee}%</h3>
                 <p className="title subtitle is-size-4">BAT Stability Fee</p>
                 <p className="subtitle is-size-6">Last Drip: {props.jugBatDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.usdcLocked}>{formatNoDecimals.format(props.usdcLocked)}</h3>
+                <p className="title subtitle is-size-4">USDC Locked (in USDC)</p>
+                <p className="subtitle is-size-6">USDC Supply
+                  Locked: {formatPercent.format(props.usdcLocked / props.usdcSupply)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[3].line}>{formatAmount.format(props.ilks[3].line)}</h3>
+                <p className="title subtitle is-size-4">USDC Ceiling (in Dai)</p>
+                <p
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.ilks[3].line * 100)}%</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.usdcFee}>{props.usdcFee}%</h3>
+                <p className="title subtitle is-size-4">USDC Stability Fee</p>
+                <p className="subtitle is-size-6">Last Drip: {props.jugUsdcDrip}</p>
               </div>
             </div>
           </div>
@@ -282,7 +316,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)} <span role="img" aria-label="smiley">😃</span></h3>
+                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
                 <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
                 <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
               </div>
@@ -361,6 +395,14 @@ const Main = (props) => {
                 <a href={`https://etherscan.io/token/${props.BAT}`} target="_blank" rel="noopener noreferrer">
                   <h3 className="title"><i className="fal fa-file-code"></i> BAT</h3>
                   <p className="subtitle is-size-7">{props.BAT}</p>
+                </a>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <a href={`https://etherscan.io/token/${props.USDC}`} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title"><i className="fal fa-file-code"></i> USDC</h3>
+                  <p className="subtitle is-size-7">{props.USDC}</p>
                 </a>
               </div>
             </div>
