@@ -4,6 +4,8 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { getTokenReserves as getUniswapTokenReserves } from '@uniswap/sdk';
+
 import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
@@ -78,6 +80,7 @@ window.jug = jug
 window.multi = multi
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
+const WEI = Math.pow(10, 18);
 
 class App extends Component {
   state = {
@@ -87,7 +90,7 @@ class App extends Component {
 
   POSITION_NXT = 4
 
-  componentDidMount() {
+  async componentDidMount() {
     this.all()
     eth.on('block', this.all)
   }
@@ -162,8 +165,16 @@ class App extends Component {
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
     let p5 = this.getMarketPrices()
+    let p6 = getUniswapTokenReserves(add.MCD_GOV, networkId)
 
-    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
+    let [
+      [blockNumber, res],
+      ethSupply,
+      ethPriceNxt,
+      batPriceNxt,
+      marketPrices,
+      uniswapMkrReserves,
+    ] = await Promise.all([p1, p2, p3, p4, p5, p6])
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -267,6 +278,7 @@ class App extends Component {
         saiLocked: utils.formatEther(saiLocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
+        uniswapMKR: uniswapMkrReserves.tokenReserve.amount.div(WEI),
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),

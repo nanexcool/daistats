@@ -4,6 +4,7 @@
   "private": true,
   "homepage": "https://daistats.com",
   "dependencies": {
+    "@uniswap/sdk": "^1.0.0-beta.4",
     "ethers": "^5.0.0-beta.176",
     "gh-pages": "^2.2.0",
     "react": "^16.13.0",
