@@ -85,6 +85,18 @@ const Main = (props) => {
               <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
             </figure>
           </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h4 className="subtitle is-size-4">MKR Debt Auction start Monday March 19 around 10:28 ET (14:28 UTC)</h4>
+                <h4>
+                  <a href="https://blog.makerdao.com/mkr-debt-auction-announcement-and-details/" target="_blank" rel="noopener noreferrer">
+                    Read more about it on the Maker Blog
+                  </a>
+                </h4>
+              </div>
+            </div>
+          </div>
           <MeetingTime />
           {/* <div className="columns">
             <div className="column">
