@@ -7,7 +7,7 @@ import {
 import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
-import daiLogo from './dai.svg'
+import daiLogo from './dai-pixel.png'
 // import confetti from './confetti'
 
 const ethers = require('ethers')
