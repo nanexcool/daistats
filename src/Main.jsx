@@ -405,6 +405,12 @@ const Main = (props) => {
                 <p className="subtitle is-size-4">Dai in Uniswap</p>
               </div>
             </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.uniswapMkr}>{formatAmount.format(props.uniswapMkr)}</h3>
+                <p className="subtitle is-size-4">MKR in Uniswap</p>
+              </div>
+            </div>
           </div>
           <div className="columns">
             <div className="column">
