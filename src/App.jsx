@@ -66,6 +66,16 @@ const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const saiIlkBytes = utils.formatBytes32String("SAI")
+
+// Filtering out all non-constant and non-payable functions because ethers v5.0-beta has a bug causing an error throw
+// https://github.com/ethers-io/ethers.js/issues/762
+const uniswapAbi = require(`./abi/UniswapExchange.json`).filter(f => !(f.payable === false && f.constant === false))
+const uniswapMkrEthExchange = new ethers.Contract(
+  add.UNISWAP_MKR,
+  uniswapAbi,
+  provider ? provider : eth
+);
+
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -77,8 +87,10 @@ window.mkr = mkr
 window.pot = pot
 window.jug = jug
 window.multi = multi
+window.uniswapMkrEthExchange = uniswapMkrEthExchange
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
+const WEI = ethers.BigNumber.from("1000000000000000000")
 
 class App extends Component {
   state = {
@@ -159,6 +171,7 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
       [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])],
+      [add.UNISWAP_MKR, uniswapMkrEthExchange.interface.encodeFunctionData('getTokenToEthInputPrice', [WEI])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -179,6 +192,7 @@ class App extends Component {
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[11])
     const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[8])
     const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[47])
+    const uniswapMkrEthPrice = uniswapMkrEthExchange.interface.decodeFunctionResult('getTokenToEthInputPrice', res[48])
     const base = jug.interface.decodeFunctionResult('base', res[19])
     const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[20]))
     const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[21]))
@@ -271,6 +285,7 @@ class App extends Component {
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
+        uniswapMkrEthPrice: utils.formatEther(uniswapMkrEthPrice[0]),
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
