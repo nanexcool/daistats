@@ -330,10 +330,7 @@ class App extends Component {
     const combo = duty.add(base);
     return this.calcFee(combo);
   }
-  ethApi = eapi => intl.get('ethapi')
-  getEthApi = () => {
-    return intl.get('ethapi')
-  }
+  
 
   etherscanEthSupply = async () => {
     const ethapi = intl.get('ethapi')
