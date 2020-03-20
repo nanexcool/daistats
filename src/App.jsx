@@ -8,7 +8,7 @@ import {
 import eth from './web3';
 import Main from './Main'
 import Calc from './Calc'
-import daiLogo from './dai.svg'
+import daiLogo from './dai-pixel.png'
 // import confetti from './confetti'
 
 const ethers = require('ethers')
@@ -18,7 +18,8 @@ const jsonFetch = url => fetch(url).then(res => res.json())
 
 const add = require('./addresses.json')
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
-add["UNISWAP_EXCHANGE"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
+add["UNISWAP_DAI"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
+add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 
@@ -119,7 +120,7 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_EXCHANGE])],
+      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_DAI])],
       [add.SAI, sai.interface.encodeFunctionData('totalSupply', [])],
       [add.SAI, sai.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_SAI])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
@@ -158,6 +159,7 @@ class App extends Component {
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
       [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
+      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])],
     ])
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
@@ -177,6 +179,7 @@ class App extends Component {
     const saiLocked = sai.interface.decodeFunctionResult('balanceOf', res[10])
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[11])
     const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[8])
+    const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[47])
     const base = jug.interface.decodeFunctionResult('base', res[19])
     const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[20]))
     const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[21]))
@@ -268,6 +271,7 @@ class App extends Component {
         saiLocked: utils.formatEther(saiLocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
+        uniswapMkr: utils.formatEther(uniswapMkr[0]),
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
