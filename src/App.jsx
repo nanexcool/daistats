@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import intl from 'react-intl-universal'
 import {
   BrowserRouter as Router,
   Switch,
@@ -329,9 +330,11 @@ class App extends Component {
     const combo = duty.add(base);
     return this.calcFee(combo);
   }
+  
 
   etherscanEthSupply = async () => {
-    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=N5TICDBVG4MHDS7CGPJ9MHXRYC1Y84963N');
+    const ethapi = intl.get('ethapi')
+    const json = await jsonFetch(ethapi+'/api?action=ethsupply&module=stats&apikey=N5TICDBVG4MHDS7CGPJ9MHXRYC1Y84963N');
     return json.result;
   }
 
@@ -392,7 +395,7 @@ class App extends Component {
            </figure>
            <br />
            <progress className="progress is-small is-primary" max="100">15%</progress>
-           <p>One sec, fetching data from Ethereum Mainnet</p>
+           <p>{intl.get('One_sec')}</p>
          </div>
        </section>
       )

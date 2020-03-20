@@ -1,8 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import './index.css';
+import intl from 'react-intl-universal';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import zh from './i18n/zh.json'
+import en from './i18n/en.json'
+
+let lang = (navigator.languages && navigator.languages[0]) || navigator.language
+intl.init({
+  currentLocale: lang.split('-')[0],
+  locales: {
+    zh,
+    en
+  }
+})
+
+
 
 ReactDOM.render(<App />, document.getElementById('root'));
 
