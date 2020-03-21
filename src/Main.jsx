@@ -4,8 +4,6 @@ import FlapButton from './components/FlapButton';
 import BurnButton from './components/BurnButton';
 import MeetingTime from './components/MeetingTime'
 import './Main.css';
-import darkBtn from './img/darth-vader.svg'
-import lightBtn from './img/mandalorian.svg'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -32,9 +30,14 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
+  const [darkMode, setDarkMode] = useState(props.darkMode)
+  const [proMode, setProMode] = useState(true)
   document.title = `${formatAmount.format(props.debt)} - Dai Stats`
   const sysCollat = props.sysLocked / props.debt
-  const [ darkMode, setDarkMode ] = useState(props.darkMode)
+
+  const toggleProMode = () => {
+    setProMode(!proMode)
+  }
 
   const toggleDarkTheme = () => {
     localStorage.setItem("ds-darkmode", !darkMode)
@@ -44,7 +47,7 @@ const Main = (props) => {
   const nextFlap = () =>
     formatAmount.format(
       (Number(props.surplusBuffer)
-      + Number(props.surplusBump))
+        + Number(props.surplusBump))
       - Number(props.sysSurplus)
     )
 
@@ -72,19 +75,81 @@ const Main = (props) => {
   return (
     <div>
       <div className="notification is-primary has-text-centered">
-        { /* eslint-disable-next-line */ }
+        { /* eslint-disable-next-line */}
         Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
-        <br/>
+        <br />
         USDC is here, lock it up!
         {/* <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;) */}
       </div>
       <section className="section">
         <div className="container">
-          <div className="theme-btn">
-            <figure className="image is-32x32" onClick={toggleDarkTheme} title={ darkMode ? "Embrace the light side" : "Embrace the dark side"}>
-              <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
-            </figure>
+          <p>
+            <button className="button" onClick={toggleProMode}>
+              Switch to {proMode ? 'Simple' : 'Pro'} Mode
+            </button>
+            <button className="button" onClick={toggleDarkTheme}>
+              Switch to {darkMode ? 'Light' : 'Dark'} Theme
+            </button>
+          </p>
+          {proMode &&
+          <div className="columns">
+          <div className="column">
+            <pre>
+{
+`Current Block: ${props.blockNumber}
+
+Vat:
+  debt ${props.debt}
+  vice ${props.vice}
+  Line ${props.Line}
+
+ETH-A:
+  Art  ${props.ilks[0].Art}
+  rate ${props.ilks[0].rate}
+  spot ${props.ilks[0].spot}
+  line ${props.ilks[0].line}
+  dust ${props.ilks[0].dust}
+
+BAT-A:
+  Art  ${props.ilks[1].Art}
+  rate ${props.ilks[1].rate}
+  spot ${props.ilks[1].spot}
+  line ${props.ilks[1].line}
+  dust ${props.ilks[1].dust}
+
+SAI:
+  Art  ${props.ilks[2].Art}
+  rate ${props.ilks[2].rate}
+  spot ${props.ilks[2].spot}
+  line ${props.ilks[2].line}
+  dust ${props.ilks[2].dust}
+
+USDC-A:
+  Art  ${props.ilks[3].Art}
+  rate ${props.ilks[3].rate}
+  spot ${props.ilks[3].spot}
+  line ${props.ilks[3].line}
+  dust ${props.ilks[3].dust}
+`}
+            </pre>
           </div>
+          <div className="column">
+<pre>
+{`Vow:
+  Ash: ${props.Ash}
+  Sin: ${props.Sin}
+
+  dai(vow) ${props.vow_dai}
+  sin(vow) ${props.vow_sin}
+
+heal(50000 ** RAD)
+  50000 < ${props.vow_dai}
+  50000 < ${props.vow_sin} - ${props.Sin} - ${props.Ash}
+`}
+</pre>
+          </div>
+        </div>
+          }
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
@@ -143,7 +208,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
-                    title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
+                  title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
                 <p className="subtitle is-size-4">Dai from ETH
                   ({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
               </div>
@@ -151,7 +216,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
-                    title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
+                  title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
                 <p className="subtitle is-size-4">Dai from BAT
                   ({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
               </div>
@@ -166,7 +231,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
-                    title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
+                  title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
                 <p className="subtitle is-size-4">Dai from USDC
                   ({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
               </div>
@@ -321,7 +386,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
-                {(props.networkId === 1) && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>}
+                {/* {(props.networkId === 1) && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>} */}
               </div>
             </div>
             <div className="column">
@@ -329,7 +394,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
-                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
+                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer} />}
               </div>
             </div>
             <div className="column">
@@ -380,7 +445,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
-                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
+                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode} />}
               </div>
             </div>
             <div className="column">

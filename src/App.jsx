@@ -229,6 +229,8 @@ class App extends Component {
         blockNumber: blockNumber.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
+        Ash: utils.formatUnits(ash[0], 45),
+        Sin: utils.formatUnits(sin[0], 45),
         ilks: [
           {
             Art:  utils.formatEther(ethIlk.Art),
@@ -276,6 +278,8 @@ class App extends Component {
         saiFee: saiFee.toFixed(2),
         usdcFee: usdcFee.toFixed(2),
         scdFee: scdFee,
+        vow_dai: utils.formatUnits(vow_dai[0], 45),
+        vow_sin: utils.formatUnits(vow_sin[0], 45),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
