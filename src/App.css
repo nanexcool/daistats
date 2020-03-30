@@ -22,3 +22,27 @@
     display: none;
     transform: scale(0.54);
 }
+
+body {
+    background-color: rgb(21, 32, 43);
+}
+
+.notification {
+    background-color: #018470;
+}
+
+.footer {
+    background-color: #15202b;
+}
+
+.box {
+    background-color: #192734;
+}
+
+.title {
+    color: #fff;
+}
+
+.subtitle {
+    color: #a0a2af;
+}

@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
 import {
-  BrowserRouter as Router,
+  HashRouter as Router,
   Switch,
+  Link,
   Route
 } from "react-router-dom";
+import './App.css';
 import eth from './web3';
 import Main from './Main'
-import Calc from './Calc'
+import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
 // import confetti from './confetti'
 
@@ -371,11 +373,17 @@ class App extends Component {
   render() {
     if (this.isLoaded()) {
       return (
-        <Router>
-          {/* <NavBar /> */}
+        <Router basename="/">
+          <NavBar />
+          <div className="notification is-primary has-text-centered">
+            { /* eslint-disable-next-line */ }
+            Block: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={this.togglePause}>{this.state.paused ? 'Restart' : 'Pause'}</a>
+            <br/>
+            Self isolation getting to you? <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
+          </div>
           <Switch>
-            <Route path="/calc">
-              <Calc {...this.state} {...add} />
+            <Route path="/dai">
+              <Dai {...this.state} {...add} />
             </Route>
             <Route path="/">
               <Main {...this.state} {...add} togglePause={this.togglePause} />
@@ -400,19 +408,17 @@ class App extends Component {
   }
 }
 
-/*
 const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
       <div className="navbar-brand">
         <Link className="navbar-item" to="/">Home</Link>
-        <Link className="navbar-item" to="/calc">Calculator</Link>
+        <Link className="navbar-item" to="/dai">What's the total supply of Dai?</Link>
       </div>
       </div>
     </nav>
   )
 }
-*/
 
 export default App;

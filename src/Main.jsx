@@ -3,9 +3,6 @@ import HealButton from './components/HealButton';
 import FlapButton from './components/FlapButton';
 import BurnButton from './components/BurnButton';
 import MeetingTime from './components/MeetingTime'
-import './Main.css';
-import darkBtn from './img/darth-vader.svg'
-import lightBtn from './img/mandalorian.svg'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
@@ -34,12 +31,6 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 const Main = (props) => {
   document.title = `${formatAmount.format(props.debt)} - Dai Stats`
   const sysCollat = props.sysLocked / props.debt
-  const [ darkMode, setDarkMode ] = useState(props.darkMode)
-
-  const toggleDarkTheme = () => {
-    localStorage.setItem("ds-darkmode", !darkMode)
-    setDarkMode(!darkMode)
-  };
 
   const nextFlap = () =>
     formatAmount.format(
@@ -48,43 +39,10 @@ const Main = (props) => {
       - Number(props.sysSurplus)
     )
 
-  const applyDarkTheme = (isDark) => {
-    document.body.style.backgroundColor = isDark ? 'rgb(21, 32, 43)' : 'white'
-    document.getElementsByClassName('notification')[0].style.backgroundColor = isDark ? '#018470' : '#00d1b2'
-    document.getElementsByTagName('footer')[0].style.backgroundColor = isDark ? '#15202b' : '#fafafa'
-    Array.prototype.forEach.call(document.getElementsByClassName('box'),
-      function (element) {
-        element.style.backgroundColor = isDark ? '#192734' : '#fff'
-      }
-    )
-    Array.prototype.forEach.call(document.getElementsByClassName('title'), function (element) {
-      element.style.color = isDark ? '#fff' : '#000'
-    })
-    Array.prototype.forEach.call(document.getElementsByClassName('subtitle'), function (element) {
-      element.style.color = isDark ? '#a0a2af' : '#4a4a4a'
-    })
-  }
-
-  useEffect(() => {
-    applyDarkTheme(darkMode)
-  }, [darkMode]);
-
   return (
     <div>
-      <div className="notification is-primary has-text-centered">
-        { /* eslint-disable-next-line */ }
-        Block: <strong>{props.blockNumber}</strong>. {props.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={props.togglePause}>{props.paused ? 'Restart' : 'Pause'}</a>
-        <br/>
-        USDC is here, lock it up!
-        {/* <a href="https://www.youtube.com/watch?v=gRBCD5nzBdQ&t=12242s" target="_blank" rel="noopener noreferrer">watch my ETHDenver 2020 talk </a> ;) */}
-      </div>
       <section className="section">
         <div className="container">
-          <div className="theme-btn">
-            <figure className="image is-32x32" onClick={toggleDarkTheme} title={ darkMode ? "Embrace the light side" : "Embrace the dark side"}>
-              <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
-            </figure>
-          </div>
           <MeetingTime />
           {/* <div className="columns">
             <div className="column">
@@ -309,7 +267,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
                 <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
-                {(props.networkId === 1) && <HealButton isDark={darkMode} sysDebtRaw={props.sysDebtRaw}/>}
+                {(props.networkId === 1) && <HealButton sysDebtRaw={props.sysDebtRaw}/>}
               </div>
             </div>
             <div className="column">
@@ -317,7 +275,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
-                {(props.networkId === 1) && <FlapButton isDark={darkMode} sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
+                {(props.networkId === 1) && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">
@@ -368,7 +326,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
                 <p className="subtitle is-size-4">MKR in Burner</p>
-                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} isDark={darkMode}/>}
+                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} />}
               </div>
             </div>
             <div className="column">
