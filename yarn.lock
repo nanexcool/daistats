@@ -4636,10 +4636,10 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha1-Qa4u62XvpiJorr/qg6x9eSmbCIc=
 
-ethers@^5.0.0-beta.176:
-  version "5.0.0-beta.176"
-  resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.0.0-beta.176.tgz#d5154866fa0ff5728c8f69bbe2afb4b7b00a4caa"
-  integrity sha512-oqUtTMELkjFAb93rRr+Md6SxaQ25y8ApGFIvupuvWBGm7ouuOe5CmVZMjb2RjU6M60w2t1Blwx83lXyjoGBeiQ==
+ethers@^5.0.0-beta.177:
+  version "5.0.0-beta.177"
+  resolved "https://registry.yarnpkg.com/ethers/-/ethers-5.0.0-beta.177.tgz#20797c6488177e0db4a4b42e27ecfb9a4625c1d3"
+  integrity sha512-fRfUxGRfolshX4V9arnTj8VqaJhKw+jZGmVXHXo8xtYDbiv5YcN9iyae9qo2AbxOFiNijdqfrbewhyaPBaVIwQ==
   dependencies:
     "@ethersproject/abi" ">=5.0.0-beta.137"
     "@ethersproject/abstract-provider" ">=5.0.0-beta.131"

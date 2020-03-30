@@ -85,18 +85,6 @@ const Main = (props) => {
               <img src={darkMode ? lightBtn : darkBtn} alt="Light/Dark mode toggle" />
             </figure>
           </div>
-          <div className="columns">
-            <div className="column">
-              <div className="box has-text-centered">
-                <h4 className="subtitle is-size-4">Last batch of MKR Auctions are live</h4>
-                <h4>
-                  <a href="https://auctions.makerdao.com/flop" target="_blank" rel="noopener noreferrer">
-                    Follow or bid on auctions here
-                  </a>
-                </h4>
-              </div>
-            </div>
-          </div>
           <MeetingTime />
           {/* <div className="columns">
             <div className="column">
