@@ -39,8 +39,12 @@ body {
     background-color: #192734;
 }
 
+.box>p {
+    color: #e6e8f1;
+}
+
 .title {
-    color: #fff;
+    color: #e6e8f1;
 }
 
 .subtitle {

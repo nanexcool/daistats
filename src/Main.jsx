@@ -264,10 +264,10 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.sysDebt}>{formatAmount.format(props.sysDebt)}</h3>
+                <h3 className="title" >{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
                 <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
                 <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
-                {(props.networkId === 1) && <HealButton sysDebtRaw={props.sysDebtRaw}/>}
+                {(props.networkId === 1) && false && <HealButton sysDebtRaw={props.vow_dai < props.sysDebt ? props.vowDaiRaw : props.sysDebtRaw}/>}
               </div>
             </div>
             <div className="column">
@@ -275,7 +275,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
                 <p className="title subtitle is-size-4">System Surplus (Dai)</p>
                 <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
-                {(props.networkId === 1) && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
+                {(props.networkId === 1) && false && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">

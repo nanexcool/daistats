@@ -284,6 +284,7 @@ class App extends Component {
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
+        vowDaiRaw: vow_dai[0].toString(),
         surplusBuffer: utils.formatUnits(surplusBuffer[0], 45),
         surplusBump: utils.formatUnits(surplusBump[0], 45),
         debtDump: utils.formatEther(debtDump[0]),
@@ -309,6 +310,9 @@ class App extends Component {
         mkrSupply: utils.formatEther(mkrSupply[0]),
         mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], scdFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
+        vow_dai: utils.formatUnits(vow_dai[0], 45),
+        vow_sin: utils.formatUnits(vow_sin[0], 45),
+        bigSin: utils.formatUnits(sin[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode"))
       }
@@ -374,7 +378,7 @@ class App extends Component {
     if (this.isLoaded()) {
       return (
         <Router basename="/">
-          <NavBar />
+          {/* <NavBar /> */}
           <div className="notification is-primary has-text-centered">
             { /* eslint-disable-next-line */ }
             Block: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={this.togglePause}>{this.state.paused ? 'Restart' : 'Pause'}</a>
