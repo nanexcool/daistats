@@ -90,31 +90,31 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
-                <p className="subtitle is-size-4">Dai from ETH
-                  ({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
+                <p className="title subtitle is-size-4">Dai from ETH</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
-                <p className="subtitle is-size-4">Dai from BAT
-                  ({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="subtitle is-size-4">Dai from Migration
-                ({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
+                <p className="title subtitle is-size-4">Dai from BAT</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
-                <p className="subtitle is-size-4">Dai from USDC
-                  ({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+                <p className="title subtitle is-size-4">Dai from USDC</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
+                <p className="title subtitle is-size-4">Dai from Migration</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
           </div>
@@ -280,31 +280,31 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
-                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
-                <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
+                <h3 className="title" title={props.cdps}>{props.cdps}</h3>
+                <p className="subtitle is-size-4">Vaults Opened</p>
               </div>
             </div>
           </div>
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.cdps}>{props.cdps}</h3>
-                <p className="subtitle is-size-4">Vaults Opened</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
                 <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-                <p className="subtitle is-size-4">ETH Vault Auctions</p>
+                <p className="subtitle is-size-4">ETH (Flip) Auctions</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-                <p className="subtitle is-size-4">BAT Vault Auctions</p>
+                <p className="subtitle is-size-4">BAT (Flip) Auctions</p>
                 <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
+                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
+                <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
               </div>
             </div>
             <div className="column">
