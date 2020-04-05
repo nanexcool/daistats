@@ -4,10 +4,12 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 Clone this repo, then run:
 
-### `npm install`
+### `yarn`
 
 then...
 
-### `npm start`
+### `yarn start`
 
 And that's it :)
+
+If you use `npm` replace with `npm install` and `npm start`
