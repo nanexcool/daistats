@@ -91,8 +91,9 @@ class App extends Component {
   POSITION_NXT = 4
 
   componentDidMount() {
-    this.all()
-    eth.on('block', this.all)
+    eth.on('block', (blockNumber) => {
+      this.all(blockNumber)
+    })
   }
 
   componentWillUnmount() {
@@ -101,8 +102,9 @@ class App extends Component {
 
   togglePause = () => {
     if (this.state.paused) {
-      this.all()
-      eth.on('block', this.all)
+      eth.on('block', (blockNumber) => {
+        this.all(blockNumber)
+      })
     } else {
       eth.removeAllListeners()
     }
@@ -111,7 +113,7 @@ class App extends Component {
     })
   }
 
-  all = async () => {
+  all = async (blockNumber) => {
     let p1 = multi.callStatic.aggregate([
       [add.MCD_VAT, vat.interface.encodeFunctionData('Line', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
@@ -161,13 +163,13 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
       [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])],
-    ])
+    ], {blockTag: blockNumber})
     let p2 = this.etherscanEthSupply()
     let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
     let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
     let p5 = this.getMarketPrices()
 
-    let [[blockNumber, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
+    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -228,7 +230,7 @@ class App extends Component {
     this.setState(state => {
       return {
         networkId: networkId,
-        blockNumber: blockNumber.toString(),
+        blockNumber: block.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
         ilks: [
