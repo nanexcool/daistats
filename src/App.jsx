@@ -18,6 +18,12 @@ const utils = ethers.utils
 const jsonFetch = url => fetch(url).then(res => res.json())
 
 const add = require('./addresses.json')
+add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+add["UNISWAP_DAI"] = "0x2a1530C4C41db0B0b2bB646CB5Eb1A67b7158667"
+add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
+add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
+add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
+add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 
 let provider;
 let networkId;
@@ -222,8 +228,8 @@ class App extends Component {
     const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[42])
     const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[43])
     const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[46])[0]
-    const scdFee = saiTubTax + saiTubFee;
-    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[48]);
+    const scdFee = saiTubTax + saiTubFee
+    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[48])
     this.setState(state => {
       return {
         networkId: networkId,
