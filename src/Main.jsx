@@ -347,14 +347,14 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Uniswap</p>
+                <h3 className="title" title={props.oasisDEXDai}>{formatAmount.format(props.oasisDexDai)}</h3>
+                <p className="subtitle is-size-4">Dai in Oasis Dex</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.uniswapMkr}>{formatAmount.format(props.uniswapMkr)}</h3>
-                <p className="subtitle is-size-4">MKR in Uniswap</p>
+                <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
+                <p className="subtitle is-size-4">Dai in Uniswap</p>
               </div>
             </div>
           </div>
