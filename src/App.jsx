@@ -68,8 +68,8 @@ const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
-const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const saiIlkBytes = utils.formatBytes32String("SAI")
+const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const wbtcIlkBytes = utils.formatBytes32String("WBTC-A");
 window.utils = utils
 window.add = add
@@ -187,20 +187,18 @@ class App extends Component {
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
-    const saiIlk = vat.interface.decodeFunctionResult('ilks', res[4])
     const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[7])
     const saiSupply = sai.interface.decodeFunctionResult('totalSupply', res[9])
     const ethLocked = weth.interface.decodeFunctionResult('balanceOf', res[12])
     const batSupply = bat.interface.decodeFunctionResult('totalSupply', res[13])
-    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[14])
     const saiLocked = sai.interface.decodeFunctionResult('balanceOf', res[10])
+    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[14])
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[11])
     const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[8])
     const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[47])
     const base = jug.interface.decodeFunctionResult('base', res[19])
     const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[20]))
     const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[21]))
-    const saiFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[22]))
     const jugEthDrip = jug.interface.decodeFunctionResult('ilks', res[20])
     const jugBatDrip = jug.interface.decodeFunctionResult('ilks', res[21])
     const jugUsdcDrip = jug.interface.decodeFunctionResult('ilks', res[40])
@@ -232,14 +230,11 @@ class App extends Component {
     const vice = vat.interface.decodeFunctionResult('vice', res[34])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
     const flopKicks = flop.interface.decodeFunctionResult('kicks', res[44])[0]
-    const saiTubTax = this.calcFee(sai_tub.interface.decodeFunctionResult('tax', res[37])[0])
-    const saiTubFee = this.calcFee(sai_tub.interface.decodeFunctionResult('fee', res[38])[0])
     const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[39])
     const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[40]))
     const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[42])
     const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[43])
     const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[46])[0]
-    const scdFee = saiTubTax + saiTubFee
     const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[48])
     const wbtcIlk = vat.interface.decodeFunctionResult('ilks', res[49])
     const wbtcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[50]))
@@ -250,7 +245,6 @@ class App extends Component {
     const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[53])
     const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[54])[0]
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0]))
-    console.log(ethPrice)
     this.setState(state => {
       return {
         networkId: networkId,
@@ -271,13 +265,6 @@ class App extends Component {
             spot: utils.formatUnits(batIlk.spot, 27),
             line: utils.formatUnits(batIlk.line, 45),
             dust: utils.formatUnits(batIlk.dust, 45)
-          },
-          {
-            Art:  utils.formatEther(saiIlk.Art),
-            rate: utils.formatUnits(saiIlk.rate, 27),
-            spot: utils.formatUnits(saiIlk.spot, 27),
-            line: utils.formatUnits(saiIlk.line, 45),
-            dust: utils.formatUnits(saiIlk.dust, 45)
           },
           {
             Art:  utils.formatEther(usdcIlk.Art),
@@ -308,10 +295,8 @@ class App extends Component {
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
         ethFee: ethFee.toFixed(2),
         batFee: batFee.toFixed(2),
-        saiFee: saiFee.toFixed(2),
         usdcFee: usdcFee.toFixed(2),
         wbtcFee: wbtcFee.toFixed(2),
-        scdFee: scdFee,
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
@@ -346,7 +331,7 @@ class App extends Component {
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
-        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, saiSupply[0], scdFee, savingsDai, potFee, mkrPrice),
+        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         vow_dai: utils.formatUnits(vow_dai[0], 45),
         vow_sin: utils.formatUnits(vow_sin[0], 45),
@@ -388,21 +373,18 @@ class App extends Component {
     return json;
   }
 
-  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, saiSupply, scdFee, savingsDai, potFee, mkrPrice) => {
+  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, savingsDai, potFee, mkrPrice) => {
 
     const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
     const stabilityETH = ethFee / 100
     const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
     const stabilityBAT = batFee / 100
-    const daiFromSai = utils.formatEther(saiSupply)
-    const stabilitySai = scdFee / 100
     const dsrDai = utils.formatUnits(savingsDai, 45)
     const dsrRate = potFee / 100
 
     const mkrAnnualBurn = (
     (  (daiFromETH * stabilityETH)
      + (daiFromBAT * stabilityBAT)
-     + (daiFromSai * stabilitySai)
      - (dsrDai * dsrRate)
     )
     / mkrPrice

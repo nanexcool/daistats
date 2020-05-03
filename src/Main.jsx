@@ -10,6 +10,12 @@ const formatAmount = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
+const formatForWBTC = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 0,
+  maximumFractionDigits: 4
+})
+
 const formatNoDecimals = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 0,
@@ -105,16 +111,16 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title"
-                    title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
+                    title={props.ilks[2].Art * props.ilks[2].rate}>{formatAmount.format(props.ilks[2].Art * props.ilks[2].rate)}</h3>
                 <p className="title subtitle is-size-4">Dai from USDC</p>
-                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[4].Art}>{formatAmount.format(props.ilks[4].Art)}</h3>
+                <h3 className="title" title={props.ilks[3].Art}>{formatAmount.format(props.ilks[3].Art)}</h3>
                 <p className="title subtitle is-size-4">Dai from WBTC</p>
-                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[4].Art * props.ilks[4].rate / props.debt * 100)}%)</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
               </div>
             </div>
           </div>
@@ -179,10 +185,10 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[3].line}>{formatAmount.format(props.ilks[3].line)}</h3>
+                <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
                 <p className="title subtitle is-size-4">USDC Ceiling (in Dai)</p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.ilks[3].line * 100)}%</p>
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.ilks[2].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
@@ -196,7 +202,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.wbtcLocked}>{formatNoDecimals.format(props.wbtcLocked)}</h3>
+                <h3 className="title" title={props.wbtcLocked}>{formatForWBTC.format(props.wbtcLocked)}</h3>
                 <p className="title subtitle is-size-4">WBTC Locked (in WBTC)</p>
                 <p className="subtitle is-size-6">WBTC Supply
                   Locked: {formatPercent.format(props.wbtcLocked / props.wbtcSupply)}</p>
@@ -204,10 +210,10 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[4].line}>{formatAmount.format(props.ilks[4].line)}</h3>
+                <h3 className="title" title={props.ilks[3].line}>{formatAmount.format(props.ilks[3].line)}</h3>
                 <p className="title subtitle is-size-4">WBTC Ceiling (in Dai)</p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[4].Art * props.ilks[4].rate / props.ilks[4].line * 100)}%</p>
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.ilks[3].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
