@@ -224,7 +224,6 @@ class App extends Component {
     const batMat = spot.interface.decodeFunctionResult('ilks', res[31])
     const ethPrice = ethMat.mat.mul(ethIlk.spot).div(RAY)
     const batPrice = batMat.mat.mul(batIlk.spot).div(RAY)
-    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(saiLocked[0])
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[32])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[33])
@@ -250,6 +249,8 @@ class App extends Component {
     const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[52])
     const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[53])
     const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[54])[0]
+    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0]))
+    console.log(ethPrice)
     this.setState(state => {
       return {
         networkId: networkId,
@@ -351,7 +352,6 @@ class App extends Component {
         vow_sin: utils.formatUnits(vow_sin[0], 45),
         bigSin: utils.formatUnits(sin[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
-        darkMode: JSON.parse(localStorage.getItem("ds-darkmode")),
         oasisDexDai: utils.formatEther(oasisDexDai[0]),
         wbtcSupply: utils.formatUnits(wbtcSupply[0], 8),
         wbtcLocked: utils.formatUnits(wbtcLocked[0], 8),
@@ -420,7 +420,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             Block: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={this.togglePause}>{this.state.paused ? 'Restart' : 'Pause'}</a>
             <br/>
-            Self isolation getting to you? <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
+            Welcome W-BTC to the party! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
           </div>
           <Switch>
             <Route path="/dai">
