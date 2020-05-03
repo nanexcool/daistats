@@ -10,7 +10,6 @@ import eth from './web3';
 import Main from './Main'
 import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
-// import confetti from './confetti'
 
 const ethers = require('ethers')
 const utils = ethers.utils
@@ -55,6 +54,7 @@ const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const sai = build(add.SAI, "ERC20")
 const usdc = build(add.USDC, "ERC20")
+const wbtc = build(add.WBTC, "ERC20")
 const sai_tub = build(add.SAI_TUB, "SaiTub")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -62,6 +62,7 @@ const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
+const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
@@ -69,6 +70,7 @@ const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const saiIlkBytes = utils.formatBytes32String("SAI")
+const wbtcIlkBytes = utils.formatBytes32String("WBTC-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -165,13 +167,23 @@ class App extends Component {
       [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
+      [add.WBTC, wbtc.interface.encodeFunctionData('totalSupply', [])],
+      [add.WBTC, wbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_WBTC_A])],
+      [add.MCD_FLIP_WBTC_A, wbtcFlip.interface.encodeFunctionData('kicks', [])],
     ], {blockTag: blockNumber})
-    let p2 = this.etherscanEthSupply()
-    let p3 = this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT)
-    let p4 = this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT)
-    let p5 = this.getMarketPrices()
+    let promises = [
+      p1,
+      this.etherscanEthSupply(),
+      this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT),
+      this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT),
+      this.getOSMPrice(add.PIP_WBTC, this.POSITION_NXT),
+      this.getMarketPrices()
+    ]
 
-    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, marketPrices] = await Promise.all([p1, p2, p3, p4, p5])
+    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt, marketPrices] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -230,6 +242,14 @@ class App extends Component {
     const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[46])[0]
     const scdFee = saiTubTax + saiTubFee
     const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[48])
+    const wbtcIlk = vat.interface.decodeFunctionResult('ilks', res[49])
+    const wbtcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[50]))
+    const jugWbtcDrip = jug.interface.decodeFunctionResult('ilks', res[50])
+    const wbtcMat = spot.interface.decodeFunctionResult('ilks', res[51])
+    const wbtcPrice = wbtcMat.mat.mul(wbtcIlk.spot).div(RAY)
+    const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[52])
+    const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[53])
+    const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[54])[0]
     this.setState(state => {
       return {
         networkId: networkId,
@@ -265,6 +285,13 @@ class App extends Component {
             line: utils.formatUnits(usdcIlk.line, 45),
             dust: utils.formatUnits(usdcIlk.dust, 45)
           },
+          {
+            Art:  utils.formatEther(wbtcIlk.Art),
+            rate: utils.formatUnits(wbtcIlk.rate, 27),
+            spot: utils.formatUnits(wbtcIlk.spot, 27),
+            line: utils.formatUnits(wbtcIlk.line, 45),
+            dust: utils.formatUnits(wbtcIlk.dust, 45)
+          },
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
         saiSupply: utils.formatEther(saiSupply[0]),
@@ -282,10 +309,12 @@ class App extends Component {
         batFee: batFee.toFixed(2),
         saiFee: saiFee.toFixed(2),
         usdcFee: usdcFee.toFixed(2),
+        wbtcFee: wbtcFee.toFixed(2),
         scdFee: scdFee,
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
+        jugWbtcDrip: this.unixToDateTime(jugWbtcDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -300,6 +329,7 @@ class App extends Component {
         potDrip: this.unixToDateTime(potDrip.toNumber()),
         ethKicks: ethKicks.toNumber(),
         batKicks: batKicks.toNumber(),
+        wbtcKicks: wbtcKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
@@ -307,6 +337,8 @@ class App extends Component {
         ethPriceNxt: utils.formatEther(ethPriceNxt),
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
+        wbtcPrice: utils.formatUnits(wbtcPrice, 27),
+        wbtcPriceNxt: utils.formatEther(wbtcPriceNxt),
         mkrPrice: mkrPrice,
         daiPrice: daiPrice,
         usdcPrice: utils.formatEther(usdcPrice),
@@ -321,11 +353,10 @@ class App extends Component {
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         darkMode: JSON.parse(localStorage.getItem("ds-darkmode")),
         oasisDexDai: utils.formatEther(oasisDexDai[0]),
+        wbtcSupply: utils.formatUnits(wbtcSupply[0], 8),
+        wbtcLocked: utils.formatUnits(wbtcLocked[0], 8),
       }
     })
-      // confetti.rain()
-    // if (parseInt(utils.formatEther(ethLocked[0])) >= 2000000) {
-    // }
   }
 
   isLoaded = () => {

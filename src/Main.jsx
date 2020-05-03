@@ -113,7 +113,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].Art}>{formatAmount.format(props.ilks[2].Art)}</h3>
-                <p className="title subtitle is-size-4">Dai from Migration</p>
+                <p className="title subtitle is-size-4">Dai from WBTC</p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
@@ -196,6 +196,31 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.wbtcLocked}>{formatNoDecimals.format(props.wbtcLocked)}</h3>
+                <p className="title subtitle is-size-4">WBTC Locked (in WBTC)</p>
+                <p className="subtitle is-size-6">WBTC Supply
+                  Locked: {formatPercent.format(props.wbtcLocked / props.wbtcSupply)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[4].line}>{formatAmount.format(props.ilks[4].line)}</h3>
+                <p className="title subtitle is-size-4">WBTC Ceiling (in Dai)</p>
+                <p
+                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[4].Art * props.ilks[4].rate / props.ilks[4].line * 100)}%</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.wbtcFee}>{props.wbtcFee}%</h3>
+                <p className="title subtitle is-size-4">WBTC Stability Fee</p>
+                <p className="subtitle is-size-6">Last Drip: {props.jugWbtcDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
                 <p className="subtitle is-size-4">Dai (ERC20) Supply ({formatAmount.format(props.daiSupply / props.debt * 100)}%)</p>
               </div>
@@ -237,10 +262,17 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.wbtcPrice}>${formatCurrency.format(props.wbtcPrice)}</h3>
+                <p className="title subtitle is-size-4">WBTC Price</p>
+                <p className="subtitle is-size-6">Next OSM Price: ${formatCurrency.format(props.wbtcPriceNxt)}</p>
+              </div>
+            </div>
+            {/* <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrPrice}>${formatCurrency.format(props.mkrPrice)}</h3>
                 <p className="title subtitle is-size-4">MKR Price</p>
               </div>
-            </div>
+            </div> */}
 
           </div>
           <div className="columns">
@@ -297,6 +329,13 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
                 <p className="subtitle is-size-4">BAT (Flip) Auctions</p>
+                <p className="subtitle is-size-6"></p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.wbtcKicks}>{formatAmount.format(props.wbtcKicks)}</h3>
+                <p className="subtitle is-size-4">WBTC (Flip) Auctions</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
