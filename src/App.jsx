@@ -331,7 +331,7 @@ class App extends Component {
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
-        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, savingsDai, potFee, mkrPrice),
+        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, wbtcIlk, wbtcFee, usdcIlk, usdcFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         vow_dai: utils.formatUnits(vow_dai[0], 45),
         vow_sin: utils.formatUnits(vow_sin[0], 45),
@@ -373,18 +373,25 @@ class App extends Component {
     return json;
   }
 
-  getMKRAnnualBurn = (ethIlk, ethFee, batIlk, batFee, savingsDai, potFee, mkrPrice) => {
+  getMKRAnnualBurn = (
+    ethIlk, ethFee, batIlk, batFee, wbtcIlk, wbtcFee, usdcIlk, usdcFee, savingsDai, potFee, mkrPrice) => {
 
     const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
     const stabilityETH = ethFee / 100
     const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
     const stabilityBAT = batFee / 100
+    const daiFromWBTC = utils.formatEther(wbtcIlk.Art) * utils.formatUnits(wbtcIlk.rate, 27)
+    const stabilityWBTC = wbtcFee / 100
+    const daiFromUSDC = utils.formatEther(usdcIlk.Art) * utils.formatUnits(usdcIlk.rate, 27)
+    const stabilityUSDC = usdcFee / 100
     const dsrDai = utils.formatUnits(savingsDai, 45)
     const dsrRate = potFee / 100
 
     const mkrAnnualBurn = (
     (  (daiFromETH * stabilityETH)
      + (daiFromBAT * stabilityBAT)
+     + (daiFromWBTC * stabilityWBTC)
+     + (daiFromUSDC * stabilityUSDC)
      - (dsrDai * dsrRate)
     )
     / mkrPrice
