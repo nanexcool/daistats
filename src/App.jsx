@@ -409,7 +409,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             Block: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={this.togglePause}>{this.state.paused ? 'Restart' : 'Pause'}</a>
             <br/>
-            Welcome W-BTC to the party! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
+            Pour one out for Sai! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
           </div>
           <Switch>
             <Route path="/dai">

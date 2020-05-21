@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import HealButton from './components/HealButton';
 import FlapButton from './components/FlapButton';
-import BurnButton from './components/BurnButton';
 import MeetingTime from './components/MeetingTime'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
@@ -365,13 +364,6 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
                 <p className="subtitle is-size-4">MKR Supply</p>
-              </div>
-            </div>
-            <div className="column">
-              <div className="box has-text-centered">
-                <h3 className="title" title={props.gemPit}>{formatAmount.format(props.gemPit)}</h3>
-                <p className="subtitle is-size-4">MKR in Burner</p>
-                {(props.networkId === 1 && props.gemPit > 0.01) && <BurnButton gov={props.MCD_GOV} />}
               </div>
             </div>
             <div className="column">
