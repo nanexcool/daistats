@@ -4,11 +4,11 @@
   "private": true,
   "homepage": "https://daistats.com",
   "dependencies": {
-    "ethers": "^5.0.0-beta.186",
+    "ethers": "^5.0.0-beta.188",
     "gh-pages": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.1"
   },
   "scripts": {
