@@ -15,8 +15,8 @@
   "daistats.initial_price": "Precio Inicial",
   "daistats.last_drip": "Último Goteo",
   "daistats.lot": "Lote",
-  "daistats.one_sec": "Un segundo, buscando datos en la Mainnet de Ethereum...",
   "daistats.next_osm_price": "Siguiente Precio de OSM",
+  "daistats.one_sec": "Un segundo, buscando datos en la Mainnet de Ethereum...",
   "daistats.pause": "Pausar",
   "daistats.pie_in_dsr": "Pie en DSR",
   "daistats.restart": "Reiniciar",
@@ -33,7 +33,7 @@
   "daistats.token_supply": "Suministro %{token}",
   "daistats.token_supply_locked": "Suministro %{token} Bloqueado",
   "daistats.total_locked": "Total Bloqueado",
-  "daistats.total_token": "Total %{token}",
+  "daistats.total_token": "%{token} Total",
   "daistats.utilization": "Utilización",
   "daistats.vaults_opened": "Bóvedas Abiertas"
 }

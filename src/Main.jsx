@@ -69,7 +69,7 @@ const Main = (props) => {
                 <h3 className="title" title={props.debt}>
                   {formatAmount.format(props.debt)}
                 </h3>
-                <h4 className="subtitle is-size-3">Total Dai</h4>
+                <h4 className="subtitle is-size-3">{t('daistats.total_token', {token:'Dai'})}</h4>
               </div>
             </div>
           </div>
