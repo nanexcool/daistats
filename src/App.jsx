@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { translate } from 'react-polyglot';
 import {
   HashRouter as Router,
   Switch,
@@ -401,15 +402,18 @@ class App extends Component {
   }
 
   render() {
+    const t = this.props.t
     if (this.isLoaded()) {
       return (
         <Router basename="/">
           {/* <NavBar /> */}
           <div className="notification is-primary has-text-centered">
             { /* eslint-disable-next-line */ }
-            Block: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? 'Paused.' : 'Auto-updating.'} <a onClick={this.togglePause}>{this.state.paused ? 'Restart' : 'Pause'}</a>
-            <br/>
-            Pour one out for Sai! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">Say hi on Twitter!</a>
+            {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
+            <br />
+            Pour one out for Sai! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            <br />
+            <button onClick={() => this.props.toggle('en')}>English</button> | <button onClick={() => this.props.toggle('es')}>Español</button>
           </div>
           <Switch>
             <Route path="/dai">
@@ -430,7 +434,7 @@ class App extends Component {
            </figure>
            <br />
            <progress className="progress is-small is-primary" max="100">15%</progress>
-           <p>One sec, fetching data from Ethereum Mainnet</p>
+            <p>{t('daistats.one_sec')}</p>
          </div>
        </section>
       )
@@ -451,4 +455,4 @@ const NavBar = () => {
   )
 }
 
-export default App;
+export default translate()(App)

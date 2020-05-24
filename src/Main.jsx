@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
+import { useTranslate } from 'react-polyglot';
 import HealButton from './components/HealButton';
 import FlapButton from './components/FlapButton';
 import MeetingTime from './components/MeetingTime'
@@ -34,6 +35,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 const Main = (props) => {
+  const t = useTranslate()
   document.title = `${formatAmount.format(props.debt)} - Dai Stats`
   const sysCollat = props.sysLocked / props.debt
 
@@ -95,7 +97,9 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[0].Art * props.ilks[0].rate}>{formatAmount.format(props.ilks[0].Art * props.ilks[0].rate)}</h3>
-                <p className="title subtitle is-size-4">Dai from ETH</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'ETH'})}
+                </p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.debt * 100)}%)</p>
               </div>
             </div>
@@ -103,7 +107,9 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[1].Art * props.ilks[1].rate}>{formatAmount.format(props.ilks[1].Art * props.ilks[1].rate)}</h3>
-                <p className="title subtitle is-size-4">Dai from BAT</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'BAT'})}
+                </p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.debt * 100)}%)</p>
               </div>
             </div>
@@ -111,14 +117,18 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[2].Art * props.ilks[2].rate}>{formatAmount.format(props.ilks[2].Art * props.ilks[2].rate)}</h3>
-                <p className="title subtitle is-size-4">Dai from USDC</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'USDC'})}
+                </p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[3].Art}>{formatAmount.format(props.ilks[3].Art)}</h3>
-                <p className="title subtitle is-size-4">Dai from WBTC</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'WBTC'})}
+                </p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
               </div>
             </div>
@@ -127,24 +137,28 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethLocked}>{formatNoDecimals.format(props.ethLocked)}</h3>
-                <p className="title subtitle is-size-4">ETH Locked (in ETH)</p>
-                <p className="subtitle is-size-6">ETH Supply
-                  Locked: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'ETH'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'ETH'})}: {formatPercent.format(props.ethLocked / props.ethSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[0].line}>{formatAmount.format(props.ilks[0].line)}</h3>
-                <p className="title subtitle is-size-4">ETH Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'ETH'})}
+                </p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.ilks[0].line * 100)}%</p>
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[0].Art * props.ilks[0].rate / props.ilks[0].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethFee}>{props.ethFee}%</h3>
-                <p className="title subtitle is-size-4">ETH Stability Fee</p>
-                <p className="subtitle is-size-6">Last Drip: {props.jugEthDrip}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'ETH'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugEthDrip}</p>
               </div>
             </div>
           </div>
@@ -152,24 +166,28 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batLocked}>{formatNoDecimals.format(props.batLocked)}</h3>
-                <p className="title subtitle is-size-4">BAT Locked (in BAT)</p>
-                <p className="subtitle is-size-6">BAT Supply
-                  Locked: {formatPercent.format(props.batLocked / props.batSupply)}</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'BAT'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'BAT'})}: {formatPercent.format(props.batLocked / props.batSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[1].line}>{formatAmount.format(props.ilks[1].line)}</h3>
-                <p className="title subtitle is-size-4">BAT Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'BAT'})}
+                </p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.ilks[1].line * 100)}%</p>
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[1].Art * props.ilks[1].rate / props.ilks[1].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batFee}>{props.batFee}%</h3>
-                <p className="title subtitle is-size-4">BAT Stability Fee</p>
-                <p className="subtitle is-size-6">Last Drip: {props.jugBatDrip}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'BAT'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugBatDrip}</p>
               </div>
             </div>
           </div>
@@ -177,24 +195,28 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcLocked}>{formatNoDecimals.format(props.usdcLocked)}</h3>
-                <p className="title subtitle is-size-4">USDC Locked (in USDC)</p>
-                <p className="subtitle is-size-6">USDC Supply
-                  Locked: {formatPercent.format(props.usdcLocked / props.usdcSupply)}</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'USDC'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'USDC'})}: {formatPercent.format(props.usdcLocked / props.usdcSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
-                <p className="title subtitle is-size-4">USDC Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'USDC'})}
+                </p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.ilks[2].line * 100)}%</p>
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.ilks[2].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcFee}>{props.usdcFee}%</h3>
-                <p className="title subtitle is-size-4">USDC Stability Fee</p>
-                <p className="subtitle is-size-6">Last Drip: {props.jugUsdcDrip}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'USDC'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugUsdcDrip}</p>
               </div>
             </div>
           </div>
@@ -202,24 +224,28 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcLocked}>{formatForWBTC.format(props.wbtcLocked)}</h3>
-                <p className="title subtitle is-size-4">WBTC Locked (in WBTC)</p>
-                <p className="subtitle is-size-6">WBTC Supply
-                  Locked: {formatPercent.format(props.wbtcLocked / props.wbtcSupply)}</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'WBTC'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'WBTC'})}: {formatPercent.format(props.wbtcLocked / props.wbtcSupply)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[3].line}>{formatAmount.format(props.ilks[3].line)}</h3>
-                <p className="title subtitle is-size-4">WBTC Ceiling (in Dai)</p>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'WBTC'})}
+                </p>
                 <p
-                  className="subtitle is-size-6">Utilization: {formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.ilks[3].line * 100)}%</p>
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.ilks[3].line * 100)}%</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcFee}>{props.wbtcFee}%</h3>
-                <p className="title subtitle is-size-4">WBTC Stability Fee</p>
-                <p className="subtitle is-size-6">Last Drip: {props.jugWbtcDrip}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'WBTC'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugWbtcDrip}</p>
               </div>
             </div>
           </div>
@@ -227,14 +253,14 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
-                <p className="subtitle is-size-4">Dai (ERC20) Supply ({formatAmount.format(props.daiSupply / props.debt * 100)}%)</p>
+                <p className="subtitle is-size-4">{t('daistats.token_supply', {token:'Dai (ERC20)'})} ({formatAmount.format(props.daiSupply / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title">{formatPercent.format(sysCollat)}</h3>
-                <p className="title subtitle is-size-4">Collat. Ratio</p>
-                <p className="subtitle is-size-6">Total Locked: ${formatAmount.format(props.sysLocked)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.collat_ratio')}</p>
+                <p className="subtitle is-size-6">{t('daistats.total_locked')}: ${formatAmount.format(props.sysLocked)}</p>
               </div>
             </div>
           </div>
@@ -242,34 +268,34 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.daiPrice}>${formatCurrency.format(props.daiPrice)}</h3>
-                <p className="title subtitle is-size-4">Dai Price</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'Dai'})}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethPrice}>${formatAmount.format(props.ethPrice)}</h3>
-                <p className="title subtitle is-size-4">ETH Price</p>
-                <p className="subtitle is-size-6">Next OSM Price: ${formatAmount.format(props.ethPriceNxt)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'ETH'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatAmount.format(props.ethPriceNxt)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batPrice}>${formatCurrency.format(props.batPrice)}</h3>
-                <p className="title subtitle is-size-4">BAT Price</p>
-                <p className="subtitle is-size-6">Next OSM Price: ${formatCurrency.format(props.batPriceNxt)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'BAT'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatCurrency.format(props.batPriceNxt)}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcPrice}>${formatCurrency.format(props.usdcPrice)}</h3>
-                <p className="title subtitle is-size-4">USDC Price</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'USDC'})}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcPrice}>${formatCurrency.format(props.wbtcPrice)}</h3>
-                <p className="title subtitle is-size-4">WBTC Price</p>
-                <p className="subtitle is-size-6">Next OSM Price: ${formatCurrency.format(props.wbtcPriceNxt)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'WBTC'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatCurrency.format(props.wbtcPriceNxt)}</p>
               </div>
             </div>
             {/* <div className="column">
@@ -284,17 +310,17 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.savingsDai)}</h3>
-                <p className="title subtitle is-size-4">Dai in DSR
+                <p className="title subtitle is-size-4">{t('daistats.dai_in_dsr')}
                   ({formatAmount.format(props.savingsDai / props.debt * 100)}%)</p>
-                <p className="subtitle is-size-6">(Pie in DSR: {formatAmount.format(props.savingsPie)})</p>
+                <p className="subtitle is-size-6">({t('daistats.pie_in_dsr')}: {formatAmount.format(props.savingsPie)})</p>
               </div>
             </div>
 
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
-                <p className="title subtitle is-size-4">Dai Savings Rate</p>
-                <p className="subtitle is-size-6">Last Drip: {props.potDrip}</p>
+                <p className="title subtitle is-size-4">{t('daistats.dai_savings_rate')}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.potDrip}</p>
               </div>
             </div>
           </div>
@@ -302,23 +328,23 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" >{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
-                <p className="title subtitle is-size-4">Debt available to heal (Dai)</p>
-                <p className="subtitle is-size-6">Debt Buffer: {formatAmount.format(props.debtSize)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.debt_available_heal')}</p>
+                <p className="subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
                 {(props.networkId === 1) && false && <HealButton sysDebtRaw={props.vow_dai < props.sysDebt ? props.vowDaiRaw : props.sysDebtRaw}/>}
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
-                <p className="title subtitle is-size-4">System Surplus (Dai)</p>
-                <p className="subtitle is-size-6">Surplus Buffer: {formatAmount.format(props.surplusBuffer)} / Lot: {formatAmount.format(props.surplusBump)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
+                <p className="subtitle is-size-6">{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
                 {(props.networkId === 1) && false && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer}/>}
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.cdps}>{props.cdps}</h3>
-                <p className="subtitle is-size-4">Vaults Opened</p>
+                <p className="subtitle is-size-4">{t('daistats.vaults_opened')}</p>
               </div>
             </div>
           </div>
@@ -326,36 +352,38 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-                <p className="subtitle is-size-4">ETH (Flip) Auctions</p>
+                <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', {token:'ETH'})}</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-                <p className="subtitle is-size-4">BAT (Flip) Auctions</p>
+                <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', {token:'BAT'})}</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcKicks}>{formatAmount.format(props.wbtcKicks)}</h3>
-                <p className="subtitle is-size-4">WBTC (Flip) Auctions</p>
+                <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', {token:'WBTC'})}</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
-                <p className="title subtitle is-size-4">Dai Surplus (Flap) Auctions</p>
-                <p className="subtitle is-size-6">Till next Flap Possible: {nextFlap()}</p>
+                <p className="title subtitle is-size-4">{t('daistats.dai_surplus_auctions')}</p>
+                <p className="subtitle is-size-6">{t('daistats.till_next_flap')}: {nextFlap()}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.flopKicks}>{formatAmount.format(props.flopKicks)}</h3>
-                <p className="title subtitle is-size-4">Debt (Flop) Auctions</p>
-                <p className="subtitle is-size-6">Initial Lot Size: {formatAmount.format(props.debtDump)} MKR Initial&#160;Price:&#160;${formatAmount.format(props.debtSize / props.debtDump)}</p>
+                <p className="title subtitle is-size-4">{t('daistats.debt_flop_auctions')}</p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.initial_lot_size')}: {formatAmount.format(props.debtDump)} MKR {t('daistats.initial_price')}: ${formatAmount.format(props.debtSize / props.debtDump)}
+                </p>
               </div>
             </div>
           </div>
@@ -363,13 +391,13 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
-                <p className="subtitle is-size-4">MKR Supply</p>
+                <p className="subtitle is-size-4">{t('daistats.token_supply', {token:'MKR'})}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.mkrAnnualBurn}>{formatAmount.format(props.mkrAnnualBurn)}</h3>
-                <p className="title subtitle is-size-4">Annual MKR Burn Rate</p>
+                <p className="title subtitle is-size-4">{t('daistats.annual_mkr_burn_rate')}</p>
                 <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)} USD</p>
               </div>
             </div>
@@ -378,20 +406,20 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
-                <p className="title subtitle is-size-4">Total Chai <span role="img" aria-label="chai">🍵</span></p>
-                <p className="subtitle is-size-6">(Dai brewing: {formatAmount.format(props.daiBrewing)})</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_supply', {token:'Chai'})} <span role="img" aria-label="chai">🍵</span></p>
+                <p className="subtitle is-size-6">({t('daistats.dai_brewing')}: {formatAmount.format(props.daiBrewing)})</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.oasisDEXDai}>{formatAmount.format(props.oasisDexDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Oasis Dex</p>
+                <p className="subtitle is-size-4">{t('daistats.token_in_dex', {token:'Dai',dex:'Oasis Dex'})}</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-                <p className="subtitle is-size-4">Dai in Uniswap</p>
+                <p className="subtitle is-size-4">{t('daistats.token_in_dex', {token:'Dai',dex:'Uniswap'})}</p>
               </div>
             </div>
           </div>
