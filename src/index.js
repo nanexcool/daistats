@@ -10,11 +10,20 @@ class Root extends Component {
     locale: 'en',
     messages: require(`./locale/en.json`)
   }
+  constructor() {
+    super()
+    const locale = localStorage.getItem('ds-locale')
+    if (locale) {
+      this.state.locale = locale
+      this.state.messages = require(`./locale/${locale}.json`)
+    }
+  }
   toggle = (locale) => {
     this.setState({
       locale,
       messages: require(`./locale/${locale}.json`)
     })
+    localStorage.setItem('ds-locale', locale)
   }
   render() {
     return (
