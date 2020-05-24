@@ -413,7 +413,10 @@ class App extends Component {
             <br />
             Pour one out for Sai! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
-            <button onClick={() => this.props.toggle('en')}>English</button> | <button onClick={() => this.props.toggle('es')}>Español</button>
+            <div className="buttons is-centered">
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
+            </div>
           </div>
           <Switch>
             <Route path="/dai">
