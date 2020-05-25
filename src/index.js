@@ -8,20 +8,20 @@ import * as serviceWorker from './serviceWorker';
 class Root extends Component {
   state = {
     locale: 'en',
-    messages: require(`./locale/en.json`)
+    messages: require('defi18n/en/daistats.json')
   }
   constructor() {
     super()
     const locale = localStorage.getItem('ds-locale')
     if (locale) {
       this.state.locale = locale
-      this.state.messages = require(`./locale/${locale}.json`)
+      this.state.messages = require(`defi18n/${locale}/daistats.json`)
     }
   }
   toggle = (locale) => {
     this.setState({
       locale,
-      messages: require(`./locale/${locale}.json`)
+      messages: require(`defi18n/${locale}/daistats.json`)
     })
     localStorage.setItem('ds-locale', locale)
   }
