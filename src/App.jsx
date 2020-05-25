@@ -416,7 +416,7 @@ class App extends Component {
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
-              <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Française</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Français</button>
             </div>
           </div>
           <Switch>
