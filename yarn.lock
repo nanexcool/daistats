@@ -4001,10 +4001,10 @@ default-gateway@^4.2.0:
     execa "^1.0.0"
     ip-regex "^2.1.0"
 
-defi18n@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/defi18n/-/defi18n-0.0.2.tgz#66b53c2adbd0c8766498a3a44ec05967950ce783"
-  integrity sha512-yY4ECKrxvStlaDuAiHK22PnQqtMoSY4v3gRUt3EVjvnflkigtwO5Bp5kerNse7Wnyb1yY1wc1L/BY19uvsgWNg==
+defi18n@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/defi18n/-/defi18n-0.0.3.tgz#47d68953273bf91592803eef420db5f48b222453"
+  integrity sha512-cnIPnVtl17H3RAtL07iheluaEPqZo/B+OPa2eYXEJGqs5QaS/VPFeNqxwwZBxkYVv/mtE/WlOPXpHaMg135U+g==
 
 define-properties@^1.1.2, define-properties@^1.1.3:
   version "1.1.3"
