@@ -419,6 +419,7 @@ class App extends Component {
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Français</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('it')}>Italiano</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('id')}>Bahasa Indonesia</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('zh-TW')}>繁體中文</button>
               {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
             </div>
           </div>
