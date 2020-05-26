@@ -421,6 +421,7 @@ class App extends Component {
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('id')}>Bahasa Indonesia</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('zh-TW')}>繁體中文</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('ru')}>Русский</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('de')}>Deutsch</button>
               {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
             </div>
           </div>
