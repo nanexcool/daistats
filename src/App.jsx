@@ -418,11 +418,12 @@ class App extends Component {
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('fr')}>Français</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('it')}>Italiano</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('de')}>Deutsch</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('id')}>Bahasa Indonesia</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('zh-TW')}>繁體中文</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('ru')}>Русский</button>
-              <button className="button is-small is-rounded" onClick={() => this.props.toggle('de')}>Deutsch</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('ga')}>Gaeilge</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('tr')}>Türkçe</button>
               {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
             </div>
           </div>
