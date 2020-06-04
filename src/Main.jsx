@@ -96,21 +96,43 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[3].Art}>{formatAmount.format(props.ilks[3].Art)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'WBTC'})}
+                </p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title"
                     title={props.ilks[2].Art * props.ilks[2].rate}>{formatAmount.format(props.ilks[2].Art * props.ilks[2].rate)}</h3>
                 <p className="title subtitle is-size-4">
-                  {t('daistats.dai_from_token', {token:'USDC'})}
+                  {t('daistats.dai_from_token', {token:'USDC-A'})}
                 </p>
                 <p className="subtitle is-size-6">({formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.debt * 100)}%)</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[3].Art}>{formatAmount.format(props.ilks[3].Art)}</h3>
+                <h3 className="title"
+                    title={props.ilks[4].Art * props.ilks[4].rate}>{formatAmount.format(props.ilks[4].Art * props.ilks[4].rate)}</h3>
                 <p className="title subtitle is-size-4">
-                  {t('daistats.dai_from_token', {token:'WBTC'})}
+                  {t('daistats.dai_from_token', {token:'USDC-B'})}
                 </p>
-                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[3].Art * props.ilks[3].rate / props.debt * 100)}%)</p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[4].Art * props.ilks[4].rate / props.debt * 100)}%)</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title"
+                    title={props.ilks[5].Art * props.ilks[5].rate}>{formatAmount.format(props.ilks[5].Art * props.ilks[5].rate)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.dai_from_token', {token:'TUSD'})}
+                </p>
+                <p className="subtitle is-size-6">({formatAmount.format(props.ilks[5].Art * props.ilks[5].rate / props.debt * 100)}%)</p>
               </div>
             </div>
           </div>
@@ -177,7 +199,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcLocked}>{formatNoDecimals.format(props.usdcLocked)}</h3>
                 <p className="title subtitle is-size-4">
-                  {t('daistats.token_locked', {token:'USDC'})}
+                  {t('daistats.token_locked', {token:'USDC-A'})}
                 </p>
                 <p className="subtitle is-size-6">
                   {t('daistats.token_supply_locked', {token:'USDC'})}: {formatPercent.format(props.usdcLocked / props.usdcSupply)}</p>
@@ -187,7 +209,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ilks[2].line}>{formatAmount.format(props.ilks[2].line)}</h3>
                 <p className="title subtitle is-size-4">
-                  {t('daistats.token_ceiling', {token:'USDC'})}
+                  {t('daistats.token_ceiling', {token:'USDC-A'})}
                 </p>
                 <p
                   className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[2].Art * props.ilks[2].rate / props.ilks[2].line * 100)}%</p>
@@ -196,7 +218,7 @@ const Main = (props) => {
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcFee}>{props.usdcFee}%</h3>
-                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'USDC'})}</p>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'USDC-A'})}</p>
                 <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugUsdcDrip}</p>
               </div>
             </div>
@@ -284,7 +306,7 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.tusdFee}>{props.tusdFee}%</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'TUSD'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugTusdDrip}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugtusdDrip}</p>
               </div>
             </div>
           </div>

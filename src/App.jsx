@@ -182,13 +182,13 @@ class App extends Component {
       [add.WBTC, wbtc.interface.encodeFunctionData('totalSupply', [])],
       [add.WBTC, wbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_WBTC_A])],
       [add.MCD_FLIP_WBTC_A, wbtcFlip.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
-      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_B])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 55
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 56
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 57
+      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_B])], // 58
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 59
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 60
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 61
       [add.PIP_TUSD, tusdPip.interface.encodeFunctionData('read', [])],
       [add.TUSD, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.TUSD, tusd.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_TUSD_A])],
@@ -264,11 +264,11 @@ class App extends Component {
     const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[53])
     const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[54])[0]
     const usdcBIlk = vat.interface.decodeFunctionResult('ilks', res[55])
-    const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[56]))
+    const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[57]))
     const jugUsdcBDrip = jug.interface.decodeFunctionResult('ilks', res[57])
     const usdcBLocked = usdc.interface.decodeFunctionResult('balanceOf', res[58])
     const tusdIlk = vat.interface.decodeFunctionResult('ilks', res[59])
-    const tusdFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[60]))
+    const tusdFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[61]))
     const jugtusdDrip = jug.interface.decodeFunctionResult('ilks', res[61])
     const tusdPrice = tusdPip.interface.decodeFunctionResult('read', res[62])[0]
     const tusdSupply = tusd.interface.decodeFunctionResult('totalSupply', res[63])
@@ -342,11 +342,13 @@ class App extends Component {
         usdcFee: usdcFee.toFixed(2),
         usdcBFee: usdcBFee.toFixed(2),
         wbtcFee: wbtcFee.toFixed(2),
+        tusdFee: tusdFee.toFixed(2),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
         jugUsdcBDrip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
         jugWbtcDrip: this.unixToDateTime(jugWbtcDrip.rho.toNumber()),
+        jugtusdDrip: this.unixToDateTime(jugtusdDrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -465,7 +467,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Pour one out for Sai! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            TUSD and USBC-B are here! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
@@ -480,6 +482,7 @@ class App extends Component {
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('tr')}>Türkçe</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('pl')}>Polski</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('ro')}>Română</button>
+              <button className="button is-small is-rounded" onClick={() => this.props.toggle('fa')}>فارسی</button>
               {/* <button className="button is-small is-rounded" onClick={() => this.props.toggle('dw')}>Daiwanese 🤪</button> */}
             </div>
           </div>
