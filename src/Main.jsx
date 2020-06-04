@@ -204,6 +204,35 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
+                <h3 className="title" title={props.usdcBLocked}>{formatNoDecimals.format(props.usdcBLocked)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'USDC-B'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'USDC'})}: {formatPercent.format(props.usdcBLocked / props.usdcSupply)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[4].line}>{formatAmount.format(props.ilks[4].line)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'USDC-B'})}
+                </p>
+                <p
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[4].Art * props.ilks[4].rate / props.ilks[4].line * 100)}%</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.usdcBFee}>{props.usdcBFee}%</h3>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'USDC-B'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugUsdcBDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcLocked}>{formatForWBTC.format(props.wbtcLocked)}</h3>
                 <p className="title subtitle is-size-4">
                   {t('daistats.token_locked', {token:'WBTC'})}
@@ -227,6 +256,35 @@ const Main = (props) => {
                 <h3 className="title" title={props.wbtcFee}>{props.wbtcFee}%</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'WBTC'})}</p>
                 <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugWbtcDrip}</p>
+              </div>
+            </div>
+          </div>
+          <div className="columns">
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.tusdLocked}>{formatAmount.format(props.tusdLocked)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_locked', {token:'TUSD'})}
+                </p>
+                <p className="subtitle is-size-6">
+                  {t('daistats.token_supply_locked', {token:'TUSD'})}: {formatPercent.format(props.tusdLocked / props.tusdSupply)}</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.ilks[5].line}>{formatAmount.format(props.ilks[5].line)}</h3>
+                <p className="title subtitle is-size-4">
+                  {t('daistats.token_ceiling', {token:'TUSD'})}
+                </p>
+                <p
+                  className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[5].Art * props.ilks[5].rate / props.ilks[5].line * 100)}%</p>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <h3 className="title" title={props.tusdFee}>{props.tusdFee}%</h3>
+                <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'TUSD'})}</p>
+                <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugTusdDrip}</p>
               </div>
             </div>
           </div>
@@ -270,6 +328,8 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.usdcPrice}>${formatCurrency.format(props.usdcPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'USDC'})}</p>
+                <h3 className="title" title={props.tusdPrice}>${formatCurrency.format(props.tusdPrice)}</h3>
+                <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'TUSD'})}</p>
               </div>
             </div>
             <div className="column">
@@ -426,6 +486,22 @@ const Main = (props) => {
                 <a href={`https://etherscan.io/token/${props.USDC}`} target="_blank" rel="noopener noreferrer">
                   <h3 className="title"><i className="fal fa-file-code"></i> USDC</h3>
                   <p className="subtitle is-size-7">{props.USDC}</p>
+                </a>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <a href={`https://etherscan.io/token/${props.WBTC}`} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title"><i className="fal fa-file-code"></i> WBTC</h3>
+                  <p className="subtitle is-size-7">{props.WBTC}</p>
+                </a>
+              </div>
+            </div>
+            <div className="column">
+              <div className="box has-text-centered">
+                <a href={`https://etherscan.io/token/${props.TUSD}`} target="_blank" rel="noopener noreferrer">
+                  <h3 className="title"><i className="fal fa-file-code"></i> TUSD</h3>
+                  <p className="subtitle is-size-7">{props.TUSD}</p>
                 </a>
               </div>
             </div>
