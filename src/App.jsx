@@ -24,10 +24,6 @@ add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
-add["PIP_TUSD"] = "0xeE13831ca96d191B688A670D47173694ba98f1e5"
-add["MCD_JOIN_USDC_B"] = "0x2600004fd1585f7270756DDc88aD9cfA10dD0428"
-add["MCD_JOIN_TUSD_A"] = "0x4454aF7C8bb9463203b66C816220D41ED7837f44"
-add["TUSD"] = "0x0000000000085d4780B73119b644AE5ecd22b376"
 
 let provider;
 let networkId;
@@ -57,11 +53,9 @@ const cat = build(add.MCD_CAT, "Cat")
 const spot = build(add.MCD_SPOT, "Spotter")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
-const sai = build(add.SAI, "ERC20")
 const usdc = build(add.USDC, "ERC20")
 const tusd = build(add.TUSD, "ERC20")
 const wbtc = build(add.WBTC, "ERC20")
-const sai_tub = build(add.SAI_TUB, "SaiTub")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -75,7 +69,6 @@ const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
-const saiIlkBytes = utils.formatBytes32String("SAI")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
 const tusdIlkBytes = utils.formatBytes32String("TUSD-A")
@@ -131,13 +124,10 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethIlkBytes])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [batIlkBytes])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [saiIlkBytes])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.UNISWAP_DAI])],
-      [add.SAI, sai.interface.encodeFunctionData('totalSupply', [])],
-      [add.SAI, sai.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_SAI])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_A])],
       [add.BAT, bat.interface.encodeFunctionData('totalSupply', [])],
@@ -149,7 +139,6 @@ class App extends Component {
       [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [batIlkBytes])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [saiIlkBytes])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])],
@@ -164,8 +153,6 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
-      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('tax'), []],
-      [add.SAI_TUB, sai_tub.interface.encodeFunctionData('fee'), []],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
@@ -206,73 +193,71 @@ class App extends Component {
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
-    const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[7])
-    const saiSupply = sai.interface.decodeFunctionResult('totalSupply', res[9])
-    const ethLocked = weth.interface.decodeFunctionResult('balanceOf', res[12])
-    const batSupply = bat.interface.decodeFunctionResult('totalSupply', res[13])
-    const saiLocked = sai.interface.decodeFunctionResult('balanceOf', res[10])
-    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[14])
-    const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[11])
-    const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[8])
-    const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[47])
-    const base = jug.interface.decodeFunctionResult('base', res[19])
-    const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[20]))
-    const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[21]))
-    const jugEthDrip = jug.interface.decodeFunctionResult('ilks', res[20])
-    const jugBatDrip = jug.interface.decodeFunctionResult('ilks', res[21])
-    const jugUsdcDrip = jug.interface.decodeFunctionResult('ilks', res[40])
-    const vow_dai = vat.interface.decodeFunctionResult('dai', res[23])
-    const vow_sin = vat.interface.decodeFunctionResult('dai', res[24])
-    const ash = vow.interface.decodeFunctionResult('Ash', res[25])
-    const sin = vow.interface.decodeFunctionResult('Sin', res[26])
-    const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[5])
-    const surplusBump = vow.interface.decodeFunctionResult('bump', res[35])
-    const debtSize = vow.interface.decodeFunctionResult('sump', res[6])
-    const debtDump = vow.interface.decodeFunctionResult('dump', res[45])
-    const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[27])[0])
-    const savingsPie = pot.interface.decodeFunctionResult('Pie', res[15])[0]
-    const pieChi = pot.interface.decodeFunctionResult('chi', res[16])[0]
+    const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[6])
+    const ethLocked = weth.interface.decodeFunctionResult('balanceOf', res[9])
+    const batSupply = bat.interface.decodeFunctionResult('totalSupply', res[10])
+    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[11])
+    const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[8])
+    const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[7])
+    const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[44])
+    const base = jug.interface.decodeFunctionResult('base', res[16])
+    const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[17]))
+    const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[18]))
+    const jugEthDrip = jug.interface.decodeFunctionResult('ilks', res[17])
+    const jugBatDrip = jug.interface.decodeFunctionResult('ilks', res[18])
+    const jugUsdcDrip = jug.interface.decodeFunctionResult('ilks', res[34])
+    const vow_dai = vat.interface.decodeFunctionResult('dai', res[19])
+    const vow_sin = vat.interface.decodeFunctionResult('dai', res[20])
+    const ash = vow.interface.decodeFunctionResult('Ash', res[21])
+    const sin = vow.interface.decodeFunctionResult('Sin', res[22])
+    const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[4])
+    const surplusBump = vow.interface.decodeFunctionResult('bump', res[31])
+    const debtSize = vow.interface.decodeFunctionResult('sump', res[5])
+    const debtDump = vow.interface.decodeFunctionResult('dump', res[39])
+    const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[23])[0])
+    const savingsPie = pot.interface.decodeFunctionResult('Pie', res[12])[0]
+    const pieChi = pot.interface.decodeFunctionResult('chi', res[13])[0]
     const savingsDai = savingsPie.mul(pieChi);
-    const potDrip = pot.interface.decodeFunctionResult('rho', res[17])[0]
-    const ethKicks = ethFlip.interface.decodeFunctionResult('kicks', res[28])[0]
-    const batKicks = batFlip.interface.decodeFunctionResult('kicks', res[29])[0]
-    const cdps = manager.interface.decodeFunctionResult('cdpi', res[18])
-    const ethMat = spot.interface.decodeFunctionResult('ilks', res[30])
-    const batMat = spot.interface.decodeFunctionResult('ilks', res[31])
+    const potDrip = pot.interface.decodeFunctionResult('rho', res[14])[0]
+    const ethKicks = ethFlip.interface.decodeFunctionResult('kicks', res[24])[0]
+    const batKicks = batFlip.interface.decodeFunctionResult('kicks', res[25])[0]
+    const cdps = manager.interface.decodeFunctionResult('cdpi', res[15])
+    const ethMat = spot.interface.decodeFunctionResult('ilks', res[26])
+    const batMat = spot.interface.decodeFunctionResult('ilks', res[27])
     const ethPrice = ethMat.mat.mul(ethIlk.spot).div(RAY)
     const batPrice = batMat.mat.mul(batIlk.spot).div(RAY)
-    const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[32])[0]
+    const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[28])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
-    const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[33])
+    const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[29])
     const mkrPrice = marketPrices.maker.usd
     const daiPrice = marketPrices.dai.usd
-    const vice = vat.interface.decodeFunctionResult('vice', res[34])
-    const flapKicks = flap.interface.decodeFunctionResult('kicks', res[36])[0]
-    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[44])[0]
-    const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[39])
-    const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[40]))
-    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[42])
-    const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[43])
-    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[46])[0]
-    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[48])
-    const wbtcIlk = vat.interface.decodeFunctionResult('ilks', res[49])
-    const wbtcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[50]))
-    const jugWbtcDrip = jug.interface.decodeFunctionResult('ilks', res[50])
-    const wbtcMat = spot.interface.decodeFunctionResult('ilks', res[51])
+    const vice = vat.interface.decodeFunctionResult('vice', res[30])
+    const flapKicks = flap.interface.decodeFunctionResult('kicks', res[32])[0]
+    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[38])[0]
+    const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[33])
+    const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[34]))
+    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[36])
+    const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[37])
+    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[40])[0]
+    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[42])
+    const wbtcIlk = vat.interface.decodeFunctionResult('ilks', res[43])
+    const wbtcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[44]))
+    const jugWbtcDrip = jug.interface.decodeFunctionResult('ilks', res[44])
+    const wbtcMat = spot.interface.decodeFunctionResult('ilks', res[45])
     const wbtcPrice = wbtcMat.mat.mul(wbtcIlk.spot).div(RAY)
-    const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[52])
-    const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[53])
-    const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[54])[0]
-    const usdcBIlk = vat.interface.decodeFunctionResult('ilks', res[55])
-    const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[57]))
-    const jugUsdcBDrip = jug.interface.decodeFunctionResult('ilks', res[57])
-    const usdcBLocked = usdc.interface.decodeFunctionResult('balanceOf', res[58])
-    const tusdIlk = vat.interface.decodeFunctionResult('ilks', res[59])
-    const tusdFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[61]))
-    const jugtusdDrip = jug.interface.decodeFunctionResult('ilks', res[61])
-    const tusdPrice = tusdPip.interface.decodeFunctionResult('read', res[62])[0]
-    const tusdSupply = tusd.interface.decodeFunctionResult('totalSupply', res[63])
-    const tusdLocked = tusd.interface.decodeFunctionResult('balanceOf', res[64])
+    const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[46])
+    const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[47])
+    const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[48])[0]
+    const usdcBIlk = vat.interface.decodeFunctionResult('ilks', res[49])
+    const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[51]))
+    const jugUsdcBDrip = jug.interface.decodeFunctionResult('ilks', res[51])
+    const usdcBLocked = usdc.interface.decodeFunctionResult('balanceOf', res[52])
+    const tusdIlk = vat.interface.decodeFunctionResult('ilks', res[53])
+    const tusdFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[55]))
+    const jugtusdDrip = jug.interface.decodeFunctionResult('ilks', res[55])
+    const tusdPrice = tusdPip.interface.decodeFunctionResult('read', res[56])[0]
+    const tusdSupply = tusd.interface.decodeFunctionResult('totalSupply', res[57])
+    const tusdLocked = tusd.interface.decodeFunctionResult('balanceOf', res[58])
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0]))
     this.setState(state => {
       return {
@@ -325,7 +310,6 @@ class App extends Component {
           },
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
-        saiSupply: utils.formatEther(saiSupply[0]),
         ethSupply: utils.formatEther(ethSupply),
         ethLocked: utils.formatEther(ethLocked[0]),
         batSupply: utils.formatEther(batSupply[0]),
@@ -333,7 +317,6 @@ class App extends Component {
         usdcSupply: utils.formatUnits(usdcSupply[0], 6),
         usdcLocked: utils.formatUnits(usdcLocked[0], 6),
         usdcBLocked: utils.formatUnits(usdcBLocked[0], 6),
-        saiLocked: utils.formatEther(saiLocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
