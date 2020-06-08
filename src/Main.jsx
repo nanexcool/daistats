@@ -28,6 +28,12 @@ const formatCurrency = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 4
 })
 
+const formatTwoDp = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 2
+})
+
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
@@ -36,7 +42,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 
 const Main = (props) => {
   const t = useTranslate()
-  document.title = `${formatAmount.format(props.debt)} - Dai Stats`
+  document.title = `${formatNoDecimals.format(props.debt)} - Dai Stats`
   const sysCollat = props.sysLocked / props.debt
 
   const nextFlap = () =>
@@ -334,9 +340,9 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ethPrice}>${formatAmount.format(props.ethPrice)}</h3>
+                <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.ethPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'ETH'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatAmount.format(props.ethPriceNxt)}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatTwoDp.format(props.ethPriceNxt)}</p>
               </div>
             </div>
             <div className="column">
@@ -356,9 +362,9 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.wbtcPrice}>${formatCurrency.format(props.wbtcPrice)}</h3>
+                <h3 className="title" title={props.wbtcPrice}>${formatTwoDp.format(props.wbtcPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'WBTC'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatCurrency.format(props.wbtcPriceNxt)}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatTwoDp.format(props.wbtcPriceNxt)}</p>
               </div>
             </div>
             {/* <div className="column">
