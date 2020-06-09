@@ -102,7 +102,8 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.ilks[3].Art}>{formatAmount.format(props.ilks[3].Art)}</h3>
+              <h3 className="title"
+                    title={props.ilks[3].Art * props.ilks[3].rate}>{formatAmount.format(props.ilks[3].Art * props.ilks[3].rate)}</h3>
                 <p className="title subtitle is-size-4">
                   {t('daistats.dai_from_token', {token:'WBTC'})}
                 </p>
