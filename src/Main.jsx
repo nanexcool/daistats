@@ -40,6 +40,16 @@ const formatPercent = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
+function nextPrice(price, priceNxt) {
+  // hack to ignore small difference when comparing ray with wad
+  if (Number(price).toFixed(4) === Number(priceNxt).toFixed(4)) {
+    return '';
+  } else if (price > priceNxt) {
+    return 'has-text-danger';
+  }
+  return 'has-text-success';
+}
+
 const Main = (props) => {
   const t = useTranslate()
   document.title = `${formatNoDecimals.format(props.debt)} - Dai Stats`
@@ -343,14 +353,18 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.ethPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'ETH'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatTwoDp.format(props.ethPriceNxt)}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                    className={nextPrice(props.ethPrice, props.ethPriceNxt)} title={props.ethPriceNxt}>${formatTwoDp.format(props.ethPriceNxt)}</span>
+                </p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
                 <h3 className="title" title={props.batPrice}>${formatCurrency.format(props.batPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'BAT'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatCurrency.format(props.batPriceNxt)}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                    className={nextPrice(props.batPrice, props.batPriceNxt)} title={props.batPriceNxt}>${formatCurrency.format(props.batPriceNxt)}</span>
+                </p>
               </div>
             </div>
             <div className="column">
@@ -365,7 +379,9 @@ const Main = (props) => {
               <div className="box has-text-centered">
                 <h3 className="title" title={props.wbtcPrice}>${formatTwoDp.format(props.wbtcPrice)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_price', {token:'WBTC'})}</p>
-                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: ${formatTwoDp.format(props.wbtcPriceNxt)}</p>
+                <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                    className={nextPrice(props.wbtcPrice, props.wbtcPriceNxt)} title={props.wbtcPriceNxt}>${formatTwoDp.format(props.wbtcPriceNxt)}</span>
+                </p>
               </div>
             </div>
             {/* <div className="column">

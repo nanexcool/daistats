@@ -155,13 +155,13 @@ class App extends Component {
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])], //unused
       [add.USDC, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_A])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
       [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
-      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])],
+      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.UNISWAP_MKR])], //unused
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
@@ -169,13 +169,13 @@ class App extends Component {
       [add.WBTC, wbtc.interface.encodeFunctionData('totalSupply', [])],
       [add.WBTC, wbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_WBTC_A])],
       [add.MCD_FLIP_WBTC_A, wbtcFlip.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 55
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 56
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // 57
-      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_B])], // 58
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 59
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 60
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 61
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // unused
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
+      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_B])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // unused
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
       [add.PIP_TUSD, tusdPip.interface.encodeFunctionData('read', [])],
       [add.TUSD, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.TUSD, tusd.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_TUSD_A])],
