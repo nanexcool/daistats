@@ -372,7 +372,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.kncFee}>{props.kncAFee}%</h3>
+                <h3 className="title" title={props.kncAFee}>{props.kncAFee}%</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', {token:'KNC'})}</p>
                 <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugKncADrip}</p>
               </div>
@@ -416,7 +416,7 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title">{formatPercent.format(sysCollat)}</h3>
+                <h3 className="title" title={sysCollat}>{formatPercent.format(sysCollat)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.collat_ratio')}</p>
                 <p className="subtitle is-size-6">{t('daistats.total_locked')}: ${formatAmount.format(props.sysLocked)}</p>
               </div>
@@ -517,7 +517,7 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" >{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
+                <h3 className="title" title={Math.min(props.vow_dai, props.sysDebt)}>{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.debt_available_heal')}</p>
                 <p className="subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
                 {(props.networkId === 1) && false && <HealButton sysDebtRaw={props.vow_dai < props.sysDebt ? props.vowDaiRaw : props.sysDebtRaw}/>}
@@ -609,14 +609,14 @@ const Main = (props) => {
           <div className="columns">
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.savingsDai}>{formatAmount.format(props.chaiSupply)}</h3>
+                <h3 className="title" title={props.chaiSupply}>{formatAmount.format(props.chaiSupply)}</h3>
                 <p className="title subtitle is-size-4">{t('daistats.token_supply', {token:'Chai'})} <span role="img" aria-label="chai">🍵</span></p>
                 <p className="subtitle is-size-6">({t('daistats.dai_brewing')}: {formatAmount.format(props.daiBrewing)})</p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.oasisDEXDai}>{formatAmount.format(props.oasisDexDai)}</h3>
+                <h3 className="title" title={props.oasisDexDai}>{formatAmount.format(props.oasisDexDai)}</h3>
                 <p className="subtitle is-size-4">{t('daistats.token_in_dex', {token:'Dai',dex:'Oasis Dex'})}</p>
               </div>
             </div>
