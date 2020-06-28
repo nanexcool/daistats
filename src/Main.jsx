@@ -357,7 +357,7 @@ const Main = (props) => {
                   {t('daistats.token_locked', {token:'KNC'})}
                 </p>
                 <p className="subtitle is-size-6">
-                  {t('daistats.token_supply_locked', {token:'KNC'})}: {formatPercent.format(props.kncLocked / props.kncSupply)}</p>
+                  {t('daistats.token_supply_locked', {token:'KNC'})}: {formatPercent.format(props.kncALocked / props.kncSupply)}</p>
               </div>
             </div>
             <div className="column">
@@ -386,7 +386,7 @@ const Main = (props) => {
                   {t('daistats.token_locked', {token:'ZRX'})}
                 </p>
                 <p className="subtitle is-size-6">
-                  {t('daistats.token_supply_locked', {token:'ZRX'})}: {formatPercent.format(props.zrxALocked / props.zrxASupply)}</p>
+                  {t('daistats.token_supply_locked', {token:'ZRX'})}: {formatPercent.format(props.zrxALocked / props.zrxSupply)}</p>
               </div>
             </div>
             <div className="column">
