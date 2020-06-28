@@ -562,14 +562,14 @@ const Main = (props) => {
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.kncKicks}>{formatAmount.format(props.kncKicks)}</h3>
+                <h3 className="title" title={props.kncAKicks}>{formatAmount.format(props.kncAKicks)}</h3>
                 <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', {token:'KNC'})}</p>
                 <p className="subtitle is-size-6"></p>
               </div>
             </div>
             <div className="column">
               <div className="box has-text-centered">
-                <h3 className="title" title={props.zrxKicks}>{formatAmount.format(props.zrxKicks)}</h3>
+                <h3 className="title" title={props.zrxAKicks}>{formatAmount.format(props.zrxAKicks)}</h3>
                 <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', {token:'ZRX'})}</p>
                 <p className="subtitle is-size-6"></p>
               </div>
