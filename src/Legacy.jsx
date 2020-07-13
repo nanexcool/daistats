@@ -77,14 +77,14 @@ const Legacy = (props) => {
           </div>
         </div>
         <hr />
-        <Collateral {...props} idx="0" token="ETH-A" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} />
-        <Collateral {...props} idx="1" token="BAT-A" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} />
-        <Collateral {...props} idx="2" token="USDC-A" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} />
-        <Collateral {...props} idx="3" token="WBTC-A" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} />
-        <Collateral {...props} idx="4" token="USDC-B" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} />
-        <Collateral {...props} idx="5" token="TUSD-A" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} />
-        <Collateral {...props} idx="6" token="KNC-A" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} />
-        <Collateral {...props} idx="7" token="ZRX-A" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} />
+        <Collateral {...props} idx="0" token="ETH-A" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} jugDrip={props.jugEthDrip} />
+        <Collateral {...props} idx="1" token="BAT-A" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} jugDrip={props.jugBatDrip} />
+        <Collateral {...props} idx="2" token="USDC-A" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} jugDrip={props.jugUsdcDrip} />
+        <Collateral {...props} idx="3" token="WBTC-A" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} jugDrip={props.jugWbtcDrip} />
+        <Collateral {...props} idx="4" token="USDC-B" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} jugDrip={props.jugUsdcBDrip} />
+        <Collateral {...props} idx="5" token="TUSD-A" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} jugDrip={props.jugTusdDrip} />
+        <Collateral {...props} idx="6" token="KNC-A" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} jugDrip={props.jugKncADrip} />
+        <Collateral {...props} idx="7" token="ZRX-A" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} jugDrip={props.jugZrxADrip} />
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
