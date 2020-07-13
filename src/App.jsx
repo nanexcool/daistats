@@ -8,9 +8,11 @@ import {
 } from "react-router-dom";
 import './App.css';
 import eth from './web3';
+import Legacy from './Legacy'
 import Main from './Main'
 import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
+import confetti from './confetti'
 
 const ethers = require('ethers')
 const utils = ethers.utils
@@ -90,6 +92,7 @@ window.mkr = mkr
 window.pot = pot
 window.jug = jug
 window.multi = multi
+window.dai = dai
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
 
@@ -102,9 +105,7 @@ class App extends Component {
   POSITION_NXT = 4
 
   componentDidMount() {
-    eth.on('block', (blockNumber) => {
-      this.all(blockNumber)
-    })
+    this.all('latest')
   }
 
   componentWillUnmount() {
@@ -295,6 +296,7 @@ class App extends Component {
     const zrxALocked = zrx.interface.decodeFunctionResult('balanceOf', res[69])
     const zrxAKicks = zrxAFlip.interface.decodeFunctionResult('kicks', res[70])[0]
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0]))
+    if (parseInt(utils.formatUnits(res[1], 45)) >= 200000000) confetti.rain()
     this.setState(state => {
       return {
         networkId: networkId,
@@ -546,8 +548,11 @@ class App extends Component {
             <Route path="/dai">
               <Dai {...this.state} {...add} />
             </Route>
+            <Route path="/legacy">
+              <Legacy {...this.state} {...add} togglePause={this.togglePause} />
+            </Route>
             <Route path="/">
-              <Main {...this.state} {...add} togglePause={this.togglePause} />
+              <Legacy {...this.state} {...add} togglePause={this.togglePause} />
             </Route>
           </Switch>
         </Router>
