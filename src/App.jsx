@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import './App.css';
 import eth from './web3';
-import Legacy from './Legacy'
 import Main from './Main'
 import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
@@ -60,6 +59,7 @@ const tusd = build(add.TUSD, "ERC20")
 const wbtc = build(add.WBTC, "ERC20")
 const knc = build(add.KNC, "ERC20")
 const zrx = build(add.ZRX, "ERC20")
+const mana = build(add.MANA, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -69,6 +69,7 @@ const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
 const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
 const zrxAFlip = build(add.MCD_FLIP_ZRX_A, "Flipper");
+const manaAFlip = build(add.MCD_FLIP_MANA_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
@@ -81,6 +82,7 @@ const tusdIlkBytes = utils.formatBytes32String("TUSD-A")
 const wbtcIlkBytes = utils.formatBytes32String("WBTC-A");
 const kncAIlkBytes = utils.formatBytes32String("KNC-A");
 const zrxAIlkBytes = utils.formatBytes32String("ZRX-A");
+const manaAIlkBytes = utils.formatBytes32String("MANA-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -197,7 +199,13 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [zrxAIlkBytes])], // 67
       [add.ZRX, zrx.interface.encodeFunctionData('totalSupply', [])],
       [add.ZRX, zrx.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ZRX_A])], // 69
-      [add.MCD_FLIP_ZRX_A, zrxAFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_FLIP_ZRX_A, zrxAFlip.interface.encodeFunctionData('kicks', [])], // 70
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [manaAIlkBytes])], // 71
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [manaAIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [manaAIlkBytes])], // 73
+      [add.MANA, mana.interface.encodeFunctionData('totalSupply', [])],
+      [add.MANA, mana.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_MANA_A])], // 75
+      [add.MCD_FLIP_MANA_A, manaAFlip.interface.encodeFunctionData('kicks', [])], // 76
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -207,10 +215,11 @@ class App extends Component {
       this.getOSMPrice(add.PIP_WBTC, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_KNC, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_ZRX, this.POSITION_NXT),
+      this.getOSMPrice(add.PIP_MANA, this.POSITION_NXT),
       this.getMarketPrices()
     ]
 
-    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt, kncPriceNxt, zrxPriceNxt, marketPrices] = await Promise.all(promises)
+    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt, kncPriceNxt, zrxPriceNxt, manaPriceNxt, marketPrices] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -295,8 +304,18 @@ class App extends Component {
     const zrxSupply = zrx.interface.decodeFunctionResult('totalSupply', res[68])
     const zrxALocked = zrx.interface.decodeFunctionResult('balanceOf', res[69])
     const zrxAKicks = zrxAFlip.interface.decodeFunctionResult('kicks', res[70])[0]
+
+    const manaAIlk = vat.interface.decodeFunctionResult('ilks', res[71])
+    const manaAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[72]))
+    const jugManaADrip = jug.interface.decodeFunctionResult('ilks', res[72])
+    const manaAMat = spot.interface.decodeFunctionResult('ilks', res[73])
+    const manaPrice = manaAMat.mat.mul(manaAIlk.spot).div(RAY)
+    const manaSupply = mana.interface.decodeFunctionResult('totalSupply', res[74])
+    const manaALocked = mana.interface.decodeFunctionResult('balanceOf', res[75])
+    const manaAKicks = manaAFlip.interface.decodeFunctionResult('kicks', res[76])[0]
+
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0]))
-    if (parseInt(utils.formatUnits(res[1], 45)) >= 200000000) confetti.rain()
+    if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
       return {
         networkId: networkId,
@@ -360,6 +379,13 @@ class App extends Component {
             line: utils.formatUnits(zrxAIlk.line, 45),
             dust: utils.formatUnits(zrxAIlk.dust, 45)
           },
+          {
+            Art:  utils.formatEther(manaAIlk.Art),
+            rate: utils.formatUnits(manaAIlk.rate, 27),
+            spot: utils.formatUnits(manaAIlk.spot, 27),
+            line: utils.formatUnits(manaAIlk.line, 45),
+            dust: utils.formatUnits(manaAIlk.dust, 45)
+          },
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
         ethSupply: utils.formatEther(ethSupply),
@@ -380,6 +406,7 @@ class App extends Component {
         tusdFee: tusdFee.toFixed(2),
         kncAFee: kncAFee.toFixed(2),
         zrxAFee: zrxAFee.toFixed(2),
+        manaAFee: manaAFee.toFixed(2),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
@@ -388,6 +415,7 @@ class App extends Component {
         jugTusdDrip: this.unixToDateTime(jugTusdDrip.rho.toNumber()),
         jugKncADrip: this.unixToDateTime(jugKncADrip.rho.toNumber()),
         jugZrxADrip: this.unixToDateTime(jugZrxADrip.rho.toNumber()),
+        jugManaADrip: this.unixToDateTime(jugManaADrip.rho.toNumber()),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -405,6 +433,7 @@ class App extends Component {
         wbtcKicks: wbtcKicks.toNumber(),
         kncAKicks: kncAKicks.toNumber(),
         zrxAKicks: zrxAKicks.toNumber(),
+        manaAKicks: manaAKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
@@ -418,6 +447,8 @@ class App extends Component {
         kncPriceNxt: utils.formatEther(kncPriceNxt),
         zrxPrice: utils.formatUnits(zrxPrice, 27),
         zrxPriceNxt: utils.formatEther(zrxPriceNxt),
+        manaPrice: utils.formatUnits(manaPrice, 27),
+        manaPriceNxt: utils.formatEther(manaPriceNxt),
         mkrPrice: mkrPrice,
         daiPrice: daiPrice,
         usdcPrice: utils.formatEther(usdcPrice),
@@ -440,6 +471,8 @@ class App extends Component {
         kncALocked: utils.formatEther(kncALocked[0]),
         zrxSupply: utils.formatEther(zrxSupply[0]),
         zrxALocked: utils.formatEther(zrxALocked[0]),
+        manaSupply: utils.formatEther(manaSupply[0]),
+        manaALocked: utils.formatEther(manaALocked[0]),
       }
     })
   }
@@ -523,7 +556,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            KNC and ZRX are here! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome MANA! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
@@ -548,11 +581,8 @@ class App extends Component {
             <Route path="/dai">
               <Dai {...this.state} {...add} />
             </Route>
-            <Route path="/legacy">
-              <Legacy {...this.state} {...add} togglePause={this.togglePause} />
-            </Route>
             <Route path="/">
-              <Legacy {...this.state} {...add} togglePause={this.togglePause} />
+              <Main {...this.state} {...add} togglePause={this.togglePause} />
             </Route>
           </Switch>
         </Router>
