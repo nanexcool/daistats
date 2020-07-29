@@ -45,7 +45,7 @@ function nextPrice(price, priceNxt) {
   // hack to ignore small difference when comparing ray with wad
   if (Number(price).toFixed(4) === Number(priceNxt).toFixed(4)) {
     return '';
-  } else if (price > priceNxt) {
+  } else if (Number(price) > Number(priceNxt)) {
     return 'has-text-danger';
   }
   return 'has-text-success';
