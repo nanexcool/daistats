@@ -11,7 +11,7 @@ import eth from './web3';
 import Main from './Main'
 import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
-import confetti from './confetti'
+// import confetti from './confetti'
 
 const ethers = require('ethers')
 const utils = ethers.utils
@@ -315,7 +315,7 @@ class App extends Component {
     const manaAKicks = manaAFlip.interface.decodeFunctionResult('kicks', res[76])[0]
 
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0]))
-    if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
+    // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
       return {
         networkId: networkId,
