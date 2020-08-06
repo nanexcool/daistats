@@ -216,10 +216,9 @@ class App extends Component {
       this.getOSMPrice(add.PIP_KNC, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_ZRX, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_MANA, this.POSITION_NXT),
-      this.getMarketPrices()
     ]
 
-    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt, kncPriceNxt, zrxPriceNxt, manaPriceNxt, marketPrices] = await Promise.all(promises)
+    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt, kncPriceNxt, zrxPriceNxt, manaPriceNxt] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -259,8 +258,6 @@ class App extends Component {
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[28])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[29])
-    const mkrPrice = marketPrices.maker.usd
-    const daiPrice = marketPrices.dai.usd
     const vice = vat.interface.decodeFunctionResult('vice', res[30])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[32])[0]
     const flopKicks = flop.interface.decodeFunctionResult('kicks', res[38])[0]
@@ -449,14 +446,11 @@ class App extends Component {
         zrxPriceNxt: utils.formatEther(zrxPriceNxt),
         manaPrice: utils.formatUnits(manaPrice, 27),
         manaPriceNxt: utils.formatEther(manaPriceNxt),
-        mkrPrice: mkrPrice,
-        daiPrice: daiPrice,
         usdcPrice: utils.formatEther(usdcPrice),
         tusdPrice: utils.formatEther(tusdPrice),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
-        mkrAnnualBurn: this.getMKRAnnualBurn(ethIlk, ethFee, batIlk, batFee, wbtcIlk, wbtcFee, usdcIlk, usdcFee, usdcBIlk, usdcBFee, tusdIlk, tusdFee, kncAIlk, kncAFee, zrxAIlk, zrxAFee, savingsDai, potFee, mkrPrice),
         vice: utils.formatUnits(vice[0], 45),
         vow_dai: utils.formatUnits(vow_dai[0], 45),
         vow_sin: utils.formatUnits(vow_sin[0], 45),
@@ -502,7 +496,8 @@ class App extends Component {
   }
 
   getMarketPrices = async () => {
-    const json = await jsonFetch('https://api.coingecko.com/api/v3/simple/price?ids=maker%2Cdai&vs_currencies=usd');
+    // const json = await jsonFetch('https://api.coingecko.com/api/v3/simple/price?ids=maker%2Cdai&vs_currencies=usd');
+    const json = {}
     return json;
   }
 

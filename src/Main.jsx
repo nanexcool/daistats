@@ -104,12 +104,6 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.daiPrice}>${formatCurrency.format(props.daiPrice)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'Dai' })}</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
               <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.ethPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'ETH' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
@@ -291,13 +285,6 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_supply', { token: 'MKR' })}</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={props.mkrAnnualBurn}>{formatAmount.format(props.mkrAnnualBurn)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.annual_mkr_burn_rate')}</p>
-              <p className="subtitle is-size-6">${formatAmount.format(props.mkrAnnualBurn * props.mkrPrice)} USD</p>
             </div>
           </div>
         </div>
