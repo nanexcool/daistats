@@ -305,7 +305,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.uniswapDai}>{formatAmount.format(props.uniswapDai)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Uniswap' })}</p>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Uniswap V2 (Dai/ETH)' })}</p>
             </div>
           </div>
         </div>
