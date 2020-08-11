@@ -70,7 +70,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.debt}>
-                {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
+                {props.debt >= 420000000 && props.debt < 421000000 && <span>🌲</span>} {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
               </h3>
               <h4 className="subtitle is-size-3">{t('daistats.total_token', { token: 'Dai' })}</h4>
             </div>
@@ -89,8 +89,12 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.daiSupply}>{formatAmount.format(props.daiSupply)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_supply', { token: 'Dai (ERC20)' })} ({formatAmount.format(props.daiSupply / props.debt * 100)}%)</p>
+              <h3 className="title" title={props.daiSupply}>
+                {formatAmount.format(props.daiSupply)}
+              </h3>
+              <p className="subtitle is-size-4">{
+                t('daistats.token_supply', { token: 'Dai (ERC20)' })} ({formatAmount.format(props.daiSupply / props.debt * 100)}%)
+              </p>
             </div>
           </div>
           {/* <div className="column">
