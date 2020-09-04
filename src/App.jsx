@@ -28,14 +28,14 @@ add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 
 // 0x555344542d41 PAX-A
 add["PAX"] = "0x8e870d67f660d95d5be530380d0ec0bd388289e1"
-add["PIP_PAX"] = "" //FIXME set DSValue address
-add["MCD_FLIP_PAX_A"] = "0x667f41d0fdce1945ee0f56a79dd6c142e37fcc26"
-add["MCD_JOIN_PAX_A"] = "0x8e870d67f660d95d5be530380d0ec0bd388289e1"
+add["PIP_PAX"] = "0x043b963e1b2214ec90046167ea29c2c8bdd7c0ec"
+add["MCD_FLIP_PAX_A"] = "0x52d5d1c05cc79fc24a629cb24cb06c5be5d766e7"
+add["MCD_JOIN_PAX_A"] = "0x7e62b7e279dfc78deb656e34d6a435cc08a44666"
 
 // 0x5041585553442d41 USDT-A
 add["USDT"] = "0xdac17f958d2ee523a2206206994597c13d831ec7"
-add["PIP_USDT"] = "" //FIXME set USDT OSM address
-add["MCD_FLIP_USDT_A"] = "0x52d5d1c05cc79fc24a629cb24cb06c5be5d766e7"
+add["PIP_USDT"] = "0x7a5918670b0c390ad25f7bee908c1acc2d314a3c"
+add["MCD_FLIP_USDT_A"] = "0x667f41d0fdce1945ee0f56a79dd6c142e37fcc26"
 add["MCD_JOIN_USDT_A"] = "0x0ac6a1d74e84c2df9063bddc31699ff2a2bb22a2"
 
 let provider;
