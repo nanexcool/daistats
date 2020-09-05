@@ -30,11 +30,26 @@ jobs:
 
       - run: yarn install --frozen-lockfile
 
+      # Patch 
+      - name: Patch homepage value
+        run: |-
+          if [[ ! -z "${{ secrets.HOMEPAGE }}" ]]; then
+            cp package.json{,.bak}
+            jq -s '.[0] * .[1]' -- package.json.bak - <<- FOE > package.json
+              {
+                "homepage": "${{ secrets.HOMEPAGE }}"
+              }
+          FOE
+            cat package.json
+          fi
+
       # Build with CI=false to avoid treating lint warnings as errors.
       - run: CI=false yarn build
 
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
+          # Set ACTIONS_DEPLOY_KEY to deploy
+          # See https://github.com/peaceiris/actions-gh-pages#%EF%B8%8F-create-ssh-deploy-key on how to set this up.
           deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
           publish_dir: ./build
