@@ -26,18 +26,6 @@ add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 
-// 0x555344542d41 PAX-A
-add["PAX"] = "0x8e870d67f660d95d5be530380d0ec0bd388289e1"
-add["PIP_PAX"] = "0x043b963e1b2214ec90046167ea29c2c8bdd7c0ec"
-add["MCD_FLIP_PAX_A"] = "0x52d5d1c05cc79fc24a629cb24cb06c5be5d766e7"
-add["MCD_JOIN_PAX_A"] = "0x7e62b7e279dfc78deb656e34d6a435cc08a44666"
-
-// 0x5041585553442d41 USDT-A
-add["USDT"] = "0xdac17f958d2ee523a2206206994597c13d831ec7"
-add["PIP_USDT"] = "0x7a5918670b0c390ad25f7bee908c1acc2d314a3c"
-add["MCD_FLIP_USDT_A"] = "0x667f41d0fdce1945ee0f56a79dd6c142e37fcc26"
-add["MCD_JOIN_USDT_A"] = "0x0ac6a1d74e84c2df9063bddc31699ff2a2bb22a2"
-
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
@@ -72,7 +60,7 @@ const wbtc = build(add.WBTC, "ERC20")
 const knc = build(add.KNC, "ERC20")
 const zrx = build(add.ZRX, "ERC20")
 const mana = build(add.MANA, "ERC20")
-const pax = build(add.PAX, "ERC20")
+const pax = build(add.PAXUSD, "ERC20")
 const usdt = build(add.USDT, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -84,13 +72,13 @@ const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
 const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
 const zrxAFlip = build(add.MCD_FLIP_ZRX_A, "Flipper");
 const manaAFlip = build(add.MCD_FLIP_MANA_A, "Flipper");
-const paxAFlip = build(add.MCD_FLIP_PAX_A, "Flipper");
+const paxAFlip = build(add.MCD_FLIP_PAXUSD_A, "Flipper");
 const usdtAFlip = build(add.MCD_FLIP_USDT_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
-const paxPip = build(add.PIP_PAX, "DSValue")
+const paxPip = build(add.PIP_PAXUSD, "DSValue")
 const usdtPip = build(add.PIP_USDT, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
@@ -231,8 +219,8 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [paxAIlkBytes])], // 77
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [paxAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [paxAIlkBytes])], // 79 unused
-      [add.PAX, pax.interface.encodeFunctionData('totalSupply', [])],
-      [add.PAX, pax.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_PAX_A])], // 81
+      [add.PAXUSD, pax.interface.encodeFunctionData('totalSupply', [])],
+      [add.PAXUSD, pax.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_PAXUSD_A])], // 81
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdtAIlkBytes])], // 82
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdtAIlkBytes])],
