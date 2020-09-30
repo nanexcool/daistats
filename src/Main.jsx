@@ -88,6 +88,9 @@ const Main = (props) => {
         <Collateral {...props} idx="8" token="MANA-A" locked={props.manaALocked} supply={props.manaSupply} fee={props.manaAFee} jugDrip={props.jugManaADrip} />
         <Collateral {...props} idx="9" token="PAX-A" locked={props.paxALocked} supply={props.paxSupply} fee={props.paxAFee} jugDrip={props.jugPaxADrip} />
         <Collateral {...props} idx="10" token="USDT-A" locked={props.usdtALocked} supply={props.usdtSupply} fee={props.usdtAFee} jugDrip={props.jugUsdtADrip} />
+        <Collateral {...props} idx="11" token="COMP-A" locked={props.compALocked} supply={props.compSupply} fee={props.compAFee} jugDrip={props.jugCompADrip} />
+        <Collateral {...props} idx="12" token="LRC-A" locked={props.lrcALocked} supply={props.lrcSupply} fee={props.lrcAFee} jugDrip={props.jugLrcADrip} />
+        <Collateral {...props} idx="13" token="LINK-A" locked={props.linkALocked} supply={props.linkSupply} fee={props.linkAFee} jugDrip={props.jugLinkADrip} />
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
@@ -166,10 +169,39 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.usdcPrice}>${formatCurrency.format(props.usdtPrice)}</h3>
+              <h3 className="title" title={props.usdtPrice}>${formatCurrency.format(props.usdtPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'USDT' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.usdtPrice, props.usdtPriceNxt)} title={props.usdtPriceNxt}>${formatCurrency.format(props.usdtPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.compPrice}>${formatCurrency.format(props.compPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'COMP' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.compPrice, props.compPriceNxt)} title={props.compPriceNxt}>${formatCurrency.format(props.compPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.lrcPrice}>${formatCurrency.format(props.lrcPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'LRC' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.lrcPrice, props.lrcPriceNxt)} title={props.lrcPriceNxt}>${formatCurrency.format(props.lrcPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.linkPrice}>${formatCurrency.format(props.linkPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'LINK' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.linkPrice, props.linkPriceNxt)} title={props.linkPriceNxt}>${formatCurrency.format(props.linkPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -260,8 +292,6 @@ const Main = (props) => {
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
-        </div>
-        <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.zrxAKicks}>{formatAmount.format(props.zrxAKicks)}</h3>
@@ -269,6 +299,8 @@ const Main = (props) => {
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
+        </div>
+        <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.manaAKicks}>{formatAmount.format(props.manaAKicks)}</h3>
@@ -280,6 +312,27 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.usdtAKicks}>{formatAmount.format(props.usdtAKicks)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'USDT' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.compAKicks}>{formatAmount.format(props.compAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'COMP' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.lrcAKicks}>{formatAmount.format(props.lrcAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'LRC' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.linkAKicks}>{formatAmount.format(props.linkAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'LINK' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -408,9 +461,9 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.PAX}`} target="_blank" rel="noopener noreferrer">
+              <a href={`https://etherscan.io/token/${props.PAXUSD}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> PAX</h3>
-                <p className="subtitle is-size-7">{props.PAX}</p>
+                <p className="subtitle is-size-7">{props.PAXUSD}</p>
               </a>
             </div>
           </div>
@@ -419,6 +472,32 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.USDT}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> USDT</h3>
                 <p className="subtitle is-size-7">{props.USDT}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.COMP}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> COMP</h3>
+                <p className="subtitle is-size-7">{props.COMP}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.LRC}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> LRC</h3>
+                <p className="subtitle is-size-7">{props.LRC}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.LINK}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> LINK</h3>
+                <p className="subtitle is-size-7">{props.LINK}</p>
               </a>
             </div>
           </div>
