@@ -250,7 +250,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [lrcAIlkBytes])], // 96
       [add.LRC, lrc.interface.encodeFunctionData('totalSupply', [])],
       [add.LRC, lrc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_LRC_A])], // 98
-      [add.MCD_FLIP_COMP_A, lrcAFlip.interface.encodeFunctionData('kicks', [])], // 99
+      [add.MCD_FLIP_LRC_A, lrcAFlip.interface.encodeFunctionData('kicks', [])], // 99
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [linkAIlkBytes])], // 100
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [linkAIlkBytes])],
@@ -588,9 +588,9 @@ class App extends Component {
         zrxAKicks: zrxAKicks.toNumber(),
         manaAKicks: manaAKicks.toNumber(),
         usdtAKicks: usdtAKicks.toNumber(),
-        compAKicks: usdtAKicks.toNumber(),
-        lrcAKicks: usdtAKicks.toNumber(),
-        linkAKicks: usdtAKicks.toNumber(),
+        compAKicks: compAKicks.toNumber(),
+        lrcAKicks: lrcAKicks.toNumber(),
+        linkAKicks: linkAKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
