@@ -70,6 +70,7 @@ const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
+const ethBFlip = build(add.MCD_FLIP_ETH_B, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
 const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
@@ -87,6 +88,7 @@ const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
 const usdtPip = build(add.PIP_USDT, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
+const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
@@ -258,6 +260,11 @@ class App extends Component {
       [add.LINK, link.interface.encodeFunctionData('totalSupply', [])],
       [add.LINK, link.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_LINK_A])], // 104
       [add.MCD_FLIP_LINK_A, linkAFlip.interface.encodeFunctionData('kicks', [])], // 105
+
+      [add.MCD_FLIP_ETH_B, ethBFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])], // 108
+      [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_B])],
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -412,6 +419,11 @@ class App extends Component {
     const linkALocked = link.interface.decodeFunctionResult('balanceOf', res[104])
     const linkAKicks = linkAFlip.interface.decodeFunctionResult('kicks', res[105])[0]
 
+    const ethBKicks = ethBFlip.interface.decodeFunctionResult('kicks', res[106])[0]
+    const ethBIlk = vat.interface.decodeFunctionResult('ilks', res[107])
+    const ethBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[108]))
+    const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])
+
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
@@ -518,11 +530,19 @@ class App extends Component {
             spot: utils.formatUnits(linkAIlk.spot, 27),
             line: utils.formatUnits(linkAIlk.line, 45),
             dust: utils.formatUnits(linkAIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(ethBIlk.Art),
+            rate: utils.formatUnits(ethBIlk.rate, 27),
+            spot: utils.formatUnits(ethBIlk.spot, 27),
+            line: utils.formatUnits(ethBIlk.line, 45),
+            dust: utils.formatUnits(ethBIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
         ethSupply: utils.formatEther(ethSupply),
         ethLocked: utils.formatEther(ethLocked[0]),
+        ethBLocked: utils.formatEther(ethBLocked[0]),
         batSupply: utils.formatEther(batSupply[0]),
         batLocked: utils.formatEther(batLocked[0]),
         usdcSupply: utils.formatUnits(usdcSupply[0], 6),
@@ -542,6 +562,7 @@ class App extends Component {
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
         ethFee: ethFee.toFixed(2),
+        ethBFee: ethBFee.toFixed(2),
         batFee: batFee.toFixed(2),
         usdcFee: usdcFee.toFixed(2),
         usdcBFee: usdcBFee.toFixed(2),
@@ -582,6 +603,7 @@ class App extends Component {
         savingsDai: utils.formatUnits(savingsDai, 45),
         potDrip: this.unixToDateTime(potDrip.toNumber()),
         ethKicks: ethKicks.toNumber(),
+        ethBKicks: ethBKicks.toNumber(),
         batKicks: batKicks.toNumber(),
         wbtcKicks: wbtcKicks.toNumber(),
         kncAKicks: kncAKicks.toNumber(),
@@ -671,12 +693,14 @@ class App extends Component {
   }
 
   getMKRAnnualBurn = (
-    ethIlk, ethFee, batIlk, batFee, wbtcIlk, wbtcFee, usdcIlk, usdcFee, usdcBIlk, usdcBFee, tusdIlk, tusdFee,
+    ethIlk, ethFee, ethBIlk, ethBFee, batIlk, batFee, wbtcIlk, wbtcFee, usdcIlk, usdcFee, usdcBIlk, usdcBFee, tusdIlk, tusdFee,
     kncAIlk, kncAFee, zrxAIlk, zrxAFee, manaAFee, manaAIlk, paxAFee, paxAIlk, usdtAFee, usdtAIlk,
     compAFee, compAIlk, lrcAFee, lrcAIlk, linkAFee, linkAIlk, savingsDai, potFee, mkrPrice) => {
 
     const daiFromETH = utils.formatEther(ethIlk.Art) * utils.formatUnits(ethIlk.rate, 27)
     const stabilityETH = ethFee / 100
+    const daiFromETHB = utils.formatEther(ethBIlk.Art) * utils.formatUnits(ethBIlk.rate, 27)
+    const stabilityETHB = ethBFee / 100
     const daiFromBAT = utils.formatEther(batIlk.Art) * utils.formatUnits(batIlk.rate, 27)
     const stabilityBAT = batFee / 100
     const daiFromWBTC = utils.formatEther(wbtcIlk.Art) * utils.formatUnits(wbtcIlk.rate, 27)
@@ -708,6 +732,7 @@ class App extends Component {
 
     const mkrAnnualBurn = (
     (  (daiFromETH * stabilityETH)
+     + (daiFromETHB * stabilityETHB)
      + (daiFromBAT * stabilityBAT)
      + (daiFromWBTC * stabilityWBTC)
      + (daiFromUSDC * stabilityUSDC)
@@ -739,7 +764,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome COMP, LRC and LINK! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome ETH-B degens <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
