@@ -78,10 +78,11 @@ const Main = (props) => {
         </div>
         <hr />
         <Collateral {...props} idx="0" token="ETH-A" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} jugDrip={props.jugEthDrip} />
+        <Collateral {...props} idx="14" token="ETH-B" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} jugDrip={props.jugEthBDrip} />
         <Collateral {...props} idx="1" token="BAT-A" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} jugDrip={props.jugBatDrip} />
         <Collateral {...props} idx="2" token="USDC-A" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} jugDrip={props.jugUsdcDrip} />
-        <Collateral {...props} idx="3" token="WBTC-A" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} jugDrip={props.jugWbtcDrip} />
         <Collateral {...props} idx="4" token="USDC-B" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} jugDrip={props.jugUsdcBDrip} />
+        <Collateral {...props} idx="3" token="WBTC-A" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} jugDrip={props.jugWbtcDrip} />
         <Collateral {...props} idx="5" token="TUSD-A" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} jugDrip={props.jugTusdDrip} />
         <Collateral {...props} idx="6" token="KNC-A" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} jugDrip={props.jugKncADrip} />
         <Collateral {...props} idx="7" token="ZRX-A" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} jugDrip={props.jugZrxADrip} />
@@ -262,12 +263,19 @@ const Main = (props) => {
               <p className="subtitle is-size-4">{t('daistats.vaults_opened')}</p>
             </div>
           </div>
-        </div>
-        <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.ethBKicks}>{formatAmount.format(props.ethBKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH-B' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
