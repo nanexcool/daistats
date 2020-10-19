@@ -5,11 +5,11 @@
   "homepage": "https://daistats.com",
   "dependencies": {
     "defi18n": "^0.0.12",
-    "ethers": "^5.0.14",
+    "ethers": "^5.0.17",
     "gh-pages": "^3.1.0",
     "node-polyglot": "^2.4.0",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
+    "react": "^16.14.0",
+    "react-dom": "^16.14.0",
     "react-polyglot": "^0.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3"
