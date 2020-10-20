@@ -265,6 +265,7 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])], // 108
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_B])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -423,6 +424,7 @@ class App extends Component {
     const ethBIlk = vat.interface.decodeFunctionResult('ilks', res[107])
     const ethBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[108]))
     const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])
+    const jugEthBDrip = jug.interface.decodeFunctionResult('ilks', res[110])
 
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
@@ -577,6 +579,7 @@ class App extends Component {
         lrcAFee: lrcAFee.toFixed(2),
         linkAFee: linkAFee.toFixed(2),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
+        jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
         jugUsdcBDrip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
