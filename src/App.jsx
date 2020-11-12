@@ -273,17 +273,17 @@ class App extends Component {
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_B])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
 
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [balAIlkBytes])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [balAIlkBytes])], // 111
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [balAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [balAIlkBytes])], // 113
       [add.BAL, bal.interface.encodeFunctionData('totalSupply', [])],
-      [add.BAL, bal.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_BAL_A])], // 104
+      [add.BAL, bal.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_BAL_A])], // 115
       [add.MCD_FLIP_BAL_A, balAFlip.interface.encodeFunctionData('kicks', [])],
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [yfiAIlkBytes])], // 119
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
-      [add.YFI, yfi.interface.encodeFunctionData('totalSupply', [])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [yfiAIlkBytes])], // 119
+      [add.YFI, yfi.interface.encodeFunctionData('totalSupply', [])], // 120
       [add.YFI, yfi.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
       [add.MCD_FLIP_YFI_A, yfiAFlip.interface.encodeFunctionData('kicks', [])],
 
@@ -656,7 +656,7 @@ class App extends Component {
         jugLrcADrip: this.unixToDateTime(jugLrcADrip.rho.toNumber()),
         jugLinkADrip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
         jugBalADrip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
-        jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho.toNumber()),
+        jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
