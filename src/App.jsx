@@ -65,6 +65,8 @@ const usdt = build(add.USDT, "ERC20")
 const comp = build(add.COMP, "ERC20")
 const lrc = build(add.LRC, "ERC20")
 const link = build(add.LINK, "ERC20")
+const bal = build(add.BAL, "ERC20")
+const yfi = build(add.YFI, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -81,6 +83,8 @@ const usdtAFlip = build(add.MCD_FLIP_USDT_A, "Flipper");
 const compAFlip = build(add.MCD_FLIP_COMP_A, "Flipper");
 const lrcAFlip = build(add.MCD_FLIP_LRC_A, "Flipper");
 const linkAFlip = build(add.MCD_FLIP_LINK_A, "Flipper");
+const balAFlip = build(add.MCD_FLIP_BAL_A, "Flipper");
+const yfiAFlip = build(add.MCD_FLIP_YFI_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
@@ -102,6 +106,8 @@ const usdtAIlkBytes = utils.formatBytes32String("USDT-A");
 const compAIlkBytes = utils.formatBytes32String("COMP-A");
 const lrcAIlkBytes = utils.formatBytes32String("LRC-A");
 const linkAIlkBytes = utils.formatBytes32String("LINK-A");
+const balAIlkBytes = utils.formatBytes32String("BAL-A");
+const yfiAIlkBytes = utils.formatBytes32String("YFI-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -266,6 +272,21 @@ class App extends Component {
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])], // 108
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_B])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
+
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [balAIlkBytes])], // 111
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [balAIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [balAIlkBytes])], // 113
+      [add.BAL, bal.interface.encodeFunctionData('totalSupply', [])],
+      [add.BAL, bal.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_BAL_A])], // 115
+      [add.MCD_FLIP_BAL_A, balAFlip.interface.encodeFunctionData('kicks', [])],
+
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [yfiAIlkBytes])], // 119
+      [add.YFI, yfi.interface.encodeFunctionData('totalSupply', [])], // 120
+      [add.YFI, yfi.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
+      [add.MCD_FLIP_YFI_A, yfiAFlip.interface.encodeFunctionData('kicks', [])],
+
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -280,10 +301,13 @@ class App extends Component {
       this.getOSMPrice(add.PIP_COMP, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_LRC, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_LINK, this.POSITION_NXT),
+      this.getOSMPrice(add.PIP_BAL, this.POSITION_NXT),
+      this.getOSMPrice(add.PIP_YFI, this.POSITION_NXT),
     ]
 
     let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt,
-        kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt, lrcPriceNxt, linkPriceNxt] = await Promise.all(promises)
+        kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt,
+        lrcPriceNxt, linkPriceNxt, balPriceNxt, yfiPriceNxt] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -426,6 +450,24 @@ class App extends Component {
     const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])
     const jugEthBDrip = jug.interface.decodeFunctionResult('ilks', res[110])
 
+    const balAIlk = vat.interface.decodeFunctionResult('ilks', res[111])
+    const balAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[112]))
+    const jugBalADrip = jug.interface.decodeFunctionResult('ilks', res[112])
+    const balAMat = spot.interface.decodeFunctionResult('ilks', res[113])
+    const balPrice = balAMat.mat.mul(balAIlk.spot).div(RAY)
+    const balSupply = bal.interface.decodeFunctionResult('totalSupply', res[114])
+    const balALocked = bal.interface.decodeFunctionResult('balanceOf', res[115])
+    const balAKicks = balAFlip.interface.decodeFunctionResult('kicks', res[116])[0]
+
+    const yfiAIlk = vat.interface.decodeFunctionResult('ilks', res[117])
+    const yfiAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[118]))
+    const jugYfiADrip = jug.interface.decodeFunctionResult('ilks', res[118])
+    const yfiAMat = spot.interface.decodeFunctionResult('ilks', res[119])
+    const yfiPrice = yfiAMat.mat.mul(yfiAIlk.spot).div(RAY)
+    const yfiSupply = yfi.interface.decodeFunctionResult('totalSupply', res[120])
+    const yfiALocked = yfi.interface.decodeFunctionResult('balanceOf', res[121])
+    const yfiAKicks = yfiAFlip.interface.decodeFunctionResult('kicks', res[122])[0]
+
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
@@ -539,6 +581,20 @@ class App extends Component {
             spot: utils.formatUnits(ethBIlk.spot, 27),
             line: utils.formatUnits(ethBIlk.line, 45),
             dust: utils.formatUnits(ethBIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(balAIlk.Art),
+            rate: utils.formatUnits(balAIlk.rate, 27),
+            spot: utils.formatUnits(balAIlk.spot, 27),
+            line: utils.formatUnits(balAIlk.line, 45),
+            dust: utils.formatUnits(balAIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(yfiAIlk.Art),
+            rate: utils.formatUnits(yfiAIlk.rate, 27),
+            spot: utils.formatUnits(yfiAIlk.spot, 27),
+            line: utils.formatUnits(yfiAIlk.line, 45),
+            dust: utils.formatUnits(yfiAIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
@@ -560,6 +616,10 @@ class App extends Component {
         lrcALocked: utils.formatEther(lrcALocked[0]),
         linkSupply: utils.formatEther(linkSupply[0]),
         linkALocked: utils.formatEther(linkALocked[0]),
+        balSupply: utils.formatEther(balSupply[0]),
+        balALocked: utils.formatEther(balALocked[0]),
+        yfiSupply: utils.formatEther(yfiSupply[0]),
+        yfiALocked: utils.formatEther(yfiALocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
@@ -578,6 +638,8 @@ class App extends Component {
         compAFee: compAFee.toFixed(2),
         lrcAFee: lrcAFee.toFixed(2),
         linkAFee: linkAFee.toFixed(2),
+        balAFee: balAFee.toFixed(2),
+        yfiAFee: yfiAFee.toFixed(2),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
@@ -593,6 +655,8 @@ class App extends Component {
         jugCompADrip: this.unixToDateTime(jugCompADrip.rho.toNumber()),
         jugLrcADrip: this.unixToDateTime(jugLrcADrip.rho.toNumber()),
         jugLinkADrip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
+        jugBalADrip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
+        jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -616,6 +680,8 @@ class App extends Component {
         compAKicks: compAKicks.toNumber(),
         lrcAKicks: lrcAKicks.toNumber(),
         linkAKicks: linkAKicks.toNumber(),
+        balAKicks: balAKicks.toNumber(),
+        yfiAKicks: yfiAKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
@@ -642,6 +708,10 @@ class App extends Component {
         lrcPriceNxt: utils.formatEther(lrcPriceNxt),
         linkPrice: utils.formatUnits(linkPrice, 27),
         linkPriceNxt: utils.formatEther(linkPriceNxt),
+        balPrice: utils.formatUnits(balPrice, 27),
+        balPriceNxt: utils.formatEther(balPriceNxt),
+        yfiPrice: utils.formatUnits(yfiPrice, 27),
+        yfiPriceNxt: utils.formatEther(yfiPriceNxt),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
@@ -767,7 +837,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome ETH-B degens <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome BAL and YFI <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
