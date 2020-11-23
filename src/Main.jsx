@@ -54,7 +54,7 @@ function nextPrice(price, priceNxt) {
 const Main = (props) => {
   const t = useTranslate()
   document.title = `${formatNoDecimals.format(props.debt)} - Dai Stats`
-  const sysCollat = props.sysLocked / props.debt
+  //const sysCollat = props.sysLocked / props.debt
 
   const nextFlap = () =>
     formatAmount.format(
@@ -94,6 +94,7 @@ const Main = (props) => {
         <Collateral {...props} idx="13" token="LINK-A" locked={props.linkALocked} supply={props.linkSupply} fee={props.linkAFee} jugDrip={props.jugLinkADrip} />
         <Collateral {...props} idx="15" token="BAL-A" locked={props.balALocked} supply={props.balSupply} fee={props.balAFee} jugDrip={props.jugBalADrip} />
         <Collateral {...props} idx="16" token="YFI-A" locked={props.yfiALocked} supply={props.yfiSupply} fee={props.yfiAFee} jugDrip={props.jugYfiADrip} />
+        <Collateral {...props} idx="17" token="GUSD-A" locked={props.gusdALocked} supply={props.gusdSupply} fee={props.gusdAFee} jugDrip={props.jugGusdADrip} />
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
@@ -229,9 +230,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.tusdPrice}>${formatCurrency.format(props.tusdPrice)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'USDC' })}</p>
-              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'TUSD' })}</p>
-              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'PAX' })}</p>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'USDC, TUSD, PAX, GUSD' })}</p>
             </div>
           </div>
           {/* <div className="column">
@@ -558,6 +557,14 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.YFI}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> YFI</h3>
                 <p className="subtitle is-size-7">{props.YFI}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.GUSD}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> GUSD</h3>
+                <p className="subtitle is-size-7">{props.GUSD}</p>
               </a>
             </div>
           </div>

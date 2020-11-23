@@ -67,6 +67,7 @@ const lrc = build(add.LRC, "ERC20")
 const link = build(add.LINK, "ERC20")
 const bal = build(add.BAL, "ERC20")
 const yfi = build(add.YFI, "ERC20")
+const gusd = build(add.GUSD, "ERC20")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -91,6 +92,7 @@ const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
 const usdtPip = build(add.PIP_USDT, "DSValue")
+const gusdPip = build(add.PIP_GUSD, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
@@ -108,6 +110,7 @@ const lrcAIlkBytes = utils.formatBytes32String("LRC-A");
 const linkAIlkBytes = utils.formatBytes32String("LINK-A");
 const balAIlkBytes = utils.formatBytes32String("BAL-A");
 const yfiAIlkBytes = utils.formatBytes32String("YFI-A");
+const gusdAIlkBytes = utils.formatBytes32String("GUSD-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -286,6 +289,12 @@ class App extends Component {
       [add.YFI, yfi.interface.encodeFunctionData('totalSupply', [])], // 120
       [add.YFI, yfi.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
       [add.MCD_FLIP_YFI_A, yfiAFlip.interface.encodeFunctionData('kicks', [])],
+
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [gusdAIlkBytes])], // 123
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [gusdAIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [gusdAIlkBytes])], // 125 unused
+      [add.GUSD, pax.interface.encodeFunctionData('totalSupply', [])],
+      [add.GUSD, pax.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_GUSD_A])], // 127
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -468,6 +477,14 @@ class App extends Component {
     const yfiALocked = yfi.interface.decodeFunctionResult('balanceOf', res[121])
     const yfiAKicks = yfiAFlip.interface.decodeFunctionResult('kicks', res[122])[0]
 
+    const gusdAIlk = vat.interface.decodeFunctionResult('ilks', res[123])
+    const gusdAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[124]))
+    const jugGusdADrip = jug.interface.decodeFunctionResult('ilks', res[124])
+    const gusdAMat = spot.interface.decodeFunctionResult('ilks', res[125])
+    const gusdPrice = gusdAMat.mat.mul(gusdAIlk.spot).div(RAY)
+    const gusdSupply = gusd.interface.decodeFunctionResult('totalSupply', res[126])
+    const gusdALocked = gusd.interface.decodeFunctionResult('balanceOf', res[127])
+
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
@@ -595,6 +612,13 @@ class App extends Component {
             spot: utils.formatUnits(yfiAIlk.spot, 27),
             line: utils.formatUnits(yfiAIlk.line, 45),
             dust: utils.formatUnits(yfiAIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(gusdAIlk.Art),
+            rate: utils.formatUnits(gusdAIlk.rate, 27),
+            spot: utils.formatUnits(gusdAIlk.spot, 27),
+            line: utils.formatUnits(gusdAIlk.line, 45),
+            dust: utils.formatUnits(gusdAIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
@@ -620,6 +644,8 @@ class App extends Component {
         balALocked: utils.formatEther(balALocked[0]),
         yfiSupply: utils.formatEther(yfiSupply[0]),
         yfiALocked: utils.formatEther(yfiALocked[0]),
+        gusdSupply: utils.formatEther(gusdSupply[0]),
+        gusdALocked: utils.formatEther(gusdALocked[0]),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
@@ -640,6 +666,7 @@ class App extends Component {
         linkAFee: linkAFee.toFixed(2),
         balAFee: balAFee.toFixed(2),
         yfiAFee: yfiAFee.toFixed(2),
+        gusdAFee: gusdAFee.toFixed(2),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
@@ -657,6 +684,7 @@ class App extends Component {
         jugLinkADrip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
         jugBalADrip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
         jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho),
+        jugGusdADrip: this.unixToDateTime(jugGusdADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -712,6 +740,7 @@ class App extends Component {
         balPriceNxt: utils.formatEther(balPriceNxt),
         yfiPrice: utils.formatUnits(yfiPrice, 27),
         yfiPriceNxt: utils.formatEther(yfiPriceNxt),
+        gusdPrice: utils.formatUnits(gusdPrice, 27),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
@@ -837,7 +866,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome BAL and YFI <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome GUSD <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
