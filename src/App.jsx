@@ -306,13 +306,13 @@ class App extends Component {
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [uniAIlkBytes])], // 129
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [uniAIlkBytes])],
       [add.UNI, uni.interface.encodeFunctionData('totalSupply', [])], // 131
-      [add.UNI, uni.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
+      [add.UNI, uni.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNI_A])],
       [add.MCD_FLIP_UNI_A, uniAFlip.interface.encodeFunctionData('kicks', [])], // 133
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])], // 135
       [add.RENBTC, renbtc.interface.encodeFunctionData('totalSupply', [])], // 136
-      [add.RENBTC, renbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
+      [add.RENBTC, renbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RENBTC_A])],
       [add.MCD_FLIP_RENBTC_A, renbtcAFlip.interface.encodeFunctionData('kicks', [])], // 138
 
     ], {blockTag: blockNumber})
