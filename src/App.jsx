@@ -145,7 +145,7 @@ class App extends Component {
   }
 
   POSITION_NXT = 4
-  POSITION_UNIV2_NXT = 8
+  POSITION_UNIV2_NXT = 7
 
   componentDidMount() {
     this.all('latest')
