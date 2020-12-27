@@ -147,19 +147,19 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.aavePrice}>${formatCurrency.format(props.aavePrice)}</h3>
+              <h3 className="title" title={props.aavePrice}>${formatTwoDp.format(props.aavePrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'AAVE' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.aavePrice, props.aavePriceNxt)} title={props.aavePriceNxt}>${formatCurrency.format(props.aavePriceNxt)}</span>
+                className={nextPrice(props.aavePrice, props.aavePriceNxt)} title={props.aavePriceNxt}>${formatTwoDp.format(props.aavePriceNxt)}</span>
               </p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.univ2daiethPrice}>${formatCurrency.format(props.univ2daiethPrice)}</h3>
+              <h3 className="title" title={props.univ2daiethPrice}>${formatTwoDp.format(props.univ2daiethPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2DaiEth' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatCurrency.format(props.univ2daiethPriceNxt)}</span>
+                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatTwoDp.format(props.univ2daiethPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -223,10 +223,10 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.compPrice}>${formatCurrency.format(props.compPrice)}</h3>
+              <h3 className="title" title={props.compPrice}>${formatTwoDp.format(props.compPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'COMP' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.compPrice, props.compPriceNxt)} title={props.compPriceNxt}>${formatCurrency.format(props.compPriceNxt)}</span>
+                className={nextPrice(props.compPrice, props.compPriceNxt)} title={props.compPriceNxt}>${formatTwoDp.format(props.compPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -241,10 +241,10 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.linkPrice}>${formatCurrency.format(props.linkPrice)}</h3>
+              <h3 className="title" title={props.linkPrice}>${formatTwoDp.format(props.linkPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'LINK' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.linkPrice, props.linkPriceNxt)} title={props.linkPriceNxt}>${formatCurrency.format(props.linkPriceNxt)}</span>
+                className={nextPrice(props.linkPrice, props.linkPriceNxt)} title={props.linkPriceNxt}>${formatTwoDp.format(props.linkPriceNxt)}</span>
               </p>
             </div>
           </div>
