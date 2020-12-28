@@ -118,9 +118,9 @@ const Main = (props) => {
           <div className="column">
             <div className="has-text-centered">
               <h3 className="title" title={props.psmUsdcTin}>{props.psmUsdcTin}%</h3>
-              <p className="title subtitle is-size-4">{t('daistats.fee_in')}</p>
+              <p className="title subtitle is-size-4">Fee in</p>
               <h3 className="title" title={props.psmUsdcTout}>{props.psmUsdcTout}%</h3>
-              <p className="title subtitle is-size-4">{t('daistats.fee_out')}</p>
+              <p className="title subtitle is-size-4">Fee out</p>
             </div>
           </div>
           <div className="column">
