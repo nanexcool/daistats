@@ -158,7 +158,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.yfiPrice)}</h3>
+              <h3 className="title" title={props.yfiPrice}>${formatTwoDp.format(props.yfiPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'YFI' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.yfiPrice, props.yfiPriceNxt)} title={props.yfiPriceNxt}>${formatTwoDp.format(props.yfiPriceNxt)}</span>
@@ -167,7 +167,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.wbtcPrice}>${formatTwoDp.format(props.uniPrice)}</h3>
+              <h3 className="title" title={props.uniPrice}>${formatTwoDp.format(props.uniPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UNI' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.uniPrice, props.uniPriceNxt)} title={props.uniPriceNxt}>${formatTwoDp.format(props.uniPriceNxt)}</span>
@@ -212,7 +212,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.balPrice)}</h3>
+              <h3 className="title" title={props.balPrice}>${formatTwoDp.format(props.balPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'BAL' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.balPrice, props.balPriceNxt)} title={props.balPriceNxt}>${formatTwoDp.format(props.balPriceNxt)}</span>
