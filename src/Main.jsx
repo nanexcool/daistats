@@ -99,6 +99,44 @@ const Main = (props) => {
         <Collateral {...props} idx="19" token="RENBTC-A" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} jugDrip={props.jugRenbtcADrip} />
         <Collateral {...props} idx="20" token="AAVE-A" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} jugDrip={props.jugAaveADrip} />
         <Collateral {...props} idx="21" token="UNIV2DAIETH-A" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} jugDrip={props.jugUniv2daiethADrip} />
+
+        <div>
+          <div className="columns">
+          <div className="column is-half">
+            <div className="has-text-centered">
+              <h3 className="title"
+                title={props.psmUsdcALocked}>
+                {formatAmount.format(props.psmUsdcALocked)} / {formatAmount.format(props.psmUsdcALine)}
+              </h3>
+              <p className="title subtitle is-size-4">
+                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.psmUsdcALocked / props.debt * 100)}%)
+                  </p>
+              <p
+                className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="has-text-centered">
+              <h3 className="title" title={props.psmUsdcTin}>{props.psmUsdcTin}%</h3>
+              <p className="title subtitle is-size-4">Fee in</p>
+              <h3 className="title" title={props.psmUsdcTout}>{props.psmUsdcTout}%</h3>
+              <p className="title subtitle is-size-4">Fee out</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="has-text-centered">
+              <h3 className="title" title={props.psmUsdcALocked}>{formatNoDecimals.format(props.psmUsdcALocked)}</h3>
+              <p className="title subtitle is-size-4">
+                {t('daistats.token_locked', { token: 'USDC' })}
+              </p>
+              <p className="subtitle is-size-6">
+                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.psmUsdcALocked / props.usdcSupply)}</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        </div>
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
@@ -120,7 +158,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.yfiPrice)}</h3>
+              <h3 className="title" title={props.yfiPrice}>${formatTwoDp.format(props.yfiPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'YFI' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.yfiPrice, props.yfiPriceNxt)} title={props.yfiPriceNxt}>${formatTwoDp.format(props.yfiPriceNxt)}</span>
@@ -129,7 +167,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.wbtcPrice}>${formatTwoDp.format(props.uniPrice)}</h3>
+              <h3 className="title" title={props.uniPrice}>${formatTwoDp.format(props.uniPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UNI' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.uniPrice, props.uniPriceNxt)} title={props.uniPriceNxt}>${formatTwoDp.format(props.uniPriceNxt)}</span>
@@ -147,19 +185,19 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.aavePrice}>${formatCurrency.format(props.aavePrice)}</h3>
+              <h3 className="title" title={props.aavePrice}>${formatTwoDp.format(props.aavePrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'AAVE' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.aavePrice, props.aavePriceNxt)} title={props.aavePriceNxt}>${formatCurrency.format(props.aavePriceNxt)}</span>
+                className={nextPrice(props.aavePrice, props.aavePriceNxt)} title={props.aavePriceNxt}>${formatTwoDp.format(props.aavePriceNxt)}</span>
               </p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.univ2daiethPrice}>${formatCurrency.format(props.univ2daiethPrice)}</h3>
+              <h3 className="title" title={props.univ2daiethPrice}>${formatTwoDp.format(props.univ2daiethPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2DaiEth' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatCurrency.format(props.univ2daiethPriceNxt)}</span>
+                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatTwoDp.format(props.univ2daiethPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -174,7 +212,7 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.ethPrice}>${formatTwoDp.format(props.balPrice)}</h3>
+              <h3 className="title" title={props.balPrice}>${formatTwoDp.format(props.balPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'BAL' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.balPrice, props.balPriceNxt)} title={props.balPriceNxt}>${formatTwoDp.format(props.balPriceNxt)}</span>
@@ -223,10 +261,10 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.compPrice}>${formatCurrency.format(props.compPrice)}</h3>
+              <h3 className="title" title={props.compPrice}>${formatTwoDp.format(props.compPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'COMP' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.compPrice, props.compPriceNxt)} title={props.compPriceNxt}>${formatCurrency.format(props.compPriceNxt)}</span>
+                className={nextPrice(props.compPrice, props.compPriceNxt)} title={props.compPriceNxt}>${formatTwoDp.format(props.compPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -241,10 +279,10 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.linkPrice}>${formatCurrency.format(props.linkPrice)}</h3>
+              <h3 className="title" title={props.linkPrice}>${formatTwoDp.format(props.linkPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'LINK' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.linkPrice, props.linkPriceNxt)} title={props.linkPriceNxt}>${formatCurrency.format(props.linkPriceNxt)}</span>
+                className={nextPrice(props.linkPrice, props.linkPriceNxt)} title={props.linkPriceNxt}>${formatTwoDp.format(props.linkPriceNxt)}</span>
               </p>
             </div>
           </div>
