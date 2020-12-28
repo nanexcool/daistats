@@ -99,6 +99,44 @@ const Main = (props) => {
         <Collateral {...props} idx="19" token="RENBTC-A" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} jugDrip={props.jugRenbtcADrip} />
         <Collateral {...props} idx="20" token="AAVE-A" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} jugDrip={props.jugAaveADrip} />
         <Collateral {...props} idx="21" token="UNIV2DAIETH-A" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} jugDrip={props.jugUniv2daiethADrip} />
+
+        <div>
+          <div className="columns">
+          <div className="column is-half">
+            <div className="has-text-centered">
+              <h3 className="title"
+                title={props.psmUsdcALocked}>
+                {formatAmount.format(props.psmUsdcALocked)} / {formatAmount.format(props.psmUsdcALine)}
+              </h3>
+              <p className="title subtitle is-size-4">
+                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.psmUsdcALocked / props.debt * 100)}%)
+                  </p>
+              <p
+                className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="has-text-centered">
+              <h3 className="title" title={props.psmUsdcTin}>{props.psmUsdcTin}%</h3>
+              <p className="title subtitle is-size-4">{t('daistats.fee_in')}</p>
+              <h3 className="title" title={props.psmUsdcTout}>{props.psmUsdcTout}%</h3>
+              <p className="title subtitle is-size-4">{t('daistats.fee_out')}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="has-text-centered">
+              <h3 className="title" title={props.psmUsdcALocked}>{formatNoDecimals.format(props.psmUsdcALocked)}</h3>
+              <p className="title subtitle is-size-4">
+                {t('daistats.token_locked', { token: 'USDC' })}
+              </p>
+              <p className="subtitle is-size-6">
+                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.psmUsdcALocked / props.usdcSupply)}</p>
+            </div>
+          </div>
+        </div>
+        <hr />
+
+        </div>
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">

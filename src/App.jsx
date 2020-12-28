@@ -25,6 +25,9 @@ add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
+add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
+add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
+add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
 
 let provider;
 let networkId;
@@ -72,6 +75,7 @@ const uni = build(add.UNI, "ERC20")
 const renbtc = build(add.RENBTC, "ERC20")
 const aave = build(add.AAVE, "ERC20")
 const univ2daieth = build(add.UNIV2DAIETH, "ERC20")
+const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -123,6 +127,7 @@ const uniAIlkBytes = utils.formatBytes32String("UNI-A");
 const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A");
 const aaveAIlkBytes = utils.formatBytes32String("AAVE-A");
 const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A");
+const psmUsdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -335,6 +340,11 @@ class App extends Component {
       [add.UNIV2DAIETH, univ2daieth.interface.encodeFunctionData('totalSupply', [])], // 148
       [add.UNIV2DAIETH, univ2daieth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNIV2DAIETH_A])],
       [add.MCD_FLIP_UNIV2DAIETH_A, univ2daiethAFlip.interface.encodeFunctionData('kicks', [])], // 150
+
+      [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tin', [])], // 151
+      [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tout', [])], // 152
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [psmUsdcAIlkBytes])],
+      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_PSM])], // 154
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -563,6 +573,11 @@ class App extends Component {
     const univ2daiethALocked = univ2daieth.interface.decodeFunctionResult('balanceOf', res[149])
     const univ2daiethAKicks = univ2daiethAFlip.interface.decodeFunctionResult('kicks', res[150])[0]
 
+    const psmUsdcTin = psmUsdc.interface.decodeFunctionResult('tin', res[151])[0]
+    const psmUsdcTout = psmUsdc.interface.decodeFunctionResult('tout', res[152])[0]
+    const psmUsdcAIlk = vat.interface.decodeFunctionResult('ilks', res[153])
+    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[154])
+
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
@@ -760,6 +775,7 @@ class App extends Component {
         aaveALocked: utils.formatEther(aaveALocked[0]),
         univ2daiethSupply: utils.formatEther(univ2daiethSupply[0]),
         univ2daiethALocked: utils.formatEther(univ2daiethALocked[0]),
+        psmUsdcALocked: utils.formatUnits(psmUsdcALocked[0], 6),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
@@ -785,6 +801,9 @@ class App extends Component {
         renbtcAFee: renbtcAFee.toFixed(2),
         aaveAFee: aaveAFee.toFixed(2),
         univ2daiethAFee: univ2daiethAFee.toFixed(2),
+        psmUsdcTin: psmUsdcTin.toNumber(),
+        psmUsdcTout: psmUsdcTout.toNumber(),
+        psmUsdcALine: utils.formatUnits(psmUsdcAIlk.line, 45),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
