@@ -41,7 +41,7 @@ const formatPercent = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
-const formatPercentFourDp = new Intl.NumberFormat('en-US', {
+const formatPercentFee = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
   maximumFractionDigits: 4
@@ -123,9 +123,9 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="has-text-centered">
-              <h3 className="title" title={props.psmUsdcTin}>{formatPercentFourDp.format(props.psmUsdcTin)}</h3>
+              <h3 className="title" title={props.psmUsdcTin}>{formatPercentFee.format(props.psmUsdcTin)}</h3>
               <p className="title subtitle is-size-4">Fee in</p>
-              <h3 className="title" title={props.psmUsdcTout}>{formatPercentFourDp.format(props.psmUsdcTout)}</h3>
+              <h3 className="title" title={props.psmUsdcTout}>{formatPercentFee.format(props.psmUsdcTout)}</h3>
               <p className="title subtitle is-size-4">Fee out</p>
             </div>
           </div>
