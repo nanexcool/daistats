@@ -105,6 +105,8 @@ const Main = (props) => {
         <Collateral {...props} idx="19" token="RENBTC-A" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} jugDrip={props.jugRenbtcADrip} />
         <Collateral {...props} idx="20" token="AAVE-A" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} jugDrip={props.jugAaveADrip} />
         <Collateral {...props} idx="21" token="UNIV2DAIETH-A" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} jugDrip={props.jugUniv2daiethADrip} />
+        <Collateral {...props} idx="22" token="UNIV2WBTCETH-A" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} jugDrip={props.jugUniv2wbtcethADrip} />
+        <Collateral {...props} idx="23" token="UNIV2USDCETH-A" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} jugDrip={props.jugUniv2usdcethADrip} />
 
         <div>
           <div className="columns">
@@ -200,15 +202,6 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.univ2daiethPrice}>${formatTwoDp.format(props.univ2daiethPrice)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2DaiEth' })}</p>
-              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatTwoDp.format(props.univ2daiethPriceNxt)}</span>
-              </p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
               <h3 className="title" title={props.batPrice}>${formatCurrency.format(props.batPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'BAT' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
@@ -260,6 +253,35 @@ const Main = (props) => {
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'USDT' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.usdtPrice, props.usdtPriceNxt)} title={props.usdtPriceNxt}>${formatCurrency.format(props.usdtPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2daiethPrice}>${formatTwoDp.format(props.univ2daiethPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2DaiEth' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.univ2daiethPrice, props.univ2daiethPriceNxt)} title={props.univ2daiethPriceNxt}>${formatTwoDp.format(props.univ2daiethPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2wbtcethPrice}>${formatTwoDp.format(props.univ2wbtcethPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2WbtcEth' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.univ2wbtcethPrice, props.univ2wbtcethPriceNxt)} title={props.univ2wbtcethPriceNxt}>${formatTwoDp.format(props.univ2wbtcethPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2usdcethPrice}>${formatTwoDp.format(props.univ2usdcethPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2UsdcEth' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.univ2usdcethPrice, props.univ2usdcethPriceNxt)} title={props.univ2usdcethPriceNxt}>${formatTwoDp.format(props.univ2usdcethPriceNxt)}</span>
               </p>
             </div>
           </div>
@@ -477,6 +499,20 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.univ2daiethAKicks}>{formatAmount.format(props.univ2daiethAKicks)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2DaiEth' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2wbtcethAKicks}>{formatAmount.format(props.univ2wbtcethAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2WbtcEth' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2usdcethAKicks}>{formatAmount.format(props.univ2usdcethAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2UsdcEth' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -704,6 +740,22 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.UNIV2DAIETH}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> UniV2DaiEth</h3>
                 <p className="subtitle is-size-7">{props.UNIV2DAIETH}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.UNIV2WBTCETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> UniV2WbtcEth</h3>
+                <p className="subtitle is-size-7">{props.UNIV2WBTCETH}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.UNIV2USDCETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> UniV2UsdcEth</h3>
+                <p className="subtitle is-size-7">{props.UNIV2USDCETH}</p>
               </a>
             </div>
           </div>
