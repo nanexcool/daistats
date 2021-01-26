@@ -883,7 +883,7 @@ class App extends Component {
         jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho),
         jugGusdADrip: this.unixToDateTime(jugGusdADrip.rho),
         jugUniADrip: this.unixToDateTime(jugUniADrip.rho),
-        jugRenbtcADrip: this.unixToDateTime(jugUniADrip.rho),
+        jugRenbtcADrip: this.unixToDateTime(jugRenbtcADrip.rho),
         jugAaveADrip: this.unixToDateTime(jugAaveADrip.rho),
         jugUniv2daiethADrip: this.unixToDateTime(jugUniv2daiethADrip.rho),
         jugUniv2wbtcethADrip: this.unixToDateTime(jugUniv2wbtcethADrip.rho),
