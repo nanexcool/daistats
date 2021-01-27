@@ -13,6 +13,12 @@ const formatNoDecimals = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 })
 
+const formatDp = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 8,
+  maximumFractionDigits: 8
+})
+
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
@@ -46,7 +52,8 @@ function Collateral(props) {
       </div>
       <div className="column">
         <div className="has-text-centered">
-          <h3 className="title" title={props.locked}>{formatNoDecimals.format(props.locked)}</h3>
+          <h3 className="title" title={props.locked}>
+            {props.showLockedDecimals ? formatDp.format(props.locked) : formatNoDecimals.format(props.locked)}</h3>
           <p className="title subtitle is-size-4">
             {t('daistats.token_locked', { token: props.token })}
           </p>
