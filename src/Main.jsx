@@ -105,8 +105,8 @@ const Main = (props) => {
         <Collateral {...props} idx="19" token="RENBTC-A" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} jugDrip={props.jugRenbtcADrip} />
         <Collateral {...props} idx="20" token="AAVE-A" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} jugDrip={props.jugAaveADrip} />
         <Collateral {...props} idx="21" token="UNIV2DAIETH-A" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} jugDrip={props.jugUniv2daiethADrip} />
-        <Collateral {...props} idx="22" token="UNIV2WBTCETH-A" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} jugDrip={props.jugUniv2wbtcethADrip} />
-        <Collateral {...props} idx="23" token="UNIV2USDCETH-A" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} jugDrip={props.jugUniv2usdcethADrip} />
+        <Collateral {...props} idx="22" token="UNIV2WBTCETH-A" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} jugDrip={props.jugUniv2wbtcethADrip} showLockedDecimals={true} />
+        <Collateral {...props} idx="23" token="UNIV2USDCETH-A" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} jugDrip={props.jugUniv2usdcethADrip} showLockedDecimals={true} />
 
         <div>
           <div className="columns">
@@ -269,19 +269,19 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.univ2wbtcethPrice}>${formatTwoDp.format(props.univ2wbtcethPrice)}</h3>
+              <h3 className="title" title={props.univ2wbtcethPrice}>${formatNoDecimals.format(props.univ2wbtcethPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2WbtcEth' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.univ2wbtcethPrice, props.univ2wbtcethPriceNxt)} title={props.univ2wbtcethPriceNxt}>${formatTwoDp.format(props.univ2wbtcethPriceNxt)}</span>
+                className={nextPrice(props.univ2wbtcethPrice, props.univ2wbtcethPriceNxt)} title={props.univ2wbtcethPriceNxt}>${formatNoDecimals.format(props.univ2wbtcethPriceNxt)}</span>
               </p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.univ2usdcethPrice}>${formatTwoDp.format(props.univ2usdcethPrice)}</h3>
+              <h3 className="title" title={props.univ2usdcethPrice}>${formatNoDecimals.format(props.univ2usdcethPrice)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2UsdcEth' })}</p>
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-                className={nextPrice(props.univ2usdcethPrice, props.univ2usdcethPriceNxt)} title={props.univ2usdcethPriceNxt}>${formatTwoDp.format(props.univ2usdcethPriceNxt)}</span>
+                className={nextPrice(props.univ2usdcethPrice, props.univ2usdcethPriceNxt)} title={props.univ2usdcethPriceNxt}>${formatNoDecimals.format(props.univ2usdcethPriceNxt)}</span>
               </p>
             </div>
           </div>
