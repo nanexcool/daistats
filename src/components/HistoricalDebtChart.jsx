@@ -1,30 +1,44 @@
-import React, { useCallback } from "react";
-import { useTranslate } from "react-polyglot";
-import { Area, ComposedChart, Line, ResponsiveContainer, Tooltip } from "recharts";
+import React, { useCallback, useMemo } from "react"
+import { useTranslate } from "react-polyglot"
+import { Area, ComposedChart, Line, ResponsiveContainer, Tooltip } from "recharts"
 
-const formatAmount = new Intl.NumberFormat("en-US", {
-  style: "decimal",
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 2
-})
-
-const formatDate = new Intl.DateTimeFormat("en-US", {
-  dateStyle: "long"
-})
-
-const HistoricalDebtChart = ({ data, wrapperStyle }) => {
+const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
   const t = useTranslate()
+
+  const locale = useMemo(() => (
+      t._polyglot.currentLocale
+    ),
+    [t]
+  )
+
+  const amountFormatter = useMemo(() => (
+      new Intl.NumberFormat(locale, {
+        style: "decimal",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 2
+      })
+    ),
+    [locale]
+  )
+
+  const dateFormatter = useMemo(() => (
+      new Intl.DateTimeFormat(locale, {
+        dateStyle: "long"
+      })
+    ),
+    [locale]
+  )
 
   const formatLabel = useCallback(
     (value) => {
-      return formatDate.format(data[value]["timestamp"] * 1000)
+      return dateFormatter.format(data[value]["timestamp"] * 1000)
     },
-    [data]
+    [data, dateFormatter]
   )
 
   const formatValue = useCallback(
     (value, name) => {
-      let output = formatAmount.format(value)
+      let output = amountFormatter.format(value)
 
       if (name === "debtCeiling") {
         return [output, t("maker.debt_ceiling")]
@@ -36,7 +50,7 @@ const HistoricalDebtChart = ({ data, wrapperStyle }) => {
 
       return output
     },
-    [t]
+    [amountFormatter, t]
   )
 
   if (!data?.length) {
