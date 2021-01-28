@@ -80,10 +80,7 @@ const Main = (props) => {
                 {props.debt >= 420000000 && props.debt < 421000000 && <span>🌲</span>} {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
               </h3>
               <h4 className="subtitle is-size-3">{t('daistats.total_token', { token: 'Dai' })}</h4>
-              <HistoricalDebtChart
-                data={props.historicalDebt}
-                wrapperStyle={{ width: "calc(100% + 24)", height: 150, margin: -24 }}
-              />
+              <HistoricalDebtChart data={props.historicalDebt} />
             </div>
           </div>
         </div>

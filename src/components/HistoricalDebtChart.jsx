@@ -1,8 +1,8 @@
 import React, { useCallback, useMemo } from "react"
 import { useTranslate } from "react-polyglot"
-import { Area, ComposedChart, Line, ResponsiveContainer, Tooltip } from "recharts"
+import { Area, ComposedChart, Line, ResponsiveContainer, Tooltip, XAxis } from "recharts"
 
-const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
+const HistoricalDebtChart = ({ data }) => {
   const t = useTranslate()
 
   const locale = useMemo(() => (
@@ -29,14 +29,51 @@ const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
     [locale]
   )
 
-  const formatLabel = useCallback(
-    (value) => {
-      return dateFormatter.format(data[value]["timestamp"] * 1000)
+  const monthFormatter = useMemo(() => (
+      new Intl.DateTimeFormat(locale, {
+        month: "short",
+        year: "2-digit"
+      })
+    ),
+    [locale]
+  )
+
+  const ticks = useMemo(
+    () => (
+      data.reduce((output, point, index, points) => {
+        const c = new Date(point?.timestamp * 1000)
+        const p =  new Date(points?.[index - 1]?.["timestamp"] * 1000)
+
+        if (c.getFullYear() !== p.getFullYear() || c.getMonth() !== p.getMonth()) {
+          output.push(index)
+        }
+
+        return output
+      }, [])
+    ),
+    [data]
+  )
+
+  const formatTick = useCallback(
+    (index) => {
+      const timestamp = new Date(data[index]["timestamp"] * 1000)
+      const month = new Date(timestamp.getFullYear(), timestamp.getMonth())
+
+      return monthFormatter.format(month)
+    },
+    [monthFormatter]
+  )
+
+  const formatTooltipTitle = useCallback(
+    (index) => {
+      const timestamp = new Date(data[index]["timestamp"] * 1000)
+
+      return dateFormatter.format(timestamp)
     },
     [data, dateFormatter]
   )
 
-  const formatValue = useCallback(
+  const formatTooltipValue = useCallback(
     (value, name) => {
       let output = amountFormatter.format(value)
 
@@ -61,7 +98,7 @@ const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
     <div style={{
       width: "100%",
       height: 180,
-      ...wrapperStyle,
+      marginTop: -24,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
@@ -74,6 +111,12 @@ const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
               <stop offset="95%" stopColor="#087C6D" stopOpacity={0.7} />
             </linearGradient>
           </defs>
+          <XAxis
+            axisLine={false}
+            ticks={ticks}
+            tickFormatter={formatTick}
+            style={{ userSelect: 'none' }}
+          />
           <Line
             dataKey="debtCeiling"
             type="step"
@@ -93,8 +136,8 @@ const HistoricalDebtChart = ({ data,  wrapperStyle }) => {
           />
           <Tooltip
             labelStyle={{ fontWeight: "bold" }}
-            formatter={formatValue}
-            labelFormatter={formatLabel}
+            formatter={formatTooltipValue}
+            labelFormatter={formatTooltipTitle}
           />
         </ComposedChart>
       </ResponsiveContainer>
