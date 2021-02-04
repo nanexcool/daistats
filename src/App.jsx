@@ -6,6 +6,7 @@ import {
   Link,
   Route
 } from "react-router-dom";
+import { gql, GraphQLClient } from "graphql-request"
 import './App.css';
 import eth from './web3';
 import Main from './Main'
@@ -148,6 +149,11 @@ window.multi = multi
 window.dai = dai
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
+
+const subgraphClient = new GraphQLClient(
+  "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
+  { mode: "cors" }
+)
 
 class App extends Component {
   state = {
@@ -387,12 +393,14 @@ class App extends Component {
       this.getOSMPrice(add.PIP_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
       this.getOSMPrice(add.PIP_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
       this.getOSMPrice(add.PIP_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
+      this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
     let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt,
         kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt,
         lrcPriceNxt, linkPriceNxt, balPriceNxt, yfiPriceNxt, uniPriceNxt,
-        aavePriceNxt, univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt] = await Promise.all(promises)
+        aavePriceNxt, univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt,
+        historicalDebt] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
@@ -979,6 +987,7 @@ class App extends Component {
         zrxALocked: utils.formatEther(zrxALocked[0]),
         manaSupply: utils.formatEther(manaSupply[0]),
         manaALocked: utils.formatEther(manaALocked[0]),
+        historicalDebt,
       }
     })
   }
@@ -1073,6 +1082,47 @@ class App extends Component {
     )
 
     return mkrAnnualBurn
+  }
+
+  getHistoricalDebt = async ({ blockInterval, periods }) => {
+    try {
+      const latestBlock = await (provider ?? eth).getBlockNumber()
+
+      if (latestBlock) {
+        const numberOfPoints = periods ?? latestBlock / blockInterval
+
+        if (numberOfPoints > 0) {
+          const result = new Array(numberOfPoints)
+
+          const fragments = Array.from({ length: numberOfPoints }, (v, i) => {
+            const block = latestBlock - (i + 1) * blockInterval
+
+            return `
+            _${numberOfPoints - i}_${block}: systemState(block: { number: ${block}}, id: "current") {
+              block
+              timestamp
+              totalDebt
+              debtCeiling: totalDebtCeiling
+            }
+          `
+          })
+
+          const data = await subgraphClient.request(gql`{${fragments.concat()}}`)
+
+          Object.entries(data).forEach(([key, value]) => {
+            const [, index, block] = key.split("_")
+
+            result[+index - 1] = { block: +block, ...value }
+          })
+
+          return result
+        }
+      }
+    } catch(err) {
+      console.error("Historical debt could not be obtained due to an error.", err)
+    }
+
+    return null
   }
 
   render() {

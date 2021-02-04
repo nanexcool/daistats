@@ -2,6 +2,7 @@ import React from 'react'
 import { useTranslate } from 'react-polyglot';
 import Collateral from './components/Collateral';
 import HealButton from './components/HealButton';
+import HistoricalDebtChart from './components/HistoricalDebtChart';
 import FlapButton from './components/FlapButton';
 import MeetingTime from './components/MeetingTime'
 
@@ -79,6 +80,7 @@ const Main = (props) => {
                 {props.debt >= 420000000 && props.debt < 421000000 && <span>🌲</span>} {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
               </h3>
               <h4 className="subtitle is-size-3">{t('daistats.total_token', { token: 'Dai' })}</h4>
+              <HistoricalDebtChart data={props.historicalDebt} />
             </div>
           </div>
         </div>
