@@ -433,7 +433,7 @@ class App extends Component {
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[8])
     const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[7])
     const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[44])
-    const base = jug.interface.decodeFunctionResult('base', res[16])
+    const base = '0x' + jug.interface.decodeFunctionResult('base', res[16])
     const ethFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[17]))
     const batFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[18]))
     const jugEthDrip = jug.interface.decodeFunctionResult('ilks', res[17])
@@ -895,7 +895,9 @@ class App extends Component {
         univ2wbtcethALocked: utils.formatEther(univ2wbtcethALocked[0]),
         univ2usdcethSupply: utils.formatEther(univ2usdcethSupply[0]),
         univ2usdcethALocked: utils.formatEther(univ2usdcethALocked[0]),
+        univ2daiusdcSupply: utils.formatEther(univ2daiusdcSupply[0]),
         univ2daiusdcALocked: utils.formatEther(univ2daiusdcALocked[0]),
+        univ2ethusdtSupply: utils.formatEther(univ2ethusdtSupply[0]),
         univ2ethusdtALocked: utils.formatEther(univ2ethusdtALocked[0]),
         psmUsdcALocked: utils.formatUnits(psmUsdcALocked[0], 6),
         gemPit: utils.formatEther(gemPit[0]),
