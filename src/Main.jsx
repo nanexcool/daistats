@@ -126,11 +126,14 @@ const Main = (props) => {
               </h3>
               <p className="title subtitle is-size-4">
                 {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.psmUsdcALocked / props.debt * 100)}%)
-                  </p>
-              <p
-                className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%</p>
+              </p>
               <p className="subtitle is-size-6">
-                <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/">Trade DAI & USDC with zero slippage using the PSM</a>
+                {t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%
+              </p>
+              <p className="subtitle is-size-6">
+                <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
+                  Trade DAI & USDC with zero slippage using the PSM
+                </a>
               </p>
             </div>
           </div>
