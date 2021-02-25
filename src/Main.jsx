@@ -113,7 +113,7 @@ const Main = (props) => {
         <Collateral {...props} idx="25" token="UNIV2ETHUSDT-A" locked={props.univ2ethusdtALocked} supply={props.univ2ethusdtSupply} fee={props.univ2ethusdtAFee} jugDrip={props.jugUniv2ethusdtADrip} showLockedDecimals={true} />
         <Collateral {...props} idx="26" token="UNIV2LINKETH-A" locked={props.univ2linkethALocked} supply={props.univ2linkethSupply} fee={props.univ2linkethAFee} jugDrip={props.jugUniv2linkethADrip} />
         <Collateral {...props} idx="27" token="UNIV2UNIETH-A" locked={props.univ2uniethALocked} supply={props.univ2uniethSupply} fee={props.univ2uniethAFee} jugDrip={props.jugUniv2uniethADrip} />
-        <Collateral {...props} idx="28" token="UNIV2WBTCDAI-A" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} jugDrip={props.jugUniv2wbtcdaiADrip} />
+        <Collateral {...props} idx="28" token="UNIV2WBTCDAI-A" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} jugDrip={props.jugUniv2wbtcdaiADrip} showLockedDecimals={true} />
         <Collateral {...props} idx="29" token="UNIV2AAVEETH-A" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} jugDrip={props.jugUniv2aaveethADrip} />
 
         <div>
