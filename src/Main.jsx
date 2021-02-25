@@ -129,6 +129,9 @@ const Main = (props) => {
                   </p>
               <p
                 className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%</p>
+              <p className="subtitle is-size-6">
+                <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/">Trade DAI & USDC with zero slippage using the PSM</a>
+              </p>
             </div>
           </div>
           <div className="column">
