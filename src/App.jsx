@@ -84,6 +84,7 @@ const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
 const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
 const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
+const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -115,6 +116,7 @@ const univ2linkethAFlip = build(add.MCD_FLIP_UNIV2LINKETH_A, "Flipper");
 const univ2uniethAFlip = build(add.MCD_FLIP_UNIV2UNIETH_A, "Flipper");
 const univ2wbtcdaiAFlip = build(add.MCD_FLIP_UNIV2WBTCDAI_A, "Flipper");
 const univ2aaveethAFlip = build(add.MCD_FLIP_UNIV2AAVEETH_A, "Flipper");
+const univ2daiusdtAFlip = build(add.MCD_FLIP_UNIV2DAIUSDT_A, "Flipper");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
 const usdcPip = build(add.PIP_USDC, "DSValue")
@@ -153,6 +155,7 @@ const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A");
 const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A");
 const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A");
 const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A");
+const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -432,6 +435,13 @@ class App extends Component {
       [add.UNIV2AAVEETH, univ2aaveeth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNIV2AAVEETH_A])],
       [add.MCD_FLIP_UNIV2AAVEETH_A, univ2aaveethAFlip.interface.encodeFunctionData('kicks', [])], // 202
 
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [univ2daiusdtAIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [univ2daiusdtAIlkBytes])], // 204
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [univ2daiusdtAIlkBytes])],
+      [add.UNIV2DAIUSDT, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 206
+      [add.UNIV2DAIUSDT, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNIV2DAIUSDT_A])],
+      [add.MCD_FLIP_UNIV2DAIUSDT_A, univ2daiusdtAFlip.interface.encodeFunctionData('kicks', [])], // 208
+
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -459,6 +469,7 @@ class App extends Component {
       this.getOSMPrice(add.PIP_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
       this.getOSMPrice(add.PIP_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
       this.getOSMPrice(add.PIP_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
+      this.getOSMPrice(add.PIP_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
@@ -466,8 +477,8 @@ class App extends Component {
         kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt,
         lrcPriceNxt, linkPriceNxt, balPriceNxt, yfiPriceNxt, uniPriceNxt,
         aavePriceNxt, univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt,
-        univ2daiusdcPriceNxt, univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt, 
-        univ2wbtcdaiPriceNxt, univ2aaveethPriceNxt,
+        univ2daiusdcPriceNxt, univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt,
+        univ2wbtcdaiPriceNxt, univ2aaveethPriceNxt, univ2daiusdtPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
@@ -747,7 +758,16 @@ class App extends Component {
     const univ2aaveethPrice = univ2aaveethAMat.mat.mul(univ2aaveethAIlk.spot).div(RAY)
     const univ2aaveethSupply = univ2aaveeth.interface.decodeFunctionResult('totalSupply', res[200])
     const univ2aaveethALocked = univ2aaveeth.interface.decodeFunctionResult('balanceOf', res[201])
-    const univ2aaveethAKicks = univ2uniethAFlip.interface.decodeFunctionResult('kicks', res[202])[0]
+    const univ2aaveethAKicks = univ2aaveethAFlip.interface.decodeFunctionResult('kicks', res[202])[0]
+
+    const univ2daiusdtAIlk = vat.interface.decodeFunctionResult('ilks', res[203])
+    const univ2daiusdtAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[204]))
+    const jugUniv2daiusdtADrip = jug.interface.decodeFunctionResult('ilks', res[204])
+    const univ2daiusdtAMat = spot.interface.decodeFunctionResult('ilks', res[205])
+    const univ2daiusdtPrice = univ2daiusdtAMat.mat.mul(univ2daiusdtAIlk.spot).div(RAY)
+    const univ2daiusdtSupply = univ2daiusdt.interface.decodeFunctionResult('totalSupply', res[206])
+    const univ2daiusdtALocked = univ2daiusdt.interface.decodeFunctionResult('balanceOf', res[207])
+    const univ2daiusdtAKicks = univ2daiusdtAFlip.interface.decodeFunctionResult('kicks', res[208])[0]
 
     // NOTE sysLocked is unused and incomplete atm
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
@@ -968,6 +988,13 @@ class App extends Component {
             spot: utils.formatUnits(univ2aaveethAIlk.spot, 27),
             line: utils.formatUnits(univ2aaveethAIlk.line, 45),
             dust: utils.formatUnits(univ2aaveethAIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(univ2daiusdtAIlk.Art),
+            rate: utils.formatUnits(univ2daiusdtAIlk.rate, 27),
+            spot: utils.formatUnits(univ2daiusdtAIlk.spot, 27),
+            line: utils.formatUnits(univ2daiusdtAIlk.line, 45),
+            dust: utils.formatUnits(univ2daiusdtAIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
@@ -1019,6 +1046,8 @@ class App extends Component {
         univ2wbtcdaiALocked: utils.formatEther(univ2wbtcdaiALocked[0]),
         univ2aaveethSupply: utils.formatEther(univ2aaveethSupply[0]),
         univ2aaveethALocked: utils.formatEther(univ2aaveethALocked[0]),
+        univ2daiusdtSupply: utils.formatEther(univ2daiusdtSupply[0]),
+        univ2daiusdtALocked: utils.formatEther(univ2daiusdtALocked[0]),
         psmUsdcALocked: utils.formatUnits(psmUsdcALocked[0], 6),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
@@ -1053,6 +1082,7 @@ class App extends Component {
         univ2uniethAFee: univ2uniethAFee.toFixed(2),
         univ2wbtcdaiAFee: univ2wbtcdaiAFee.toFixed(2),
         univ2aaveethAFee: univ2aaveethAFee.toFixed(2),
+        univ2daiusdtAFee: univ2daiusdtAFee.toFixed(2),
         psmUsdcTin: utils.formatEther(psmUsdcTin),
         psmUsdcTout: utils.formatEther(psmUsdcTout),
         psmUsdcALine: utils.formatUnits(psmUsdcAIlk.line, 45),
@@ -1086,6 +1116,7 @@ class App extends Component {
         jugUniv2uniethADrip: this.unixToDateTime(jugUniv2uniethADrip.rho),
         jugUniv2wbtcdaiADrip: this.unixToDateTime(jugUniv2wbtcdaiADrip.rho),
         jugUniv2aaveethADrip: this.unixToDateTime(jugUniv2aaveethADrip.rho),
+        jugUniv2daiusdtADrip: this.unixToDateTime(jugUniv2daiusdtADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -1123,6 +1154,7 @@ class App extends Component {
         univ2uniethAKicks: univ2uniethAKicks.toNumber(),
         univ2wbtcdaiAKicks: univ2wbtcdaiAKicks.toNumber(),
         univ2aaveethAKicks: univ2aaveethAKicks.toNumber(),
+        univ2daiusdtAKicks: univ2daiusdtAKicks.toNumber(),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
@@ -1176,6 +1208,8 @@ class App extends Component {
         univ2wbtcdaiPriceNxt: utils.formatEther(univ2wbtcdaiPriceNxt),
         univ2aaveethPrice: utils.formatUnits(univ2aaveethPrice, 27),
         univ2aaveethPriceNxt: utils.formatEther(univ2aaveethPriceNxt),
+        univ2daiusdtPrice: utils.formatUnits(univ2daiusdtPrice, 27),
+        univ2daiusdtPriceNxt: utils.formatEther(univ2daiusdtPriceNxt),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
