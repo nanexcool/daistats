@@ -115,6 +115,7 @@ const Main = (props) => {
         <Collateral {...props} idx="27" token="UNIV2UNIETH-A" locked={props.univ2uniethALocked} supply={props.univ2uniethSupply} fee={props.univ2uniethAFee} jugDrip={props.jugUniv2uniethADrip} />
         <Collateral {...props} idx="28" token="UNIV2WBTCDAI-A" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} jugDrip={props.jugUniv2wbtcdaiADrip} showLockedDecimals={true} />
         <Collateral {...props} idx="29" token="UNIV2AAVEETH-A" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} jugDrip={props.jugUniv2aaveethADrip} />
+        <Collateral {...props} idx="30" token="UNIV2DAIUSDT-A" locked={props.univ2daiusdtALocked} supply={props.univ2daiusdtSupply} fee={props.univ2daiusdtAFee} jugDrip={props.jugUniv2daiusdtADrip} />
 
         <div>
           <div className="columns">
@@ -399,6 +400,15 @@ const Main = (props) => {
               </p>
             </div>
           </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2daiusdtPrice}>${formatTwoDp.format(props.univ2daiusdtPrice)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'UniV2DaiUsdt' })}</p>
+              <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+                className={nextPrice(props.univ2daiusdtPrice, props.univ2daiusdtPriceNxt)} title={props.univ2daiusdtPriceNxt}>${formatTwoDp.format(props.univ2daiusdtPriceNxt)}</span>
+              </p>
+            </div>
+          </div>
         </div>
         <div className="columns">
           <div className="column">
@@ -629,6 +639,15 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.univ2aaveethAKicks}>{formatAmount.format(props.univ2aaveethAKicks)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2AaveEth' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.univ2daiusdtAKicks}>{formatAmount.format(props.univ2daiusdtAKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2DaiUsdt' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -924,6 +943,16 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.UNIV2AAVEETH}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> UniV2AaveEth</h3>
                 <p className="subtitle is-size-7">{props.UNIV2AAVEETH}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.UNIV2DAIUSDT}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> UniV2DaiUsdt</h3>
+                <p className="subtitle is-size-7">{props.UNIV2DAIUSDT}</p>
               </a>
             </div>
           </div>
