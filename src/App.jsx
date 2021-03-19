@@ -92,6 +92,7 @@ const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
 const ethBFlip = build(add.MCD_FLIP_ETH_B, "Flipper");
+const ethCFlip = build(add.MCD_FLIP_ETH_C, "Flipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
 const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
 const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
@@ -126,6 +127,7 @@ const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
+const ethCIlkBytes = utils.formatBytes32String("ETH-C");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
@@ -441,6 +443,12 @@ class App extends Component {
       [add.UNIV2DAIUSDT, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 206
       [add.UNIV2DAIUSDT, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNIV2DAIUSDT_A])],
       [add.MCD_FLIP_UNIV2DAIUSDT_A, univ2daiusdtAFlip.interface.encodeFunctionData('kicks', [])], // 208
+
+      [add.MCD_FLIP_ETH_C, ethCFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethCIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethCIlkBytes])], // 211
+      [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_C])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethCIlkBytes])],
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -769,6 +777,12 @@ class App extends Component {
     const univ2daiusdtALocked = univ2daiusdt.interface.decodeFunctionResult('balanceOf', res[207])
     const univ2daiusdtAKicks = univ2daiusdtAFlip.interface.decodeFunctionResult('kicks', res[208])[0]
 
+    const ethCKicks = ethCFlip.interface.decodeFunctionResult('kicks', res[209])[0]
+    const ethCIlk = vat.interface.decodeFunctionResult('ilks', res[210])
+    const ethCFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[211]))
+    const ethCLocked = weth.interface.decodeFunctionResult('balanceOf', res[212])
+    const jugEthCDrip = jug.interface.decodeFunctionResult('ilks', res[213])
+
     // NOTE sysLocked is unused and incomplete atm
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
@@ -995,12 +1009,20 @@ class App extends Component {
             spot: utils.formatUnits(univ2daiusdtAIlk.spot, 27),
             line: utils.formatUnits(univ2daiusdtAIlk.line, 45),
             dust: utils.formatUnits(univ2daiusdtAIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(ethCIlk.Art),
+            rate: utils.formatUnits(ethCIlk.rate, 27),
+            spot: utils.formatUnits(ethCIlk.spot, 27),
+            line: utils.formatUnits(ethCIlk.line, 45),
+            dust: utils.formatUnits(ethCIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
         ethSupply: utils.formatEther(ethSupply),
         ethLocked: utils.formatEther(ethLocked[0]),
         ethBLocked: utils.formatEther(ethBLocked[0]),
+        ethCLocked: utils.formatEther(ethCLocked[0]),
         batSupply: utils.formatEther(batSupply[0]),
         batLocked: utils.formatEther(batLocked[0]),
         usdcSupply: utils.formatUnits(usdcSupply[0], 6),
@@ -1054,6 +1076,7 @@ class App extends Component {
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
         ethFee: ethFee.toFixed(2),
         ethBFee: ethBFee.toFixed(2),
+        ethCFee: ethCFee.toFixed(2),
         batFee: batFee.toFixed(2),
         usdcFee: usdcFee.toFixed(2),
         usdcBFee: usdcBFee.toFixed(2),
@@ -1088,6 +1111,7 @@ class App extends Component {
         psmUsdcALine: utils.formatUnits(psmUsdcAIlk.line, 45),
         jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
         jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
+        jugEthCDrip: this.unixToDateTime(jugEthCDrip.rho.toNumber()),
         jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
         jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
         jugUsdcBDrip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
@@ -1131,6 +1155,7 @@ class App extends Component {
         potDrip: this.unixToDateTime(potDrip.toNumber()),
         ethKicks: ethKicks.toNumber(),
         ethBKicks: ethBKicks.toNumber(),
+        ethCKicks: ethCKicks.toNumber(),
         batKicks: batKicks.toNumber(),
         wbtcKicks: wbtcKicks.toNumber(),
         kncAKicks: kncAKicks.toNumber(),
@@ -1378,7 +1403,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome all Uniswap LP tokens! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome Eth-C! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>

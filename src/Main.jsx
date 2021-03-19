@@ -87,6 +87,7 @@ const Main = (props) => {
         <hr />
         <Collateral {...props} idx="0" token="ETH-A" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} jugDrip={props.jugEthDrip} />
         <Collateral {...props} idx="14" token="ETH-B" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} jugDrip={props.jugEthBDrip} />
+        <Collateral {...props} idx="31" token="ETH-C" locked={props.ethCLocked} supply={props.ethSupply} fee={props.ethCFee} jugDrip={props.jugEthCDrip} />
         <Collateral {...props} idx="1" token="BAT-A" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} jugDrip={props.jugBatDrip} />
         <Collateral {...props} idx="2" token="USDC-A" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} jugDrip={props.jugUsdcDrip} />
         <Collateral {...props} idx="4" token="USDC-B" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} jugDrip={props.jugUsdcBDrip} />
@@ -475,8 +476,8 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'BAT' })}</p>
+              <h3 className="title" title={props.ethCKicks}>{formatAmount.format(props.ethCKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH-C' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -648,6 +649,13 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.univ2daiusdtAKicks}>{formatAmount.format(props.univ2daiusdtAKicks)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2DaiUsdt' })}</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'BAT' })}</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
