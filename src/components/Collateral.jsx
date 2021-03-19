@@ -25,6 +25,16 @@ const formatPercent = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
+function autoLine(props, label) {
+  if (props.ilks[props.idx].lineMax > 0) {
+    return (
+      <p className="title subtitle is-size-6">{label}: {formatAmount.format(props.ilks[props.idx].lineMax)}</p>
+    )
+  } else {
+    return null;
+  }
+}
+
 function Collateral(props) {
   const t = useTranslate()
   return (
@@ -39,6 +49,7 @@ function Collateral(props) {
           <p className="title subtitle is-size-4">
             {t('daistats.dai_from_token', { token: props.token })} ({formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.debt * 100)}%)
               </p>
+          {autoLine(props, t('maker.debt_ceiling'))}
           <p
             className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.ilks[props.idx].line * 100)}%</p>
         </div>
