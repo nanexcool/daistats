@@ -1,0 +1,318 @@
+{
+    "name": "MakerDAO",
+    "timestamp": "2021-04-02T22:02:04+00:00",
+    "version": {
+        "major": 0,
+        "minor": 1,
+        "patch": 0
+    },
+    "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
+    "keywords": [
+        "MakerDAO",
+        "Maker",
+        "DAO",
+        "DAI",
+        "MKR",
+        "Stablecoin",
+        "Collateral",
+        "DeFi"
+    ],
+    "tags": {
+        "stablecoin": {
+            "name": "Stablecoin",
+            "description": "Tokens that are fixed to an external asset, e.g. the US dollar"
+        },
+        "lp": {
+            "name": "Uniswap LP Token",
+            "description": "Tokens that represent a stake in a Uniswap pool"
+        }
+    },
+    "tokens": [
+        {
+            "chainId": 1,
+            "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+            "symbol": "DAI",
+            "name": "Dai Stablecoin",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2",
+            "symbol": "MKR",
+            "name": "Maker",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2",
+            "symbol": "WETH",
+            "name": "Wrapped Ether",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x0D8775F648430679A709E98d2b0Cb6250d2887EF",
+            "symbol": "BAT",
+            "name": "Basic Attention Token",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0D8775F648430679A709E98d2b0Cb6250d2887EF/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48",
+            "symbol": "USDC",
+            "name": "USD Coin",
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+            "symbol": "WBTC",
+            "name": "Wrapped BTC",
+            "decimals": 8,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x0000000000085d4780B73119b644AE5ecd22b376",
+            "symbol": "TUSD",
+            "name": "TrueUSD",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0000000000085d4780B73119b644AE5ecd22b376/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xE41d2489571d322189246DaFA5ebDe1F4699F498",
+            "symbol": "ZRX",
+            "name": "0x Protocol Token",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xE41d2489571d322189246DaFA5ebDe1F4699F498/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xdd974D5C2e2928deA5F71b9825b8b646686BD200",
+            "symbol": "KNC",
+            "name": "Kyber Network Crystal",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdd974D5C2e2928deA5F71b9825b8b646686BD200/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x0F5D2fB29fb7d3CFeE444a200298f468908cC942",
+            "symbol": "MANA",
+            "name": "Decentraland MANA",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0F5D2fB29fb7d3CFeE444a200298f468908cC942/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+            "symbol": "USDT",
+            "name": "Tether USD",
+            "decimals": 6,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xdAC17F958D2ee523a2206206994597C13D831ec7/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x8E870D67F660D95d5be530380D0eC0bd388289E1",
+            "symbol": "PAX",
+            "name": "Paxos Standard",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x8E870D67F660D95d5be530380D0eC0bd388289E1/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xc00e94Cb662C3520282E6f5717214004A7f26888",
+            "symbol": "COMP",
+            "name": "Compound",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xc00e94Cb662C3520282E6f5717214004A7f26888/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xBBbbCA6A901c926F240b89EacB641d8Aec7AEafD",
+            "symbol": "LRC",
+            "name": "LoopringCoin V2",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xBBbbCA6A901c926F240b89EacB641d8Aec7AEafD/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x514910771AF9Ca656af840dff83E8264EcF986CA",
+            "symbol": "LINK",
+            "name": "ChainLink Token",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x514910771AF9Ca656af840dff83E8264EcF986CA/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xba100000625a3754423978a60c9317c58a424e3D",
+            "symbol": "BAL",
+            "name": "Balancer",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xba100000625a3754423978a60c9317c58a424e3D/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e",
+            "symbol": "YFI",
+            "name": "yearn.finance",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x0bc529c00C6401aEF6D220BE8C6Ea1667F6Ad93e/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd",
+            "symbol": "GUSD",
+            "name": "Gemini dollar",
+            "decimals": 2,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x056Fd409E1d7A124BD7017459dFEa2F387b6d5Cd/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
+            "symbol": "UNI",
+            "name": "Uniswap",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xEB4C2781e4ebA804CE9a9803C67d0893436bB27D",
+            "symbol": "renBTC",
+            "name": "renBTC",
+            "decimals": 8,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xEB4C2781e4ebA804CE9a9803C67d0893436bB27D/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9",
+            "symbol": "AAVE",
+            "name": "Aave Token",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x7Fc66500c84A76Ad7e9c93437bFc5Ac33E2DDaE9/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+            "symbol": "UNI-V2-DAI-WETH",
+            "name": "Uniswap V2 DAI/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940",
+            "symbol": "UNI-V2-WBTC-WETH",
+            "name": "Uniswap V2 WBTC/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc",
+            "symbol": "UNI-V2-USDC-WETH",
+            "name": "Uniswap V2 USDC/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5",
+            "symbol": "UNI-V2-DAI-USDC",
+            "name": "Uniswap V2 DAI/USDC LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852",
+            "symbol": "UNI-V2-WETH-USDT",
+            "name": "Uniswap V2 WETH/USDT LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974",
+            "symbol": "UNI-V2-LINK-WETH",
+            "name": "Uniswap V2 LINK/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xd3d2E2692501A5c9Ca623199D38826e513033a17",
+            "symbol": "UNI-V2-UNI-WETH",
+            "name": "Uniswap V2 UNI/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x231B7589426Ffe1b75405526fC32aC09D44364c4",
+            "symbol": "UNI-V2-WBTC-DAI",
+            "name": "Uniswap V2 WBTC/DAI LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f",
+            "symbol": "UNI-V2-AAVE-WETH",
+            "name": "Uniswap V2 AAVE/WETH LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405",
+            "symbol": "UNI-V2-DAI-USDT",
+            "name": "Uniswap V2 DAI/USDT LP",
+            "decimals": 18,
+            "tags": [
+                "lp"
+            ]
+        }
+    ]
+}
