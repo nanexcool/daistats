@@ -463,6 +463,11 @@ class App extends Component {
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [uniAIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])], // 224
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [aaveAIlkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [univ2daiethAIlkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [univ2usdcethAIlkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [univ2daiusdcAIlkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [compAIlkBytes])], // 229
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [zrxAIlkBytes])],
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -809,6 +814,11 @@ class App extends Component {
     const uniAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[223])
     const renbtcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[224])
     const aaveAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[225])
+    const univ2daiethAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[226])
+    const univ2usdcethAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[227])
+    const univ2daiusdcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[228])
+    const compAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[229])
+    const zrxAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[230])
 
     // NOTE sysLocked is unused and incomplete atm
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
@@ -878,7 +888,8 @@ class App extends Component {
             rate: utils.formatUnits(zrxAIlk.rate, 27),
             spot: utils.formatUnits(zrxAIlk.spot, 27),
             line: utils.formatUnits(zrxAIlk.line, 45),
-            dust: utils.formatUnits(zrxAIlk.dust, 45)
+            dust: utils.formatUnits(zrxAIlk.dust, 45),
+            lineMax: utils.formatUnits(zrxAAutoLineIlk.line, 45)
           },
           {
             Art:  utils.formatEther(manaAIlk.Art),
@@ -907,7 +918,8 @@ class App extends Component {
             rate: utils.formatUnits(compAIlk.rate, 27),
             spot: utils.formatUnits(compAIlk.spot, 27),
             line: utils.formatUnits(compAIlk.line, 45),
-            dust: utils.formatUnits(compAIlk.dust, 45)
+            dust: utils.formatUnits(compAIlk.dust, 45),
+            lineMax: utils.formatUnits(compAAutoLineIlk.line, 45)
           },
           {
             Art:  utils.formatEther(lrcAIlk.Art),
@@ -984,7 +996,8 @@ class App extends Component {
             rate: utils.formatUnits(univ2daiethAIlk.rate, 27),
             spot: utils.formatUnits(univ2daiethAIlk.spot, 27),
             line: utils.formatUnits(univ2daiethAIlk.line, 45),
-            dust: utils.formatUnits(univ2daiethAIlk.dust, 45)
+            dust: utils.formatUnits(univ2daiethAIlk.dust, 45),
+            lineMax: utils.formatUnits(univ2daiethAAutoLineIlk.line, 45)
           },
           {
             Art:  utils.formatEther(univ2wbtcethAIlk.Art),
@@ -998,14 +1011,16 @@ class App extends Component {
             rate: utils.formatUnits(univ2usdcethAIlk.rate, 27),
             spot: utils.formatUnits(univ2usdcethAIlk.spot, 27),
             line: utils.formatUnits(univ2usdcethAIlk.line, 45),
-            dust: utils.formatUnits(univ2usdcethAIlk.dust, 45)
+            dust: utils.formatUnits(univ2usdcethAIlk.dust, 45),
+            lineMax: utils.formatUnits(univ2usdcethAAutoLineIlk.line, 45)
           },
           {
             Art:  utils.formatEther(univ2daiusdcAIlk.Art),
             rate: utils.formatUnits(univ2daiusdcAIlk.rate, 27),
             spot: utils.formatUnits(univ2daiusdcAIlk.spot, 27),
             line: utils.formatUnits(univ2daiusdcAIlk.line, 45),
-            dust: utils.formatUnits(univ2daiusdcAIlk.dust, 45)
+            dust: utils.formatUnits(univ2daiusdcAIlk.dust, 45),
+            lineMax: utils.formatUnits(univ2daiusdcAAutoLineIlk.line, 45)
           },
           {
             Art:  utils.formatEther(univ2ethusdtAIlk.Art),
