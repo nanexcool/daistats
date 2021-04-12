@@ -28,7 +28,11 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 function autoLine(props, label) {
   if (props.ilks[props.idx].lineMax > 0) {
     return (
-      <p className="title subtitle is-size-6">{label}: {formatAmount.format(props.ilks[props.idx].lineMax)}</p>
+      <>
+          <p className="title subtitle is-size-6">{label}: {formatAmount.format(props.ilks[props.idx].lineMax)}</p>
+          <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[props.idx].gap)} Ttl: {props.ilks[props.idx].ttl / 60 / 60}h</p>
+          <p className="title subtitle is-size-6">Last Change: {props.ilks[props.idx].lastInc}</p>
+      </>
     )
   } else {
     return null;
