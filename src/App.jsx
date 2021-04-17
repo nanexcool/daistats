@@ -30,6 +30,14 @@ add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
 
+add["RWA001_GEM"] = "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d"
+add["MCD_JOIN_RWA001_A"] = "0x476b81c12Dc71EDfad1F64B9E07CaA60F4b156E2"
+add["PIP_RWA001_A"] = "0x76a9f30b45f4ebfd60ce8a1c6e963b1605f7cb6d"
+add["RWA002_GEM"] = "0xAAA760c2027817169D7C8DB0DC61A2fb4c19AC23"
+add["MCD_JOIN_RWA002_A"] = "0xe72C7e90bc26c11d45dBeE736F0acf57fC5B7152"
+add["PIP_RWA002_A"] = "0xd2473237e20bd52f8e7ce0fd79403a6a82fbaec8"
+
+
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
@@ -86,6 +94,8 @@ const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
 const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
 const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
+const rwa001 = build(add.RWA001_GEM, "ERC20")
+const rwa002 = build(add.RWA002_GEM, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -126,6 +136,8 @@ const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
 const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
+const rwa001APip = build(add.PIP_RWA001_A, "DSValue")
+const rwa002APip = build(add.PIP_RWA002_A, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
@@ -159,6 +171,8 @@ const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A");
 const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A");
 const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A");
 const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A");
+const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A");
+const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -468,6 +482,18 @@ class App extends Component {
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [univ2daiusdcAIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [compAIlkBytes])], // 229
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [zrxAIlkBytes])],
+
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [rwa001AIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [rwa001AIlkBytes])], // 232
+      [add.PIP_RWA001_A, rwa001APip.interface.encodeFunctionData('read', [])],
+      [add.RWA001_GEM, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 234
+      [add.RWA001_GEM, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA001_A])],
+
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])], // 237
+      [add.PIP_RWA002_A, rwa002APip.interface.encodeFunctionData('read', [])],
+      [add.RWA002_GEM, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 240
+      [add.RWA002_GEM, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA002_A])],
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -820,6 +846,20 @@ class App extends Component {
     const compAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[229])
     const zrxAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[230])
 
+    const rwa001AIlk = vat.interface.decodeFunctionResult('ilks', res[231])
+    const rwa001AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[232]))
+    const rwa001ADrip = jug.interface.decodeFunctionResult('ilks', res[232])
+    const rwa001Price = rwa001APip.interface.decodeFunctionResult('read', res[233])[0]
+    const rwa001Supply = rwa001.interface.decodeFunctionResult('totalSupply', res[234])
+    const rwa001ALocked = rwa001.interface.decodeFunctionResult('balanceOf', res[235])
+
+    const rwa002AIlk = vat.interface.decodeFunctionResult('ilks', res[236])
+    const rwa002AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[237]))
+    const rwa002ADrip = jug.interface.decodeFunctionResult('ilks', res[237])
+    const rwa002Price = rwa002APip.interface.decodeFunctionResult('read', res[238])[0]
+    const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[239])
+    const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[240])
+
     // NOTE sysLocked is unused and incomplete atm
     const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
@@ -1121,6 +1161,20 @@ class App extends Component {
             spot: utils.formatUnits(ethCIlk.spot, 27),
             line: utils.formatUnits(ethCIlk.line, 45),
             dust: utils.formatUnits(ethCIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(rwa001AIlk.Art),
+            rate: utils.formatUnits(rwa001AIlk.rate, 27),
+            spot: utils.formatUnits(rwa001AIlk.spot, 27),
+            line: utils.formatUnits(rwa001AIlk.line, 45),
+            dust: utils.formatUnits(rwa001AIlk.dust, 45)
+          },
+          {
+            Art:  utils.formatEther(rwa002AIlk.Art),
+            rate: utils.formatUnits(rwa002AIlk.rate, 27),
+            spot: utils.formatUnits(rwa002AIlk.spot, 27),
+            line: utils.formatUnits(rwa002AIlk.line, 45),
+            dust: utils.formatUnits(rwa002AIlk.dust, 45)
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
@@ -1175,6 +1229,10 @@ class App extends Component {
         univ2aaveethALocked: utils.formatEther(univ2aaveethALocked[0]),
         univ2daiusdtSupply: utils.formatEther(univ2daiusdtSupply[0]),
         univ2daiusdtALocked: utils.formatEther(univ2daiusdtALocked[0]),
+        rwa001Supply: utils.formatEther(rwa001Supply[0]),
+        rwa001ALocked: utils.formatEther(rwa001ALocked[0]),
+        rwa002Supply: utils.formatEther(rwa002Supply[0]),
+        rwa002ALocked: utils.formatEther(rwa002ALocked[0]),
         psmUsdcALocked: utils.formatUnits(psmUsdcALocked[0], 6),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
@@ -1211,6 +1269,8 @@ class App extends Component {
         univ2wbtcdaiAFee: univ2wbtcdaiAFee.toFixed(2),
         univ2aaveethAFee: univ2aaveethAFee.toFixed(2),
         univ2daiusdtAFee: univ2daiusdtAFee.toFixed(2),
+        rwa001AFee: rwa001AFee.toFixed(2),
+        rwa002AFee: rwa002AFee.toFixed(2),
         psmUsdcTin: utils.formatEther(psmUsdcTin),
         psmUsdcTout: utils.formatEther(psmUsdcTout),
         psmUsdcALine: utils.formatUnits(psmUsdcAIlk.line, 45),
@@ -1246,6 +1306,8 @@ class App extends Component {
         jugUniv2wbtcdaiADrip: this.unixToDateTime(jugUniv2wbtcdaiADrip.rho),
         jugUniv2aaveethADrip: this.unixToDateTime(jugUniv2aaveethADrip.rho),
         jugUniv2daiusdtADrip: this.unixToDateTime(jugUniv2daiusdtADrip.rho),
+        rwa001ADrip: this.unixToDateTime(rwa001ADrip.rho),
+        rwa002ADrip: this.unixToDateTime(rwa002ADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),
@@ -1340,6 +1402,8 @@ class App extends Component {
         univ2aaveethPriceNxt: utils.formatEther(univ2aaveethPriceNxt),
         univ2daiusdtPrice: utils.formatUnits(univ2daiusdtPrice, 27),
         univ2daiusdtPriceNxt: utils.formatEther(univ2daiusdtPriceNxt),
+        rwa001Price: utils.formatEther(rwa001Price),
+        rwa002Price: utils.formatEther(rwa002Price),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
@@ -1508,7 +1572,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome Eth-C! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome 6s Capital (RWA001) and New Silver Series 2 DROP (RWA002)! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>

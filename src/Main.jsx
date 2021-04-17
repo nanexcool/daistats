@@ -117,6 +117,8 @@ const Main = (props) => {
         <Collateral {...props} idx="28" token="UNIV2WBTCDAI-A" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} jugDrip={props.jugUniv2wbtcdaiADrip} showLockedDecimals={true} />
         <Collateral {...props} idx="29" token="UNIV2AAVEETH-A" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} jugDrip={props.jugUniv2aaveethADrip} />
         <Collateral {...props} idx="30" token="UNIV2DAIUSDT-A" locked={props.univ2daiusdtALocked} supply={props.univ2daiusdtSupply} fee={props.univ2daiusdtAFee} jugDrip={props.jugUniv2daiusdtADrip} />
+        <Collateral {...props} idx="32" token="RWA001-A" locked={props.rwa001ALocked} supply={props.rwa001Supply} fee={props.rwa001AFee} jugDrip={props.rwa001ADrip} />
+        <Collateral {...props} idx="33" token="RWA002-A" locked={props.rwa002ALocked} supply={props.rwa002Supply} fee={props.rwa002AFee} jugDrip={props.rwa002ADrip} />
 
         <div>
           <div className="columns">
@@ -408,6 +410,20 @@ const Main = (props) => {
               <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
                 className={nextPrice(props.univ2daiusdtPrice, props.univ2daiusdtPriceNxt)} title={props.univ2daiusdtPriceNxt}>${formatTwoDp.format(props.univ2daiusdtPriceNxt)}</span>
               </p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.rwa001Price}>${formatTwoDp.format(props.rwa001Price)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'RWA001' })}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.rwa002Price}>${formatTwoDp.format(props.rwa002Price)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_price', { token: 'RWA002' })}</p>
             </div>
           </div>
         </div>
@@ -961,6 +977,22 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.UNIV2DAIUSDT}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> UniV2DaiUsdt</h3>
                 <p className="subtitle is-size-7">{props.UNIV2DAIUSDT}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA001_GEM}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA001</h3>
+                <p className="subtitle is-size-7">{props.RWA001_GEM}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA002_GEM}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA002</h3>
+                <p className="subtitle is-size-7">{props.RWA002_GEM}</p>
               </a>
             </div>
           </div>
