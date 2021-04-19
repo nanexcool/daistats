@@ -29,18 +29,20 @@ import os, json, datetime
 
 from brownie import Contract
 
-ILK_REGISTRY = '0x8b4ce5DCbb01e0e1f0521cd8dCfb31B308E52c24'
+ILK_REGISTRY = '0x5a464C28D19848f44199D003BeF5ecc87d090F87'
 DAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
 MKR = '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2'
 
 TOKEN_LOGO_URI = 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/%s/logo.png'
+
+ILK_CLASS_RWA = 3
 
 tl = {
     "name": "MakerDAO",
     "timestamp": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00'),
     "version": {
         "major": 0,
-        "minor": 1,
+        "minor": 2,
         "patch": 0
     },
     #logoURI is optional
@@ -58,6 +60,10 @@ tl = {
         "lp": {
             "name": "Uniswap LP Token",
             "description": "Tokens that represent a stake in a Uniswap pool"
+        },
+        "rwa": {
+            "name": "Real World Asset Token",
+            "description": "Tokens that represent a real world asset"
         }
     },
     "tokens": [
@@ -92,11 +98,14 @@ def main():
 
     names = set()
     for i in c.list():
+        tags = []
         symbol = c.symbol(i)
         gem = c.gem(i)
-        tags = []
+        ilkClass = getattr(c, 'class')(i)
         if symbol in ['DAI', 'USDC', 'TUSD', 'USDT', 'PAX', 'GUSD']:
             tags.append('stablecoin')
+        if ilkClass == ILK_CLASS_RWA:
+            tags.append('rwa')
         if symbol == 'UNI-V2':
             tags.append('lp')
             uniLp = Contract.from_explorer(gem)
@@ -112,11 +121,11 @@ def main():
             m = {
                 "chainId": 1,
                 "address": gem,
-                "symbol": symbol, # max 20 chars
-                "name": name, # max 40 chars
+                "symbol": symbol[:20], # max 20 chars
+                "name": name[:40], # max 40 chars
                 "decimals": c.dec(i)
                 }
-            if not symbol.startswith('UNI-V2'):
+            if not (symbol.startswith('UNI-V2') or ilkClass == ILK_CLASS_RWA):
                 m["logoURI"] = (TOKEN_LOGO_URI % gem) #optional
             if tags:
                 m["tags"] = tags #optional
