@@ -1,9 +1,9 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-04-02T22:02:04+00:00",
+    "timestamp": "2021-04-19T23:00:05+00:00",
     "version": {
         "major": 0,
-        "minor": 1,
+        "minor": 2,
         "patch": 0
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
@@ -25,6 +25,10 @@
         "lp": {
             "name": "Uniswap LP Token",
             "description": "Tokens that represent a stake in a Uniswap pool"
+        },
+        "rwa": {
+            "name": "Real World Asset Token",
+            "description": "Tokens that represent a real world asset"
         }
     },
     "tokens": [
@@ -312,6 +316,26 @@
             "decimals": 18,
             "tags": [
                 "lp"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d",
+            "symbol": "RWA001-A",
+            "name": "RWA001-A: 6s Capital",
+            "decimals": 18,
+            "tags": [
+                "rwa"
+            ]
+        },
+        {
+            "chainId": 1,
+            "address": "0xAAA760c2027817169D7C8DB0DC61A2fb4c19AC23",
+            "symbol": "RWA002-A",
+            "name": "RWA002-A: Centrifuge: New Silver",
+            "decimals": 18,
+            "tags": [
+                "rwa"
             ]
         }
     ]
