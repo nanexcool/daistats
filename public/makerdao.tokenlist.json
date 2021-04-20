@@ -1,10 +1,10 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-04-19T23:00:05+00:00",
+    "timestamp": "2021-04-20T02:47:59+00:00",
     "version": {
         "major": 0,
         "minor": 2,
-        "patch": 0
+        "patch": 1
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
     "keywords": [
@@ -27,7 +27,7 @@
             "description": "Tokens that represent a stake in a Uniswap pool"
         },
         "rwa": {
-            "name": "Real World Asset Token",
+            "name": "Real World Asset",
             "description": "Tokens that represent a real world asset"
         }
     },
