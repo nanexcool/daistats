@@ -43,7 +43,7 @@ tl = {
     "version": {
         "major": 0,
         "minor": 2,
-        "patch": 0
+        "patch": 1
     },
     #logoURI is optional
     # 	"A URI for the logo of the token list; prefer SVG or PNG of size 256x256"
@@ -54,15 +54,15 @@ tl = {
     ],
     "tags": { #optional
         "stablecoin": {
-            "name": "Stablecoin",
-            "description": "Tokens that are fixed to an external asset, e.g. the US dollar"
+            "name": "Stablecoin", # 1 - 20 chars "^[ \\w]+$"
+            "description": "Tokens that are fixed to an external asset, e.g. the US dollar" # 1 - 200 chars "^[ \\w\\.,]+$"
         },
         "lp": {
             "name": "Uniswap LP Token",
             "description": "Tokens that represent a stake in a Uniswap pool"
         },
         "rwa": {
-            "name": "Real World Asset Token",
+            "name": "Real World Asset",
             "description": "Tokens that represent a real world asset"
         }
     },
@@ -121,8 +121,8 @@ def main():
             m = {
                 "chainId": 1,
                 "address": gem,
-                "symbol": symbol[:20], # max 20 chars
-                "name": name[:40], # max 40 chars
+                "symbol": symbol[:20], # max 20 chars "^[a-zA-Z0-9+\\-%/\\$]+$"
+                "name": name[:40], # max 40 chars "^[ \\w.'+\\-%/À-ÖØ-öø-ÿ\\:]+$"
                 "decimals": c.dec(i)
                 }
             if not (symbol.startswith('UNI-V2') or ilkClass == ILK_CLASS_RWA):
