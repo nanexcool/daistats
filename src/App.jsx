@@ -34,7 +34,7 @@ add["RWA001"] = "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d"
 add["MCD_JOIN_RWA001_A"] = "0x476b81c12Dc71EDfad1F64B9E07CaA60F4b156E2"
 add["PIP_RWA001"] = "0x76a9f30b45f4ebfd60ce8a1c6e963b1605f7cb6d"
 
-add["MCD_FLIP_LINK_A"] = "0xB907EEdD63a30A3381E6D898e5815Ee8c9fd2c85"
+add["MCD_CLIP_YFI_A"] = "0x9daCc11dcD0aa13386D295eAeeBBd38130897E6f"
 
 let provider;
 let networkId;
@@ -113,7 +113,7 @@ const compAFlip = build(add.MCD_FLIP_COMP_A, "Flipper");
 const lrcAFlip = build(add.MCD_FLIP_LRC_A, "Flipper");
 const linkAClip = build(add.MCD_CLIP_LINK_A, "Clipper");
 const balAFlip = build(add.MCD_FLIP_BAL_A, "Flipper");
-const yfiAFlip = build(add.MCD_FLIP_YFI_A, "Flipper");
+const yfiAClip = build(add.MCD_CLIP_YFI_A, "Clipper");
 const uniAFlip = build(add.MCD_FLIP_UNI_A, "Flipper");
 const renbtcAFlip = build(add.MCD_FLIP_RENBTC_A, "Flipper");
 const aaveAFlip = build(add.MCD_FLIP_AAVE_A, "Flipper");
@@ -354,7 +354,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [yfiAIlkBytes])], // 119
       [add.YFI, yfi.interface.encodeFunctionData('totalSupply', [])], // 120
       [add.YFI, yfi.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_YFI_A])],
-      [add.MCD_FLIP_YFI_A, yfiAFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_YFI_A, yfiAClip.interface.encodeFunctionData('kicks', [])],
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [gusdAIlkBytes])], // 123
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [gusdAIlkBytes])],
@@ -697,7 +697,7 @@ class App extends Component {
     const yfiPrice = yfiAMat.mat.mul(yfiAIlk.spot).div(RAY)
     const yfiSupply = yfi.interface.decodeFunctionResult('totalSupply', res[120])
     const yfiALocked = yfi.interface.decodeFunctionResult('balanceOf', res[121])
-    const yfiAKicks = yfiAFlip.interface.decodeFunctionResult('kicks', res[122])[0]
+    const yfiAKicks = yfiAClip.interface.decodeFunctionResult('kicks', res[122])[0]
 
     const gusdAIlk = vat.interface.decodeFunctionResult('ilks', res[123])
     const gusdAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[124]))
