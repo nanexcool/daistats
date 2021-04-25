@@ -111,7 +111,7 @@ const paxAFlip = build(add.MCD_FLIP_PAXUSD_A, "Flipper");
 const usdtAFlip = build(add.MCD_FLIP_USDT_A, "Flipper");
 const compAFlip = build(add.MCD_FLIP_COMP_A, "Flipper");
 const lrcAFlip = build(add.MCD_FLIP_LRC_A, "Flipper");
-const linkAFlip = build(add.MCD_FLIP_LINK_A, "Flipper");
+const linkAClip = build(add.MCD_CLIP_LINK_A, "Clipper");
 const balAFlip = build(add.MCD_FLIP_BAL_A, "Flipper");
 const yfiAFlip = build(add.MCD_FLIP_YFI_A, "Flipper");
 const uniAFlip = build(add.MCD_FLIP_UNI_A, "Flipper");
@@ -334,7 +334,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [linkAIlkBytes])], // 102
       [add.LINK, link.interface.encodeFunctionData('totalSupply', [])],
       [add.LINK, link.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_LINK_A])], // 104
-      [add.MCD_FLIP_LINK_A, linkAFlip.interface.encodeFunctionData('kicks', [])], // 105
+      [add.MCD_CLIP_LINK_A, linkAClip.interface.encodeFunctionData('kicks', [])], // 105
 
       [add.MCD_FLIP_ETH_B, ethBFlip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
@@ -673,7 +673,7 @@ class App extends Component {
     const linkPrice = linkAMat.mat.mul(linkAIlk.spot).div(RAY)
     const linkSupply = link.interface.decodeFunctionResult('totalSupply', res[103])
     const linkALocked = link.interface.decodeFunctionResult('balanceOf', res[104])
-    const linkAKicks = linkAFlip.interface.decodeFunctionResult('kicks', res[105])[0]
+    const linkAKicks = linkAClip.interface.decodeFunctionResult('kicks', res[105])[0]
 
     const ethBKicks = ethBFlip.interface.decodeFunctionResult('kicks', res[106])[0]
     const ethBIlk = vat.interface.decodeFunctionResult('ilks', res[107])
