@@ -1102,10 +1102,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2wbtcethAIlk.spot, 27),
             line: utils.formatUnits(univ2wbtcethAIlk.line, 45),
             dust: utils.formatUnits(univ2wbtcethAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2wbtcethAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2wbtcethAAutoLineIlk.gap, 45),
-//            ttl: univ2wbtcethAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2wbtcethAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2wbtcethAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2wbtcethAAutoLineIlk.gap, 45),
+            ttl: univ2wbtcethAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2wbtcethAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2usdcethAIlk.Art),
@@ -1135,10 +1135,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2ethusdtAIlk.spot, 27),
             line: utils.formatUnits(univ2ethusdtAIlk.line, 45),
             dust: utils.formatUnits(univ2ethusdtAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2ethusdtAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2ethusdtAAutoLineIlk.gap, 45),
-//            ttl: univ2ethusdtAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2ethusdtAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2ethusdtAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2ethusdtAAutoLineIlk.gap, 45),
+            ttl: univ2ethusdtAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2ethusdtAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2linkethAIlk.Art),
@@ -1146,10 +1146,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2linkethAIlk.spot, 27),
             line: utils.formatUnits(univ2linkethAIlk.line, 45),
             dust: utils.formatUnits(univ2linkethAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2linkethAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2linkethAAutoLineIlk.gap, 45),
-//            ttl: univ2linkethAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2linkethAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2linkethAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2linkethAAutoLineIlk.gap, 45),
+            ttl: univ2linkethAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2linkethAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2uniethAIlk.Art),
@@ -1157,10 +1157,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2uniethAIlk.spot, 27),
             line: utils.formatUnits(univ2uniethAIlk.line, 45),
             dust: utils.formatUnits(univ2uniethAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2uniethAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2uniethAAutoLineIlk.gap, 45),
-//            ttl: univ2uniethAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2uniethAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2uniethAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2uniethAAutoLineIlk.gap, 45),
+            ttl: univ2uniethAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2uniethAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2wbtcdaiAIlk.Art),
@@ -1168,10 +1168,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2wbtcdaiAIlk.spot, 27),
             line: utils.formatUnits(univ2wbtcdaiAIlk.line, 45),
             dust: utils.formatUnits(univ2wbtcdaiAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.gap, 45),
-//            ttl: univ2wbtcdaiAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2wbtcdaiAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.gap, 45),
+            ttl: univ2wbtcdaiAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2wbtcdaiAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2aaveethAIlk.Art),
@@ -1179,10 +1179,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2aaveethAIlk.spot, 27),
             line: utils.formatUnits(univ2aaveethAIlk.line, 45),
             dust: utils.formatUnits(univ2aaveethAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2aaveethAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2aaveethAAutoLineIlk.gap, 45),
-//            ttl: univ2aaveethAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2aaveehtAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2aaveethAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2aaveethAAutoLineIlk.gap, 45),
+            ttl: univ2aaveethAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2aaveehtAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2daiusdtAIlk.Art),
@@ -1190,10 +1190,10 @@ class App extends Component {
             spot: utils.formatUnits(univ2daiusdtAIlk.spot, 27),
             line: utils.formatUnits(univ2daiusdtAIlk.line, 45),
             dust: utils.formatUnits(univ2daiusdtAIlk.dust, 45),
-//            lineMax: utils.formatUnits(univ2daiusdtAAutoLineIlk.line, 45),
-//            gap: utils.formatUnits(univ2daiusdtAAutoLineIlk.gap, 45),
-//            ttl: univ2daiusdtAAutoLineIlk.ttl,
-//            lastInc: this.unixToDateTime(univ2daiusdtAAutoLineIlk.lastInc)
+            lineMax: utils.formatUnits(univ2daiusdtAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(univ2daiusdtAAutoLineIlk.gap, 45),
+            ttl: univ2daiusdtAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2daiusdtAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(ethCIlk.Art),
