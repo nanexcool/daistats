@@ -30,13 +30,14 @@ add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
 
-add["RWA001_GEM"] = "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d"
+add["RWA001"] = "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d"
 add["MCD_JOIN_RWA001_A"] = "0x476b81c12Dc71EDfad1F64B9E07CaA60F4b156E2"
-add["PIP_RWA001_A"] = "0x76a9f30b45f4ebfd60ce8a1c6e963b1605f7cb6d"
-add["RWA002_GEM"] = "0xAAA760c2027817169D7C8DB0DC61A2fb4c19AC23"
-add["MCD_JOIN_RWA002_A"] = "0xe72C7e90bc26c11d45dBeE736F0acf57fC5B7152"
-add["PIP_RWA002_A"] = "0xd2473237e20bd52f8e7ce0fd79403a6a82fbaec8"
+add["PIP_RWA001"] = "0x76a9f30b45f4ebfd60ce8a1c6e963b1605f7cb6d"
+//add["RWA002"] = "0xAAA760c2027817169D7C8DB0DC61A2fb4c19AC23"
+//add["MCD_JOIN_RWA002_A"] = "0xe72C7e90bc26c11d45dBeE736F0acf57fC5B7152"
+//add["PIP_RWA002"] = "0xd2473237e20bd52f8e7ce0fd79403a6a82fbaec8"
 
+add["MCD_FLIP_LINK_A"] = "0xB907EEdD63a30A3381E6D898e5815Ee8c9fd2c85"
 
 let provider;
 let networkId;
@@ -94,8 +95,8 @@ const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
 const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
 const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
-const rwa001 = build(add.RWA001_GEM, "ERC20")
-const rwa002 = build(add.RWA002_GEM, "ERC20")
+const rwa001 = build(add.RWA001, "ERC20")
+const rwa002 = build(add.RWA002, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -136,8 +137,8 @@ const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
 const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
-const rwa001APip = build(add.PIP_RWA001_A, "DSValue")
-const rwa002APip = build(add.PIP_RWA002_A, "DSValue")
+const rwa001APip = build(add.PIP_RWA001, "DSValue")
+const rwa002APip = build(add.PIP_RWA002, "DSValue")
 const ethIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
@@ -485,15 +486,15 @@ class App extends Component {
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [rwa001AIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [rwa001AIlkBytes])], // 232
-      [add.PIP_RWA001_A, rwa001APip.interface.encodeFunctionData('read', [])],
-      [add.RWA001_GEM, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 234
-      [add.RWA001_GEM, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA001_A])],
+      [add.PIP_RWA001, rwa001APip.interface.encodeFunctionData('read', [])],
+      [add.RWA001, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 234
+      [add.RWA001, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA001_A])],
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])], // 237
-      [add.PIP_RWA002_A, rwa002APip.interface.encodeFunctionData('read', [])],
-      [add.RWA002_GEM, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 240
-      [add.RWA002_GEM, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA002_A])],
+      [add.PIP_RWA002, rwa002APip.interface.encodeFunctionData('read', [])],
+      [add.RWA002, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 240
+      [add.RWA002, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA002_A])],
 
     ], {blockTag: blockNumber})
     let promises = [

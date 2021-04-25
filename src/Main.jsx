@@ -982,17 +982,17 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.RWA001_GEM}`} target="_blank" rel="noopener noreferrer">
+              <a href={`https://etherscan.io/token/${props.RWA001}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA001</h3>
-                <p className="subtitle is-size-7">{props.RWA001_GEM}</p>
+                <p className="subtitle is-size-7">{props.RWA001}</p>
               </a>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.RWA002_GEM}`} target="_blank" rel="noopener noreferrer">
+              <a href={`https://etherscan.io/token/${props.RWA002}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA002</h3>
-                <p className="subtitle is-size-7">{props.RWA002_GEM}</p>
+                <p className="subtitle is-size-7">{props.RWA002}</p>
               </a>
             </div>
           </div>
