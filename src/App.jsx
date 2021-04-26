@@ -1181,8 +1181,8 @@ class App extends Component {
             dust: utils.formatUnits(univ2aaveethAIlk.dust, 45),
             lineMax: utils.formatUnits(univ2aaveethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2aaveethAAutoLineIlk.gap, 45),
-            ttl: univ2aaveethAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2aaveehtAAutoLineIlk.lastInc)
+            ttl: univ2aaveethAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(univ2aaveethAAutoLineIlk.lastInc)
           },
           {
             Art:  utils.formatEther(univ2daiusdtAIlk.Art),
