@@ -872,8 +872,44 @@ class App extends Component {
     const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[246])
     const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[247])
 
-    // NOTE sysLocked is unused and incomplete atm
-    const sysLocked = ethPrice.mul(ethLocked[0]).add(batPrice.mul(batLocked[0])).add(wbtcPrice.mul(wbtcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcLocked[0])).add(ethers.BigNumber.from(usdcPrice).mul(usdcBLocked[0])).add(ethers.BigNumber.from(tusdPrice).mul(tusdLocked[0])).add(ethers.BigNumber.from(kncPrice).mul(kncALocked[0])).add(ethers.BigNumber.from(zrxPrice).mul(zrxALocked[0])).add(ethers.BigNumber.from(paxPrice).mul(paxALocked[0])).add(ethers.BigNumber.from(usdtPrice).mul(usdtALocked[0])).add(ethers.BigNumber.from(compPrice).mul(compALocked[0])).add(ethers.BigNumber.from(lrcPrice).mul(lrcALocked[0])).add(ethers.BigNumber.from(linkPrice).mul(linkALocked[0]))
+    const sysLocked = [
+            ethLocked[0].mul(ethPrice),
+            ethBLocked[0].mul(ethPrice),
+            ethCLocked[0].mul(ethPrice),
+            usdcLocked[0].mul(usdcPrice),
+            usdcBLocked[0].mul(usdcPrice),
+            psmUsdcALocked[0].mul(usdcPrice),
+            wbtcLocked[0].mul(wbtcPrice),
+            renbtcALocked[0].mul(wbtcPrice),
+            tusdLocked[0].mul(tusdPrice),
+            paxALocked[0].mul(paxPrice),
+            gusdALocked[0].mul(gusdPrice),
+            usdtALocked[0].mul(usdtPrice),
+            batLocked[0].mul(batPrice),
+            kncALocked[0].mul(kncPrice),
+            zrxALocked[0].mul(zrxPrice),
+            manaALocked[0].mul(manaPrice),
+            compALocked[0].mul(compPrice),
+            lrcALocked[0].mul(lrcPrice),
+            linkALocked[0].mul(linkPrice),
+            balALocked[0].mul(balPrice),
+            yfiALocked[0].mul(yfiPrice),
+            uniALocked[0].mul(uniPrice),
+            aaveALocked[0].mul(aavePrice),
+            univ2daiethALocked[0].mul(univ2daiethPrice),
+            univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
+            univ2usdcethALocked[0].mul(univ2usdcethPrice),
+            univ2daiusdcALocked[0].mul(univ2daiusdcPrice),
+            univ2ethusdtALocked[0].mul(univ2ethusdtPrice),
+            univ2linkethALocked[0].mul(univ2linkethPrice),
+            univ2uniethALocked[0].mul(univ2uniethPrice),
+            univ2wbtcdaiALocked[0].mul(univ2wbtcdaiPrice),
+            univ2aaveethALocked[0].mul(univ2aaveethPrice),
+            univ2daiusdtALocked[0].mul(univ2daiusdtPrice),
+            rwa001ALocked[0].mul(rwa001Price),
+            rwa002ALocked[0].mul(rwa002Price)
+                ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
+
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
       return {

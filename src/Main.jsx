@@ -84,6 +84,20 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.sysLocked}>{formatAmount.format(props.sysLocked)}</h3>
+              <h4 className="subtitle is-size-4">{t('daistats.total_locked')}</h4>
+            </div>
+          </div>
+          {/*<div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={sysCollat}>{formatPercent.format(sysCollat)}</h3>
+              <h4 className="title subtitle is-size-4">{t('daistats.collat_ratio')}</h4>
+            </div>
+          </div>*/}
+        </div>
         <hr />
         <Collateral {...props} idx="0" token="ETH-A" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} jugDrip={props.jugEthDrip} />
         <Collateral {...props} idx="14" token="ETH-B" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} jugDrip={props.jugEthBDrip} />
