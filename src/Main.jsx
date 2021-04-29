@@ -61,7 +61,7 @@ function nextPrice(price, priceNxt) {
 const Main = (props) => {
   const t = useTranslate()
   document.title = `${formatNoDecimals.format(props.debt)} - Dai Stats`
-  //const sysCollat = props.sysLocked / props.debt
+  const sysCollat = props.sysLocked / props.debt
 
   const nextFlap = () =>
     formatAmount.format(

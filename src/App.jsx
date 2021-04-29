@@ -185,6 +185,9 @@ window.multi = multi
 window.dai = dai
 
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
+const DP2 = ethers.BigNumber.from("10000000000000000")
+const DP6 = ethers.BigNumber.from("1000000000000")
+const DP8 = ethers.BigNumber.from("10000000000")
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -876,15 +879,15 @@ class App extends Component {
             ethLocked[0].mul(ethPrice),
             ethBLocked[0].mul(ethPrice),
             ethCLocked[0].mul(ethPrice),
-            usdcLocked[0].mul(usdcPrice),
-            usdcBLocked[0].mul(usdcPrice),
-            psmUsdcALocked[0].mul(usdcPrice),
-            wbtcLocked[0].mul(wbtcPrice),
-            renbtcALocked[0].mul(wbtcPrice),
+            usdcLocked[0].mul(DP6).mul(usdcPrice),
+            usdcBLocked[0].mul(DP6).mul(usdcPrice),
+            psmUsdcALocked[0].mul(DP6).mul(usdcPrice),
+            wbtcLocked[0].mul(DP8).mul(wbtcPrice),
+            renbtcALocked[0].mul(DP8).mul(wbtcPrice),
             tusdLocked[0].mul(tusdPrice),
             paxALocked[0].mul(paxPrice),
-            gusdALocked[0].mul(gusdPrice),
-            usdtALocked[0].mul(usdtPrice),
+            gusdALocked[0].mul(DP2).mul(gusdPrice),
+            usdtALocked[0].mul(DP6).mul(usdtPrice),
             batLocked[0].mul(batPrice),
             kncALocked[0].mul(kncPrice),
             zrxALocked[0].mul(zrxPrice),
