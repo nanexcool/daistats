@@ -484,7 +484,7 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
-              <p className="subtitle is-size-6">{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
+              <p className="subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
               {(props.networkId === 1) && false && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer} />}
             </div>
           </div>
