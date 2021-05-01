@@ -30,11 +30,12 @@ add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
 
-add["RWA001"] = "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d"
-add["MCD_JOIN_RWA001_A"] = "0x476b81c12Dc71EDfad1F64B9E07CaA60F4b156E2"
-add["PIP_RWA001"] = "0x76a9f30b45f4ebfd60ce8a1c6e963b1605f7cb6d"
-
 add["MCD_CLIP_YFI_A"] = "0x9daCc11dcD0aa13386D295eAeeBBd38130897E6f"
+add["MCD_CLIP_ETH_A"] = "0xc67963a226eddd77B91aD8c421630A1b0AdFF270"
+add["MCD_CLIP_ETH_B"] = "0x71eb894330e8a4b96b8d6056962e7F116F50e06F"
+add["MCD_CLIP_ETH_C"] = "0xc2b12567523e3f3CBd9931492b91fe65b240bc47"
+add["MCD_CLIP_WBTC_A"] = "0x0227b54AdbFAEec5f1eD1dFa11f54dcff9076e2C"
+
 
 let provider;
 let networkId;
@@ -99,11 +100,11 @@ const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
-const ethFlip = build(add.MCD_FLIP_ETH_A, "Flipper");
-const ethBFlip = build(add.MCD_FLIP_ETH_B, "Flipper");
-const ethCFlip = build(add.MCD_FLIP_ETH_C, "Flipper");
+const ethClip = build(add.MCD_CLIP_ETH_A, "Clipper");
+const ethBClip = build(add.MCD_CLIP_ETH_B, "Clipper");
+const ethCClip = build(add.MCD_CLIP_ETH_C, "Clipper");
 const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
-const wbtcFlip = build(add.MCD_FLIP_WBTC_A, "Flipper");
+const wbtcClip = build(add.MCD_CLIP_WBTC_A, "Clipper");
 const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
 const zrxAFlip = build(add.MCD_FLIP_ZRX_A, "Flipper");
 const manaAFlip = build(add.MCD_FLIP_MANA_A, "Flipper");
@@ -250,7 +251,7 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
-      [add.MCD_FLIP_ETH_A, ethFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_ETH_A, ethClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_FLIP_BAT_A, batFlip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [ethIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [batIlkBytes])],
@@ -274,7 +275,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [wbtcIlkBytes])], // 45
       [add.WBTC, wbtc.interface.encodeFunctionData('totalSupply', [])],
       [add.WBTC, wbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_WBTC_A])],
-      [add.MCD_FLIP_WBTC_A, wbtcFlip.interface.encodeFunctionData('kicks', [])], // 48
+      [add.MCD_CLIP_WBTC_A, wbtcClip.interface.encodeFunctionData('kicks', [])], // 48
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // unused
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
@@ -339,7 +340,7 @@ class App extends Component {
       [add.LINK, link.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_LINK_A])], // 104
       [add.MCD_CLIP_LINK_A, linkAClip.interface.encodeFunctionData('kicks', [])], // 105
 
-      [add.MCD_FLIP_ETH_B, ethBFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_ETH_B, ethBClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethBIlkBytes])], // 108
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_B])],
@@ -460,7 +461,7 @@ class App extends Component {
       [add.UNIV2DAIUSDT, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNIV2DAIUSDT_A])],
       [add.MCD_FLIP_UNIV2DAIUSDT_A, univ2daiusdtAFlip.interface.encodeFunctionData('kicks', [])], // 208
 
-      [add.MCD_FLIP_ETH_C, ethCFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_ETH_C, ethCClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethCIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethCIlkBytes])], // 211
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_C])],
@@ -571,7 +572,7 @@ class App extends Component {
     const pieChi = pot.interface.decodeFunctionResult('chi', res[13])[0]
     const savingsDai = savingsPie.mul(pieChi);
     const potDrip = pot.interface.decodeFunctionResult('rho', res[14])[0]
-    const ethKicks = ethFlip.interface.decodeFunctionResult('kicks', res[24])[0]
+    const ethKicks = ethClip.interface.decodeFunctionResult('kicks', res[24])[0]
     const batKicks = batFlip.interface.decodeFunctionResult('kicks', res[25])[0]
     const cdps = manager.interface.decodeFunctionResult('cdpi', res[15])
     const ethMat = spot.interface.decodeFunctionResult('ilks', res[26])
@@ -597,7 +598,7 @@ class App extends Component {
     const wbtcPrice = wbtcMat.mat.mul(wbtcIlk.spot).div(RAY)
     const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[46])
     const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[47])
-    const wbtcKicks = wbtcFlip.interface.decodeFunctionResult('kicks', res[48])[0]
+    const wbtcKicks = wbtcClip.interface.decodeFunctionResult('kicks', res[48])[0]
     const usdcBIlk = vat.interface.decodeFunctionResult('ilks', res[49])
     const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[51]))
     const jugUsdcBDrip = jug.interface.decodeFunctionResult('ilks', res[51])
@@ -678,7 +679,7 @@ class App extends Component {
     const linkALocked = link.interface.decodeFunctionResult('balanceOf', res[104])
     const linkAKicks = linkAClip.interface.decodeFunctionResult('kicks', res[105])[0]
 
-    const ethBKicks = ethBFlip.interface.decodeFunctionResult('kicks', res[106])[0]
+    const ethBKicks = ethBClip.interface.decodeFunctionResult('kicks', res[106])[0]
     const ethBIlk = vat.interface.decodeFunctionResult('ilks', res[107])
     const ethBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[108]))
     const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])
@@ -830,7 +831,7 @@ class App extends Component {
     const univ2daiusdtALocked = univ2daiusdt.interface.decodeFunctionResult('balanceOf', res[207])
     const univ2daiusdtAKicks = univ2daiusdtAFlip.interface.decodeFunctionResult('kicks', res[208])[0]
 
-    const ethCKicks = ethCFlip.interface.decodeFunctionResult('kicks', res[209])[0]
+    const ethCKicks = ethCClip.interface.decodeFunctionResult('kicks', res[209])[0]
     const ethCIlk = vat.interface.decodeFunctionResult('ilks', res[210])
     const ethCFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[211]))
     const ethCLocked = weth.interface.decodeFunctionResult('balanceOf', res[212])
