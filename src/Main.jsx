@@ -458,7 +458,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.token_supply', { token: 'MKR' })}</p>
+              <p className="subtitle is-size-4">{t('daistats.token_supply', { token: 'MKR' })}</p>
               <p className="subtitle is-size-6" title={props.protocolTreasury}>
                 Protocol Treasury: {formatAmount.format(props.protocolTreasury)} MKR
               </p>
