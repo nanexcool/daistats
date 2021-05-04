@@ -504,6 +504,7 @@ class App extends Component {
       [add.RWA002, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 247
       [add.RWA002, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA002_A])],
 
+      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -875,6 +876,8 @@ class App extends Component {
     const rwa002Price = rwa002APip.interface.decodeFunctionResult('read', res[245])[0]
     const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[246])
     const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[247])
+
+    const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[248])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1503,6 +1506,7 @@ class App extends Component {
         zrxALocked: utils.formatEther(zrxALocked[0]),
         manaSupply: utils.formatEther(manaSupply[0]),
         manaALocked: utils.formatEther(manaALocked[0]),
+        protocolTreasury: utils.formatEther(protocolTreasury[0]),
         historicalDebt,
       }
     })
