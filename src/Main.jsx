@@ -496,28 +496,28 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.ethKicks}>{formatAmount.format(props.ethKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'ETH-A' })*/}ETH-A (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.ethBKicks}>{formatAmount.format(props.ethBKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH-B' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'ETH-B' })*/}ETH-B (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.ethCKicks}>{formatAmount.format(props.ethCKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ETH-C' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'ETH-C' })*/}ETH-C (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.wbtcKicks}>{formatAmount.format(props.wbtcKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'WBTC' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'WBTC' })*/}WBTC (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -570,7 +570,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.linkAKicks}>{formatAmount.format(props.linkAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'LINK' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'LINK' })*/}LINK (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -584,7 +584,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.yfiKicks}>{formatAmount.format(props.yfiAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'YFI' })}</p>
+              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: 'YFI' })*/}YFI (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
