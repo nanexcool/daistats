@@ -42,6 +42,16 @@ add["MCD_CLIP_ETH_B"] = "0x71eb894330e8a4b96b8d6056962e7F116F50e06F"
 add["MCD_CLIP_ETH_C"] = "0xc2b12567523e3f3CBd9931492b91fe65b240bc47"
 add["MCD_CLIP_WBTC_A"] = "0x0227b54AdbFAEec5f1eD1dFa11f54dcff9076e2C"
 
+add["MCD_CLIP_BAT_A"] = "0x3D22e6f643e2F4c563fD9db22b229Cbb0Cd570fb"
+add["MCD_CLIP_ZRX_A"] = "0xdc90d461E148552387f3aB3EBEE0Bdc58Aa16375"
+add["MCD_CLIP_KNC_A"] = "0x006Aa3eB5E666D8E006aa647D4afAB212555Ddea"
+add["MCD_CLIP_MANA_A"] = "0xF5C8176E1eB0915359E46DEd16E52C071Bb435c0"
+add["MCD_CLIP_COMP_A"] = "0x2Bb690931407DCA7ecE84753EA931ffd304f0F38"
+add["MCD_CLIP_LRC_A"] = "0x81C5CDf4817DBf75C7F08B8A1cdaB05c9B3f70F7"
+add["MCD_CLIP_BAL_A"] = "0x6AAc067bb903E633A422dE7BE9355E62B3CE0378"
+add["MCD_CLIP_UNI_A"] = "0x3713F83Ee6D138Ce191294C131148176015bC29a"
+add["MCD_CLIP_RENBTC_A"] = "0x834719BEa8da68c46484E001143bDDe29370a6A3"
+add["MCD_CLIP_AAVE_A"] = "0x8723b74F598DE2ea49747de5896f9034CC09349e"
 
 
 let provider;
@@ -110,21 +120,21 @@ const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const ethClip = build(add.MCD_CLIP_ETH_A, "Clipper");
 const ethBClip = build(add.MCD_CLIP_ETH_B, "Clipper");
 const ethCClip = build(add.MCD_CLIP_ETH_C, "Clipper");
-const batFlip = build(add.MCD_FLIP_BAT_A, "Flipper");
+const batClip = build(add.MCD_CLIP_BAT_A, "Clipper");
 const wbtcClip = build(add.MCD_CLIP_WBTC_A, "Clipper");
-const kncAFlip = build(add.MCD_FLIP_KNC_A, "Flipper");
-const zrxAFlip = build(add.MCD_FLIP_ZRX_A, "Flipper");
-const manaAFlip = build(add.MCD_FLIP_MANA_A, "Flipper");
+const kncAClip = build(add.MCD_CLIP_KNC_A, "Clipper");
+const zrxAClip = build(add.MCD_CLIP_ZRX_A, "Clipper");
+const manaAClip = build(add.MCD_CLIP_MANA_A, "Clipper");
 const paxAFlip = build(add.MCD_FLIP_PAXUSD_A, "Flipper");
 const usdtAFlip = build(add.MCD_FLIP_USDT_A, "Flipper");
-const compAFlip = build(add.MCD_FLIP_COMP_A, "Flipper");
-const lrcAFlip = build(add.MCD_FLIP_LRC_A, "Flipper");
+const compAClip = build(add.MCD_CLIP_COMP_A, "Clipper");
+const lrcAClip = build(add.MCD_CLIP_LRC_A, "Clipper");
 const linkAClip = build(add.MCD_CLIP_LINK_A, "Clipper");
-const balAFlip = build(add.MCD_FLIP_BAL_A, "Flipper");
+const balAClip = build(add.MCD_CLIP_BAL_A, "Clipper");
 const yfiAClip = build(add.MCD_CLIP_YFI_A, "Clipper");
-const uniAFlip = build(add.MCD_FLIP_UNI_A, "Flipper");
-const renbtcAFlip = build(add.MCD_FLIP_RENBTC_A, "Flipper");
-const aaveAFlip = build(add.MCD_FLIP_AAVE_A, "Flipper");
+const uniAClip = build(add.MCD_CLIP_UNI_A, "Clipper");
+const renbtcAClip = build(add.MCD_CLIP_RENBTC_A, "Clipper");
+const aaveAClip = build(add.MCD_CLIP_AAVE_A, "Clipper");
 const univ2daiethAFlip = build(add.MCD_FLIP_UNIV2DAIETH_A, "Flipper");
 const univ2wbtcethAFlip = build(add.MCD_FLIP_UNIV2WBTCETH_A, "Flipper");
 const univ2usdcethAFlip = build(add.MCD_FLIP_UNIV2USDCETH_A, "Flipper");
@@ -259,7 +269,7 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
       [add.MCD_CLIP_ETH_A, ethClip.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_FLIP_BAT_A, batFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_BAT_A, batClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [ethIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [batIlkBytes])],
       [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])],
@@ -298,20 +308,20 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [kncAIlkBytes])], // 61
       [add.KNC, knc.interface.encodeFunctionData('totalSupply', [])],
       [add.KNC, knc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_KNC_A])], // 63
-      [add.MCD_FLIP_KNC_A, kncAFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_KNC_A, kncAClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [zrxAIlkBytes])], // 65
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [zrxAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [zrxAIlkBytes])], // 67
       [add.ZRX, zrx.interface.encodeFunctionData('totalSupply', [])],
       [add.ZRX, zrx.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ZRX_A])], // 69
-      [add.MCD_FLIP_ZRX_A, zrxAFlip.interface.encodeFunctionData('kicks', [])], // 70
+      [add.MCD_CLIP_ZRX_A, zrxAClip.interface.encodeFunctionData('kicks', [])], // 70
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [manaAIlkBytes])], // 71
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [manaAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [manaAIlkBytes])], // 73
       [add.MANA, mana.interface.encodeFunctionData('totalSupply', [])],
       [add.MANA, mana.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_MANA_A])], // 75
-      [add.MCD_FLIP_MANA_A, manaAFlip.interface.encodeFunctionData('kicks', [])], // 76
+      [add.MCD_CLIP_MANA_A, manaAClip.interface.encodeFunctionData('kicks', [])], // 76
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [paxAIlkBytes])], // 77
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [paxAIlkBytes])],
@@ -331,14 +341,14 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [compAIlkBytes])], // 90
       [add.COMP, comp.interface.encodeFunctionData('totalSupply', [])],
       [add.COMP, comp.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_COMP_A])], // 92
-      [add.MCD_FLIP_COMP_A, compAFlip.interface.encodeFunctionData('kicks', [])], // 93
+      [add.MCD_CLIP_COMP_A, compAClip.interface.encodeFunctionData('kicks', [])], // 93
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [lrcAIlkBytes])], // 94
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [lrcAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [lrcAIlkBytes])], // 96
       [add.LRC, lrc.interface.encodeFunctionData('totalSupply', [])],
       [add.LRC, lrc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_LRC_A])], // 98
-      [add.MCD_FLIP_LRC_A, lrcAFlip.interface.encodeFunctionData('kicks', [])], // 99
+      [add.MCD_CLIP_LRC_A, lrcAClip.interface.encodeFunctionData('kicks', [])], // 99
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [linkAIlkBytes])], // 100
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [linkAIlkBytes])],
@@ -358,7 +368,7 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [balAIlkBytes])], // 113
       [add.BAL, bal.interface.encodeFunctionData('totalSupply', [])],
       [add.BAL, bal.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_BAL_A])], // 115
-      [add.MCD_FLIP_BAL_A, balAFlip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_CLIP_BAL_A, balAClip.interface.encodeFunctionData('kicks', [])],
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
@@ -378,20 +388,20 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [uniAIlkBytes])],
       [add.UNI, uni.interface.encodeFunctionData('totalSupply', [])], // 131
       [add.UNI, uni.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_UNI_A])],
-      [add.MCD_FLIP_UNI_A, uniAFlip.interface.encodeFunctionData('kicks', [])], // 133
+      [add.MCD_CLIP_UNI_A, uniAClip.interface.encodeFunctionData('kicks', [])], // 133
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])], // 135
       [add.RENBTC, renbtc.interface.encodeFunctionData('totalSupply', [])], // 136
       [add.RENBTC, renbtc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RENBTC_A])],
-      [add.MCD_FLIP_RENBTC_A, renbtcAFlip.interface.encodeFunctionData('kicks', [])], // 138
+      [add.MCD_CLIP_RENBTC_A, renbtcAClip.interface.encodeFunctionData('kicks', [])], // 138
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [aaveAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [aaveAIlkBytes])], // 140
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [aaveAIlkBytes])],
       [add.AAVE, aave.interface.encodeFunctionData('totalSupply', [])], // 142
       [add.AAVE, aave.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_AAVE_A])],
-      [add.MCD_FLIP_AAVE_A, aaveAFlip.interface.encodeFunctionData('kicks', [])], // 144
+      [add.MCD_CLIP_AAVE_A, aaveAClip.interface.encodeFunctionData('kicks', [])], // 144
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [univ2daiethAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [univ2daiethAIlkBytes])], // 146
@@ -581,7 +591,7 @@ class App extends Component {
     const savingsDai = savingsPie.mul(pieChi);
     const potDrip = pot.interface.decodeFunctionResult('rho', res[14])[0]
     const ethKicks = ethClip.interface.decodeFunctionResult('kicks', res[24])[0]
-    const batKicks = batFlip.interface.decodeFunctionResult('kicks', res[25])[0]
+    const batKicks = batClip.interface.decodeFunctionResult('kicks', res[25])[0]
     const cdps = manager.interface.decodeFunctionResult('cdpi', res[15])
     const ethMat = spot.interface.decodeFunctionResult('ilks', res[26])
     const batMat = spot.interface.decodeFunctionResult('ilks', res[27])
@@ -624,7 +634,7 @@ class App extends Component {
     const kncPrice = kncAMat.mat.mul(kncAIlk.spot).div(RAY)
     const kncSupply = knc.interface.decodeFunctionResult('totalSupply', res[62])
     const kncALocked = knc.interface.decodeFunctionResult('balanceOf', res[63])
-    const kncAKicks = kncAFlip.interface.decodeFunctionResult('kicks', res[64])[0]
+    const kncAKicks = kncAClip.interface.decodeFunctionResult('kicks', res[64])[0]
     const zrxAIlk = vat.interface.decodeFunctionResult('ilks', res[65])
     const zrxAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[66]))
     const jugZrxADrip = jug.interface.decodeFunctionResult('ilks', res[66])
@@ -632,7 +642,7 @@ class App extends Component {
     const zrxPrice = zrxAMat.mat.mul(zrxAIlk.spot).div(RAY)
     const zrxSupply = zrx.interface.decodeFunctionResult('totalSupply', res[68])
     const zrxALocked = zrx.interface.decodeFunctionResult('balanceOf', res[69])
-    const zrxAKicks = zrxAFlip.interface.decodeFunctionResult('kicks', res[70])[0]
+    const zrxAKicks = zrxAClip.interface.decodeFunctionResult('kicks', res[70])[0]
 
     const manaAIlk = vat.interface.decodeFunctionResult('ilks', res[71])
     const manaAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[72]))
@@ -641,7 +651,7 @@ class App extends Component {
     const manaPrice = manaAMat.mat.mul(manaAIlk.spot).div(RAY)
     const manaSupply = mana.interface.decodeFunctionResult('totalSupply', res[74])
     const manaALocked = mana.interface.decodeFunctionResult('balanceOf', res[75])
-    const manaAKicks = manaAFlip.interface.decodeFunctionResult('kicks', res[76])[0]
+    const manaAKicks = manaAClip.interface.decodeFunctionResult('kicks', res[76])[0]
 
     const paxAIlk = vat.interface.decodeFunctionResult('ilks', res[77])
     const paxAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[78]))
@@ -667,7 +677,7 @@ class App extends Component {
     const compPrice = compAMat.mat.mul(compAIlk.spot).div(RAY)
     const compSupply = comp.interface.decodeFunctionResult('totalSupply', res[91])
     const compALocked = comp.interface.decodeFunctionResult('balanceOf', res[92])
-    const compAKicks = compAFlip.interface.decodeFunctionResult('kicks', res[93])[0]
+    const compAKicks = compAClip.interface.decodeFunctionResult('kicks', res[93])[0]
 
     const lrcAIlk = vat.interface.decodeFunctionResult('ilks', res[94])
     const lrcAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[95]))
@@ -676,7 +686,7 @@ class App extends Component {
     const lrcPrice = lrcAMat.mat.mul(lrcAIlk.spot).div(RAY)
     const lrcSupply = lrc.interface.decodeFunctionResult('totalSupply', res[97])
     const lrcALocked = lrc.interface.decodeFunctionResult('balanceOf', res[98])
-    const lrcAKicks = lrcAFlip.interface.decodeFunctionResult('kicks', res[99])[0]
+    const lrcAKicks = lrcAClip.interface.decodeFunctionResult('kicks', res[99])[0]
 
     const linkAIlk = vat.interface.decodeFunctionResult('ilks', res[100])
     const linkAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[101]))
@@ -700,7 +710,7 @@ class App extends Component {
     const balPrice = balAMat.mat.mul(balAIlk.spot).div(RAY)
     const balSupply = bal.interface.decodeFunctionResult('totalSupply', res[114])
     const balALocked = bal.interface.decodeFunctionResult('balanceOf', res[115])
-    const balAKicks = balAFlip.interface.decodeFunctionResult('kicks', res[116])[0]
+    const balAKicks = balAClip.interface.decodeFunctionResult('kicks', res[116])[0]
 
     const yfiAIlk = vat.interface.decodeFunctionResult('ilks', res[117])
     const yfiAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[118]))
@@ -726,14 +736,14 @@ class App extends Component {
     const uniPrice = uniAMat.mat.mul(uniAIlk.spot).div(RAY)
     const uniSupply = uni.interface.decodeFunctionResult('totalSupply', res[131])
     const uniALocked = uni.interface.decodeFunctionResult('balanceOf', res[132])
-    const uniAKicks = uniAFlip.interface.decodeFunctionResult('kicks', res[133])[0]
+    const uniAKicks = uniAClip.interface.decodeFunctionResult('kicks', res[133])[0]
 
     const renbtcAIlk = vat.interface.decodeFunctionResult('ilks', res[134])
     const renbtcAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[135]))
     const jugRenbtcADrip = jug.interface.decodeFunctionResult('ilks', res[135])
     const renbtcSupply = renbtc.interface.decodeFunctionResult('totalSupply', res[136])
     const renbtcALocked = renbtc.interface.decodeFunctionResult('balanceOf', res[137])
-    const renbtcAKicks = renbtcAFlip.interface.decodeFunctionResult('kicks', res[138])[0]
+    const renbtcAKicks = renbtcAClip.interface.decodeFunctionResult('kicks', res[138])[0]
 
     const aaveAIlk = vat.interface.decodeFunctionResult('ilks', res[139])
     const aaveAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[140]))
@@ -742,7 +752,7 @@ class App extends Component {
     const aavePrice = aaveAMat.mat.mul(aaveAIlk.spot).div(RAY)
     const aaveSupply = aave.interface.decodeFunctionResult('totalSupply', res[142])
     const aaveALocked = aave.interface.decodeFunctionResult('balanceOf', res[143])
-    const aaveAKicks = aaveAFlip.interface.decodeFunctionResult('kicks', res[144])[0]
+    const aaveAKicks = aaveAClip.interface.decodeFunctionResult('kicks', res[144])[0]
 
     const univ2daiethAIlk = vat.interface.decodeFunctionResult('ilks', res[145])
     const univ2daiethAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[146]))

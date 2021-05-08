@@ -526,7 +526,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.kncAKicks}>{formatAmount.format(props.kncAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'KNC' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'KNC' })}*/}KNC (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -535,14 +535,14 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.zrxAKicks}>{formatAmount.format(props.zrxAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'ZRX' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'ZRX' })}*/}ZRX (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.manaAKicks}>{formatAmount.format(props.manaAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'MANA' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'MANA' })}*/}MANA1 (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -556,14 +556,14 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.compAKicks}>{formatAmount.format(props.compAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'COMP' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'COMP' })}*/}COMP (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.lrcAKicks}>{formatAmount.format(props.lrcAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'LRC' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'LRC' })}*/}LRC (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -579,7 +579,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.balAKicks}>{formatAmount.format(props.balAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'BAL' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'BAL' })}*/}BAL (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -593,14 +593,14 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.uniKicks}>{formatAmount.format(props.uniAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UNI' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'UNI' })}*/}UNI (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.renbtcKicks}>{formatAmount.format(props.renbtcAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'RENBTC' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'RENBTC' })}*/}RENBTC (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -609,7 +609,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.aaveAKicks}>{formatAmount.format(props.aaveAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'AAVE' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'AAVE' })}*/}AAVE (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -690,7 +690,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'BAT' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'BAT' })}*/}BAT (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
