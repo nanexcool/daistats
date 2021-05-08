@@ -1016,6 +1016,50 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.GOV_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> GovAlpha</h3>
+                <p className="subtitle is-size-7">{props.GOV_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.RISK_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Risk Core Unit</h3>
+                <p className="subtitle is-size-7">{props.RISK_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.GRO_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Growth Core Unit</h3>
+                <p className="subtitle is-size-7">{props.GRO_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.RWF_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Real World Core Unit</h3>
+                <p className="subtitle is-size-7">{props.RWF_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.CP_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Content Production Unit</h3>
+                <p className="subtitle is-size-7">{props.CP_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
       </div >
     </div >
   )
