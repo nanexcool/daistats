@@ -459,9 +459,11 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_supply', { token: 'MKR' })}</p>
-              <p className="subtitle is-size-6" title={props.protocolTreasury}>
-                Protocol Treasury: {formatAmount.format(props.protocolTreasury)} MKR
-              </p>
+              <a href={`https://etherscan.io/address/${props.MCD_PAUSE_PROXY}`} target="_blank" rel="noopener noreferrer">
+                <p className="subtitle is-size-6" title={props.protocolTreasury}>
+                  Protocol Treasury: {formatAmount.format(props.protocolTreasury)} MKR
+                </p>
+              </a>
             </div>
           </div>
         </div>
