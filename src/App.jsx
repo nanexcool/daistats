@@ -63,7 +63,6 @@ if (typeof window.ethereum !== 'undefined') {
     provider = new ethers.providers.Web3Provider(window.ethereum);
   }
 }
-
 const build = (address, name) => {
   return new ethers.Contract(
     address,
@@ -154,7 +153,7 @@ const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwa001APip = build(add.PIP_RWA001, "DSValue")
 const rwa002APip = build(add.PIP_RWA002, "DSValue")
-const ethIlkBytes = utils.formatBytes32String("ETH-A");
+const ethAIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
@@ -246,7 +245,7 @@ class App extends Component {
     let p1 = multi.callStatic.aggregate([
       [add.MCD_VAT, vat.interface.encodeFunctionData('Line', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethIlkBytes])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ethAIlkBytes])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [batIlkBytes])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
@@ -261,7 +260,7 @@ class App extends Component {
       [add.MCD_POT, pot.interface.encodeFunctionData('rho', [])],
       [add.CDP_MANAGER, manager.interface.encodeFunctionData('cdpi', [])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethAIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [batIlkBytes])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
@@ -270,7 +269,7 @@ class App extends Component {
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
       [add.MCD_CLIP_ETH_A, ethClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_CLIP_BAT_A, batClip.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [ethIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [ethAIlkBytes])],
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [batIlkBytes])],
       [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('totalSupply', [])],
@@ -484,7 +483,7 @@ class App extends Component {
       [add.ETH, weth.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_ETH_C])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ethCIlkBytes])],
 
-      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethIlkBytes])], // 214
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethAIlkBytes])], // 214
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [batIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [kncAIlkBytes])],
