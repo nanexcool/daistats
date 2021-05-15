@@ -37,6 +37,16 @@ add["RWF_MULTISIG"] = "0x9e1585d9CA64243CE43D42f7dD7333190F66Ca09"
 add["GRO_MULTISIG"] = "0x7800C137A645c07132886539217ce192b9F0528e"
 add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
 
+//add["PIP_UNIV2DAIETH"] = "0xFc8137E1a45BAF0030563EC4F0F851bd36a85b7D"
+//add["PIP_UNIV2WBTCETH"] = "0x8400D2EDb8B97f780356Ef602b1BdBc082c2aD07"
+//add["PIP_UNIV2USDCETH"] = "0xf751f24DD9cfAd885984D1bA68860F558D21E52A"
+//add["PIP_UNIV2DAIUSDC"] = "0x25D03C2C928ADE19ff9f4FFECc07d991d0df054B"
+//add["PIP_UNIV2ETHUSDT"] = "0x5f6dD5B421B8d92c59dC6D907C9271b1DBFE3016"
+//add["PIP_UNIV2LINKETH"] = "0xd7d31e62AE5bfC3bfaa24Eda33e8c32D31a1746F"
+//add["PIP_UNIV2UNIETH"] = "0x8462A88f50122782Cc96108F476deDB12248f931"
+//add["PIP_UNIV2WBTCDAI"] = "0x5bB72127a196392cf4aC00Cf57aB278394d24e55"
+//add["PIP_UNIV2AAVEETH"] = "0x32d8416e8538Ac36272c44b0cd962cD7E0198489"
+//add["PIP_UNIV2DAIUSDT"] = "0x9A1CD705dc7ac64B50777BcEcA3529E58B1292F1"
 
 let provider;
 let networkId;
@@ -203,7 +213,7 @@ class App extends Component {
   }
 
   POSITION_NXT = 4
-  POSITION_UNIV2_NXT = 7
+  POSITION_UNIV2_NXT = 8
 
   componentDidMount() {
     this.all('latest')
@@ -1663,7 +1673,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Turn you MKR into DOG MONEY with <a href={`https://etherscan.io/address/${add["BKR"]}`} target="_blank" rel="noopener noreferrer">BKR</a>
+            Turn you MKR into DOG MONEY with <a href="https://makerbreak.io/" target="_blank" rel="noopener noreferrer">Makerbreak.io</a>
             <br />
             <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
