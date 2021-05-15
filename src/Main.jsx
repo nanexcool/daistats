@@ -48,6 +48,12 @@ const formatPercentFee = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 4
 })
 
+const formatEightDp = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 8,
+  maximumFractionDigits: 8
+})
+
 function nextPrice(price, priceNxt) {
   // hack to ignore small difference when comparing ray with wad
   if (Number(price).toFixed(4) === Number(priceNxt).toFixed(4)) {
@@ -491,6 +497,17 @@ const Main = (props) => {
               <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
               <p className="subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
               {(props.networkId === 1) && false && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer} />}
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.bkrSupply}>{formatAmount.format(props.bkrSupply)}</h3>
+              <p className="title subtitle is-size-4">Breaker (BKR) Supply{/*{t('daistats.dai_in_dsr')}*/}</p>
+              <a href={`https://etherscan.io/address/${props.BKR}`} target="_blank" rel="noopener noreferrer">
+                <p className="subtitle is-size-6" title={props.mkrBroken}>MKR Broken: {formatEightDp.format(props.mkrBroken)}</p>
+              </a>
             </div>
           </div>
         </div>

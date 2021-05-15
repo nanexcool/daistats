@@ -25,6 +25,7 @@ add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
 add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
+add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
@@ -94,6 +95,7 @@ const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
 const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
 const rwa001 = build(add.RWA001, "ERC20")
 const rwa002 = build(add.RWA002, "ERC20")
+const bkr = build(add.BKR, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -500,10 +502,12 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [rwa002AIlkBytes])], // 244
       [add.PIP_RWA002, rwa002APip.interface.encodeFunctionData('read', [])],
-      [add.RWA002, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 247
+      [add.RWA002, univ2daiusdt.interface.encodeFunctionData('totalSupply', [])], // 246
       [add.RWA002, univ2daiusdt.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_RWA002_A])],
 
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
+      [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
+      [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])], // 250
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -877,6 +881,8 @@ class App extends Component {
     const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[247])
 
     const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[248])
+    const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[249])
+    const mkrBroken = mkr.interface.decodeFunctionResult('balanceOf', res[250])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1506,6 +1512,8 @@ class App extends Component {
         manaSupply: utils.formatEther(manaSupply[0]),
         manaALocked: utils.formatEther(manaALocked[0]),
         protocolTreasury: utils.formatEther(protocolTreasury[0]),
+        bkrSupply: utils.formatEther(bkrSupply[0]),
+        mkrBroken: utils.formatEther(mkrBroken[0]),
         historicalDebt,
       }
     })
@@ -1655,7 +1663,9 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome 6s Capital (RWA001) and New Silver Series 2 DROP (RWA002)! <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Turn you MKR into DOG MONEY with <a href={`https://etherscan.io/address/${add["BKR"]}`} target="_blank" rel="noopener noreferrer">BKR</a>
+            <br />
+            <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
