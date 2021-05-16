@@ -48,6 +48,7 @@ add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
 //add["PIP_UNIV2AAVEETH"] = "0x32d8416e8538Ac36272c44b0cd962cD7E0198489"
 //add["PIP_UNIV2DAIUSDT"] = "0x9A1CD705dc7ac64B50777BcEcA3529E58B1292F1"
 
+
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
