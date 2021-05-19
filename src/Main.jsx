@@ -187,8 +187,8 @@ const Main = (props) => {
                 <p className="title subtitle is-size-4">MKR Price</p>
               </div>
             </div> */}
-
         </div>
+
         <div className="columns">
           <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} formater={formatTwoDp} zzz={props.ethZzz}/>
           <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} formater={formatTwoDp} zzz={props.wbtcZzz}/>

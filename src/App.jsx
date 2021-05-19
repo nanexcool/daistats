@@ -150,6 +150,7 @@ const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwa001APip = build(add.PIP_RWA001, "DSValue")
 const rwa002APip = build(add.PIP_RWA002, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
+const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
@@ -538,16 +539,16 @@ class App extends Component {
       [add.PIP_UNI, pip.interface.encodeFunctionData('zzz', [])],
       [add.PIP_RENBTC, pip.interface.encodeFunctionData('zzz', [])],
       [add.PIP_AAVE, pip.interface.encodeFunctionData('zzz', [])], // 265
-      [add.PIP_UNIV2DAIETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2WBTCETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2USDCETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2DAIUSDC, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2ETHUSDT, pip.interface.encodeFunctionData('zzz', [])], // 270
-      [add.PIP_UNIV2LINKETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2UNIETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2WBTCDAI, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2AAVEETH, pip.interface.encodeFunctionData('zzz', [])],
-      [add.PIP_UNIV2DAIUSDT, pip.interface.encodeFunctionData('zzz', [])], // 275
+      [add.PIP_UNIV2DAIETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2WBTCETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2USDCETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2DAIUSDC, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2ETHUSDT, univ2Pip.interface.encodeFunctionData('zzz', [])], // 270
+      [add.PIP_UNIV2LINKETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2UNIETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2WBTCDAI, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2AAVEETH, univ2Pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2DAIUSDT, univ2Pip.interface.encodeFunctionData('zzz', [])], // 275
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -940,16 +941,16 @@ class App extends Component {
     const uniZzz = pip.interface.decodeFunctionResult('zzz', res[263])
     const renbtcZzz = pip.interface.decodeFunctionResult('zzz', res[264])
     const aaveZzz = pip.interface.decodeFunctionResult('zzz', res[265])
-    const univ2daiethZzz = pip.interface.decodeFunctionResult('zzz', res[266])
-    const univ2wbtcethZzz = pip.interface.decodeFunctionResult('zzz', res[267])
-    const univ2usdcethZzz = pip.interface.decodeFunctionResult('zzz', res[268])
-    const univ2daiusdcZzz = pip.interface.decodeFunctionResult('zzz', res[269])
-    const univ2ethusdtZzz = pip.interface.decodeFunctionResult('zzz', res[270])
-    const univ2linkethZzz = pip.interface.decodeFunctionResult('zzz', res[271])
-    const univ2uniethZzz = pip.interface.decodeFunctionResult('zzz', res[272])
-    const univ2wbtcdaiZzz = pip.interface.decodeFunctionResult('zzz', res[273])
-    const univ2aaveethZzz = pip.interface.decodeFunctionResult('zzz', res[274])
-    const univ2daiusdtZzz = pip.interface.decodeFunctionResult('zzz', res[275])
+    const univ2daiethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[266])
+    const univ2wbtcethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[267])
+    const univ2usdcethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[268])
+    const univ2daiusdcZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[269])
+    const univ2ethusdtZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[270])
+    const univ2linkethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[271])
+    const univ2uniethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[272])
+    const univ2wbtcdaiZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[273])
+    const univ2aaveethZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[274])
+    const univ2daiusdtZzz = univ2Pip.interface.decodeFunctionResult('zzz', res[275])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
