@@ -190,43 +190,43 @@ const Main = (props) => {
 
         </div>
         <div className="columns">
-          <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} formater={formatTwoDp}/>
-          <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} formater={formatTwoDp}/>
-          <Pip token="YFI" price={props.yfiPrice} priceNxt={props.yfiPriceNxt} formater={formatTwoDp}/>
-          <Pip token="UNI" price={props.uniPrice} priceNxt={props.uniPriceNxt} formater={formatTwoDp}/>
+          <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} formater={formatTwoDp} zzz={props.ethZzz}/>
+          <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} formater={formatTwoDp} zzz={props.wbtcZzz}/>
+          <Pip token="YFI" price={props.yfiPrice} priceNxt={props.yfiPriceNxt} formater={formatTwoDp} zzz={props.yfiZzz}/>
+          <Pip token="UNI" price={props.uniPrice} priceNxt={props.uniPriceNxt} formater={formatTwoDp} zzz={props.uniZzz}/>
         </div>
         <div className="columns">
-          <Pip token="AAVE" price={props.aavePrice} priceNxt={props.aavePriceNxt} formater={formatTwoDp}/>
-          <Pip token="BAL" price={props.balPrice} priceNxt={props.balPriceNxt} formater={formatTwoDp}/>
-          <Pip token="BAT" price={props.batPrice} priceNxt={props.batPriceNxt} formater={formatCurrency}/>
-          <Pip token="COMP" price={props.compPrice} priceNxt={props.compPriceNxt} formater={formatTwoDp}/>
+          <Pip token="AAVE" price={props.aavePrice} priceNxt={props.aavePriceNxt} formater={formatTwoDp} zzz={props.aaveZzz}/>
+          <Pip token="BAL" price={props.balPrice} priceNxt={props.balPriceNxt} formater={formatTwoDp} zzz={props.balZzz}/>
+          <Pip token="BAT" price={props.batPrice} priceNxt={props.batPriceNxt} formater={formatCurrency} zzz={props.batZzz}/>
+          <Pip token="COMP" price={props.compPrice} priceNxt={props.compPriceNxt} formater={formatTwoDp} zzz={props.compZzz}/>
         </div>
         <div className="columns">
-          <Pip token="KNC" price={props.kncPrice} priceNxt={props.kncPriceNxt} formater={formatCurrency}/>
-          <Pip token="LINK" price={props.linkPrice} priceNxt={props.linkPriceNxt} formater={formatTwoDp}/>
-          <Pip token="LRC" price={props.lrcPrice} priceNxt={props.lrcPriceNxt} formater={formatCurrency}/>
-          <Pip token="MANA" price={props.manaPrice} priceNxt={props.manaPriceNxt} formater={formatCurrency}/>
+          <Pip token="KNC" price={props.kncPrice} priceNxt={props.kncPriceNxt} formater={formatCurrency} zzz={props.kncZzz}/>
+          <Pip token="LINK" price={props.linkPrice} priceNxt={props.linkPriceNxt} formater={formatTwoDp} zzz={props.linkZzz}/>
+          <Pip token="LRC" price={props.lrcPrice} priceNxt={props.lrcPriceNxt} formater={formatCurrency} zzz={props.lrcZzz}/>
+          <Pip token="MANA" price={props.manaPrice} priceNxt={props.manaPriceNxt} formater={formatCurrency} zzz={props.manaZzz}/>
         </div>
         <div className="columns">
-          <Pip token="USDT" price={props.usdtPrice} priceNxt={props.usdtPriceNxt} formater={formatCurrency}/>
-          <Pip token="ZRX" price={props.zrxPrice} priceNxt={props.zrxPriceNxt} formater={formatCurrency}/>
+          <Pip token="USDT" price={props.usdtPrice} priceNxt={props.usdtPriceNxt} formater={formatCurrency} zzz={props.usdtZzz}/>
+          <Pip token="ZRX" price={props.zrxPrice} priceNxt={props.zrxPriceNxt} formater={formatCurrency} zzz={props.zrxZzz}/>
           <Pip token="USDC, TUSD, PAX, GUSD" price={props.tusdPrice} formater={formatCurrency}/>
-          <Pip token="UniV2DaiEth" price={props.univ2daiethPrice} priceNxt={props.univ2daiethPriceNxt} formater={formatTwoDp}/>
+          <Pip token="UniV2DaiEth" price={props.univ2daiethPrice} priceNxt={props.univ2daiethPriceNxt} formater={formatTwoDp} zzz={props.univ2daiethZzz}/>
         </div>
         <div className="columns">
-          <Pip token="UniV2UniEth" price={props.univ2uniethPrice} priceNxt={props.univ2uniethPriceNxt} formater={formatTwoDp}/>
-          <Pip token="UniV2WbtcEth" price={props.univ2wbtcethPrice} priceNxt={props.univ2wbtcethPriceNxt} formater={formatNoDecimals}/>
-          <Pip token="UniV2UsdcEth" price={props.univ2usdcethPrice} priceNxt={props.univ2usdcethPriceNxt} formater={formatNoDecimals}/>
+          <Pip token="UniV2UniEth" price={props.univ2uniethPrice} priceNxt={props.univ2uniethPriceNxt} formater={formatTwoDp} zzz={props.univ2uniethZzz}/>
+          <Pip token="UniV2WbtcEth" price={props.univ2wbtcethPrice} priceNxt={props.univ2wbtcethPriceNxt} formater={formatNoDecimals} zzz={props.univ2wbtcethZzz}/>
+          <Pip token="UniV2UsdcEth" price={props.univ2usdcethPrice} priceNxt={props.univ2usdcethPriceNxt} formater={formatNoDecimals} zzz={props.univ2usdcethZzz}/>
         </div>
         <div className="columns">
-          <Pip token="UniV2DaiUsdc" price={props.univ2daiusdcPrice} priceNxt={props.univ2daiusdcPriceNxt} formater={formatNoDecimals}/>
-          <Pip token="UniV2EthUsdt" price={props.univ2ethusdtPrice} priceNxt={props.univ2ethusdtPriceNxt} formater={formatNoDecimals}/>
-          <Pip token="UniV2LinkEth" price={props.univ2linkethPrice} priceNxt={props.univ2linkethPriceNxt} formater={formatTwoDp}/>
+          <Pip token="UniV2DaiUsdc" price={props.univ2daiusdcPrice} priceNxt={props.univ2daiusdcPriceNxt} formater={formatNoDecimals} zzz={props.univ2daiusdcZzz}/>
+          <Pip token="UniV2EthUsdt" price={props.univ2ethusdtPrice} priceNxt={props.univ2ethusdtPriceNxt} formater={formatNoDecimals} zzz={props.univ2ethusdtZzz}/>
+          <Pip token="UniV2LinkEth" price={props.univ2linkethPrice} priceNxt={props.univ2linkethPriceNxt} formater={formatTwoDp} zzz={props.univ2linkethZzz}/>
         </div>
         <div className="columns">
-          <Pip token="UniV2WbtcDai" price={props.univ2wbtcdaiPrice} priceNxt={props.univ2wbtcdaiPriceNxt} formater={formatNoDecimals}/>
-          <Pip token="UniV2AaveEth" price={props.univ2aaveethPrice} priceNxt={props.univ2aaveethPriceNxt} formater={formatTwoDp}/>
-          <Pip token="UniV2DaiUsdt" price={props.univ2daiusdtPrice} priceNxt={props.univ2daiusdtPriceNxt} formater={formatTwoDp}/>
+          <Pip token="UniV2WbtcDai" price={props.univ2wbtcdaiPrice} priceNxt={props.univ2wbtcdaiPriceNxt} formater={formatNoDecimals} zzz={props.univ2wbtcdaiZzz}/>
+          <Pip token="UniV2AaveEth" price={props.univ2aaveethPrice} priceNxt={props.univ2aaveethPriceNxt} formater={formatTwoDp} zzz={props.univ2aaveethZzz}/>
+          <Pip token="UniV2DaiUsdt" price={props.univ2daiusdtPrice} priceNxt={props.univ2daiusdtPriceNxt} formater={formatTwoDp} zzz={props.univ2daiusdtZzz}/>
         </div>
         <div className="columns">
           <div className="column">

@@ -21,6 +21,8 @@ function Pip(props) {
           {props.priceNxt > 0 && <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
             className={nextPrice(props.price, props.priceNxt)} title={props.priceNxt}>${props.formater.format(props.priceNxt)}</span>
           </p>}
+          {props.zzz && (Number(props.price).toFixed(4) !== Number(props.priceNxt).toFixed(4)) &&
+              <p className="title subtitle is-size-6">Next Possible Update: {props.zzz}</p>}
         </div>
       </div>
   )

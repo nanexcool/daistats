@@ -149,6 +149,7 @@ const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwa001APip = build(add.PIP_RWA001, "DSValue")
 const rwa002APip = build(add.PIP_RWA002, "DSValue")
+const pip = build(add.PIP_ETH, "OSM")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
@@ -201,6 +202,8 @@ const RAY = ethers.BigNumber.from("1000000000000000000000000000")
 const DP2 = ethers.BigNumber.from("10000000000000000")
 const DP6 = ethers.BigNumber.from("1000000000000")
 const DP8 = ethers.BigNumber.from("10000000000")
+
+const HOP = 3600 // assumes all OSM's have same hop
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -519,6 +522,33 @@ class App extends Component {
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
       [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])], // 250
+
+      [add.PIP_ETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_BAT, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_WBTC, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_ZRX, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_KNC, pip.interface.encodeFunctionData('zzz', [])], // 255
+      [add.PIP_MANA, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_USDT, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_COMP, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_LRC, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_LINK, pip.interface.encodeFunctionData('zzz', [])], // 260
+      [add.PIP_BAL, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_YFI, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNI, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_RENBTC, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_AAVE, pip.interface.encodeFunctionData('zzz', [])], // 265
+      [add.PIP_UNIV2DAIETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2WBTCETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2USDCETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2DAIUSDC, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2ETHUSDT, pip.interface.encodeFunctionData('zzz', [])], // 270
+      [add.PIP_UNIV2LINKETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2UNIETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2WBTCDAI, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2AAVEETH, pip.interface.encodeFunctionData('zzz', [])],
+      [add.PIP_UNIV2DAIUSDT, pip.interface.encodeFunctionData('zzz', [])], // 275
+
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -894,6 +924,32 @@ class App extends Component {
     const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[248])
     const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[249])
     const mkrBroken = mkr.interface.decodeFunctionResult('balanceOf', res[250])
+
+    const ethZzz = pip.interface.decodeFunctionResult('zzz', res[251])
+    const batZzz = pip.interface.decodeFunctionResult('zzz', res[252])
+    const wbtcZzz = pip.interface.decodeFunctionResult('zzz', res[253])
+    const zrxZzz = pip.interface.decodeFunctionResult('zzz', res[254])
+    const kncZzz = pip.interface.decodeFunctionResult('zzz', res[255])
+    const manaZzz = pip.interface.decodeFunctionResult('zzz', res[256])
+    const usdtZzz = pip.interface.decodeFunctionResult('zzz', res[257])
+    const compZzz = pip.interface.decodeFunctionResult('zzz', res[258])
+    const lrcZzz = pip.interface.decodeFunctionResult('zzz', res[259])
+    const linkZzz = pip.interface.decodeFunctionResult('zzz', res[260])
+    const balZzz = pip.interface.decodeFunctionResult('zzz', res[261])
+    const yfiZzz = pip.interface.decodeFunctionResult('zzz', res[262])
+    const uniZzz = pip.interface.decodeFunctionResult('zzz', res[263])
+    const renbtcZzz = pip.interface.decodeFunctionResult('zzz', res[264])
+    const aaveZzz = pip.interface.decodeFunctionResult('zzz', res[265])
+    const univ2daiethZzz = pip.interface.decodeFunctionResult('zzz', res[266])
+    const univ2wbtcethZzz = pip.interface.decodeFunctionResult('zzz', res[267])
+    const univ2usdcethZzz = pip.interface.decodeFunctionResult('zzz', res[268])
+    const univ2daiusdcZzz = pip.interface.decodeFunctionResult('zzz', res[269])
+    const univ2ethusdtZzz = pip.interface.decodeFunctionResult('zzz', res[270])
+    const univ2linkethZzz = pip.interface.decodeFunctionResult('zzz', res[271])
+    const univ2uniethZzz = pip.interface.decodeFunctionResult('zzz', res[272])
+    const univ2wbtcdaiZzz = pip.interface.decodeFunctionResult('zzz', res[273])
+    const univ2aaveethZzz = pip.interface.decodeFunctionResult('zzz', res[274])
+    const univ2daiusdtZzz = pip.interface.decodeFunctionResult('zzz', res[275])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1525,6 +1581,31 @@ class App extends Component {
         protocolTreasury: utils.formatEther(protocolTreasury[0]),
         bkrSupply: utils.formatEther(bkrSupply[0]),
         mkrBroken: utils.formatEther(mkrBroken[0]),
+        ethZzz: this.unixToTime(+ethZzz + HOP),
+        batZzz: this.unixToTime(+batZzz + HOP),
+        wbtcZzz: this.unixToTime(+wbtcZzz + HOP),
+        zrxZzz: this.unixToTime(+zrxZzz + HOP),
+        kncZzz: this.unixToTime(+kncZzz + HOP),
+        manaZzz: this.unixToTime(+manaZzz + HOP),
+        usdtZzz: this.unixToTime(+usdtZzz + HOP),
+        compZzz: this.unixToTime(+compZzz + HOP),
+        lrcZzz: this.unixToTime(+lrcZzz + HOP),
+        linkZzz: this.unixToTime(+linkZzz + HOP),
+        balZzz: this.unixToTime(+balZzz + HOP),
+        yfiZzz: this.unixToTime(+yfiZzz + HOP),
+        uniZzz: this.unixToTime(+uniZzz + HOP),
+        renbtcZzz: this.unixToTime(+renbtcZzz + HOP),
+        aaveZzz: this.unixToTime(+aaveZzz + HOP),
+        univ2daiethZzz: this.unixToTime(+univ2daiethZzz + HOP),
+        univ2wbtcethZzz: this.unixToTime(+univ2wbtcethZzz + HOP),
+        univ2usdcethZzz: this.unixToTime(+univ2usdcethZzz + HOP),
+        univ2daiusdcZzz: this.unixToTime(+univ2daiusdcZzz + HOP),
+        univ2ethusdtZzz: this.unixToTime(+univ2ethusdtZzz + HOP),
+        univ2linkethZzz: this.unixToTime(+univ2linkethZzz + HOP),
+        univ2uniethZzz: this.unixToTime(+univ2uniethZzz + HOP),
+        univ2wbtcdaiZzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
+        univ2aaveethZzz: this.unixToTime(+univ2aaveethZzz + HOP),
+        univ2daiusdtZzz: this.unixToTime(+univ2daiusdtZzz + HOP),
         historicalDebt,
       }
     })
@@ -1535,6 +1616,7 @@ class App extends Component {
   }
 
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
+  unixToTime = stamp => new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 100 - 100;
 
