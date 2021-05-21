@@ -51,7 +51,7 @@ function Collateral(props) {
             {formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate)} / {formatAmount.format(props.ilks[props.idx].line)}
           </h3>
           <p className="title subtitle is-size-4">
-            {t('daistats.dai_from_token', { token: props.token })} ({formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.debt * 100)}%)
+            {t('daistats.dai_from_token', { token: props.ilks[props.idx].ilk })} ({formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.debt * 100)}%)
               </p>
           {autoLine(props, t('maker.debt_ceiling'))}
           <p
@@ -61,7 +61,7 @@ function Collateral(props) {
       <div className="column">
         <div className="has-text-centered">
           <h3 className="title" title={props.fee}>{props.fee}%</h3>
-          <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: props.token })}</p>
+          <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: props.ilks[props.idx].ilk })}</p>
           <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugDrip}</p>
         </div>
       </div>
@@ -70,10 +70,10 @@ function Collateral(props) {
           <h3 className="title" title={props.locked}>
             {props.showLockedDecimals ? formatDp.format(props.locked) : formatNoDecimals.format(props.locked)}</h3>
           <p className="title subtitle is-size-4">
-            {t('daistats.token_locked', { token: props.token })}
+            {t('daistats.token_locked', { token: props.ilks[props.idx].ilk })}
           </p>
           <p className="subtitle is-size-6">
-            {t('daistats.token_supply_locked', { token: props.token })}: {formatPercent.format(props.locked / props.supply)}</p>
+            {t('daistats.token_supply_locked', { token: props.ilks[props.idx].ilk })}: {formatPercent.format(props.locked / props.supply)}</p>
         </div>
       </div>
     </div>

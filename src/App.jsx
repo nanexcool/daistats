@@ -999,6 +999,8 @@ class App extends Component {
         debt: utils.formatUnits(res[1], 45),
         ilks: [
           {
+            token: "ETH",
+            ilk: "ETH-A",
             Art:  utils.formatEther(ethIlk.Art),
             rate: utils.formatUnits(ethIlk.rate, 27),
             spot: utils.formatUnits(ethIlk.spot, 27),
@@ -1010,6 +1012,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(ethAutoLineIlk.lastInc)
           },
           {
+            token: "BAT",
+            ilk: "BAT-A",
             Art:  utils.formatEther(batIlk.Art),
             rate: utils.formatUnits(batIlk.rate, 27),
             spot: utils.formatUnits(batIlk.spot, 27),
@@ -1021,6 +1025,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(batAutoLineIlk.lastInc)
           },
           {
+            token: "USDC",
+            ilk: "USDC-A",
             Art:  utils.formatEther(usdcIlk.Art),
             rate: utils.formatUnits(usdcIlk.rate, 27),
             spot: utils.formatUnits(usdcIlk.spot, 27),
@@ -1028,6 +1034,8 @@ class App extends Component {
             dust: utils.formatUnits(usdcIlk.dust, 45)
           },
           {
+            token: "WBTC",
+            ilk: "WBTC-A",
             Art:  utils.formatEther(wbtcIlk.Art),
             rate: utils.formatUnits(wbtcIlk.rate, 27),
             spot: utils.formatUnits(wbtcIlk.spot, 27),
@@ -1039,6 +1047,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(wbtcAutoLineIlk.lastInc)
           },
           {
+            token: "USDC",
+            ilk: "USDC-B",
             Art:  utils.formatEther(usdcBIlk.Art),
             rate: utils.formatUnits(usdcBIlk.rate, 27),
             spot: utils.formatUnits(usdcBIlk.spot, 27),
@@ -1046,6 +1056,8 @@ class App extends Component {
             dust: utils.formatUnits(usdcBIlk.dust, 45)
           },
           {
+            token: "TUSD",
+            ilk: "TUSD-A",
             Art:  utils.formatEther(tusdIlk.Art),
             rate: utils.formatUnits(tusdIlk.rate, 27),
             spot: utils.formatUnits(tusdIlk.spot, 27),
@@ -1053,6 +1065,8 @@ class App extends Component {
             dust: utils.formatUnits(tusdIlk.dust, 45)
           },
           {
+            token: "KNC",
+            ilk: "KNC-A",
             Art:  utils.formatEther(kncAIlk.Art),
             rate: utils.formatUnits(kncAIlk.rate, 27),
             spot: utils.formatUnits(kncAIlk.spot, 27),
@@ -1064,6 +1078,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(kncAAutoLineIlk.lastInc)
           },
           {
+            token: "ZRX",
+            ilk: "ZRX-A",
             Art:  utils.formatEther(zrxAIlk.Art),
             rate: utils.formatUnits(zrxAIlk.rate, 27),
             spot: utils.formatUnits(zrxAIlk.spot, 27),
@@ -1075,6 +1091,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(zrxAAutoLineIlk.lastInc)
           },
           {
+            token: "MANA",
+            ilk: "MANA-A",
             Art:  utils.formatEther(manaAIlk.Art),
             rate: utils.formatUnits(manaAIlk.rate, 27),
             spot: utils.formatUnits(manaAIlk.spot, 27),
@@ -1086,6 +1104,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(manaAAutoLineIlk.lastInc)
           },
           {
+            token: "PAX",
+            ilk: "PAX-A",
             Art:  utils.formatEther(paxAIlk.Art),
             rate: utils.formatUnits(paxAIlk.rate, 27),
             spot: utils.formatUnits(paxAIlk.spot, 27),
@@ -1093,6 +1113,8 @@ class App extends Component {
             dust: utils.formatUnits(paxAIlk.dust, 45)
           },
           {
+            token: "USDT",
+            ilk: "USDT-A",
             Art:  utils.formatEther(usdtAIlk.Art),
             rate: utils.formatUnits(usdtAIlk.rate, 27),
             spot: utils.formatUnits(usdtAIlk.spot, 27),
@@ -1100,6 +1122,8 @@ class App extends Component {
             dust: utils.formatUnits(usdtAIlk.dust, 45)
           },
           {
+            token: "COMP",
+            ilk: "COMP-A",
             Art:  utils.formatEther(compAIlk.Art),
             rate: utils.formatUnits(compAIlk.rate, 27),
             spot: utils.formatUnits(compAIlk.spot, 27),
@@ -1111,6 +1135,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(compAAutoLineIlk.lastInc)
           },
           {
+            token: "LRC",
+            ilk: "LRC-A",
             Art:  utils.formatEther(lrcAIlk.Art),
             rate: utils.formatUnits(lrcAIlk.rate, 27),
             spot: utils.formatUnits(lrcAIlk.spot, 27),
@@ -1122,6 +1148,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(lrcAAutoLineIlk.lastInc)
           },
           {
+            token: "LINK",
+            ilk: "LINK-A",
             Art:  utils.formatEther(linkAIlk.Art),
             rate: utils.formatUnits(linkAIlk.rate, 27),
             spot: utils.formatUnits(linkAIlk.spot, 27),
@@ -1133,6 +1161,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(linkAAutoLineIlk.lastInc)
           },
           {
+            token: "ETH",
+            ilk: "ETH-B",
             Art:  utils.formatEther(ethBIlk.Art),
             rate: utils.formatUnits(ethBIlk.rate, 27),
             spot: utils.formatUnits(ethBIlk.spot, 27),
@@ -1140,6 +1170,8 @@ class App extends Component {
             dust: utils.formatUnits(ethBIlk.dust, 45)
           },
           {
+            token: "BAL",
+            ilk: "BAL-A",
             Art:  utils.formatEther(balAIlk.Art),
             rate: utils.formatUnits(balAIlk.rate, 27),
             spot: utils.formatUnits(balAIlk.spot, 27),
@@ -1151,6 +1183,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(balAAutoLineIlk.lastInc)
           },
           {
+            token: "YFI",
+            ilk: "YFI-A",
             Art:  utils.formatEther(yfiAIlk.Art),
             rate: utils.formatUnits(yfiAIlk.rate, 27),
             spot: utils.formatUnits(yfiAIlk.spot, 27),
@@ -1162,6 +1196,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(yfiAAutoLineIlk.lastInc)
           },
           {
+            token: "GUSD",
+            ilk: "GUSD-A",
             Art:  utils.formatEther(gusdAIlk.Art),
             rate: utils.formatUnits(gusdAIlk.rate, 27),
             spot: utils.formatUnits(gusdAIlk.spot, 27),
@@ -1169,6 +1205,8 @@ class App extends Component {
             dust: utils.formatUnits(gusdAIlk.dust, 45)
           },
           {
+            token: "UNI",
+            ilk: "UNI-A",
             Art:  utils.formatEther(uniAIlk.Art),
             rate: utils.formatUnits(uniAIlk.rate, 27),
             spot: utils.formatUnits(uniAIlk.spot, 27),
@@ -1180,6 +1218,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(uniAAutoLineIlk.lastInc)
           },
           {
+            token: "RENBTC",
+            ilk: "RENBTC-A",
             Art:  utils.formatEther(renbtcAIlk.Art),
             rate: utils.formatUnits(renbtcAIlk.rate, 27),
             spot: utils.formatUnits(renbtcAIlk.spot, 27),
@@ -1191,6 +1231,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(renbtcAAutoLineIlk.lastInc)
           },
           {
+            token: "AAVE",
+            ilk: "AAVE-A",
             Art:  utils.formatEther(aaveAIlk.Art),
             rate: utils.formatUnits(aaveAIlk.rate, 27),
             spot: utils.formatUnits(aaveAIlk.spot, 27),
@@ -1202,6 +1244,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(aaveAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2DAIETH",
+            ilk: "UNIV2DAIETH-A",
             Art:  utils.formatEther(univ2daiethAIlk.Art),
             rate: utils.formatUnits(univ2daiethAIlk.rate, 27),
             spot: utils.formatUnits(univ2daiethAIlk.spot, 27),
@@ -1213,6 +1257,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2daiethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2WBTCETH",
+            ilk: "UNIV2WBTCETH-A",
             Art:  utils.formatEther(univ2wbtcethAIlk.Art),
             rate: utils.formatUnits(univ2wbtcethAIlk.rate, 27),
             spot: utils.formatUnits(univ2wbtcethAIlk.spot, 27),
@@ -1224,6 +1270,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2wbtcethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2USDCETH",
+            ilk: "UNIV2USDCETH-A",
             Art:  utils.formatEther(univ2usdcethAIlk.Art),
             rate: utils.formatUnits(univ2usdcethAIlk.rate, 27),
             spot: utils.formatUnits(univ2usdcethAIlk.spot, 27),
@@ -1235,6 +1283,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2usdcethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2DAIUSDC",
+            ilk: "UNIV2DAIUSDC-A",
             Art:  utils.formatEther(univ2daiusdcAIlk.Art),
             rate: utils.formatUnits(univ2daiusdcAIlk.rate, 27),
             spot: utils.formatUnits(univ2daiusdcAIlk.spot, 27),
@@ -1246,6 +1296,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2daiusdcAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2ETHUSDT",
+            ilk: "UNIV2ETHUSDT-A",
             Art:  utils.formatEther(univ2ethusdtAIlk.Art),
             rate: utils.formatUnits(univ2ethusdtAIlk.rate, 27),
             spot: utils.formatUnits(univ2ethusdtAIlk.spot, 27),
@@ -1257,6 +1309,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2ethusdtAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2LINKETH",
+            ilk: "UNIV2LINKETH-A",
             Art:  utils.formatEther(univ2linkethAIlk.Art),
             rate: utils.formatUnits(univ2linkethAIlk.rate, 27),
             spot: utils.formatUnits(univ2linkethAIlk.spot, 27),
@@ -1268,6 +1322,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2linkethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2UNIETH",
+            ilk: "UNIV2UNIETH-A",
             Art:  utils.formatEther(univ2uniethAIlk.Art),
             rate: utils.formatUnits(univ2uniethAIlk.rate, 27),
             spot: utils.formatUnits(univ2uniethAIlk.spot, 27),
@@ -1279,6 +1335,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2uniethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2WBTCDAI",
+            ilk: "UNIV2WBTCDAI-A",
             Art:  utils.formatEther(univ2wbtcdaiAIlk.Art),
             rate: utils.formatUnits(univ2wbtcdaiAIlk.rate, 27),
             spot: utils.formatUnits(univ2wbtcdaiAIlk.spot, 27),
@@ -1290,6 +1348,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2wbtcdaiAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2AAVEETH",
+            ilk: "UNIV2AAVEETH-A",
             Art:  utils.formatEther(univ2aaveethAIlk.Art),
             rate: utils.formatUnits(univ2aaveethAIlk.rate, 27),
             spot: utils.formatUnits(univ2aaveethAIlk.spot, 27),
@@ -1301,6 +1361,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2aaveethAAutoLineIlk.lastInc)
           },
           {
+            token: "UNIV2DAIUSDT",
+            ilk: "UNIV2DAIUSDT-A",
             Art:  utils.formatEther(univ2daiusdtAIlk.Art),
             rate: utils.formatUnits(univ2daiusdtAIlk.rate, 27),
             spot: utils.formatUnits(univ2daiusdtAIlk.spot, 27),
@@ -1312,6 +1374,8 @@ class App extends Component {
             lastInc: this.unixToDateTime(univ2daiusdtAAutoLineIlk.lastInc)
           },
           {
+            token: "ETH",
+            ilk: "ETH-C",
             Art:  utils.formatEther(ethCIlk.Art),
             rate: utils.formatUnits(ethCIlk.rate, 27),
             spot: utils.formatUnits(ethCIlk.spot, 27),
@@ -1319,6 +1383,8 @@ class App extends Component {
             dust: utils.formatUnits(ethCIlk.dust, 45)
           },
           {
+            token: "RWA001",
+            ilk: "RWA001-A",
             Art:  utils.formatEther(rwa001AIlk.Art),
             rate: utils.formatUnits(rwa001AIlk.rate, 27),
             spot: utils.formatUnits(rwa001AIlk.spot, 27),
@@ -1326,11 +1392,19 @@ class App extends Component {
             dust: utils.formatUnits(rwa001AIlk.dust, 45)
           },
           {
+            token: "RWA002",
+            ilk: "RWA002-A",
             Art:  utils.formatEther(rwa002AIlk.Art),
             rate: utils.formatUnits(rwa002AIlk.rate, 27),
             spot: utils.formatUnits(rwa002AIlk.spot, 27),
             line: utils.formatUnits(rwa002AIlk.line, 45),
             dust: utils.formatUnits(rwa002AIlk.dust, 45)
+          },
+          {  // include PSM in CollateralChart
+            token: "USDC",
+            ilk: "PSM-USDC-A",
+            Art: utils.formatUnits(psmUsdcALocked[0], 6),
+            rate: 1
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
