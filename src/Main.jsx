@@ -1,10 +1,7 @@
 import React from 'react'
 import { useTranslate } from 'react-polyglot';
 import Collateral from './components/Collateral';
-import HealButton from './components/HealButton';
 import HistoricalDebtChart from './components/HistoricalDebtChart';
-import FlapButton from './components/FlapButton';
-import MeetingTime from './components/MeetingTime'
 import Pip from './components/Pip'
 
 const formatAmount = new Intl.NumberFormat('en-US', {
@@ -283,7 +280,6 @@ const Main = (props) => {
               <h3 className="title" title={Math.min(props.vow_dai, props.sysDebt)}>{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
               <p className="title subtitle is-size-4">{t('daistats.debt_available_heal')}</p>
               <p className="subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
-              {(props.networkId === 1) && false && <HealButton sysDebtRaw={props.vow_dai < props.sysDebt ? props.vowDaiRaw : props.sysDebtRaw} />}
             </div>
           </div>
           <div className="column">
@@ -291,7 +287,6 @@ const Main = (props) => {
               <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
               <p className="subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
-              {(props.networkId === 1) && false && <FlapButton sysDebt={props.sysDebt} sysSurplus={props.sysSurplus} surplusBump={props.surplusBump} surplusBuffer={props.surplusBuffer} />}
             </div>
           </div>
         </div>
