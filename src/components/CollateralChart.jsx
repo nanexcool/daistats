@@ -88,8 +88,8 @@ const CollateralChart = ({ ilks, debt }) => {
             label={label} labelLine={false}
             animationDuration={1000}
             startAngle={50} endAngle={410}>
-             // FIXME use grey instead of fill colour for labels
-             {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} stroke={COLORS[index % COLORS.length]}/>)}
+             // FIXME use grey instead of fill colour for labels? set stroke colour?
+             {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
           </Pie>
           <Tooltip formatter={tooltip}/>
         </PieChart>
