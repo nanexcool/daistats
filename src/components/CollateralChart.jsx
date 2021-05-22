@@ -10,6 +10,23 @@ const COLORS = ["hsl(171, 100%, 41%)",
     "hsl(48, 100%, 67%)",
     "hsl(348, 100%, 61%)"]
 
+// bluma light
+const COLORS_LIGHT = [ "hsl(171, 100%, 96%)",
+    "hsl(219, 70%, 96%)",
+    "hsl(206, 70%, 96%)",
+    "hsl(142, 52%, 96%)",
+    "hsl(48, 100%, 96%)",
+    "hsl(347, 90%, 96%)"]
+
+// bluma dark
+const COLORS_DARK = [
+    "hsl(171, 100%, 29%)",
+    "hsl(217, 71%, 45%)",
+    "hsl(204, 71%, 39%)",
+    "hsl(141, 53%, 31%)",
+    "hsl(48, 100%, 29%)",
+    "hsl(348, 86%, 43%)"]
+
 const CollateralChart = ({ ilks, debt }) => {
   const t = useTranslate()
 
@@ -46,7 +63,12 @@ const CollateralChart = ({ ilks, debt }) => {
       return formatPercent.format(value / 100)
   }
 
+  function sortByTokenPercent(a, b) {
+    return b.value - a.value;
+  }
+
   const all = ilks.map(ilkPercent)
+  all.sort(sortByTokenPercent)
   const others = all.filter(i => !ilkThreshold(i))
   const data = all.filter(ilkThreshold)
   data.push({"name": "Others",
@@ -66,9 +88,9 @@ const CollateralChart = ({ ilks, debt }) => {
             label={label} labelLine={false}
             animationDuration={1000}
             startAngle={50} endAngle={410}>
-          </Pie>
              // FIXME use grey instead of fill colour for labels
-             //{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} stroke={COLORS[index % COLORS.length]}/>)}
+             {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]} stroke={COLORS[index % COLORS.length]}/>)}
+          </Pie>
           <Tooltip formatter={tooltip}/>
         </PieChart>
       </ResponsiveContainer>
