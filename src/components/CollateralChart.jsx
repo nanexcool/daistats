@@ -77,7 +77,6 @@ const CollateralChart = ({ ilks, debt }) => {
   return (
     <div style={{
       height: 200,
-      marginTop: -30,
       display: "flex",
       alignItems: "center",
       justifyContent: "center",
