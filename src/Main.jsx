@@ -839,6 +839,7 @@ const Main = (props) => {
               <a href={`https://etherscan.io/address/${props.GOV_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> GovAlpha</h3>
                 <p className="subtitle is-size-7">{props.GOV_MULTISIG}</p>
+                <p className="subtitle is-size-7">{props.GOV_MULTISIG_2}</p>
               </a>
             </div>
           </div>
