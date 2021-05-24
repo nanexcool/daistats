@@ -833,12 +833,15 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <hr />
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/address/${props.GOV_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> GovAlpha</h3>
                 <p className="subtitle is-size-7">{props.GOV_MULTISIG}</p>
+              </a>
+              <a href={`https://etherscan.io/address/${props.GOV_MULTISIG_2}`} target="_blank" rel="noopener noreferrer">
                 <p className="subtitle is-size-7">{props.GOV_MULTISIG_2}</p>
               </a>
             </div>
@@ -878,8 +881,44 @@ const Main = (props) => {
             </div>
           </div>
         </div>
-      </div >
-    </div >
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.SES_AUDITORS_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Sustainable Ecosystem Scaling Core Unit (SES)</h3>
+                <p className="subtitle is-size-7">{props.SES_AUDITORS_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> SES Permanent Team</h3>
+                <p className="subtitle is-size-7">{props.SES_PERMANENT_TEAM_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> SES Incubation Program</h3>
+                <p className="subtitle is-size-7">{props.SES_INCUBATION_PROGRAM_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> SES Grants Program</h3>
+                <p className="subtitle is-size-7">{props.SES_GRANTS_PROGRAM_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   )
 }
 
