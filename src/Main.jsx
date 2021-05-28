@@ -304,10 +304,15 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.bkrSupply}>{formatAmount.format(props.bkrSupply)}</h3>
-              <p className="title subtitle is-size-4">Breaker (BKR) Supply{/*{t('daistats.dai_in_dsr')}*/}</p>
-              <a href={`https://etherscan.io/address/${props.BKR}`} target="_blank" rel="noopener noreferrer">
-                <p className="subtitle is-size-6" title={props.mkrBroken}>MKR Broken: {formatEightDp.format(props.mkrBroken)}</p>
-              </a>
+              <p className="title subtitle is-size-4">
+                <a href={`https://etherscan.io/token/${props.BKR}`} target="_blank" rel="noopener noreferrer">
+                  {t('daistats.token_supply', { token: 'Breaker (BKR)' })}
+                </a>
+              </p>
+              <p className="title subtitle is-size-6" title={props.mkrBroken}>MKR Broken: {formatEightDp.format(props.mkrBroken)}</p>
+              <p className="title subtitle is-size-6">
+                <a href="https://makerbreak.io/" target="_blank" rel="noopener noreferrer">Convert MKR to BKR with Makerbreak.io</a>
+              </p>
             </div>
           </div>
         </div>
