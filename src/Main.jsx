@@ -83,12 +83,12 @@ const Main = (props) => {
       <div className="container">
         <Tabs defaultIndex={tabNameToIndex()} onSelect={index => history.push(indexToTab[index])}>
           <TabList>
-            <Tab>Overview</Tab>
-            <Tab>Collateral</Tab>
-            <Tab>Oracles</Tab>
-            <Tab>Auctions</Tab>
-            <Tab>Ecosystem</Tab>
-            <Tab>Addresses</Tab>
+            <Tab><p className="is-size-5">Overview</p></Tab>
+            <Tab><p className="is-size-5">Collateral</p></Tab>
+            <Tab><p className="is-size-5">Oracles</p></Tab>
+            <Tab><p className="is-size-5">Auctions</p></Tab>
+            <Tab><p className="is-size-5">Ecosystem</p></Tab>
+            <Tab><p className="is-size-5">Addresses</p></Tab>
           </TabList>
 
           <TabPanel>
