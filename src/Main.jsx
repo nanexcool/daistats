@@ -6,6 +6,7 @@ import Pip from './components/Pip'
 import CollateralChart from './components/CollateralChart';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
+import { useLocation, useHistory } from "react-router-dom";
 
 
 const formatAmount = new Intl.NumberFormat('en-US', {
@@ -68,10 +69,19 @@ const Main = (props) => {
       - Number(props.sysSurplus)
     )
 
+  // hack till Main component is broken into component per section
+  const location = useLocation();
+  const history = useHistory();
+  const indexToTab = ['/overview', '/collateral', '/oracles', '/auctions', '/ecosystem', '/addresses']
+  function tabNameToIndex() {
+    let i = indexToTab.indexOf(location.pathname)
+    return (i >= 0 ? i : 0)
+  }
+
   return (
     <div>
       <div className="container">
-        <Tabs>
+        <Tabs defaultIndex={tabNameToIndex()} onSelect={index => history.push(indexToTab[index])}>
           <TabList>
             <Tab>Overview</Tab>
             <Tab>Collateral</Tab>
