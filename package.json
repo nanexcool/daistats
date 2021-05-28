@@ -15,6 +15,7 @@
     "react-polyglot": "^0.7.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^3.4.3",
+    "react-tabs": "^3.2.2",
     "recharts": "^2.0.4"
   },
   "scripts": {
