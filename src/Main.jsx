@@ -175,7 +175,7 @@ const Main = (props) => {
               </p>
               <p className="subtitle is-size-6">
                 <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
-                  Trade DAI & USDC with zero slippage using the PSM
+                  Trade DAI & USDC with no price impact using the PSM
                 </a>
               </p>
             </div>
