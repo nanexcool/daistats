@@ -381,7 +381,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.usdtAKicks}>{formatAmount.format(props.usdtAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'USDT' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_flip_auctions', { token: 'USDT' })}*/}USDT (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -469,7 +469,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.univ2daiusdcAKicks}>{formatAmount.format(props.univ2daiusdcAKicks)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_flip_auctions', { token: 'UniV2DaiUsdc' })}</p>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_flip_auctions', { token: 'UniV2DaiUsdc' })}*/}UniV2DaiUsdc (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
@@ -523,6 +523,50 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.batKicks}>{formatAmount.format(props.batKicks)}</h3>
               <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'BAT' })}*/}BAT (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.usdcAKicks}>{formatAmount.format(props.usdcAKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'USDC-A' })}*/}USDC-A (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.usdcBKicks}>{formatAmount.format(props.usdcBKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'USDC-B' })}*/}USDC-B (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.tusdAKicks}>{formatAmount.format(props.tusdAKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'TUSD' })}*/}TUSD (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.gusdAKicks}>{formatAmount.format(props.gusdAKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'GUSD' })}*/}GUSD (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.paxAKicks}>{formatAmount.format(props.paxAKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'PAXUSD' })}*/}PAXUSD (Clip) Auctions</p>
+              <p className="subtitle is-size-6"></p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.psmusdcAKicks}>{formatAmount.format(props.psmusdcAKicks)}</h3>
+              <p className="subtitle is-size-4">{/*{t('daistats.token_clip_auctions', { token: 'PSM-USDC-A' })}*/}PSM-USDC-A (Clip) Auctions</p>
               <p className="subtitle is-size-6"></p>
             </div>
           </div>
