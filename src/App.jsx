@@ -73,6 +73,7 @@ const jug = build(add.MCD_JUG, "Jug")
 const vow = build(add.MCD_VOW, "Vow")
 const pit = build(add.GEM_PIT, "GemPit")
 const cat = build(add.MCD_CAT, "Cat")
+const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
 const weth = build(add.ETH, "ERC20")
@@ -160,9 +161,9 @@ const ethAIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
 const batIlkBytes = utils.formatBytes32String("BAT-A")
-const usdcIlkBytes = utils.formatBytes32String("USDC-A")
+const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
-const tusdIlkBytes = utils.formatBytes32String("TUSD-A")
+const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
 const wbtcIlkBytes = utils.formatBytes32String("WBTC-A");
 const kncAIlkBytes = utils.formatBytes32String("KNC-A");
 const zrxAIlkBytes = utils.formatBytes32String("ZRX-A");
@@ -179,7 +180,7 @@ const uniAIlkBytes = utils.formatBytes32String("UNI-A");
 const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A");
 const aaveAIlkBytes = utils.formatBytes32String("AAVE-A");
 const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A");
-const psmUsdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A");
+const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A");
 const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A");
 const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A");
 const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A");
@@ -281,9 +282,9 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcIlkBytes])],
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcIlkBytes])], //unused
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [usdcAIlkBytes])],
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcAIlkBytes])],
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcAIlkBytes])], //unused
       [add.USDC, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_A])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
@@ -301,9 +302,9 @@ class App extends Component {
       [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [usdcBIlkBytes])], // unused
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_B])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // 53
-      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdIlkBytes])], // unused
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdIlkBytes])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [tusdAIlkBytes])], // 53
+      [add.MCD_SPOT, spot.interface.encodeFunctionData('ilks', [tusdAIlkBytes])], // unused
+      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [tusdAIlkBytes])],
       [add.PIP_TUSD, tusdPip.interface.encodeFunctionData('read', [])],
       [add.TUSD, usdc.interface.encodeFunctionData('totalSupply', [])],
       [add.TUSD, tusd.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_TUSD_A])], // 58
@@ -416,7 +417,7 @@ class App extends Component {
 
       [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tin', [])], // 151
       [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tout', [])], // 152
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [psmUsdcAIlkBytes])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])],
       [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_PSM])], // 154
 
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [univ2wbtcethAIlkBytes])],
@@ -561,6 +562,42 @@ class App extends Component {
       [add.MCD_CLIP_GUSD_A, gusdAClip.interface.encodeFunctionData('kicks', [])], // 279
       [add.MCD_CLIP_PAXUSD_A, paxAClip.interface.encodeFunctionData('kicks', [])],
       [add.MCD_CLIP_PSM_USDC_A, psmusdcAClip.interface.encodeFunctionData('kicks', [])], // 281
+
+      [add.MCD_DOG, dog.interface.encodeFunctionData('Hole', [])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [ethAIlkBytes])], // 284
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [batIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [wbtcIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [kncAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [manaAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [lrcAIlkBytes])], // 289
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [linkAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [balAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [yfiAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [uniAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [renbtcAIlkBytes])], // 294
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [aaveAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2daiethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2usdcethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2daiusdcAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [compAIlkBytes])], // 299
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [zrxAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2wbtcethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2uniethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2linkethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2aaveethAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2ethusdtAIlkBytes])], // 305
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2daiusdtAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [univ2wbtcdaiAIlkBytes])], // 307
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [usdcAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [usdcBIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [ethBIlkBytes])], // 310
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [ethCIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [tusdAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [paxAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [usdtAIlkBytes])], // 314
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [gusdAIlkBytes])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 316
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -970,6 +1007,42 @@ class App extends Component {
     const paxAKicks = paxAClip.interface.decodeFunctionResult('kicks', res[280])[0]
     const psmusdcAKicks = psmusdcAClip.interface.decodeFunctionResult('kicks', res[281])[0]
 
+    //const hole = dog.interface.decodeFunctionResult('Hole'. res[282])
+    //const dirt = dog.interface.decodeFunctionResult('Dirt'. res[283])
+    const ethADogIlk = dog.interface.decodeFunctionResult('ilks', res[284])
+    const batADogIlk = dog.interface.decodeFunctionResult('ilks', res[285])
+    const wbtcADogIlk = dog.interface.decodeFunctionResult('ilks', res[286])
+    const kncADogIlk = dog.interface.decodeFunctionResult('ilks', res[287])
+    const manaADogIlk = dog.interface.decodeFunctionResult('ilks', res[288])
+    const lrcADogIlk = dog.interface.decodeFunctionResult('ilks', res[289])
+    const linkADogIlk = dog.interface.decodeFunctionResult('ilks', res[290])
+    const balADogIlk = dog.interface.decodeFunctionResult('ilks', res[291])
+    const yfiADogIlk = dog.interface.decodeFunctionResult('ilks', res[292])
+    const uniADogIlk = dog.interface.decodeFunctionResult('ilks', res[293])
+    const renbtcADogIlk = dog.interface.decodeFunctionResult('ilks', res[294])
+    const aaveADogIlk = dog.interface.decodeFunctionResult('ilks', res[295])
+    const univ2daiethADogIlk = dog.interface.decodeFunctionResult('ilks', res[296])
+    const univ2usdcethADogIlk = dog.interface.decodeFunctionResult('ilks', res[297])
+    const univ2daiusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[298])
+    const compADogIlk = dog.interface.decodeFunctionResult('ilks', res[299])
+    const zrxADogIlk = dog.interface.decodeFunctionResult('ilks', res[300])
+    const univ2wbtcethADogIlk = dog.interface.decodeFunctionResult('ilks', res[301])
+    const univ2uniethADogIlk = dog.interface.decodeFunctionResult('ilks', res[302])
+    const univ2linkethADogIlk = dog.interface.decodeFunctionResult('ilks', res[303])
+    const univ2aaveethADogIlk = dog.interface.decodeFunctionResult('ilks', res[304])
+    const univ2ethusdtADogIlk = dog.interface.decodeFunctionResult('ilks', res[305])
+    const univ2daiusdtADogIlk = dog.interface.decodeFunctionResult('ilks', res[306])
+    const univ2wbtcdaiADogIlk = dog.interface.decodeFunctionResult('ilks', res[307])
+    const usdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[308])
+    const usdcBDogIlk = dog.interface.decodeFunctionResult('ilks', res[309])
+    const ethBDogIlk = dog.interface.decodeFunctionResult('ilks', res[310])
+    const ethCDogIlk = dog.interface.decodeFunctionResult('ilks', res[311])
+    const tusdADogIlk = dog.interface.decodeFunctionResult('ilks', res[312])
+    const paxADogIlk = dog.interface.decodeFunctionResult('ilks', res[313])
+    const usdtADogIlk = dog.interface.decodeFunctionResult('ilks', res[314])
+    const gusdADogIlk = dog.interface.decodeFunctionResult('ilks', res[315])
+    const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[316])
+
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
             ethBLocked[0].mul(ethPrice),
@@ -1027,7 +1100,11 @@ class App extends Component {
             lineMax: utils.formatUnits(ethAutoLineIlk.line, 45),
             gap: utils.formatUnits(ethAutoLineIlk.gap, 45),
             ttl: ethAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(ethAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(ethAutoLineIlk.lastInc),
+            chop: utils.formatUnits(ethADogIlk.chop, 18),
+            hole: utils.formatUnits(ethADogIlk.hole, 45),
+            dirt: utils.formatUnits(ethADogIlk.dirt, 45),
+            kicks: ethKicks.toNumber(),
           },
           {
             token: "BAT",
@@ -1040,7 +1117,11 @@ class App extends Component {
             lineMax: utils.formatUnits(batAutoLineIlk.line, 45),
             gap: utils.formatUnits(batAutoLineIlk.gap, 45),
             ttl: batAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(batAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(batAutoLineIlk.lastInc),
+            chop: utils.formatUnits(batADogIlk.chop, 18),
+            hole: utils.formatUnits(batADogIlk.hole, 45),
+            dirt: utils.formatUnits(batADogIlk.dirt, 45),
+            kicks: batKicks.toNumber(),
           },
           {
             token: "USDC",
@@ -1049,7 +1130,11 @@ class App extends Component {
             rate: utils.formatUnits(usdcIlk.rate, 27),
             spot: utils.formatUnits(usdcIlk.spot, 27),
             line: utils.formatUnits(usdcIlk.line, 45),
-            dust: utils.formatUnits(usdcIlk.dust, 45)
+            dust: utils.formatUnits(usdcIlk.dust, 45),
+            chop: utils.formatUnits(usdcADogIlk.chop, 18),
+            hole: utils.formatUnits(usdcADogIlk.hole, 45),
+            dirt: utils.formatUnits(usdcADogIlk.dirt, 45),
+            kicks: usdcAKicks.toNumber(),
           },
           {
             token: "WBTC",
@@ -1062,7 +1147,11 @@ class App extends Component {
             lineMax: utils.formatUnits(wbtcAutoLineIlk.line, 45),
             gap: utils.formatUnits(wbtcAutoLineIlk.gap, 45),
             ttl: wbtcAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(wbtcAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(wbtcAutoLineIlk.lastInc),
+            chop: utils.formatUnits(wbtcADogIlk.chop, 18),
+            hole: utils.formatUnits(wbtcADogIlk.hole, 45),
+            dirt: utils.formatUnits(wbtcADogIlk.dirt, 45),
+            kicks: wbtcKicks.toNumber(),
           },
           {
             token: "USDC",
@@ -1071,7 +1160,11 @@ class App extends Component {
             rate: utils.formatUnits(usdcBIlk.rate, 27),
             spot: utils.formatUnits(usdcBIlk.spot, 27),
             line: utils.formatUnits(usdcBIlk.line, 45),
-            dust: utils.formatUnits(usdcBIlk.dust, 45)
+            dust: utils.formatUnits(usdcBIlk.dust, 45),
+            chop: utils.formatUnits(usdcBDogIlk.chop, 18),
+            hole: utils.formatUnits(usdcBDogIlk.hole, 45),
+            dirt: utils.formatUnits(usdcBDogIlk.dirt, 45),
+            kicks: usdcBKicks.toNumber(),
           },
           {
             token: "TUSD",
@@ -1080,7 +1173,11 @@ class App extends Component {
             rate: utils.formatUnits(tusdIlk.rate, 27),
             spot: utils.formatUnits(tusdIlk.spot, 27),
             line: utils.formatUnits(tusdIlk.line, 45),
-            dust: utils.formatUnits(tusdIlk.dust, 45)
+            dust: utils.formatUnits(tusdIlk.dust, 45),
+            chop: utils.formatUnits(tusdADogIlk.chop, 18),
+            hole: utils.formatUnits(tusdADogIlk.hole, 45),
+            dirt: utils.formatUnits(tusdADogIlk.dirt, 45),
+            kicks: tusdAKicks.toNumber(),
           },
           {
             token: "KNC",
@@ -1093,7 +1190,11 @@ class App extends Component {
             lineMax: utils.formatUnits(kncAAutoLineIlk.line, 45),
             gap: utils.formatUnits(kncAAutoLineIlk.gap, 45),
             ttl: kncAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(kncAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(kncAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(kncADogIlk.chop, 18),
+            hole: utils.formatUnits(kncADogIlk.hole, 45),
+            dirt: utils.formatUnits(kncADogIlk.dirt, 45),
+            kicks: kncAKicks.toNumber(),
           },
           {
             token: "ZRX",
@@ -1106,7 +1207,11 @@ class App extends Component {
             lineMax: utils.formatUnits(zrxAAutoLineIlk.line, 45),
             gap: utils.formatUnits(zrxAAutoLineIlk.gap, 45),
             ttl: zrxAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(zrxAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(zrxAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(zrxADogIlk.chop, 18),
+            hole: utils.formatUnits(zrxADogIlk.hole, 45),
+            dirt: utils.formatUnits(zrxADogIlk.dirt, 45),
+            kicks: zrxAKicks.toNumber(),
           },
           {
             token: "MANA",
@@ -1119,7 +1224,11 @@ class App extends Component {
             lineMax: utils.formatUnits(manaAAutoLineIlk.line, 45),
             gap: utils.formatUnits(manaAAutoLineIlk.gap, 45),
             ttl: manaAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(manaAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(manaAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(manaADogIlk.chop, 18),
+            hole: utils.formatUnits(manaADogIlk.hole, 45),
+            dirt: utils.formatUnits(manaADogIlk.dirt, 45),
+            kicks: manaAKicks.toNumber(),
           },
           {
             token: "PAX",
@@ -1128,7 +1237,11 @@ class App extends Component {
             rate: utils.formatUnits(paxAIlk.rate, 27),
             spot: utils.formatUnits(paxAIlk.spot, 27),
             line: utils.formatUnits(paxAIlk.line, 45),
-            dust: utils.formatUnits(paxAIlk.dust, 45)
+            dust: utils.formatUnits(paxAIlk.dust, 45),
+            chop: utils.formatUnits(paxADogIlk.chop, 18),
+            hole: utils.formatUnits(paxADogIlk.hole, 45),
+            dirt: utils.formatUnits(paxADogIlk.dirt, 45),
+            kicks: paxAKicks.toNumber(),
           },
           {
             token: "USDT",
@@ -1137,7 +1250,11 @@ class App extends Component {
             rate: utils.formatUnits(usdtAIlk.rate, 27),
             spot: utils.formatUnits(usdtAIlk.spot, 27),
             line: utils.formatUnits(usdtAIlk.line, 45),
-            dust: utils.formatUnits(usdtAIlk.dust, 45)
+            dust: utils.formatUnits(usdtAIlk.dust, 45),
+            chop: utils.formatUnits(usdtADogIlk.chop, 18),
+            hole: utils.formatUnits(usdtADogIlk.hole, 45),
+            dirt: utils.formatUnits(usdtADogIlk.dirt, 45),
+            kicks: usdtAKicks.toNumber(),
           },
           {
             token: "COMP",
@@ -1150,7 +1267,11 @@ class App extends Component {
             lineMax: utils.formatUnits(compAAutoLineIlk.line, 45),
             gap: utils.formatUnits(compAAutoLineIlk.gap, 45),
             ttl: compAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(compAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(compAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(compADogIlk.chop, 18),
+            hole: utils.formatUnits(compADogIlk.hole, 45),
+            dirt: utils.formatUnits(compADogIlk.dirt, 45),
+            kicks: compAKicks.toNumber(),
           },
           {
             token: "LRC",
@@ -1163,7 +1284,11 @@ class App extends Component {
             lineMax: utils.formatUnits(lrcAAutoLineIlk.line, 45),
             gap: utils.formatUnits(lrcAAutoLineIlk.gap, 45),
             ttl: lrcAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(lrcAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(lrcAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(lrcADogIlk.chop, 18),
+            hole: utils.formatUnits(lrcADogIlk.hole, 45),
+            dirt: utils.formatUnits(lrcADogIlk.dirt, 45),
+            kicks: lrcAKicks.toNumber(),
           },
           {
             token: "LINK",
@@ -1176,7 +1301,11 @@ class App extends Component {
             lineMax: utils.formatUnits(linkAAutoLineIlk.line, 45),
             gap: utils.formatUnits(linkAAutoLineIlk.gap, 45),
             ttl: linkAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(linkAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(linkAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(linkADogIlk.chop, 18),
+            hole: utils.formatUnits(linkADogIlk.hole, 45),
+            dirt: utils.formatUnits(linkADogIlk.dirt, 45),
+            kicks: linkAKicks.toNumber(),
           },
           {
             token: "ETH",
@@ -1185,7 +1314,11 @@ class App extends Component {
             rate: utils.formatUnits(ethBIlk.rate, 27),
             spot: utils.formatUnits(ethBIlk.spot, 27),
             line: utils.formatUnits(ethBIlk.line, 45),
-            dust: utils.formatUnits(ethBIlk.dust, 45)
+            dust: utils.formatUnits(ethBIlk.dust, 45),
+            chop: utils.formatUnits(ethBDogIlk.chop, 18),
+            hole: utils.formatUnits(ethBDogIlk.hole, 45),
+            dirt: utils.formatUnits(ethBDogIlk.dirt, 45),
+            kicks: ethBKicks.toNumber(),
           },
           {
             token: "BAL",
@@ -1198,7 +1331,11 @@ class App extends Component {
             lineMax: utils.formatUnits(balAAutoLineIlk.line, 45),
             gap: utils.formatUnits(balAAutoLineIlk.gap, 45),
             ttl: balAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(balAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(balAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(balADogIlk.chop, 18),
+            hole: utils.formatUnits(balADogIlk.hole, 45),
+            dirt: utils.formatUnits(balADogIlk.dirt, 45),
+            kicks: balAKicks.toNumber(),
           },
           {
             token: "YFI",
@@ -1211,7 +1348,11 @@ class App extends Component {
             lineMax: utils.formatUnits(yfiAAutoLineIlk.line, 45),
             gap: utils.formatUnits(yfiAAutoLineIlk.gap, 45),
             ttl: yfiAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(yfiAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(yfiAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(yfiADogIlk.chop, 18),
+            hole: utils.formatUnits(yfiADogIlk.hole, 45),
+            dirt: utils.formatUnits(yfiADogIlk.dirt, 45),
+            kicks: yfiAKicks.toNumber(),
           },
           {
             token: "GUSD",
@@ -1220,7 +1361,11 @@ class App extends Component {
             rate: utils.formatUnits(gusdAIlk.rate, 27),
             spot: utils.formatUnits(gusdAIlk.spot, 27),
             line: utils.formatUnits(gusdAIlk.line, 45),
-            dust: utils.formatUnits(gusdAIlk.dust, 45)
+            dust: utils.formatUnits(gusdAIlk.dust, 45),
+            chop: utils.formatUnits(gusdADogIlk.chop, 18),
+            hole: utils.formatUnits(gusdADogIlk.hole, 45),
+            dirt: utils.formatUnits(gusdADogIlk.dirt, 45),
+            kicks: gusdAKicks.toNumber(),
           },
           {
             token: "UNI",
@@ -1233,7 +1378,11 @@ class App extends Component {
             lineMax: utils.formatUnits(uniAAutoLineIlk.line, 45),
             gap: utils.formatUnits(uniAAutoLineIlk.gap, 45),
             ttl: uniAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(uniAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(uniAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(uniADogIlk.chop, 18),
+            hole: utils.formatUnits(uniADogIlk.hole, 45),
+            dirt: utils.formatUnits(uniADogIlk.dirt, 45),
+            kicks: uniAKicks.toNumber(),
           },
           {
             token: "RENBTC",
@@ -1246,7 +1395,11 @@ class App extends Component {
             lineMax: utils.formatUnits(renbtcAAutoLineIlk.line, 45),
             gap: utils.formatUnits(renbtcAAutoLineIlk.gap, 45),
             ttl: renbtcAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(renbtcAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(renbtcAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(renbtcADogIlk.chop, 18),
+            hole: utils.formatUnits(renbtcADogIlk.hole, 45),
+            dirt: utils.formatUnits(renbtcADogIlk.dirt, 45),
+            kicks: renbtcAKicks.toNumber(),
           },
           {
             token: "AAVE",
@@ -1259,7 +1412,11 @@ class App extends Component {
             lineMax: utils.formatUnits(aaveAAutoLineIlk.line, 45),
             gap: utils.formatUnits(aaveAAutoLineIlk.gap, 45),
             ttl: aaveAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(aaveAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(aaveAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(aaveADogIlk.chop, 18),
+            hole: utils.formatUnits(aaveADogIlk.hole, 45),
+            dirt: utils.formatUnits(aaveADogIlk.dirt, 45),
+            kicks: aaveAKicks.toNumber(),
           },
           {
             token: "UNIV2DAIETH",
@@ -1272,7 +1429,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2daiethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2daiethAAutoLineIlk.gap, 45),
             ttl: univ2daiethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2daiethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2daiethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2daiethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2daiethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2daiethADogIlk.dirt, 45),
+            kicks: univ2daiethAKicks.toNumber(),
           },
           {
             token: "UNIV2WBTCETH",
@@ -1285,7 +1446,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2wbtcethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2wbtcethAAutoLineIlk.gap, 45),
             ttl: univ2wbtcethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2wbtcethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2wbtcethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2wbtcethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2wbtcethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2wbtcethADogIlk.dirt, 45),
+            kicks: univ2wbtcethAKicks.toNumber(),
           },
           {
             token: "UNIV2USDCETH",
@@ -1298,7 +1463,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2usdcethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2usdcethAAutoLineIlk.gap, 45),
             ttl: univ2usdcethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2usdcethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2usdcethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2usdcethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2usdcethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2usdcethADogIlk.dirt, 45),
+            kicks: univ2usdcethAKicks.toNumber(),
           },
           {
             token: "UNIV2DAIUSDC",
@@ -1311,7 +1480,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2daiusdcAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2daiusdcAAutoLineIlk.gap, 45),
             ttl: univ2daiusdcAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2daiusdcAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2daiusdcAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2daiusdcADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2daiusdcADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2daiusdcADogIlk.dirt, 45),
+            kicks: univ2daiusdcAKicks.toNumber(),
           },
           {
             token: "UNIV2ETHUSDT",
@@ -1324,7 +1497,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2ethusdtAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2ethusdtAAutoLineIlk.gap, 45),
             ttl: univ2ethusdtAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2ethusdtAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2ethusdtAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2ethusdtADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2ethusdtADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2ethusdtADogIlk.dirt, 45),
+            kicks: univ2ethusdtAKicks.toNumber(),
           },
           {
             token: "UNIV2LINKETH",
@@ -1337,7 +1514,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2linkethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2linkethAAutoLineIlk.gap, 45),
             ttl: univ2linkethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2linkethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2linkethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2linkethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2linkethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2linkethADogIlk.dirt, 45),
+            kicks: univ2linkethAKicks.toNumber(),
           },
           {
             token: "UNIV2UNIETH",
@@ -1350,7 +1531,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2uniethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2uniethAAutoLineIlk.gap, 45),
             ttl: univ2uniethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2uniethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2uniethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2uniethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2uniethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2uniethADogIlk.dirt, 45),
+            kicks: univ2uniethAKicks.toNumber(),
           },
           {
             token: "UNIV2WBTCDAI",
@@ -1363,7 +1548,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2wbtcdaiAAutoLineIlk.gap, 45),
             ttl: univ2wbtcdaiAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2wbtcdaiAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2wbtcdaiAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2wbtcdaiADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2wbtcdaiADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2wbtcdaiADogIlk.dirt, 45),
+            kicks: univ2wbtcdaiAKicks.toNumber(),
           },
           {
             token: "UNIV2AAVEETH",
@@ -1376,7 +1565,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2aaveethAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2aaveethAAutoLineIlk.gap, 45),
             ttl: univ2aaveethAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2aaveethAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2aaveethAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2aaveethADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2aaveethADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2aaveethADogIlk.dirt, 45),
+            kicks: univ2aaveethAKicks.toNumber(),
           },
           {
             token: "UNIV2DAIUSDT",
@@ -1389,7 +1582,11 @@ class App extends Component {
             lineMax: utils.formatUnits(univ2daiusdtAAutoLineIlk.line, 45),
             gap: utils.formatUnits(univ2daiusdtAAutoLineIlk.gap, 45),
             ttl: univ2daiusdtAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(univ2daiusdtAAutoLineIlk.lastInc)
+            lastInc: this.unixToDateTime(univ2daiusdtAAutoLineIlk.lastInc),
+            chop: utils.formatUnits(univ2daiusdtADogIlk.chop, 18),
+            hole: utils.formatUnits(univ2daiusdtADogIlk.hole, 45),
+            dirt: utils.formatUnits(univ2daiusdtADogIlk.dirt, 45),
+            kicks: univ2daiusdtAKicks.toNumber(),
           },
           {
             token: "ETH",
@@ -1398,7 +1595,11 @@ class App extends Component {
             rate: utils.formatUnits(ethCIlk.rate, 27),
             spot: utils.formatUnits(ethCIlk.spot, 27),
             line: utils.formatUnits(ethCIlk.line, 45),
-            dust: utils.formatUnits(ethCIlk.dust, 45)
+            dust: utils.formatUnits(ethCIlk.dust, 45),
+            chop: utils.formatUnits(ethCDogIlk.chop, 18),
+            hole: utils.formatUnits(ethCDogIlk.hole, 45),
+            dirt: utils.formatUnits(ethCDogIlk.dirt, 45),
+            kicks: ethCKicks.toNumber(),
           },
           {
             token: "RWA001",
@@ -1422,7 +1623,11 @@ class App extends Component {
             token: "USDC",
             ilk: "PSM-USDC-A",
             Art: utils.formatUnits(psmUsdcALocked[0], 6),
-            rate: 1
+            rate: 1,
+            chop: utils.formatUnits(psmusdcADogIlk.chop, 18),
+            hole: utils.formatUnits(psmusdcADogIlk.hole, 45),
+            dirt: utils.formatUnits(psmusdcADogIlk.dirt, 45),
+            kicks: psmusdcAKicks.toNumber(),
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
@@ -1568,39 +1773,8 @@ class App extends Component {
         savingsPie: utils.formatEther(savingsPie),
         savingsDai: utils.formatUnits(savingsDai, 45),
         potDrip: this.unixToDateTime(potDrip.toNumber()),
-        ethKicks: ethKicks.toNumber(),
-        ethBKicks: ethBKicks.toNumber(),
-        ethCKicks: ethCKicks.toNumber(),
-        batKicks: batKicks.toNumber(),
-        wbtcKicks: wbtcKicks.toNumber(),
-        kncAKicks: kncAKicks.toNumber(),
-        zrxAKicks: zrxAKicks.toNumber(),
-        manaAKicks: manaAKicks.toNumber(),
-        usdtAKicks: usdtAKicks.toNumber(),
-        compAKicks: compAKicks.toNumber(),
-        lrcAKicks: lrcAKicks.toNumber(),
-        linkAKicks: linkAKicks.toNumber(),
-        balAKicks: balAKicks.toNumber(),
-        yfiAKicks: yfiAKicks.toNumber(),
-        uniAKicks: uniAKicks.toNumber(),
-        renbtcAKicks: renbtcAKicks.toNumber(),
-        aaveAKicks: aaveAKicks.toNumber(),
-        univ2daiethAKicks: univ2daiethAKicks.toNumber(),
-        univ2wbtcethAKicks: univ2wbtcethAKicks.toNumber(),
-        univ2usdcethAKicks: univ2usdcethAKicks.toNumber(),
-        univ2daiusdcAKicks: univ2daiusdcAKicks.toNumber(),
-        univ2ethusdtAKicks: univ2ethusdtAKicks.toNumber(),
-        univ2linkethAKicks: univ2linkethAKicks.toNumber(),
-        univ2uniethAKicks: univ2uniethAKicks.toNumber(),
-        univ2wbtcdaiAKicks: univ2wbtcdaiAKicks.toNumber(),
-        univ2aaveethAKicks: univ2aaveethAKicks.toNumber(),
-        univ2daiusdtAKicks: univ2daiusdtAKicks.toNumber(),
-        usdcAKicks: usdcAKicks.toNumber(),
-        usdcBKicks: usdcBKicks.toNumber(),
-        tusdAKicks: tusdAKicks.toNumber(),
-        gusdAKicks: gusdAKicks.toNumber(),
-        paxAKicks: paxAKicks.toNumber(),
-        psmusdcAKicks: psmusdcAKicks.toNumber(),
+        //hole: hole.toNumber(), FIXME
+        //dirt: dirt.toNumber(), FIXME
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
