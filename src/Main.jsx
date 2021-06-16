@@ -428,6 +428,14 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
+              <h3 className="title" title={props.balancerV2Dai}>{formatAmount.format(props.balancerV2Dai)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Balancer V2' })}</p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
               <h3 className="title" title={props.bkrSupply}>{formatAmount.format(props.bkrSupply)}</h3>
               <p className="title subtitle is-size-4">
                 <a href={`https://etherscan.io/token/${props.BKR}`} target="_blank" rel="noopener noreferrer">

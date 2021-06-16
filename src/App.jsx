@@ -27,6 +27,7 @@ add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
+add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
@@ -598,6 +599,8 @@ class App extends Component {
       [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [usdtAIlkBytes])], // 314
       [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [gusdAIlkBytes])],
       [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 316
+
+      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -1042,6 +1045,8 @@ class App extends Component {
     const usdtADogIlk = dog.interface.decodeFunctionResult('ilks', res[314])
     const gusdADogIlk = dog.interface.decodeFunctionResult('ilks', res[315])
     const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[316])
+
+    const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[317])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1690,6 +1695,7 @@ class App extends Component {
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
+        balancerV2Dai: utils.formatEther(balancerV2Dai[0]),
         ethFee: ethFee.toFixed(2),
         ethBFee: ethBFee.toFixed(2),
         ethCFee: ethCFee.toFixed(2),
