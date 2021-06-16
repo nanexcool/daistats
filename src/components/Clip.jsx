@@ -33,9 +33,9 @@ function Clip(props) {
             <div className="box has-text-centered">
               <h3 className="title" title={ilk.kicks}>{formatAmount.format(ilk.kicks)}</h3>
               <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: props.token })*/}{props.token} (Clip) Auctions</p>
-              <p className="subtitle is-size-6">Liquidation Limit (hole) {formatAmount.format(ilk.hole)}</p>
+              <p className="subtitle is-size-6">Liquidation Penalty (chop) {formatPercent.format(Math.abs(1 - ilk.chop))}</p>
+              <p className="subtitle is-size-6">Limit (hole) {formatAmount.format(ilk.hole)}</p>
               {/*
-              <p className="subtitle is-size-6">{formatPercent.format(ilk.chop)}</p>
               <p className="subtitle is-size-6">{formatAmount.format(ilk.dirt)}</p>
               <p className="subtitle is-size-6">Price Change Interval (step) {formatAmount.format(ilk.step)}</p>
               <p className="subtitle is-size-6">Auction Price Multiplier (buf) {formatAmount.format(ilk.buf)}</p> 
