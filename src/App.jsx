@@ -601,6 +601,8 @@ class App extends Component {
       [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 316
 
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethCIlkBytes])], // 319
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -934,7 +936,7 @@ class App extends Component {
     const ethCLocked = weth.interface.decodeFunctionResult('balanceOf', res[212])
     const jugEthCDrip = jug.interface.decodeFunctionResult('ilks', res[213])
 
-    const ethAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[214])
+    const ethAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[214])
     const batAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[215])
     const wbtcAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[216])
     const kncAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[217])
@@ -1047,6 +1049,8 @@ class App extends Component {
     const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[316])
 
     const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[317])
+    const ethBAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[318])
+    const ethCAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[319])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1102,10 +1106,10 @@ class App extends Component {
             spot: utils.formatUnits(ethIlk.spot, 27),
             line: utils.formatUnits(ethIlk.line, 45),
             dust: utils.formatUnits(ethIlk.dust, 45),
-            lineMax: utils.formatUnits(ethAutoLineIlk.line, 45),
-            gap: utils.formatUnits(ethAutoLineIlk.gap, 45),
-            ttl: ethAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(ethAutoLineIlk.lastInc),
+            lineMax: utils.formatUnits(ethAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(ethAAutoLineIlk.gap, 45),
+            ttl: ethAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(ethAAutoLineIlk.lastInc),
             chop: utils.formatUnits(ethADogIlk.chop, 18),
             hole: utils.formatUnits(ethADogIlk.hole, 45),
             dirt: utils.formatUnits(ethADogIlk.dirt, 45),
@@ -1320,6 +1324,10 @@ class App extends Component {
             spot: utils.formatUnits(ethBIlk.spot, 27),
             line: utils.formatUnits(ethBIlk.line, 45),
             dust: utils.formatUnits(ethBIlk.dust, 45),
+            lineMax: utils.formatUnits(ethBAutoLineIlk.line, 45),
+            gap: utils.formatUnits(ethBAutoLineIlk.gap, 45),
+            ttl: ethBAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(ethBAutoLineIlk.lastInc),
             chop: utils.formatUnits(ethBDogIlk.chop, 18),
             hole: utils.formatUnits(ethBDogIlk.hole, 45),
             dirt: utils.formatUnits(ethBDogIlk.dirt, 45),
@@ -1601,6 +1609,10 @@ class App extends Component {
             spot: utils.formatUnits(ethCIlk.spot, 27),
             line: utils.formatUnits(ethCIlk.line, 45),
             dust: utils.formatUnits(ethCIlk.dust, 45),
+            lineMax: utils.formatUnits(ethCAutoLineIlk.line, 45),
+            gap: utils.formatUnits(ethCAutoLineIlk.gap, 45),
+            ttl: ethCAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(ethCAutoLineIlk.lastInc),
             chop: utils.formatUnits(ethCDogIlk.chop, 18),
             hole: utils.formatUnits(ethCDogIlk.hole, 45),
             dirt: utils.formatUnits(ethCDogIlk.dirt, 45),
