@@ -47,6 +47,7 @@ add["SES_INCUBATION_PROGRAM_MULTISIG"] = "0x7c09Ff9b59BAAebfd721cbDA3676826aA6d7
 add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2"
 add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
 // MakerDAO Shop
+// ORACLE_MULTISIG
 
 add["MCD_FLASH"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
 
@@ -80,6 +81,7 @@ const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
 const flash = build(add.MCD_FLASH, "DssFlash")
+const pause = build(add.MCD_FLASH, "DSPause")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -610,6 +612,8 @@ class App extends Component {
       [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
       [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 321
 
+      [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
+
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -1061,6 +1065,8 @@ class App extends Component {
 
     const flashLine = flash.interface.decodeFunctionResult('max', res[320])[0]
     const flashToll = flash.interface.decodeFunctionResult('toll', res[321])[0]
+
+    const pauseDelay = pause.interface.decodeFunctionResult('delay', res[322])[0]
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1909,6 +1915,7 @@ class App extends Component {
         univ2daiusdtZzz: this.unixToTime(+univ2daiusdtZzz + HOP),
         flashLine: utils.formatUnits(flashLine, 45),
         flashToll: utils.formatUnits(flashToll, 45),
+        pauseDelay: pauseDelay.toNumber(),
         historicalDebt,
       }
     })
