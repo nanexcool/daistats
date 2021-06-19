@@ -379,6 +379,15 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
+              <h3 className="title" title={props.flashLine}>{formatAmount.format(props.flashLine)}</h3>
+              <p className="title subtitle is-size-4">{/*t('daistats.flash_loan_limit')*/}Dai Flash Loan Limit</p>
+              <p className="subtitle is-size-6">{/*t('daistats.fee')}*/}Fee: {formatPercent.format(props.flashToll)}</p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
               <h3 className="title" title={props.daiSupply}>
                 {formatAmount.format(props.daiSupply)}
               </h3>

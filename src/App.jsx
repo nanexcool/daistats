@@ -48,6 +48,8 @@ add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2
 add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
 // MakerDAO Shop
 
+add["MCD_FLASH"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
+
 
 
 let provider;
@@ -77,6 +79,7 @@ const cat = build(add.MCD_CAT, "Cat")
 const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
+const flash = build(add.MCD_FLASH, "DssFlash")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -603,6 +606,10 @@ class App extends Component {
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethCIlkBytes])], // 319
+
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 321
+
     ], {blockTag: blockNumber})
     let promises = [
       p1,
@@ -1051,6 +1058,9 @@ class App extends Component {
     const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[317])
     const ethBAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[318])
     const ethCAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[319])
+
+    const flashLine = flash.interface.decodeFunctionResult('max', res[320])[0]
+    const flashToll = flash.interface.decodeFunctionResult('toll', res[321])[0]
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1897,6 +1907,8 @@ class App extends Component {
         univ2wbtcdaiZzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
         univ2aaveethZzz: this.unixToTime(+univ2aaveethZzz + HOP),
         univ2daiusdtZzz: this.unixToTime(+univ2daiusdtZzz + HOP),
+        flashLine: utils.formatUnits(flashLine, 45),
+        flashToll: utils.formatUnits(flashToll, 45),
         historicalDebt,
       }
     })
