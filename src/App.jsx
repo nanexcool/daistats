@@ -20,6 +20,7 @@ const utils = ethers.utils
 const jsonFetch = url => fetch(url).then(res => res.json())
 
 const add = require('./addresses.json')
+add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
 add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
 add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
@@ -82,6 +83,7 @@ const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
 const flash = build(add.MCD_FLASH, "DssFlash")
 const pause = build(add.MCD_FLASH, "DSPause")
+const chief = build(add.CHIEF, "DSChief")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -613,6 +615,7 @@ class App extends Component {
       [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 321
 
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
+      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 232
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -1067,6 +1070,7 @@ class App extends Component {
     const flashToll = flash.interface.decodeFunctionResult('toll', res[321])[0]
 
     const pauseDelay = pause.interface.decodeFunctionResult('delay', res[322])[0]
+    const hat = chief.interface.decodeFunctionResult('hat', res[323])
 
     const sysLocked = [
             ethLocked[0].mul(ethPrice),
@@ -1916,6 +1920,7 @@ class App extends Component {
         flashLine: utils.formatUnits(flashLine, 45),
         flashToll: utils.formatUnits(flashToll, 45),
         pauseDelay: pauseDelay.toNumber(),
+        hat: hat,
         historicalDebt,
       }
     })
