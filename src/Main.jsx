@@ -328,6 +328,15 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.dirt}>{formatAmount.format(props.dirt)}</h3>
+              <p className="title subtitle is-size-4">{/*t('daistats.Dirt')*/}Dirt</p>
+              <p className="subtitle is-size-6">{/*t('daistats.Hole')*/}Hole: {formatAmount.format(props.hole)}</p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
           <Clip {...props} token="ETH-A" idx="0"/>
           <Clip {...props} token="ETH-B" idx="14"/>
           <Clip {...props} token="ETH-C" idx="31"/>

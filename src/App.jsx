@@ -1026,8 +1026,8 @@ class App extends Component {
     const paxAKicks = paxAClip.interface.decodeFunctionResult('kicks', res[280])[0]
     const psmusdcAKicks = psmusdcAClip.interface.decodeFunctionResult('kicks', res[281])[0]
 
-    //const hole = dog.interface.decodeFunctionResult('Hole'. res[282])
-    //const dirt = dog.interface.decodeFunctionResult('Dirt'. res[283])
+    const hole = dog.interface.decodeFunctionResult('Hole', res[282])[0]
+    const dirt = dog.interface.decodeFunctionResult('Dirt', res[283])[0]
     const ethADogIlk = dog.interface.decodeFunctionResult('ilks', res[284])
     const batADogIlk = dog.interface.decodeFunctionResult('ilks', res[285])
     const wbtcADogIlk = dog.interface.decodeFunctionResult('ilks', res[286])
@@ -1811,8 +1811,8 @@ class App extends Component {
         savingsPie: utils.formatEther(savingsPie),
         savingsDai: utils.formatUnits(savingsDai, 45),
         potDrip: this.unixToDateTime(potDrip.toNumber()),
-        //hole: hole.toNumber(), FIXME
-        //dirt: dirt.toNumber(), FIXME
+        hole: utils.formatUnits(hole, 45),
+        dirt: utils.formatUnits(dirt, 45),
         flapKicks: flapKicks.toNumber(),
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
