@@ -331,8 +331,8 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.dirt}>{formatAmount.format(props.dirt)}</h3>
-              <p className="title subtitle is-size-4">{/*t('daistats.Dirt')*/}Dirt</p>
-              <p className="subtitle is-size-6">{/*t('daistats.Hole')*/}Hole: {formatAmount.format(props.hole)}</p>
+              <p className="title subtitle is-size-4">{/*t('daistats.Dirt')*/}Total Bad Debt including Penalties (Dirt)</p>
+              <p className="subtitle is-size-6">{/*t('daistats.Hole')*/}Global Limit (Hole) {formatAmount.format(props.hole)}</p>
             </div>
           </div>
         </div>
