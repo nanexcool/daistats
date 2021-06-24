@@ -205,7 +205,7 @@ const Main = (props) => {
           </TabPanel>
           <TabPanel>
         <div className="columns">
-          <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} formater={formatTwoDp} zzz={props.ethZzz}/>
+          <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} priceMedian={props.ethPriceMedian} formater={formatTwoDp} zzz={props.ethZzz}/>
           <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} formater={formatTwoDp} zzz={props.wbtcZzz}/>
           <Pip token="YFI" price={props.yfiPrice} priceNxt={props.yfiPriceNxt} formater={formatTwoDp} zzz={props.yfiZzz}/>
           <Pip token="UNI" price={props.uniPrice} priceNxt={props.uniPriceNxt} formater={formatTwoDp} zzz={props.uniZzz}/>

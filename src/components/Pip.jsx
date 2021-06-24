@@ -23,6 +23,7 @@ function Pip(props) {
           </p>}
           {props.zzz && (Number(props.price).toFixed(4) !== Number(props.priceNxt).toFixed(4)) &&
               <p className="title subtitle is-size-6">Next Possible Update: {props.zzz}</p>}
+          {props.priceMedian && <p className="title subtitle is-size-6">Median: ${props.formater.format(props.priceMedian)}</p>}
         </div>
       </div>
   )

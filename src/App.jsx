@@ -51,7 +51,7 @@ add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
 // ORACLE_MULTISIG
 
 add["MCD_FLASH"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
-
+add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
 
 
 let provider;
@@ -233,6 +233,7 @@ class App extends Component {
 
   POSITION_NXT = 4
   POSITION_UNIV2_NXT = 4
+  POSITION_MEDIAN_VAL = 1
 
   componentDidMount() {
     this.all('latest')
@@ -622,6 +623,7 @@ class App extends Component {
       p1,
       this.etherscanEthSupply(),
       this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT),
+      this.getOSMPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
       this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_WBTC, this.POSITION_NXT),
       this.getOSMPrice(add.PIP_KNC, this.POSITION_NXT),
@@ -648,7 +650,7 @@ class App extends Component {
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
-    let [[block, res], ethSupply, ethPriceNxt, batPriceNxt, wbtcPriceNxt,
+    let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, wbtcPriceNxt,
         kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt,
         lrcPriceNxt, linkPriceNxt, balPriceNxt, yfiPriceNxt, uniPriceNxt,
         aavePriceNxt, univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt,
@@ -1818,6 +1820,7 @@ class App extends Component {
         cdps: cdps.toString(),
         ethPrice: utils.formatUnits(ethPrice, 27),
         ethPriceNxt: utils.formatEther(ethPriceNxt),
+        ethPriceMedian: utils.formatEther(ethPriceMedian),
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
         wbtcPrice: utils.formatUnits(wbtcPrice, 27),
