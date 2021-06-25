@@ -51,7 +51,39 @@ add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
 // ORACLE_MULTISIG
 
 add["MCD_FLASH"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
+
 add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
+add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
+//add["MEDIAN_USDC                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x77b68899b99b686F415d074278a9a16b336085A0"},"latest"]}
+add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
+//add["MEDIAN_TUSD                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xeE13831ca96d191B688A670D47173694ba98f1e5"},"latest"]}
+add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
+add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
+add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
+add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
+//add["MEDIAN_PAXUSD                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"},"latest"]}
+add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
+add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
+add["MEDIAN_LINK"] = "0xbAd4212d73561B240f10C56F27e6D9608963f17b"
+add["MEDIAN_BAL"] = "0x1D36d59e5a22cB51B30Bb6fA73b62D73f4A11745"
+add["MEDIAN_YFI"] = "0x89AC26C0aFCB28EC55B6CD2F6b7DAD867Fa24639"
+//add["MEDIAN_GUSD                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xf45Ae69CcA1b9B043dAE2C83A5B65Bc605BEc5F5"},"latest"]}
+add["MEDIAN_UNI"] = "0x52f761908cC27B4D77AD7A329463cf08baf62153"
+add["MEDIAN_RENBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
+add["MEDIAN_AAVE"] = "0xe62872DFEbd323b03D27946f8e2491B454a69811"
+add["MEDIAN_UNIV2DAIETH"] = "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11"
+add["MEDIAN_UNIV2WBTCETH"] = "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940"
+add["MEDIAN_UNIV2USDCETH"] = "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc"
+add["MEDIAN_UNIV2DAIUSDC"] = "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5"
+add["MEDIAN_UNIV2ETHUSDT"] = "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852"
+add["MEDIAN_UNIV2LINKETH"] = "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974"
+add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
+add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
+add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
+add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
+//add["MEDIAN_RWA001                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x76A9f30B45F4ebFD60Ce8a1c6e963b1605f7cB6d"},"latest"]}
+//add["MEDIAN_RWA002                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xd2473237E20Bd52F8E7cE0FD79403A6a82fbAEC8"},"latest"]}
+
 
 
 let provider;
@@ -217,6 +249,7 @@ const RAY = ethers.BigNumber.from("1000000000000000000000000000")
 const DP2 = ethers.BigNumber.from("10000000000000000")
 const DP6 = ethers.BigNumber.from("1000000000000")
 const DP8 = ethers.BigNumber.from("10000000000")
+const DP10 = ethers.BigNumber.from("1000000000")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
@@ -616,46 +649,71 @@ class App extends Component {
       [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 321
 
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
-      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 232
+      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 323
 
     ], {blockTag: blockNumber})
     let promises = [
       p1,
       this.etherscanEthSupply(),
-      this.getOSMPrice(add.PIP_ETH, this.POSITION_NXT),
-      this.getOSMPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
-      this.getOSMPrice(add.PIP_BAT, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_WBTC, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_KNC, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_ZRX, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_MANA, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_USDT, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_COMP, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_LRC, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_LINK, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_BAL, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_YFI, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_UNI, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_AAVE, this.POSITION_NXT),
-      this.getOSMPrice(add.PIP_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2ETHUSDT, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
-      this.getOSMPrice(add.PIP_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_ETH, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_BAT, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_BAT, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_WBTC, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_WBTC, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_KNC, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_KNC, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_ZRX, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_ZRX, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_MANA, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_MANA, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_USDT, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_USDT, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_COMP, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_COMP, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_LRC, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_LRC, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_LINK, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_LINK, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_BAL, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_BAL, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_YFI, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_YFI, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_UNI, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_UNI, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_AAVE, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_AAVE, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2ETHUSDT, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2ETHUSDT, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
-    let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, wbtcPriceNxt,
-        kncPriceNxt, zrxPriceNxt, manaPriceNxt, usdtPriceNxt, compPriceNxt,
-        lrcPriceNxt, linkPriceNxt, balPriceNxt, yfiPriceNxt, uniPriceNxt,
-        aavePriceNxt, univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt,
-        univ2daiusdcPriceNxt, univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt,
-        univ2wbtcdaiPriceNxt, univ2aaveethPriceNxt, univ2daiusdtPriceNxt,
+    let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, batPriceMedian,
+        wbtcPriceNxt, wbtcPriceMedian, kncPriceNxt, kncPriceMedian, zrxPriceNxt, zrxPriceMedian,
+        manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
+        lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
+        yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
+        univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
+        univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
+        univ2aaveethPriceNxt, univ2daiusdtPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
@@ -1098,6 +1156,44 @@ class App extends Component {
             yfiALocked[0].mul(yfiPrice),
             uniALocked[0].mul(uniPrice),
             aaveALocked[0].mul(aavePrice),
+            univ2daiethALocked[0].mul(univ2daiethPrice),
+            univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
+            univ2usdcethALocked[0].mul(univ2usdcethPrice),
+            univ2daiusdcALocked[0].mul(univ2daiusdcPrice),
+            univ2ethusdtALocked[0].mul(univ2ethusdtPrice),
+            univ2linkethALocked[0].mul(univ2linkethPrice),
+            univ2uniethALocked[0].mul(univ2uniethPrice),
+            univ2wbtcdaiALocked[0].mul(univ2wbtcdaiPrice),
+            univ2aaveethALocked[0].mul(univ2aaveethPrice),
+            univ2daiusdtALocked[0].mul(univ2daiusdtPrice),
+            rwa001ALocked[0].mul(rwa001Price),
+            rwa002ALocked[0].mul(rwa002Price)
+                ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
+
+    const sysLockedMedian = [
+            ethLocked[0].mul(ethPriceMedian.mul(DP10)),
+            ethBLocked[0].mul(ethPriceMedian.mul(DP10)),
+            ethCLocked[0].mul(ethPriceMedian.mul(DP10)),
+            usdcLocked[0].mul(DP6).mul(usdcPrice),
+            usdcBLocked[0].mul(DP6).mul(usdcPrice),
+            psmUsdcALocked[0].mul(DP6).mul(usdcPrice),
+            wbtcLocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
+            renbtcALocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
+            tusdLocked[0].mul(tusdPrice),
+            paxALocked[0].mul(paxPrice),
+            gusdALocked[0].mul(DP2).mul(gusdPrice),
+            usdtALocked[0].mul(DP6).mul(usdtPriceMedian.mul(DP10)),
+            batLocked[0].mul(batPriceMedian.mul(DP10)),
+            kncALocked[0].mul(kncPriceMedian.mul(DP10)),
+            zrxALocked[0].mul(zrxPriceMedian.mul(DP10)),
+            manaALocked[0].mul(manaPriceMedian.mul(DP10)),
+            compALocked[0].mul(compPriceMedian.mul(DP10)),
+            lrcALocked[0].mul(lrcPriceMedian.mul(DP10)),
+            linkALocked[0].mul(linkPriceMedian.mul(DP10)),
+            balALocked[0].mul(balPriceMedian.mul(DP10)),
+            yfiALocked[0].mul(yfiPriceMedian.mul(DP10)),
+            uniALocked[0].mul(uniPriceMedian.mul(DP10)),
+            aaveALocked[0].mul(aavePriceMedian.mul(DP10)),
             univ2daiethALocked[0].mul(univ2daiethPrice),
             univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
             univ2usdcethALocked[0].mul(univ2usdcethPrice),
@@ -1823,34 +1919,47 @@ class App extends Component {
         ethPriceMedian: utils.formatEther(ethPriceMedian),
         batPrice: utils.formatUnits(batPrice, 27),
         batPriceNxt: utils.formatEther(batPriceNxt),
+        batPriceMedian: utils.formatEther(batPriceMedian),
         wbtcPrice: utils.formatUnits(wbtcPrice, 27),
         wbtcPriceNxt: utils.formatEther(wbtcPriceNxt),
+        wbtcPriceMedian: utils.formatEther(wbtcPriceMedian),
         kncPrice: utils.formatUnits(kncPrice, 27),
         kncPriceNxt: utils.formatEther(kncPriceNxt),
+        kncPriceMedian: utils.formatEther(kncPriceMedian),
         zrxPrice: utils.formatUnits(zrxPrice, 27),
         zrxPriceNxt: utils.formatEther(zrxPriceNxt),
+        zrxPriceMedian: utils.formatEther(zrxPriceMedian),
         manaPrice: utils.formatUnits(manaPrice, 27),
         manaPriceNxt: utils.formatEther(manaPriceNxt),
+        manaPriceMedian: utils.formatEther(manaPriceMedian),
         usdtPrice: utils.formatUnits(usdtPrice, 27),
         usdtPriceNxt: utils.formatEther(usdtPriceNxt),
+        usdtPriceMedian: utils.formatEther(usdtPriceMedian),
         usdcPrice: utils.formatEther(usdcPrice),
         tusdPrice: utils.formatEther(tusdPrice),
         paxPrice: utils.formatEther(paxPrice),
         compPrice: utils.formatUnits(compPrice, 27),
         compPriceNxt: utils.formatEther(compPriceNxt),
+        compPriceMedian: utils.formatEther(compPriceMedian),
         lrcPrice: utils.formatUnits(lrcPrice, 27),
         lrcPriceNxt: utils.formatEther(lrcPriceNxt),
+        lrcPriceMedian: utils.formatEther(lrcPriceMedian),
         linkPrice: utils.formatUnits(linkPrice, 27),
         linkPriceNxt: utils.formatEther(linkPriceNxt),
+        linkPriceMedian: utils.formatEther(linkPriceMedian),
         balPrice: utils.formatUnits(balPrice, 27),
         balPriceNxt: utils.formatEther(balPriceNxt),
+        balPriceMedian: utils.formatEther(balPriceMedian),
         yfiPrice: utils.formatUnits(yfiPrice, 27),
         yfiPriceNxt: utils.formatEther(yfiPriceNxt),
+        yfiPriceMedian: utils.formatEther(yfiPriceMedian),
         gusdPrice: utils.formatUnits(gusdPrice, 27),
         uniPrice: utils.formatUnits(uniPrice, 27),
         uniPriceNxt: utils.formatEther(uniPriceNxt),
+        uniPriceMedian: utils.formatEther(uniPriceMedian),
         aavePrice: utils.formatUnits(aavePrice, 27),
         aavePriceNxt: utils.formatEther(aavePriceNxt),
+        aavePriceMedian: utils.formatEther(aavePriceMedian),
         univ2daiethPrice: utils.formatUnits(univ2daiethPrice, 27),
         univ2daiethPriceNxt: utils.formatEther(univ2daiethPriceNxt),
         univ2wbtcethPrice: utils.formatUnits(univ2wbtcethPrice, 27),
@@ -1874,6 +1983,7 @@ class App extends Component {
         rwa001Price: utils.formatEther(rwa001Price),
         rwa002Price: utils.formatEther(rwa002Price),
         sysLocked: utils.formatUnits(sysLocked, 45),
+        sysLockedMedian: utils.formatUnits(sysLockedMedian, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
         vice: utils.formatUnits(vice[0], 45),
@@ -1949,7 +2059,7 @@ class App extends Component {
     return json.result;
   }
 
-  getOSMPrice = async (osm, position) => {
+  getPrice = async (osm, position) => {
     const val = await eth.getStorageAt(osm, position);
     return ethers.BigNumber.from('0x' + val.substring(34));
   }

@@ -109,6 +109,8 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.sysLocked}>{formatAmount.format(props.sysLocked)}</h3>
               <h4 className="subtitle is-size-4">{t('daistats.total_locked')}</h4>
+              <h3 className="title" title={props.sysLockedMedian}>{formatAmount.format(props.sysLockedMedian)}</h3>
+              <h4 className="subtitle is-size-4">median tvl</h4>
             </div>
           </div>
           {/*<div className="column">
@@ -206,25 +208,25 @@ const Main = (props) => {
           <TabPanel>
         <div className="columns">
           <Pip token="ETH" price={props.ethPrice} priceNxt={props.ethPriceNxt} priceMedian={props.ethPriceMedian} formater={formatTwoDp} zzz={props.ethZzz}/>
-          <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} formater={formatTwoDp} zzz={props.wbtcZzz}/>
-          <Pip token="YFI" price={props.yfiPrice} priceNxt={props.yfiPriceNxt} formater={formatTwoDp} zzz={props.yfiZzz}/>
-          <Pip token="UNI" price={props.uniPrice} priceNxt={props.uniPriceNxt} formater={formatTwoDp} zzz={props.uniZzz}/>
+          <Pip token="BTC" price={props.wbtcPrice} priceNxt={props.wbtcPriceNxt} priceMedian={props.wbtcPriceMedian} formater={formatTwoDp} zzz={props.wbtcZzz}/>
+          <Pip token="YFI" price={props.yfiPrice} priceNxt={props.yfiPriceNxt} priceMedian={props.yfiPriceMedian} formater={formatTwoDp} zzz={props.yfiZzz}/>
+          <Pip token="UNI" price={props.uniPrice} priceNxt={props.uniPriceNxt} priceMedian={props.uniPriceMedian} formater={formatTwoDp} zzz={props.uniZzz}/>
         </div>
         <div className="columns">
-          <Pip token="AAVE" price={props.aavePrice} priceNxt={props.aavePriceNxt} formater={formatTwoDp} zzz={props.aaveZzz}/>
-          <Pip token="BAL" price={props.balPrice} priceNxt={props.balPriceNxt} formater={formatTwoDp} zzz={props.balZzz}/>
-          <Pip token="BAT" price={props.batPrice} priceNxt={props.batPriceNxt} formater={formatCurrency} zzz={props.batZzz}/>
-          <Pip token="COMP" price={props.compPrice} priceNxt={props.compPriceNxt} formater={formatTwoDp} zzz={props.compZzz}/>
+          <Pip token="AAVE" price={props.aavePrice} priceNxt={props.aavePriceNxt} priceMedian={props.aavePriceMedian} formater={formatTwoDp} zzz={props.aaveZzz}/>
+          <Pip token="BAL" price={props.balPrice} priceNxt={props.balPriceNxt} priceMedian={props.balPriceMedian} formater={formatTwoDp} zzz={props.balZzz}/>
+          <Pip token="BAT" price={props.batPrice} priceNxt={props.batPriceNxt} priceMedian={props.batPriceMedian} formater={formatCurrency} zzz={props.batZzz}/>
+          <Pip token="COMP" price={props.compPrice} priceNxt={props.compPriceNxt} priceMedian={props.compPriceMedian} formater={formatTwoDp} zzz={props.compZzz}/>
         </div>
         <div className="columns">
-          <Pip token="KNC" price={props.kncPrice} priceNxt={props.kncPriceNxt} formater={formatCurrency} zzz={props.kncZzz}/>
-          <Pip token="LINK" price={props.linkPrice} priceNxt={props.linkPriceNxt} formater={formatTwoDp} zzz={props.linkZzz}/>
-          <Pip token="LRC" price={props.lrcPrice} priceNxt={props.lrcPriceNxt} formater={formatCurrency} zzz={props.lrcZzz}/>
-          <Pip token="MANA" price={props.manaPrice} priceNxt={props.manaPriceNxt} formater={formatCurrency} zzz={props.manaZzz}/>
+          <Pip token="KNC" price={props.kncPrice} priceNxt={props.kncPriceNxt} priceMedian={props.kncPriceMedian} formater={formatCurrency} zzz={props.kncZzz}/>
+          <Pip token="LINK" price={props.linkPrice} priceNxt={props.linkPriceNxt} priceMedian={props.linkPriceMedian} formater={formatTwoDp} zzz={props.linkZzz}/>
+          <Pip token="LRC" price={props.lrcPrice} priceNxt={props.lrcPriceNxt} priceMedian={props.lrcPriceMedian} formater={formatCurrency} zzz={props.lrcZzz}/>
+          <Pip token="MANA" price={props.manaPrice} priceNxt={props.manaPriceNxt} priceMedian={props.manaPriceMedian} formater={formatCurrency} zzz={props.manaZzz}/>
         </div>
         <div className="columns">
-          <Pip token="USDT" price={props.usdtPrice} priceNxt={props.usdtPriceNxt} formater={formatCurrency} zzz={props.usdtZzz}/>
-          <Pip token="ZRX" price={props.zrxPrice} priceNxt={props.zrxPriceNxt} formater={formatCurrency} zzz={props.zrxZzz}/>
+          <Pip token="USDT" price={props.usdtPrice} priceNxt={props.usdtPriceNxt} priceMedian={props.usdtPriceMedian} formater={formatCurrency} zzz={props.usdtZzz}/>
+          <Pip token="ZRX" price={props.zrxPrice} priceNxt={props.zrxPriceNxt} priceMedian={props.zrxPriceMedian} formater={formatCurrency} zzz={props.zrxZzz}/>
           <Pip token="USDC, TUSD, PAX, GUSD" price={props.tusdPrice} formater={formatCurrency}/>
           <Pip token="UniV2DaiEth" price={props.univ2daiethPrice} priceNxt={props.univ2daiethPriceNxt} formater={formatTwoDp} zzz={props.univ2daiethZzz}/>
         </div>
