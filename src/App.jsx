@@ -248,6 +248,7 @@ window.dai = dai
 const RAY = ethers.BigNumber.from("1000000000000000000000000000")
 const DP2 = ethers.BigNumber.from("10000000000000000")
 const DP6 = ethers.BigNumber.from("1000000000000")
+const DP7 = ethers.BigNumber.from("1000000000000")
 const DP8 = ethers.BigNumber.from("10000000000")
 const DP10 = ethers.BigNumber.from("1000000000")
 
@@ -1132,7 +1133,7 @@ class App extends Component {
     const pauseDelay = pause.interface.decodeFunctionResult('delay', res[322])[0]
     const hat = chief.interface.decodeFunctionResult('hat', res[323])
 
-    const sysLocked = [
+    const sysLockedWrong = [
             ethLocked[0].mul(ethPrice),
             ethBLocked[0].mul(ethPrice),
             ethCLocked[0].mul(ethPrice),
@@ -1170,18 +1171,19 @@ class App extends Component {
             rwa002ALocked[0].mul(rwa002Price)
                 ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
 
-    const sysLockedMedian = [
+    const usdcBN = ethers.BigNumber.from(usdcPrice).mul(DP10)
+    const sysLocked = [
             ethLocked[0].mul(ethPriceMedian.mul(DP10)),
             ethBLocked[0].mul(ethPriceMedian.mul(DP10)),
             ethCLocked[0].mul(ethPriceMedian.mul(DP10)),
-            usdcLocked[0].mul(DP6).mul(usdcPrice),
-            usdcBLocked[0].mul(DP6).mul(usdcPrice),
-            psmUsdcALocked[0].mul(DP6).mul(usdcPrice),
+            usdcLocked[0].mul(DP7).mul(usdcBN),
+            usdcBLocked[0].mul(DP7).mul(usdcBN),
+            psmUsdcALocked[0].mul(DP7).mul(usdcBN),
             wbtcLocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
             renbtcALocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
-            tusdLocked[0].mul(tusdPrice),
-            paxALocked[0].mul(paxPrice),
-            gusdALocked[0].mul(DP2).mul(gusdPrice),
+            tusdLocked[0].mul(usdcBN),
+            paxALocked[0].mul(usdcBN),
+            gusdALocked[0].mul(DP2).mul(usdcBN),
             usdtALocked[0].mul(DP6).mul(usdtPriceMedian.mul(DP10)),
             batLocked[0].mul(batPriceMedian.mul(DP10)),
             kncALocked[0].mul(kncPriceMedian.mul(DP10)),
@@ -1194,6 +1196,7 @@ class App extends Component {
             yfiALocked[0].mul(yfiPriceMedian.mul(DP10)),
             uniALocked[0].mul(uniPriceMedian.mul(DP10)),
             aaveALocked[0].mul(aavePriceMedian.mul(DP10)),
+            // FIXME use medianiser price for these ilks
             univ2daiethALocked[0].mul(univ2daiethPrice),
             univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
             univ2usdcethALocked[0].mul(univ2usdcethPrice),
@@ -1204,9 +1207,10 @@ class App extends Component {
             univ2wbtcdaiALocked[0].mul(univ2wbtcdaiPrice),
             univ2aaveethALocked[0].mul(univ2aaveethPrice),
             univ2daiusdtALocked[0].mul(univ2daiusdtPrice),
-            rwa001ALocked[0].mul(rwa001Price),
-            rwa002ALocked[0].mul(rwa002Price)
+            rwa001ALocked[0].mul(ethers.BigNumber.from(rwa001Price).mul(DP10)),
+            rwa002ALocked[0].mul(ethers.BigNumber.from(rwa002Price).mul(DP10))
                 ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
+
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
     this.setState(state => {
@@ -1983,7 +1987,6 @@ class App extends Component {
         rwa001Price: utils.formatEther(rwa001Price),
         rwa002Price: utils.formatEther(rwa002Price),
         sysLocked: utils.formatUnits(sysLocked, 45),
-        sysLockedMedian: utils.formatUnits(sysLockedMedian, 45),
         chaiSupply: utils.formatEther(chaiSupply),
         mkrSupply: utils.formatEther(mkrSupply[0]),
         vice: utils.formatUnits(vice[0], 45),

@@ -109,8 +109,6 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.sysLocked}>{formatAmount.format(props.sysLocked)}</h3>
               <h4 className="subtitle is-size-4">{t('daistats.total_locked')}</h4>
-              <h3 className="title" title={props.sysLockedMedian}>{formatAmount.format(props.sysLockedMedian)}</h3>
-              <h4 className="subtitle is-size-4">median tvl</h4>
             </div>
           </div>
           {/*<div className="column">
