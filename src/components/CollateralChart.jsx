@@ -41,9 +41,15 @@ const CollateralChart = ({ ilks, debt }) => {
         style: 'percent',
         minimumFractionDigits: 0,
         maximumFractionDigits: 1
-      })
-    ),
-    [locale]
+      })), [locale]
+  )
+
+  const formatTwoDp = useMemo(() => (
+    new Intl.NumberFormat(locale, {
+      style: 'decimal',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })), [locale]
   )
 
   function ilkPercent(ilk) {
@@ -60,7 +66,7 @@ const CollateralChart = ({ ilks, debt }) => {
   }
 
   function tooltip(value, name, props) {
-      return formatPercent.format(value / 100)
+      return formatPercent.format(value / 100) // + " " + formatTwoDp.format(value) + "B"
   }
 
   function sortByTokenPercent(a, b) {
