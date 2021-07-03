@@ -571,6 +571,24 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.ORA_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Oracle Core Unit</h3>
+                <p className="subtitle is-size-7">{props.ORA_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.ORA_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Oracle Emergency Fund</h3>
+                <p className="subtitle is-size-7">{props.ORA_ER_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
         <hr />
         <div className="columns">
           <div className="column">

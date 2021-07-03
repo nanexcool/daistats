@@ -47,27 +47,28 @@ add["SES_PERMANENT_TEAM_MULTISIG"] = "0xb5eB779cE300024EDB3dF9b6C007E312584f6F4f
 add["SES_INCUBATION_PROGRAM_MULTISIG"] = "0x7c09Ff9b59BAAebfd721cbDA3676826aA6d7BaE8"
 add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2"
 add["PE_MULTISIG"] = "0xe2c16c308b843eD02B09156388Cb240cEd58C01c"
+add["ORA_MULTISIG"] = "0x2d09B7b95f3F312ba6dDfB77bA6971786c5b50Cf"
+add["ORA_ER_MULTISIG"] = "0x53CCAA8E3beF14254041500aCC3f1D4edb5B6D24"
 // MakerDAO Shop
-// ORACLE_MULTISIG
 
 add["MCD_FLASH"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
 
 add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
 add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
-//add["MEDIAN_USDC                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x77b68899b99b686F415d074278a9a16b336085A0"},"latest"]}
+//add["MEDIAN_USDC
 add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
-//add["MEDIAN_TUSD                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xeE13831ca96d191B688A670D47173694ba98f1e5"},"latest"]}
+//add["MEDIAN_TUSD
 add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
 add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
 add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
 add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
-//add["MEDIAN_PAXUSD                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"},"latest"]}
+//add["MEDIAN_PAXUSD
 add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
 add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
 add["MEDIAN_LINK"] = "0xbAd4212d73561B240f10C56F27e6D9608963f17b"
 add["MEDIAN_BAL"] = "0x1D36d59e5a22cB51B30Bb6fA73b62D73f4A11745"
 add["MEDIAN_YFI"] = "0x89AC26C0aFCB28EC55B6CD2F6b7DAD867Fa24639"
-//add["MEDIAN_GUSD                             seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xf45Ae69CcA1b9B043dAE2C83A5B65Bc605BEc5F5"},"latest"]}
+//add["MEDIAN_GUSD
 add["MEDIAN_UNI"] = "0x52f761908cC27B4D77AD7A329463cf08baf62153"
 add["MEDIAN_RENBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
 add["MEDIAN_AAVE"] = "0xe62872DFEbd323b03D27946f8e2491B454a69811"
@@ -81,10 +82,8 @@ add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
 add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
-//add["MEDIAN_RWA001                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0x76A9f30B45F4ebFD60Ce8a1c6e963b1605f7cB6d"},"latest"]}
-//add["MEDIAN_RWA002                           seth-rpc: {"id":1,"jsonrpc":"2.0","method":"eth_call","params":[{"data":"0x2e7dc6af","to":"0xd2473237E20Bd52F8E7cE0FD79403A6a82fbAEC8"},"latest"]}
-
-
+//add["MEDIAN_RWA001
+//add["MEDIAN_RWA002
 
 let provider;
 let networkId;
