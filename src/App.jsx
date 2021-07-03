@@ -113,7 +113,7 @@ const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
 const flash = build(add.MCD_FLASH, "DssFlash")
-const pause = build(add.MCD_FLASH, "DSPause")
+const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
@@ -2032,8 +2032,8 @@ class App extends Component {
         univ2wbtcdaiZzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
         univ2aaveethZzz: this.unixToTime(+univ2aaveethZzz + HOP),
         univ2daiusdtZzz: this.unixToTime(+univ2daiusdtZzz + HOP),
-        flashLine: utils.formatUnits(flashLine, 45),
-        flashToll: utils.formatUnits(flashToll, 45),
+        flashLine: utils.formatEther(flashLine),
+        flashToll: utils.formatEther(flashToll),
         pauseDelay: pauseDelay.toNumber(),
         hat: hat,
         historicalDebt,
