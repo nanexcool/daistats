@@ -644,12 +644,13 @@ class App extends Component {
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethBIlkBytes])],
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ethCIlkBytes])], // 319
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 320
 
       [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 321
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 323
 
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
-      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 323
+      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 325
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -1125,12 +1126,13 @@ class App extends Component {
     const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[317])
     const ethBAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[318])
     const ethCAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[319])
+    const psmusdcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[320])
 
-    const flashLine = flash.interface.decodeFunctionResult('max', res[320])[0]
-    const flashToll = flash.interface.decodeFunctionResult('toll', res[321])[0]
+    const flashLine = flash.interface.decodeFunctionResult('max', res[321])[0]
+    const flashToll = flash.interface.decodeFunctionResult('toll', res[322])[0]
 
-    const pauseDelay = pause.interface.decodeFunctionResult('delay', res[322])[0]
-    const hat = chief.interface.decodeFunctionResult('hat', res[323])
+    const pauseDelay = pause.interface.decodeFunctionResult('delay', res[323])[0]
+    const hat = chief.interface.decodeFunctionResult('hat', res[324])
 
     const sysLockedWrong = [
             ethLocked[0].mul(ethPrice),
@@ -1762,6 +1764,10 @@ class App extends Component {
             ilk: "PSM-USDC-A",
             Art: utils.formatUnits(psmUsdcALocked[0], 6),
             rate: 1,
+            lineMax: utils.formatUnits(psmusdcAAutoLineIlk.line, 45),
+            gap: utils.formatUnits(psmusdcAAutoLineIlk.gap, 45),
+            ttl: psmusdcAAutoLineIlk.ttl,
+            lastInc: this.unixToDateTime(psmusdcAAutoLineIlk.lastInc),
             chop: utils.formatUnits(psmusdcADogIlk.chop, 18),
             hole: utils.formatUnits(psmusdcADogIlk.hole, 45),
             dirt: utils.formatUnits(psmusdcADogIlk.dirt, 45),
