@@ -62,7 +62,7 @@ function Collateral(props) {
         <div className="has-text-centered">
           <h3 className="title" title={props.fee}>{props.fee}%</h3>
           <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: props.ilks[props.idx].ilk })}</p>
-          <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.jugDrip}</p>
+          <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.ilks[props.idx].drip}</p>
           <p className="title subtitle is-size-6">{/*{t('daistats.dust')}*/}Dust: {formatAmount.format(props.ilks[props.idx].dust)}</p>
         </div>
       </div>

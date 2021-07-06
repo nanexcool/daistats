@@ -1237,6 +1237,7 @@ class App extends Component {
             hole: utils.formatUnits(ethADogIlk.hole, 45),
             dirt: utils.formatUnits(ethADogIlk.dirt, 45),
             kicks: ethKicks.toNumber(),
+            drip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
           },
           {
             token: "BAT",
@@ -1254,6 +1255,7 @@ class App extends Component {
             hole: utils.formatUnits(batADogIlk.hole, 45),
             dirt: utils.formatUnits(batADogIlk.dirt, 45),
             kicks: batKicks.toNumber(),
+            drip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
           },
           {
             token: "USDC",
@@ -1267,6 +1269,7 @@ class App extends Component {
             hole: utils.formatUnits(usdcADogIlk.hole, 45),
             dirt: utils.formatUnits(usdcADogIlk.dirt, 45),
             kicks: usdcAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
           },
           {
             token: "WBTC",
@@ -1284,6 +1287,7 @@ class App extends Component {
             hole: utils.formatUnits(wbtcADogIlk.hole, 45),
             dirt: utils.formatUnits(wbtcADogIlk.dirt, 45),
             kicks: wbtcKicks.toNumber(),
+            drip: this.unixToDateTime(jugWbtcDrip.rho.toNumber()),
           },
           {
             token: "USDC",
@@ -1297,6 +1301,7 @@ class App extends Component {
             hole: utils.formatUnits(usdcBDogIlk.hole, 45),
             dirt: utils.formatUnits(usdcBDogIlk.dirt, 45),
             kicks: usdcBKicks.toNumber(),
+            drip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
           },
           {
             token: "TUSD",
@@ -1310,6 +1315,7 @@ class App extends Component {
             hole: utils.formatUnits(tusdADogIlk.hole, 45),
             dirt: utils.formatUnits(tusdADogIlk.dirt, 45),
             kicks: tusdAKicks.toNumber(),
+            drip: this.unixToDateTime(jugTusdDrip.rho.toNumber()),
           },
           {
             token: "KNC",
@@ -1327,6 +1333,7 @@ class App extends Component {
             hole: utils.formatUnits(kncADogIlk.hole, 45),
             dirt: utils.formatUnits(kncADogIlk.dirt, 45),
             kicks: kncAKicks.toNumber(),
+            drip: this.unixToDateTime(jugKncADrip.rho.toNumber()),
           },
           {
             token: "ZRX",
@@ -1344,6 +1351,7 @@ class App extends Component {
             hole: utils.formatUnits(zrxADogIlk.hole, 45),
             dirt: utils.formatUnits(zrxADogIlk.dirt, 45),
             kicks: zrxAKicks.toNumber(),
+            drip: this.unixToDateTime(jugZrxADrip.rho.toNumber()),
           },
           {
             token: "MANA",
@@ -1361,6 +1369,7 @@ class App extends Component {
             hole: utils.formatUnits(manaADogIlk.hole, 45),
             dirt: utils.formatUnits(manaADogIlk.dirt, 45),
             kicks: manaAKicks.toNumber(),
+            drip: this.unixToDateTime(jugManaADrip.rho.toNumber()),
           },
           {
             token: "PAX",
@@ -1374,6 +1383,7 @@ class App extends Component {
             hole: utils.formatUnits(paxADogIlk.hole, 45),
             dirt: utils.formatUnits(paxADogIlk.dirt, 45),
             kicks: paxAKicks.toNumber(),
+            drip: this.unixToDateTime(jugPaxADrip.rho.toNumber()),
           },
           {
             token: "USDT",
@@ -1387,6 +1397,7 @@ class App extends Component {
             hole: utils.formatUnits(usdtADogIlk.hole, 45),
             dirt: utils.formatUnits(usdtADogIlk.dirt, 45),
             kicks: usdtAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUsdtADrip.rho.toNumber()),
           },
           {
             token: "COMP",
@@ -1404,6 +1415,7 @@ class App extends Component {
             hole: utils.formatUnits(compADogIlk.hole, 45),
             dirt: utils.formatUnits(compADogIlk.dirt, 45),
             kicks: compAKicks.toNumber(),
+            drip: this.unixToDateTime(jugCompADrip.rho.toNumber()),
           },
           {
             token: "LRC",
@@ -1421,6 +1433,7 @@ class App extends Component {
             hole: utils.formatUnits(lrcADogIlk.hole, 45),
             dirt: utils.formatUnits(lrcADogIlk.dirt, 45),
             kicks: lrcAKicks.toNumber(),
+            drip: this.unixToDateTime(jugLrcADrip.rho.toNumber()),
           },
           {
             token: "LINK",
@@ -1438,6 +1451,7 @@ class App extends Component {
             hole: utils.formatUnits(linkADogIlk.hole, 45),
             dirt: utils.formatUnits(linkADogIlk.dirt, 45),
             kicks: linkAKicks.toNumber(),
+            drip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
           },
           {
             token: "ETH",
@@ -1455,6 +1469,7 @@ class App extends Component {
             hole: utils.formatUnits(ethBDogIlk.hole, 45),
             dirt: utils.formatUnits(ethBDogIlk.dirt, 45),
             kicks: ethBKicks.toNumber(),
+            drip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
           },
           {
             token: "BAL",
@@ -1472,6 +1487,7 @@ class App extends Component {
             hole: utils.formatUnits(balADogIlk.hole, 45),
             dirt: utils.formatUnits(balADogIlk.dirt, 45),
             kicks: balAKicks.toNumber(),
+            drip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
           },
           {
             token: "YFI",
@@ -1489,6 +1505,7 @@ class App extends Component {
             hole: utils.formatUnits(yfiADogIlk.hole, 45),
             dirt: utils.formatUnits(yfiADogIlk.dirt, 45),
             kicks: yfiAKicks.toNumber(),
+            drip: this.unixToDateTime(jugYfiADrip.rho),
           },
           {
             token: "GUSD",
@@ -1502,6 +1519,7 @@ class App extends Component {
             hole: utils.formatUnits(gusdADogIlk.hole, 45),
             dirt: utils.formatUnits(gusdADogIlk.dirt, 45),
             kicks: gusdAKicks.toNumber(),
+            drip: this.unixToDateTime(jugGusdADrip.rho),
           },
           {
             token: "UNI",
@@ -1519,6 +1537,7 @@ class App extends Component {
             hole: utils.formatUnits(uniADogIlk.hole, 45),
             dirt: utils.formatUnits(uniADogIlk.dirt, 45),
             kicks: uniAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniADrip.rho),
           },
           {
             token: "RENBTC",
@@ -1536,6 +1555,7 @@ class App extends Component {
             hole: utils.formatUnits(renbtcADogIlk.hole, 45),
             dirt: utils.formatUnits(renbtcADogIlk.dirt, 45),
             kicks: renbtcAKicks.toNumber(),
+            drip: this.unixToDateTime(jugRenbtcADrip.rho),
           },
           {
             token: "AAVE",
@@ -1553,6 +1573,7 @@ class App extends Component {
             hole: utils.formatUnits(aaveADogIlk.hole, 45),
             dirt: utils.formatUnits(aaveADogIlk.dirt, 45),
             kicks: aaveAKicks.toNumber(),
+            drip: this.unixToDateTime(jugAaveADrip.rho),
           },
           {
             token: "UNIV2DAIETH",
@@ -1570,6 +1591,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2daiethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2daiethADogIlk.dirt, 45),
             kicks: univ2daiethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2daiethADrip.rho),
           },
           {
             token: "UNIV2WBTCETH",
@@ -1587,6 +1609,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2wbtcethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2wbtcethADogIlk.dirt, 45),
             kicks: univ2wbtcethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2wbtcethADrip.rho),
           },
           {
             token: "UNIV2USDCETH",
@@ -1604,6 +1627,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2usdcethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2usdcethADogIlk.dirt, 45),
             kicks: univ2usdcethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2usdcethADrip.rho),
           },
           {
             token: "UNIV2DAIUSDC",
@@ -1621,6 +1645,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2daiusdcADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2daiusdcADogIlk.dirt, 45),
             kicks: univ2daiusdcAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2daiusdcADrip.rho),
           },
           {
             token: "UNIV2ETHUSDT",
@@ -1638,6 +1663,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2ethusdtADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2ethusdtADogIlk.dirt, 45),
             kicks: univ2ethusdtAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2ethusdtADrip.rho),
           },
           {
             token: "UNIV2LINKETH",
@@ -1655,6 +1681,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2linkethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2linkethADogIlk.dirt, 45),
             kicks: univ2linkethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2linkethADrip.rho),
           },
           {
             token: "UNIV2UNIETH",
@@ -1672,6 +1699,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2uniethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2uniethADogIlk.dirt, 45),
             kicks: univ2uniethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2uniethADrip.rho),
           },
           {
             token: "UNIV2WBTCDAI",
@@ -1689,6 +1717,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2wbtcdaiADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2wbtcdaiADogIlk.dirt, 45),
             kicks: univ2wbtcdaiAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2wbtcdaiADrip.rho),
           },
           {
             token: "UNIV2AAVEETH",
@@ -1706,6 +1735,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2aaveethADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2aaveethADogIlk.dirt, 45),
             kicks: univ2aaveethAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2aaveethADrip.rho),
           },
           {
             token: "UNIV2DAIUSDT",
@@ -1723,6 +1753,7 @@ class App extends Component {
             hole: utils.formatUnits(univ2daiusdtADogIlk.hole, 45),
             dirt: utils.formatUnits(univ2daiusdtADogIlk.dirt, 45),
             kicks: univ2daiusdtAKicks.toNumber(),
+            drip: this.unixToDateTime(jugUniv2daiusdtADrip.rho),
           },
           {
             token: "ETH",
@@ -1740,6 +1771,7 @@ class App extends Component {
             hole: utils.formatUnits(ethCDogIlk.hole, 45),
             dirt: utils.formatUnits(ethCDogIlk.dirt, 45),
             kicks: ethCKicks.toNumber(),
+            drip: this.unixToDateTime(jugEthCDrip.rho.toNumber()),
           },
           {
             token: "RWA001",
@@ -1748,7 +1780,8 @@ class App extends Component {
             rate: utils.formatUnits(rwa001AIlk.rate, 27),
             spot: utils.formatUnits(rwa001AIlk.spot, 27),
             line: utils.formatUnits(rwa001AIlk.line, 45),
-            dust: utils.formatUnits(rwa001AIlk.dust, 45)
+            dust: utils.formatUnits(rwa001AIlk.dust, 45),
+            drip: this.unixToDateTime(rwa001ADrip.rho),
           },
           {
             token: "RWA002",
@@ -1757,7 +1790,8 @@ class App extends Component {
             rate: utils.formatUnits(rwa002AIlk.rate, 27),
             spot: utils.formatUnits(rwa002AIlk.spot, 27),
             line: utils.formatUnits(rwa002AIlk.line, 45),
-            dust: utils.formatUnits(rwa002AIlk.dust, 45)
+            dust: utils.formatUnits(rwa002AIlk.dust, 45),
+            drip: this.unixToDateTime(rwa002ADrip.rho),
           },
           {  // include PSM in CollateralChart
             token: "USDC",
@@ -1872,40 +1906,6 @@ class App extends Component {
         psmUsdcTin: utils.formatEther(psmUsdcTin),
         psmUsdcTout: utils.formatEther(psmUsdcTout),
         psmUsdcALine: utils.formatUnits(psmUsdcAIlk.line, 45),
-        jugEthDrip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
-        jugEthBDrip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
-        jugEthCDrip: this.unixToDateTime(jugEthCDrip.rho.toNumber()),
-        jugBatDrip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
-        jugUsdcDrip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
-        jugUsdcBDrip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
-        jugWbtcDrip: this.unixToDateTime(jugWbtcDrip.rho.toNumber()),
-        jugTusdDrip: this.unixToDateTime(jugTusdDrip.rho.toNumber()),
-        jugKncADrip: this.unixToDateTime(jugKncADrip.rho.toNumber()),
-        jugZrxADrip: this.unixToDateTime(jugZrxADrip.rho.toNumber()),
-        jugManaADrip: this.unixToDateTime(jugManaADrip.rho.toNumber()),
-        jugPaxADrip: this.unixToDateTime(jugPaxADrip.rho.toNumber()),
-        jugUsdtADrip: this.unixToDateTime(jugUsdtADrip.rho.toNumber()),
-        jugCompADrip: this.unixToDateTime(jugCompADrip.rho.toNumber()),
-        jugLrcADrip: this.unixToDateTime(jugLrcADrip.rho.toNumber()),
-        jugLinkADrip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
-        jugBalADrip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
-        jugYfiADrip: this.unixToDateTime(jugYfiADrip.rho),
-        jugGusdADrip: this.unixToDateTime(jugGusdADrip.rho),
-        jugUniADrip: this.unixToDateTime(jugUniADrip.rho),
-        jugRenbtcADrip: this.unixToDateTime(jugRenbtcADrip.rho),
-        jugAaveADrip: this.unixToDateTime(jugAaveADrip.rho),
-        jugUniv2daiethADrip: this.unixToDateTime(jugUniv2daiethADrip.rho),
-        jugUniv2wbtcethADrip: this.unixToDateTime(jugUniv2wbtcethADrip.rho),
-        jugUniv2usdcethADrip: this.unixToDateTime(jugUniv2usdcethADrip.rho),
-        jugUniv2daiusdcADrip: this.unixToDateTime(jugUniv2daiusdcADrip.rho),
-        jugUniv2ethusdtADrip: this.unixToDateTime(jugUniv2ethusdtADrip.rho),
-        jugUniv2linkethADrip: this.unixToDateTime(jugUniv2linkethADrip.rho),
-        jugUniv2uniethADrip: this.unixToDateTime(jugUniv2uniethADrip.rho),
-        jugUniv2wbtcdaiADrip: this.unixToDateTime(jugUniv2wbtcdaiADrip.rho),
-        jugUniv2aaveethADrip: this.unixToDateTime(jugUniv2aaveethADrip.rho),
-        jugUniv2daiusdtADrip: this.unixToDateTime(jugUniv2daiusdtADrip.rho),
-        rwa001ADrip: this.unixToDateTime(rwa001ADrip.rho),
-        rwa002ADrip: this.unixToDateTime(rwa002ADrip.rho),
         sysSurplus: utils.formatUnits(vow_dai[0].sub(vow_sin[0]), 45),
         sysDebt: utils.formatUnits(vow_sin[0].sub(sin[0]).sub(ash[0]), 45),
         sysDebtRaw: vow_sin[0].sub(sin[0]).sub(ash[0]).toString(),

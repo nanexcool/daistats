@@ -172,40 +172,40 @@ const Main = (props) => {
         </div>
         <hr />
         </div>
-        <Collateral {...props} idx="0" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} jugDrip={props.jugEthDrip} />
-        <Collateral {...props} idx="14" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} jugDrip={props.jugEthBDrip} />
-        <Collateral {...props} idx="31" locked={props.ethCLocked} supply={props.ethSupply} fee={props.ethCFee} jugDrip={props.jugEthCDrip} />
-        <Collateral {...props} idx="1" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} jugDrip={props.jugBatDrip} />
-        <Collateral {...props} idx="2" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} jugDrip={props.jugUsdcDrip} />
-        <Collateral {...props} idx="4" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} jugDrip={props.jugUsdcBDrip} />
-        <Collateral {...props} idx="3" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} jugDrip={props.jugWbtcDrip} />
-        <Collateral {...props} idx="5" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} jugDrip={props.jugTusdDrip} />
-        <Collateral {...props} idx="6" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} jugDrip={props.jugKncADrip} />
-        <Collateral {...props} idx="7" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} jugDrip={props.jugZrxADrip} />
-        <Collateral {...props} idx="8" locked={props.manaALocked} supply={props.manaSupply} fee={props.manaAFee} jugDrip={props.jugManaADrip} />
-        <Collateral {...props} idx="9" locked={props.paxALocked} supply={props.paxSupply} fee={props.paxAFee} jugDrip={props.jugPaxADrip} />
-        <Collateral {...props} idx="10" locked={props.usdtALocked} supply={props.usdtSupply} fee={props.usdtAFee} jugDrip={props.jugUsdtADrip} />
-        <Collateral {...props} idx="11" locked={props.compALocked} supply={props.compSupply} fee={props.compAFee} jugDrip={props.jugCompADrip} />
-        <Collateral {...props} idx="12" locked={props.lrcALocked} supply={props.lrcSupply} fee={props.lrcAFee} jugDrip={props.jugLrcADrip} />
-        <Collateral {...props} idx="13" locked={props.linkALocked} supply={props.linkSupply} fee={props.linkAFee} jugDrip={props.jugLinkADrip} />
-        <Collateral {...props} idx="15" locked={props.balALocked} supply={props.balSupply} fee={props.balAFee} jugDrip={props.jugBalADrip} />
-        <Collateral {...props} idx="16" locked={props.yfiALocked} supply={props.yfiSupply} fee={props.yfiAFee} jugDrip={props.jugYfiADrip} />
-        <Collateral {...props} idx="17" locked={props.gusdALocked} supply={props.gusdSupply} fee={props.gusdAFee} jugDrip={props.jugGusdADrip} />
-        <Collateral {...props} idx="18" locked={props.uniALocked} supply={props.uniSupply} fee={props.uniAFee} jugDrip={props.jugUniADrip} />
-        <Collateral {...props} idx="19" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} jugDrip={props.jugRenbtcADrip} />
-        <Collateral {...props} idx="20" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} jugDrip={props.jugAaveADrip} />
-        <Collateral {...props} idx="21" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} jugDrip={props.jugUniv2daiethADrip} />
-        <Collateral {...props} idx="22" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} jugDrip={props.jugUniv2wbtcethADrip} showLockedDecimals={true} />
-        <Collateral {...props} idx="23" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} jugDrip={props.jugUniv2usdcethADrip} showLockedDecimals={true} />
-        <Collateral {...props} idx="24" locked={props.univ2daiusdcALocked} supply={props.univ2daiusdcSupply} fee={props.univ2daiusdcAFee} jugDrip={props.jugUniv2daiusdcADrip} showLockedDecimals={true} />
-        <Collateral {...props} idx="25" locked={props.univ2ethusdtALocked} supply={props.univ2ethusdtSupply} fee={props.univ2ethusdtAFee} jugDrip={props.jugUniv2ethusdtADrip} showLockedDecimals={true} />
-        <Collateral {...props} idx="26" locked={props.univ2linkethALocked} supply={props.univ2linkethSupply} fee={props.univ2linkethAFee} jugDrip={props.jugUniv2linkethADrip} />
-        <Collateral {...props} idx="27" locked={props.univ2uniethALocked} supply={props.univ2uniethSupply} fee={props.univ2uniethAFee} jugDrip={props.jugUniv2uniethADrip} />
-        <Collateral {...props} idx="28" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} jugDrip={props.jugUniv2wbtcdaiADrip} showLockedDecimals={true} />
-        <Collateral {...props} idx="29" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} jugDrip={props.jugUniv2aaveethADrip} />
-        <Collateral {...props} idx="30" locked={props.univ2daiusdtALocked} supply={props.univ2daiusdtSupply} fee={props.univ2daiusdtAFee} jugDrip={props.jugUniv2daiusdtADrip} />
-        <Collateral {...props} idx="32" locked={props.rwa001ALocked} supply={props.rwa001Supply} fee={props.rwa001AFee} jugDrip={props.rwa001ADrip} />
-        <Collateral {...props} idx="33" locked={props.rwa002ALocked} supply={props.rwa002Supply} fee={props.rwa002AFee} jugDrip={props.rwa002ADrip} />
+        <Collateral {...props} idx="0" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} />
+        <Collateral {...props} idx="14" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} />
+        <Collateral {...props} idx="31" locked={props.ethCLocked} supply={props.ethSupply} fee={props.ethCFee} />
+        <Collateral {...props} idx="1" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} />
+        <Collateral {...props} idx="2" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} />
+        <Collateral {...props} idx="4" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} />
+        <Collateral {...props} idx="3" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} />
+        <Collateral {...props} idx="5" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} />
+        <Collateral {...props} idx="6" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} />
+        <Collateral {...props} idx="7" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} />
+        <Collateral {...props} idx="8" locked={props.manaALocked} supply={props.manaSupply} fee={props.manaAFee} />
+        <Collateral {...props} idx="9" locked={props.paxALocked} supply={props.paxSupply} fee={props.paxAFee} />
+        <Collateral {...props} idx="10" locked={props.usdtALocked} supply={props.usdtSupply} fee={props.usdtAFee} />
+        <Collateral {...props} idx="11" locked={props.compALocked} supply={props.compSupply} fee={props.compAFee} />
+        <Collateral {...props} idx="12" locked={props.lrcALocked} supply={props.lrcSupply} fee={props.lrcAFee} />
+        <Collateral {...props} idx="13" locked={props.linkALocked} supply={props.linkSupply} fee={props.linkAFee} />
+        <Collateral {...props} idx="15" locked={props.balALocked} supply={props.balSupply} fee={props.balAFee} />
+        <Collateral {...props} idx="16" locked={props.yfiALocked} supply={props.yfiSupply} fee={props.yfiAFee} />
+        <Collateral {...props} idx="17" locked={props.gusdALocked} supply={props.gusdSupply} fee={props.gusdAFee} />
+        <Collateral {...props} idx="18" locked={props.uniALocked} supply={props.uniSupply} fee={props.uniAFee} />
+        <Collateral {...props} idx="19" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} />
+        <Collateral {...props} idx="20" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} />
+        <Collateral {...props} idx="21" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} />
+        <Collateral {...props} idx="22" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="23" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="24" locked={props.univ2daiusdcALocked} supply={props.univ2daiusdcSupply} fee={props.univ2daiusdcAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="25" locked={props.univ2ethusdtALocked} supply={props.univ2ethusdtSupply} fee={props.univ2ethusdtAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="26" locked={props.univ2linkethALocked} supply={props.univ2linkethSupply} fee={props.univ2linkethAFee} />
+        <Collateral {...props} idx="27" locked={props.univ2uniethALocked} supply={props.univ2uniethSupply} fee={props.univ2uniethAFee} />
+        <Collateral {...props} idx="28" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="29" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} />
+        <Collateral {...props} idx="30" locked={props.univ2daiusdtALocked} supply={props.univ2daiusdtSupply} fee={props.univ2daiusdtAFee} />
+        <Collateral {...props} idx="32" locked={props.rwa001ALocked} supply={props.rwa001Supply} fee={props.rwa001AFee} />
+        <Collateral {...props} idx="33" locked={props.rwa002ALocked} supply={props.rwa002Supply} fee={props.rwa002AFee} />
           </TabPanel>
           <TabPanel>
         <div className="columns">
