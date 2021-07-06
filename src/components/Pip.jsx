@@ -22,8 +22,8 @@ function Pip(props) {
           {ilk.priceNxt > 0 && <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
             className={nextPrice(ilk.price, ilk.priceNxt)} title={ilk.priceNxt}>${props.formater.format(ilk.priceNxt)}</span>
           </p>}
-          {props.zzz && (Number(ilk.price).toFixed(4) !== Number(ilk.priceNxt).toFixed(4)) &&
-              <p className="title subtitle is-size-6">Next Possible Update: {props.zzz}</p>}
+          {ilk.zzz && (Number(ilk.price).toFixed(4) !== Number(ilk.priceNxt).toFixed(4)) &&
+              <p className="title subtitle is-size-6">Next Possible Update: {ilk.zzz}</p>}
           {ilk.priceMedian && <p className="title subtitle is-size-6">Median: ${props.formater.format(ilk.priceMedian)}</p>}
         </div>
       </div>

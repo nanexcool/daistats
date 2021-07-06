@@ -1245,6 +1245,7 @@ class App extends Component {
             price: utils.formatUnits(ethPrice, 27),
             priceNxt: utils.formatEther(ethPriceNxt),
             priceMedian: utils.formatEther(ethPriceMedian),
+            zzz: this.unixToTime(+ethZzz + HOP),
           },
           {
             token: "BAT",
@@ -1268,6 +1269,7 @@ class App extends Component {
             price: utils.formatUnits(batPrice, 27),
             priceNxt: utils.formatEther(batPriceNxt),
             priceMedian: utils.formatEther(batPriceMedian),
+            zzz: this.unixToTime(+batZzz + HOP),
           },
           {
             token: "USDC",
@@ -1308,6 +1310,7 @@ class App extends Component {
             price: utils.formatUnits(wbtcPrice, 27),
             priceNxt: utils.formatEther(wbtcPriceNxt),
             priceMedian: utils.formatEther(wbtcPriceMedian),
+            zzz: this.unixToTime(+wbtcZzz + HOP),
           },
           {
             token: "USDC",
@@ -1364,6 +1367,7 @@ class App extends Component {
             price: utils.formatUnits(kncPrice, 27),
             priceNxt: utils.formatEther(kncPriceNxt),
             priceMedian: utils.formatEther(kncPriceMedian),
+            zzz: this.unixToTime(+kncZzz + HOP),
           },
           {
             token: "ZRX",
@@ -1387,6 +1391,7 @@ class App extends Component {
             price: utils.formatUnits(zrxPrice, 27),
             priceNxt: utils.formatEther(zrxPriceNxt),
             priceMedian: utils.formatEther(zrxPriceMedian),
+            zzz: this.unixToTime(+zrxZzz + HOP),
           },
           {
             token: "MANA",
@@ -1410,6 +1415,7 @@ class App extends Component {
             price: utils.formatUnits(manaPrice, 27),
             priceNxt: utils.formatEther(manaPriceNxt),
             priceMedian: utils.formatEther(manaPriceMedian),
+            zzz: this.unixToTime(+manaZzz + HOP),
           },
           {
             token: "PAX",
@@ -1446,6 +1452,7 @@ class App extends Component {
             price: utils.formatUnits(usdtPrice, 27),
             priceNxt: utils.formatEther(usdtPriceNxt),
             priceMedian: utils.formatEther(usdtPriceMedian),
+            zzz: this.unixToTime(+usdtZzz + HOP),
           },
           {
             token: "COMP",
@@ -1469,6 +1476,7 @@ class App extends Component {
             price: utils.formatUnits(compPrice, 27),
             priceNxt: utils.formatEther(compPriceNxt),
             priceMedian: utils.formatEther(compPriceMedian),
+            zzz: this.unixToTime(+compZzz + HOP),
           },
           {
             token: "LRC",
@@ -1492,6 +1500,7 @@ class App extends Component {
             price: utils.formatUnits(lrcPrice, 27),
             priceNxt: utils.formatEther(lrcPriceNxt),
             priceMedian: utils.formatEther(lrcPriceMedian),
+            zzz: this.unixToTime(+lrcZzz + HOP),
           },
           {
             token: "LINK",
@@ -1515,6 +1524,7 @@ class App extends Component {
             price: utils.formatUnits(linkPrice, 27),
             priceNxt: utils.formatEther(linkPriceNxt),
             priceMedian: utils.formatEther(linkPriceMedian),
+            zzz: this.unixToTime(+linkZzz + HOP),
           },
           {
             token: "ETH",
@@ -1558,6 +1568,7 @@ class App extends Component {
             price: utils.formatUnits(balPrice, 27),
             priceNxt: utils.formatEther(balPriceNxt),
             priceMedian: utils.formatEther(balPriceMedian),
+            zzz: this.unixToTime(+balZzz + HOP),
           },
           {
             token: "YFI",
@@ -1581,6 +1592,7 @@ class App extends Component {
             price: utils.formatUnits(yfiPrice, 27),
             priceNxt: utils.formatEther(yfiPriceNxt),
             priceMedian: utils.formatEther(yfiPriceMedian),
+            zzz: this.unixToTime(+yfiZzz + HOP),
           },
           {
             token: "GUSD",
@@ -1621,6 +1633,7 @@ class App extends Component {
             price: utils.formatUnits(uniPrice, 27),
             priceNxt: utils.formatEther(uniPriceNxt),
             priceMedian: utils.formatEther(uniPriceMedian),
+            zzz: this.unixToTime(+uniZzz + HOP),
           },
           {
             token: "RENBTC",
@@ -1641,6 +1654,7 @@ class App extends Component {
             drip: this.unixToDateTime(jugRenbtcADrip.rho),
             locked: utils.formatUnits(renbtcALocked, 8),
             supply: utils.formatUnits(renbtcSupply, 8),
+            zzz: this.unixToTime(+renbtcZzz + HOP),
           },
           {
             token: "AAVE",
@@ -1664,6 +1678,7 @@ class App extends Component {
             price: utils.formatUnits(aavePrice, 27),
             priceNxt: utils.formatEther(aavePriceNxt),
             priceMedian: utils.formatEther(aavePriceMedian),
+            zzz: this.unixToTime(+aaveZzz + HOP),
           },
           {
             token: "UNIV2DAIETH",
@@ -1686,6 +1701,7 @@ class App extends Component {
             supply: utils.formatEther(univ2daiethSupply),
             price: utils.formatUnits(univ2daiethPrice, 27),
             priceNxt: utils.formatEther(univ2daiethPriceNxt),
+            zzz: this.unixToTime(+univ2daiethZzz + HOP),
           },
           {
             token: "UNIV2WBTCETH",
@@ -1708,6 +1724,7 @@ class App extends Component {
             supply: utils.formatEther(univ2wbtcethSupply),
             price: utils.formatUnits(univ2wbtcethPrice, 27),
             priceNxt: utils.formatEther(univ2wbtcethPriceNxt),
+            zzz: this.unixToTime(+univ2wbtcethZzz + HOP),
           },
           {
             token: "UNIV2USDCETH",
@@ -1730,6 +1747,7 @@ class App extends Component {
             supply: utils.formatEther(univ2usdcethSupply),
             price: utils.formatUnits(univ2usdcethPrice, 27),
             priceNxt: utils.formatEther(univ2usdcethPriceNxt),
+            zzz: this.unixToTime(+univ2usdcethZzz + HOP),
           },
           {
             token: "UNIV2DAIUSDC",
@@ -1752,6 +1770,7 @@ class App extends Component {
             supply: utils.formatEther(univ2daiusdcSupply),
             price: utils.formatUnits(univ2daiusdcPrice, 27),
             priceNxt: utils.formatEther(univ2daiusdcPriceNxt),
+            zzz: this.unixToTime(+univ2daiusdcZzz + HOP),
           },
           {
             token: "UNIV2ETHUSDT",
@@ -1774,6 +1793,7 @@ class App extends Component {
             supply: utils.formatEther(univ2ethusdtSupply),
             price: utils.formatUnits(univ2ethusdtPrice, 27),
             priceNxt: utils.formatEther(univ2ethusdtPriceNxt),
+            zzz: this.unixToTime(+univ2ethusdtZzz + HOP),
           },
           {
             token: "UNIV2LINKETH",
@@ -1796,6 +1816,7 @@ class App extends Component {
             supply: utils.formatEther(univ2linkethSupply),
             price: utils.formatUnits(univ2linkethPrice, 27),
             priceNxt: utils.formatEther(univ2linkethPriceNxt),
+            zzz: this.unixToTime(+univ2linkethZzz + HOP),
           },
           {
             token: "UNIV2UNIETH",
@@ -1818,6 +1839,7 @@ class App extends Component {
             supply: utils.formatEther(univ2uniethSupply),
             price: utils.formatUnits(univ2uniethPrice, 27),
             priceNxt: utils.formatEther(univ2uniethPriceNxt),
+            zzz: this.unixToTime(+univ2uniethZzz + HOP),
           },
           {
             token: "UNIV2WBTCDAI",
@@ -1840,6 +1862,7 @@ class App extends Component {
             supply: utils.formatEther(univ2wbtcdaiSupply),
             price: utils.formatUnits(univ2wbtcdaiPrice, 27),
             priceNxt: utils.formatEther(univ2wbtcdaiPriceNxt),
+            zzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
           },
           {
             token: "UNIV2AAVEETH",
@@ -1862,6 +1885,7 @@ class App extends Component {
             supply: utils.formatEther(univ2aaveethSupply),
             price: utils.formatUnits(univ2aaveethPrice, 27),
             priceNxt: utils.formatEther(univ2aaveethPriceNxt),
+            zzz: this.unixToTime(+univ2aaveethZzz + HOP),
           },
           {
             token: "UNIV2DAIUSDT",
@@ -1884,6 +1908,7 @@ class App extends Component {
             supply: utils.formatEther(univ2daiusdtSupply),
             price: utils.formatUnits(univ2daiusdtPrice, 27),
             priceNxt: utils.formatEther(univ2daiusdtPriceNxt),
+            zzz: this.unixToTime(+univ2daiusdtZzz + HOP),
           },
           {
             token: "ETH",
@@ -2021,31 +2046,6 @@ class App extends Component {
         protocolTreasury: utils.formatEther(protocolTreasury[0]),
         bkrSupply: utils.formatEther(bkrSupply[0]),
         mkrBroken: utils.formatEther(mkrBroken[0]),
-        ethZzz: this.unixToTime(+ethZzz + HOP),
-        batZzz: this.unixToTime(+batZzz + HOP),
-        wbtcZzz: this.unixToTime(+wbtcZzz + HOP),
-        zrxZzz: this.unixToTime(+zrxZzz + HOP),
-        kncZzz: this.unixToTime(+kncZzz + HOP),
-        manaZzz: this.unixToTime(+manaZzz + HOP),
-        usdtZzz: this.unixToTime(+usdtZzz + HOP),
-        compZzz: this.unixToTime(+compZzz + HOP),
-        lrcZzz: this.unixToTime(+lrcZzz + HOP),
-        linkZzz: this.unixToTime(+linkZzz + HOP),
-        balZzz: this.unixToTime(+balZzz + HOP),
-        yfiZzz: this.unixToTime(+yfiZzz + HOP),
-        uniZzz: this.unixToTime(+uniZzz + HOP),
-        renbtcZzz: this.unixToTime(+renbtcZzz + HOP),
-        aaveZzz: this.unixToTime(+aaveZzz + HOP),
-        univ2daiethZzz: this.unixToTime(+univ2daiethZzz + HOP),
-        univ2wbtcethZzz: this.unixToTime(+univ2wbtcethZzz + HOP),
-        univ2usdcethZzz: this.unixToTime(+univ2usdcethZzz + HOP),
-        univ2daiusdcZzz: this.unixToTime(+univ2daiusdcZzz + HOP),
-        univ2ethusdtZzz: this.unixToTime(+univ2ethusdtZzz + HOP),
-        univ2linkethZzz: this.unixToTime(+univ2linkethZzz + HOP),
-        univ2uniethZzz: this.unixToTime(+univ2uniethZzz + HOP),
-        univ2wbtcdaiZzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
-        univ2aaveethZzz: this.unixToTime(+univ2aaveethZzz + HOP),
-        univ2daiusdtZzz: this.unixToTime(+univ2daiusdtZzz + HOP),
         flashLine: utils.formatEther(flashLine),
         flashToll: utils.formatEther(flashToll),
         pauseDelay: pauseDelay.toNumber(),

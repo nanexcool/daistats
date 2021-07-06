@@ -209,43 +209,43 @@ const Main = (props) => {
           </TabPanel>
           <TabPanel>
         <div className="columns">
-          <Pip {...props} token="ETH" idx="0" formater={formatTwoDp} zzz={props.ethZzz}/>
-          <Pip {...props} token="BTC" idx="3" formater={formatTwoDp} zzz={props.wbtcZzz}/>
-          <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} zzz={props.yfiZzz}/>
-          <Pip {...props} token="UNI" idx="18" formater={formatTwoDp} zzz={props.uniZzz}/>
+          <Pip {...props} token="ETH" idx="0" formater={formatTwoDp} />
+          <Pip {...props} token="BTC" idx="3" formater={formatTwoDp} />
+          <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} />
+          <Pip {...props} token="UNI" idx="18" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="AAVE" idx="20" formater={formatTwoDp} zzz={props.aaveZzz}/>
-          <Pip {...props} token="BAL" idx="15" formater={formatTwoDp} zzz={props.balZzz}/>
-          <Pip {...props} token="BAT" idx="1" formater={formatCurrency} zzz={props.batZzz}/>
-          <Pip {...props} token="COMP" idx="11" formater={formatTwoDp} zzz={props.compZzz}/>
+          <Pip {...props} token="AAVE" idx="20" formater={formatTwoDp} />
+          <Pip {...props} token="BAL" idx="15" formater={formatTwoDp} />
+          <Pip {...props} token="BAT" idx="1" formater={formatCurrency} />
+          <Pip {...props} token="COMP" idx="11" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="KNC" idx="6" formater={formatCurrency} zzz={props.kncZzz}/>
-          <Pip {...props} token="LINK" idx="13" formater={formatTwoDp} zzz={props.linkZzz}/>
-          <Pip {...props} token="LRC" idx="12" formater={formatCurrency} zzz={props.lrcZzz}/>
-          <Pip {...props} token="MANA" idx="8" formater={formatCurrency} zzz={props.manaZzz}/>
+          <Pip {...props} token="KNC" idx="6" formater={formatCurrency} />
+          <Pip {...props} token="LINK" idx="13" formater={formatTwoDp} />
+          <Pip {...props} token="LRC" idx="12" formater={formatCurrency} />
+          <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="USDT" idx="10" formater={formatCurrency} zzz={props.usdtZzz}/>
-          <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} zzz={props.zrxZzz}/>
+          <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
+          <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
           <Pip {...props} token="USDC, TUSD, PAX, GUSD" idx="2" formater={formatCurrency}/>
-          <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} zzz={props.univ2daiethZzz}/>
+          <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2UniEth" idx="27" formater={formatTwoDp} zzz={props.univ2uniethZzz}/>
-          <Pip {...props} token="UniV2WbtcEth" idx="22" formater={formatNoDecimals} zzz={props.univ2wbtcethZzz}/>
-          <Pip {...props} token="UniV2UsdcEth" idx="23" formater={formatNoDecimals} zzz={props.univ2usdcethZzz}/>
+          <Pip {...props} token="UniV2UniEth" idx="27" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2WbtcEth" idx="22" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2UsdcEth" idx="23" formater={formatNoDecimals} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2DaiUsdc" idx="24" formater={formatNoDecimals} zzz={props.univ2daiusdcZzz}/>
-          <Pip {...props} token="UniV2EthUsdt" idx="25" formater={formatNoDecimals} zzz={props.univ2ethusdtZzz}/>
-          <Pip {...props} token="UniV2LinkEth" idx="26" formater={formatTwoDp} zzz={props.univ2linkethZzz}/>
+          <Pip {...props} token="UniV2DaiUsdc" idx="24" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2EthUsdt" idx="25" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2LinkEth" idx="26" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2WbtcDai" idx="28" formater={formatNoDecimals} zzz={props.univ2wbtcdaiZzz}/>
-          <Pip {...props} token="UniV2AaveEth" idx="29" formater={formatTwoDp} zzz={props.univ2aaveethZzz}/>
-          <Pip {...props} token="UniV2DaiUsdt" idx="30" formater={formatTwoDp} zzz={props.univ2daiusdtZzz}/>
+          <Pip {...props} token="UniV2WbtcDai" idx="28" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2AaveEth" idx="29" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2DaiUsdt" idx="30" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
