@@ -13,17 +13,18 @@ function nextPrice(price, priceNxt) {
 
 function Pip(props) {
   const t = useTranslate()
+  const ilk = props.ilks[props.idx]
   return (
       <div className="column">
         <div className="box has-text-centered">
-          <h3 className="title" title={props.price}>${props.formater.format(props.price)}</h3>
+          <h3 className="title" title={ilk.price}>${props.formater.format(ilk.price)}</h3>
           <p className="title subtitle is-size-4">{t('daistats.token_price', { token: props.token })}</p>
-          {props.priceNxt > 0 && <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
-            className={nextPrice(props.price, props.priceNxt)} title={props.priceNxt}>${props.formater.format(props.priceNxt)}</span>
+          {ilk.priceNxt > 0 && <p className="subtitle is-size-6">{t('daistats.next_osm_price')}: <span
+            className={nextPrice(ilk.price, ilk.priceNxt)} title={ilk.priceNxt}>${props.formater.format(ilk.priceNxt)}</span>
           </p>}
-          {props.zzz && (Number(props.price).toFixed(4) !== Number(props.priceNxt).toFixed(4)) &&
+          {props.zzz && (Number(ilk.price).toFixed(4) !== Number(ilk.priceNxt).toFixed(4)) &&
               <p className="title subtitle is-size-6">Next Possible Update: {props.zzz}</p>}
-          {props.priceMedian && <p className="title subtitle is-size-6">Median: ${props.formater.format(props.priceMedian)}</p>}
+          {ilk.priceMedian && <p className="title subtitle is-size-6">Median: ${props.formater.format(ilk.priceMedian)}</p>}
         </div>
       </div>
   )
