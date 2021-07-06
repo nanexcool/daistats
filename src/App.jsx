@@ -115,6 +115,7 @@ const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
 const flash = build(add.MCD_FLASH, "DssFlash")
 const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
+const esm = build(add.MCD_ESM, "ESM")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -651,6 +652,8 @@ class App extends Component {
 
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
       [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 325
+      [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
+      [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -1133,6 +1136,8 @@ class App extends Component {
 
     const pauseDelay = pause.interface.decodeFunctionResult('delay', res[323])[0]
     const hat = chief.interface.decodeFunctionResult('hat', res[324])
+    const esmMin = esm.interface.decodeFunctionResult('min', res[325])[0]
+    const esmSum = esm.interface.decodeFunctionResult('Sum', res[326])[0]
 
     const sysLockedWrong = [
             ethLocked.mul(ethPrice),
@@ -1220,7 +1225,6 @@ class App extends Component {
         blockNumber: block.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
-
 
         ilks: [
           {
@@ -2050,6 +2054,8 @@ class App extends Component {
         flashToll: utils.formatEther(flashToll),
         pauseDelay: pauseDelay.toNumber(),
         hat: hat,
+        esmMin: utils.formatEther(esmMin),
+        esmSum: utils.formatEther(esmSum),
         historicalDebt,
       }
     })

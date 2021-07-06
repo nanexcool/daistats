@@ -52,6 +52,12 @@ const formatPercentFee = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 4
 })
 
+const formatFiveDp = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 5,
+  maximumFractionDigits: 5
+})
+
 const formatEightDp = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 8,
@@ -391,6 +397,13 @@ const Main = (props) => {
               <h3 className="title" title={props.flashLine}>{formatAmount.format(props.flashLine)}</h3>
               <p className="title subtitle is-size-4">{/*t('daistats.flash_loan_limit')*/}Dai Flash Loan Limit</p>
               <p className="subtitle is-size-6">{/*t('daistats.fee')}*/}Fee: {formatPercent.format(props.flashToll)}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.esmMin}>{formatAmount.format(props.esmMin)}</h3>
+              <p className="title subtitle is-size-4">{/*t('daistats.esm_threshold')*/}ESM Threshold</p>
+              <p className="subtitle is-size-6" title={props.esmSum}>{/*t('daistats.total_MKR_burned')}*/}Total MKR Burned: {formatFiveDp.format(props.esmSum)}</p>
             </div>
           </div>
         </div>
