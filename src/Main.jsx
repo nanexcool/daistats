@@ -172,40 +172,40 @@ const Main = (props) => {
         </div>
         <hr />
         </div>
-        <Collateral {...props} idx="0" locked={props.ethLocked} supply={props.ethSupply} fee={props.ethFee} />
-        <Collateral {...props} idx="14" locked={props.ethBLocked} supply={props.ethSupply} fee={props.ethBFee} />
-        <Collateral {...props} idx="31" locked={props.ethCLocked} supply={props.ethSupply} fee={props.ethCFee} />
-        <Collateral {...props} idx="1" locked={props.batLocked} supply={props.batSupply} fee={props.batFee} />
-        <Collateral {...props} idx="2" locked={props.usdcLocked} supply={props.usdcSupply} fee={props.usdcFee} />
-        <Collateral {...props} idx="4" locked={props.usdcBLocked} supply={props.usdcSupply} fee={props.usdcBFee} />
-        <Collateral {...props} idx="3" locked={props.wbtcLocked} supply={props.wbtcSupply} fee={props.wbtcFee} />
-        <Collateral {...props} idx="5" locked={props.tusdLocked} supply={props.tusdSupply} fee={props.tusdFee} />
-        <Collateral {...props} idx="6" locked={props.kncALocked} supply={props.kncSupply} fee={props.kncAFee} />
-        <Collateral {...props} idx="7" locked={props.zrxALocked} supply={props.zrxSupply} fee={props.zrxAFee} />
-        <Collateral {...props} idx="8" locked={props.manaALocked} supply={props.manaSupply} fee={props.manaAFee} />
-        <Collateral {...props} idx="9" locked={props.paxALocked} supply={props.paxSupply} fee={props.paxAFee} />
-        <Collateral {...props} idx="10" locked={props.usdtALocked} supply={props.usdtSupply} fee={props.usdtAFee} />
-        <Collateral {...props} idx="11" locked={props.compALocked} supply={props.compSupply} fee={props.compAFee} />
-        <Collateral {...props} idx="12" locked={props.lrcALocked} supply={props.lrcSupply} fee={props.lrcAFee} />
-        <Collateral {...props} idx="13" locked={props.linkALocked} supply={props.linkSupply} fee={props.linkAFee} />
-        <Collateral {...props} idx="15" locked={props.balALocked} supply={props.balSupply} fee={props.balAFee} />
-        <Collateral {...props} idx="16" locked={props.yfiALocked} supply={props.yfiSupply} fee={props.yfiAFee} />
-        <Collateral {...props} idx="17" locked={props.gusdALocked} supply={props.gusdSupply} fee={props.gusdAFee} />
-        <Collateral {...props} idx="18" locked={props.uniALocked} supply={props.uniSupply} fee={props.uniAFee} />
-        <Collateral {...props} idx="19" locked={props.renbtcALocked} supply={props.renbtcSupply} fee={props.renbtcAFee} />
-        <Collateral {...props} idx="20" locked={props.aaveALocked} supply={props.aaveSupply} fee={props.aaveAFee} />
-        <Collateral {...props} idx="21" locked={props.univ2daiethALocked} supply={props.univ2daiethSupply} fee={props.univ2daiethAFee} />
-        <Collateral {...props} idx="22" locked={props.univ2wbtcethALocked} supply={props.univ2wbtcethSupply} fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="23" locked={props.univ2usdcethALocked} supply={props.univ2usdcethSupply} fee={props.univ2usdcethAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="24" locked={props.univ2daiusdcALocked} supply={props.univ2daiusdcSupply} fee={props.univ2daiusdcAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="25" locked={props.univ2ethusdtALocked} supply={props.univ2ethusdtSupply} fee={props.univ2ethusdtAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="26" locked={props.univ2linkethALocked} supply={props.univ2linkethSupply} fee={props.univ2linkethAFee} />
-        <Collateral {...props} idx="27" locked={props.univ2uniethALocked} supply={props.univ2uniethSupply} fee={props.univ2uniethAFee} />
-        <Collateral {...props} idx="28" locked={props.univ2wbtcdaiALocked} supply={props.univ2wbtcdaiSupply} fee={props.univ2wbtcdaiAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="29" locked={props.univ2aaveethALocked} supply={props.univ2aaveethSupply} fee={props.univ2aaveethAFee} />
-        <Collateral {...props} idx="30" locked={props.univ2daiusdtALocked} supply={props.univ2daiusdtSupply} fee={props.univ2daiusdtAFee} />
-        <Collateral {...props} idx="32" locked={props.rwa001ALocked} supply={props.rwa001Supply} fee={props.rwa001AFee} />
-        <Collateral {...props} idx="33" locked={props.rwa002ALocked} supply={props.rwa002Supply} fee={props.rwa002AFee} />
+        <Collateral {...props} idx="0" fee={props.ethFee} />
+        <Collateral {...props} idx="14" fee={props.ethBFee} />
+        <Collateral {...props} idx="31" fee={props.ethCFee} />
+        <Collateral {...props} idx="1" fee={props.batFee} />
+        <Collateral {...props} idx="2" fee={props.usdcFee} />
+        <Collateral {...props} idx="4" fee={props.usdcBFee} />
+        <Collateral {...props} idx="3" fee={props.wbtcFee} />
+        <Collateral {...props} idx="5" fee={props.tusdFee} />
+        <Collateral {...props} idx="6" fee={props.kncAFee} />
+        <Collateral {...props} idx="7" fee={props.zrxAFee} />
+        <Collateral {...props} idx="8" fee={props.manaAFee} />
+        <Collateral {...props} idx="9" fee={props.paxAFee} />
+        <Collateral {...props} idx="10" fee={props.usdtAFee} />
+        <Collateral {...props} idx="11" fee={props.compAFee} />
+        <Collateral {...props} idx="12" fee={props.lrcAFee} />
+        <Collateral {...props} idx="13" fee={props.linkAFee} />
+        <Collateral {...props} idx="15" fee={props.balAFee} />
+        <Collateral {...props} idx="16" fee={props.yfiAFee} />
+        <Collateral {...props} idx="17" fee={props.gusdAFee} />
+        <Collateral {...props} idx="18" fee={props.uniAFee} />
+        <Collateral {...props} idx="19" fee={props.renbtcAFee} />
+        <Collateral {...props} idx="20" fee={props.aaveAFee} />
+        <Collateral {...props} idx="21" fee={props.univ2daiethAFee} />
+        <Collateral {...props} idx="22" fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="23" fee={props.univ2usdcethAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="24" fee={props.univ2daiusdcAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="25" fee={props.univ2ethusdtAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="26" fee={props.univ2linkethAFee} />
+        <Collateral {...props} idx="27" fee={props.univ2uniethAFee} />
+        <Collateral {...props} idx="28" fee={props.univ2wbtcdaiAFee} showLockedDecimals={true} />
+        <Collateral {...props} idx="29" fee={props.univ2aaveethAFee} />
+        <Collateral {...props} idx="30" fee={props.univ2daiusdtAFee} />
+        <Collateral {...props} idx="32" fee={props.rwa001AFee} />
+        <Collateral {...props} idx="33" fee={props.rwa002AFee} />
           </TabPanel>
           <TabPanel>
         <div className="columns">

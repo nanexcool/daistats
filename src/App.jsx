@@ -720,9 +720,9 @@ class App extends Component {
     const ethIlk = vat.interface.decodeFunctionResult('ilks', res[2])
     const batIlk = vat.interface.decodeFunctionResult('ilks', res[3])
     const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[6])
-    const ethLocked = weth.interface.decodeFunctionResult('balanceOf', res[9])
-    const batSupply = bat.interface.decodeFunctionResult('totalSupply', res[10])
-    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[11])
+    const ethLocked = weth.interface.decodeFunctionResult('balanceOf', res[9])[0]
+    const batSupply = bat.interface.decodeFunctionResult('totalSupply', res[10])[0]
+    const batLocked = bat.interface.decodeFunctionResult('balanceOf', res[11])[0]
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[8])
     const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[7])
     const uniswapMkr = mkr.interface.decodeFunctionResult('balanceOf', res[44])
@@ -761,8 +761,8 @@ class App extends Component {
     const flopKicks = flop.interface.decodeFunctionResult('kicks', res[38])[0]
     const usdcIlk = vat.interface.decodeFunctionResult('ilks', res[33])
     const usdcFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[34]))
-    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[36])
-    const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[37])
+    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[36])[0]
+    const usdcLocked = usdc.interface.decodeFunctionResult('balanceOf', res[37])[0]
     const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[40])[0]
     const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[42])
     const wbtcIlk = vat.interface.decodeFunctionResult('ilks', res[43])
@@ -770,34 +770,34 @@ class App extends Component {
     const jugWbtcDrip = jug.interface.decodeFunctionResult('ilks', res[44])
     const wbtcMat = spot.interface.decodeFunctionResult('ilks', res[45])
     const wbtcPrice = wbtcMat.mat.mul(wbtcIlk.spot).div(RAY)
-    const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[46])
-    const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[47])
+    const wbtcSupply = wbtc.interface.decodeFunctionResult('totalSupply', res[46])[0]
+    const wbtcLocked = wbtc.interface.decodeFunctionResult('balanceOf', res[47])[0]
     const wbtcKicks = wbtcClip.interface.decodeFunctionResult('kicks', res[48])[0]
     const usdcBIlk = vat.interface.decodeFunctionResult('ilks', res[49])
     const usdcBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[51]))
     const jugUsdcBDrip = jug.interface.decodeFunctionResult('ilks', res[51])
-    const usdcBLocked = usdc.interface.decodeFunctionResult('balanceOf', res[52])
+    const usdcBLocked = usdc.interface.decodeFunctionResult('balanceOf', res[52])[0]
     const tusdIlk = vat.interface.decodeFunctionResult('ilks', res[53])
     const tusdFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[55]))
     const jugTusdDrip = jug.interface.decodeFunctionResult('ilks', res[55])
     const tusdPrice = tusdPip.interface.decodeFunctionResult('read', res[56])[0]
-    const tusdSupply = tusd.interface.decodeFunctionResult('totalSupply', res[57])
-    const tusdLocked = tusd.interface.decodeFunctionResult('balanceOf', res[58])
+    const tusdSupply = tusd.interface.decodeFunctionResult('totalSupply', res[57])[0]
+    const tusdLocked = tusd.interface.decodeFunctionResult('balanceOf', res[58])[0]
     const kncAIlk = vat.interface.decodeFunctionResult('ilks', res[59])
     const kncAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[60]))
     const jugKncADrip = jug.interface.decodeFunctionResult('ilks', res[60])
     const kncAMat = spot.interface.decodeFunctionResult('ilks', res[61])
     const kncPrice = kncAMat.mat.mul(kncAIlk.spot).div(RAY)
-    const kncSupply = knc.interface.decodeFunctionResult('totalSupply', res[62])
-    const kncALocked = knc.interface.decodeFunctionResult('balanceOf', res[63])
+    const kncSupply = knc.interface.decodeFunctionResult('totalSupply', res[62])[0]
+    const kncALocked = knc.interface.decodeFunctionResult('balanceOf', res[63])[0]
     const kncAKicks = kncAClip.interface.decodeFunctionResult('kicks', res[64])[0]
     const zrxAIlk = vat.interface.decodeFunctionResult('ilks', res[65])
     const zrxAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[66]))
     const jugZrxADrip = jug.interface.decodeFunctionResult('ilks', res[66])
     const zrxAMat = spot.interface.decodeFunctionResult('ilks', res[67])
     const zrxPrice = zrxAMat.mat.mul(zrxAIlk.spot).div(RAY)
-    const zrxSupply = zrx.interface.decodeFunctionResult('totalSupply', res[68])
-    const zrxALocked = zrx.interface.decodeFunctionResult('balanceOf', res[69])
+    const zrxSupply = zrx.interface.decodeFunctionResult('totalSupply', res[68])[0]
+    const zrxALocked = zrx.interface.decodeFunctionResult('balanceOf', res[69])[0]
     const zrxAKicks = zrxAClip.interface.decodeFunctionResult('kicks', res[70])[0]
 
     const manaAIlk = vat.interface.decodeFunctionResult('ilks', res[71])
@@ -805,8 +805,8 @@ class App extends Component {
     const jugManaADrip = jug.interface.decodeFunctionResult('ilks', res[72])
     const manaAMat = spot.interface.decodeFunctionResult('ilks', res[73])
     const manaPrice = manaAMat.mat.mul(manaAIlk.spot).div(RAY)
-    const manaSupply = mana.interface.decodeFunctionResult('totalSupply', res[74])
-    const manaALocked = mana.interface.decodeFunctionResult('balanceOf', res[75])
+    const manaSupply = mana.interface.decodeFunctionResult('totalSupply', res[74])[0]
+    const manaALocked = mana.interface.decodeFunctionResult('balanceOf', res[75])[0]
     const manaAKicks = manaAClip.interface.decodeFunctionResult('kicks', res[76])[0]
 
     const paxAIlk = vat.interface.decodeFunctionResult('ilks', res[77])
@@ -814,16 +814,16 @@ class App extends Component {
     const jugPaxADrip = jug.interface.decodeFunctionResult('ilks', res[78])
     const paxAMat = spot.interface.decodeFunctionResult('ilks', res[79])
     const paxPrice = paxAMat.mat.mul(paxAIlk.spot).div(RAY)
-    const paxSupply = pax.interface.decodeFunctionResult('totalSupply', res[80])
-    const paxALocked = pax.interface.decodeFunctionResult('balanceOf', res[81])
+    const paxSupply = pax.interface.decodeFunctionResult('totalSupply', res[80])[0]
+    const paxALocked = pax.interface.decodeFunctionResult('balanceOf', res[81])[0]
 
     const usdtAIlk = vat.interface.decodeFunctionResult('ilks', res[82])
     const usdtAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[83]))
     const jugUsdtADrip = jug.interface.decodeFunctionResult('ilks', res[83])
     const usdtAMat = spot.interface.decodeFunctionResult('ilks', res[84])
     const usdtPrice = usdtAMat.mat.mul(usdtAIlk.spot).div(RAY)
-    const usdtSupply = usdt.interface.decodeFunctionResult('totalSupply', res[85])
-    const usdtALocked = usdt.interface.decodeFunctionResult('balanceOf', res[86])
+    const usdtSupply = usdt.interface.decodeFunctionResult('totalSupply', res[85])[0]
+    const usdtALocked = usdt.interface.decodeFunctionResult('balanceOf', res[86])[0]
     const usdtAKicks = usdtAClip.interface.decodeFunctionResult('kicks', res[87])[0]
 
     const compAIlk = vat.interface.decodeFunctionResult('ilks', res[88])
@@ -831,8 +831,8 @@ class App extends Component {
     const jugCompADrip = jug.interface.decodeFunctionResult('ilks', res[89])
     const compAMat = spot.interface.decodeFunctionResult('ilks', res[90])
     const compPrice = compAMat.mat.mul(compAIlk.spot).div(RAY)
-    const compSupply = comp.interface.decodeFunctionResult('totalSupply', res[91])
-    const compALocked = comp.interface.decodeFunctionResult('balanceOf', res[92])
+    const compSupply = comp.interface.decodeFunctionResult('totalSupply', res[91])[0]
+    const compALocked = comp.interface.decodeFunctionResult('balanceOf', res[92])[0]
     const compAKicks = compAClip.interface.decodeFunctionResult('kicks', res[93])[0]
 
     const lrcAIlk = vat.interface.decodeFunctionResult('ilks', res[94])
@@ -840,8 +840,8 @@ class App extends Component {
     const jugLrcADrip = jug.interface.decodeFunctionResult('ilks', res[95])
     const lrcAMat = spot.interface.decodeFunctionResult('ilks', res[96])
     const lrcPrice = lrcAMat.mat.mul(lrcAIlk.spot).div(RAY)
-    const lrcSupply = lrc.interface.decodeFunctionResult('totalSupply', res[97])
-    const lrcALocked = lrc.interface.decodeFunctionResult('balanceOf', res[98])
+    const lrcSupply = lrc.interface.decodeFunctionResult('totalSupply', res[97])[0]
+    const lrcALocked = lrc.interface.decodeFunctionResult('balanceOf', res[98])[0]
     const lrcAKicks = lrcAClip.interface.decodeFunctionResult('kicks', res[99])[0]
 
     const linkAIlk = vat.interface.decodeFunctionResult('ilks', res[100])
@@ -849,14 +849,14 @@ class App extends Component {
     const jugLinkADrip = jug.interface.decodeFunctionResult('ilks', res[101])
     const linkAMat = spot.interface.decodeFunctionResult('ilks', res[102])
     const linkPrice = linkAMat.mat.mul(linkAIlk.spot).div(RAY)
-    const linkSupply = link.interface.decodeFunctionResult('totalSupply', res[103])
-    const linkALocked = link.interface.decodeFunctionResult('balanceOf', res[104])
+    const linkSupply = link.interface.decodeFunctionResult('totalSupply', res[103])[0]
+    const linkALocked = link.interface.decodeFunctionResult('balanceOf', res[104])[0]
     const linkAKicks = linkAClip.interface.decodeFunctionResult('kicks', res[105])[0]
 
     const ethBKicks = ethBClip.interface.decodeFunctionResult('kicks', res[106])[0]
     const ethBIlk = vat.interface.decodeFunctionResult('ilks', res[107])
     const ethBFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[108]))
-    const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])
+    const ethBLocked = weth.interface.decodeFunctionResult('balanceOf', res[109])[0]
     const jugEthBDrip = jug.interface.decodeFunctionResult('ilks', res[110])
 
     const balAIlk = vat.interface.decodeFunctionResult('ilks', res[111])
@@ -864,8 +864,8 @@ class App extends Component {
     const jugBalADrip = jug.interface.decodeFunctionResult('ilks', res[112])
     const balAMat = spot.interface.decodeFunctionResult('ilks', res[113])
     const balPrice = balAMat.mat.mul(balAIlk.spot).div(RAY)
-    const balSupply = bal.interface.decodeFunctionResult('totalSupply', res[114])
-    const balALocked = bal.interface.decodeFunctionResult('balanceOf', res[115])
+    const balSupply = bal.interface.decodeFunctionResult('totalSupply', res[114])[0]
+    const balALocked = bal.interface.decodeFunctionResult('balanceOf', res[115])[0]
     const balAKicks = balAClip.interface.decodeFunctionResult('kicks', res[116])[0]
 
     const yfiAIlk = vat.interface.decodeFunctionResult('ilks', res[117])
@@ -873,8 +873,8 @@ class App extends Component {
     const jugYfiADrip = jug.interface.decodeFunctionResult('ilks', res[118])
     const yfiAMat = spot.interface.decodeFunctionResult('ilks', res[119])
     const yfiPrice = yfiAMat.mat.mul(yfiAIlk.spot).div(RAY)
-    const yfiSupply = yfi.interface.decodeFunctionResult('totalSupply', res[120])
-    const yfiALocked = yfi.interface.decodeFunctionResult('balanceOf', res[121])
+    const yfiSupply = yfi.interface.decodeFunctionResult('totalSupply', res[120])[0]
+    const yfiALocked = yfi.interface.decodeFunctionResult('balanceOf', res[121])[0]
     const yfiAKicks = yfiAClip.interface.decodeFunctionResult('kicks', res[122])[0]
 
     const gusdAIlk = vat.interface.decodeFunctionResult('ilks', res[123])
@@ -882,23 +882,23 @@ class App extends Component {
     const jugGusdADrip = jug.interface.decodeFunctionResult('ilks', res[124])
     const gusdAMat = spot.interface.decodeFunctionResult('ilks', res[125])
     const gusdPrice = gusdAMat.mat.mul(gusdAIlk.spot).div(RAY)
-    const gusdSupply = gusd.interface.decodeFunctionResult('totalSupply', res[126])
-    const gusdALocked = gusd.interface.decodeFunctionResult('balanceOf', res[127])
+    const gusdSupply = gusd.interface.decodeFunctionResult('totalSupply', res[126])[0]
+    const gusdALocked = gusd.interface.decodeFunctionResult('balanceOf', res[127])[0]
 
     const uniAIlk = vat.interface.decodeFunctionResult('ilks', res[128])
     const uniAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[129]))
     const jugUniADrip = jug.interface.decodeFunctionResult('ilks', res[129])
     const uniAMat = spot.interface.decodeFunctionResult('ilks', res[130])
     const uniPrice = uniAMat.mat.mul(uniAIlk.spot).div(RAY)
-    const uniSupply = uni.interface.decodeFunctionResult('totalSupply', res[131])
-    const uniALocked = uni.interface.decodeFunctionResult('balanceOf', res[132])
+    const uniSupply = uni.interface.decodeFunctionResult('totalSupply', res[131])[0]
+    const uniALocked = uni.interface.decodeFunctionResult('balanceOf', res[132])[0]
     const uniAKicks = uniAClip.interface.decodeFunctionResult('kicks', res[133])[0]
 
     const renbtcAIlk = vat.interface.decodeFunctionResult('ilks', res[134])
     const renbtcAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[135]))
     const jugRenbtcADrip = jug.interface.decodeFunctionResult('ilks', res[135])
-    const renbtcSupply = renbtc.interface.decodeFunctionResult('totalSupply', res[136])
-    const renbtcALocked = renbtc.interface.decodeFunctionResult('balanceOf', res[137])
+    const renbtcSupply = renbtc.interface.decodeFunctionResult('totalSupply', res[136])[0]
+    const renbtcALocked = renbtc.interface.decodeFunctionResult('balanceOf', res[137])[0]
     const renbtcAKicks = renbtcAClip.interface.decodeFunctionResult('kicks', res[138])[0]
 
     const aaveAIlk = vat.interface.decodeFunctionResult('ilks', res[139])
@@ -906,8 +906,8 @@ class App extends Component {
     const jugAaveADrip = jug.interface.decodeFunctionResult('ilks', res[140])
     const aaveAMat = spot.interface.decodeFunctionResult('ilks', res[141])
     const aavePrice = aaveAMat.mat.mul(aaveAIlk.spot).div(RAY)
-    const aaveSupply = aave.interface.decodeFunctionResult('totalSupply', res[142])
-    const aaveALocked = aave.interface.decodeFunctionResult('balanceOf', res[143])
+    const aaveSupply = aave.interface.decodeFunctionResult('totalSupply', res[142])[0]
+    const aaveALocked = aave.interface.decodeFunctionResult('balanceOf', res[143])[0]
     const aaveAKicks = aaveAClip.interface.decodeFunctionResult('kicks', res[144])[0]
 
     const univ2daiethAIlk = vat.interface.decodeFunctionResult('ilks', res[145])
@@ -915,22 +915,22 @@ class App extends Component {
     const jugUniv2daiethADrip = jug.interface.decodeFunctionResult('ilks', res[146])
     const univ2daiethAMat = spot.interface.decodeFunctionResult('ilks', res[147])
     const univ2daiethPrice = univ2daiethAMat.mat.mul(univ2daiethAIlk.spot).div(RAY)
-    const univ2daiethSupply = univ2daieth.interface.decodeFunctionResult('totalSupply', res[148])
-    const univ2daiethALocked = univ2daieth.interface.decodeFunctionResult('balanceOf', res[149])
+    const univ2daiethSupply = univ2daieth.interface.decodeFunctionResult('totalSupply', res[148])[0]
+    const univ2daiethALocked = univ2daieth.interface.decodeFunctionResult('balanceOf', res[149])[0]
     const univ2daiethAKicks = univ2daiethAClip.interface.decodeFunctionResult('kicks', res[150])[0]
 
     const psmUsdcTin = psmUsdc.interface.decodeFunctionResult('tin', res[151])[0]
     const psmUsdcTout = psmUsdc.interface.decodeFunctionResult('tout', res[152])[0]
     const psmUsdcAIlk = vat.interface.decodeFunctionResult('ilks', res[153])
-    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[154])
+    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[154])[0]
 
     const univ2wbtcethAIlk = vat.interface.decodeFunctionResult('ilks', res[155])
     const univ2wbtcethAFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[156]))
     const jugUniv2wbtcethADrip = jug.interface.decodeFunctionResult('ilks', res[156])
     const univ2wbtcethAMat = spot.interface.decodeFunctionResult('ilks', res[157])
     const univ2wbtcethPrice = univ2wbtcethAMat.mat.mul(univ2wbtcethAIlk.spot).div(RAY)
-    const univ2wbtcethSupply = univ2wbtceth.interface.decodeFunctionResult('totalSupply', res[158])
-    const univ2wbtcethALocked = univ2wbtceth.interface.decodeFunctionResult('balanceOf', res[159])
+    const univ2wbtcethSupply = univ2wbtceth.interface.decodeFunctionResult('totalSupply', res[158])[0]
+    const univ2wbtcethALocked = univ2wbtceth.interface.decodeFunctionResult('balanceOf', res[159])[0]
     const univ2wbtcethAKicks = univ2wbtcethAClip.interface.decodeFunctionResult('kicks', res[160])[0]
 
     const univ2usdcethAIlk = vat.interface.decodeFunctionResult('ilks', res[161])
@@ -938,8 +938,8 @@ class App extends Component {
     const jugUniv2usdcethADrip = jug.interface.decodeFunctionResult('ilks', res[162])
     const univ2usdcethAMat = spot.interface.decodeFunctionResult('ilks', res[163])
     const univ2usdcethPrice = univ2usdcethAMat.mat.mul(univ2usdcethAIlk.spot).div(RAY)
-    const univ2usdcethSupply = univ2usdceth.interface.decodeFunctionResult('totalSupply', res[164])
-    const univ2usdcethALocked = univ2usdceth.interface.decodeFunctionResult('balanceOf', res[165])
+    const univ2usdcethSupply = univ2usdceth.interface.decodeFunctionResult('totalSupply', res[164])[0]
+    const univ2usdcethALocked = univ2usdceth.interface.decodeFunctionResult('balanceOf', res[165])[0]
     const univ2usdcethAKicks = univ2usdcethAClip.interface.decodeFunctionResult('kicks', res[166])[0]
 
     const univ2daiusdcAIlk = vat.interface.decodeFunctionResult('ilks', res[167])
@@ -947,8 +947,8 @@ class App extends Component {
     const jugUniv2daiusdcADrip = jug.interface.decodeFunctionResult('ilks', res[168])
     const univ2daiusdcAMat = spot.interface.decodeFunctionResult('ilks', res[169])
     const univ2daiusdcPrice = univ2daiusdcAMat.mat.mul(univ2daiusdcAIlk.spot).div(RAY)
-    const univ2daiusdcSupply = univ2daiusdc.interface.decodeFunctionResult('totalSupply', res[170])
-    const univ2daiusdcALocked = univ2daiusdc.interface.decodeFunctionResult('balanceOf', res[171])
+    const univ2daiusdcSupply = univ2daiusdc.interface.decodeFunctionResult('totalSupply', res[170])[0]
+    const univ2daiusdcALocked = univ2daiusdc.interface.decodeFunctionResult('balanceOf', res[171])[0]
     const univ2daiusdcAKicks = univ2daiusdcAClip.interface.decodeFunctionResult('kicks', res[172])[0]
 
     const univ2ethusdtAIlk = vat.interface.decodeFunctionResult('ilks', res[173])
@@ -956,8 +956,8 @@ class App extends Component {
     const jugUniv2ethusdtADrip = jug.interface.decodeFunctionResult('ilks', res[174])
     const univ2ethusdtAMat = spot.interface.decodeFunctionResult('ilks', res[175])
     const univ2ethusdtPrice = univ2ethusdtAMat.mat.mul(univ2ethusdtAIlk.spot).div(RAY)
-    const univ2ethusdtSupply = univ2ethusdt.interface.decodeFunctionResult('totalSupply', res[176])
-    const univ2ethusdtALocked = univ2ethusdt.interface.decodeFunctionResult('balanceOf', res[177])
+    const univ2ethusdtSupply = univ2ethusdt.interface.decodeFunctionResult('totalSupply', res[176])[0]
+    const univ2ethusdtALocked = univ2ethusdt.interface.decodeFunctionResult('balanceOf', res[177])[0]
     const univ2ethusdtAKicks = univ2ethusdtAClip.interface.decodeFunctionResult('kicks', res[178])[0]
 
     const univ2linkethAIlk = vat.interface.decodeFunctionResult('ilks', res[179])
@@ -965,8 +965,8 @@ class App extends Component {
     const jugUniv2linkethADrip = jug.interface.decodeFunctionResult('ilks', res[180])
     const univ2linkethAMat = spot.interface.decodeFunctionResult('ilks', res[181])
     const univ2linkethPrice = univ2linkethAMat.mat.mul(univ2linkethAIlk.spot).div(RAY)
-    const univ2linkethSupply = univ2linketh.interface.decodeFunctionResult('totalSupply', res[182])
-    const univ2linkethALocked = univ2linketh.interface.decodeFunctionResult('balanceOf', res[183])
+    const univ2linkethSupply = univ2linketh.interface.decodeFunctionResult('totalSupply', res[182])[0]
+    const univ2linkethALocked = univ2linketh.interface.decodeFunctionResult('balanceOf', res[183])[0]
     const univ2linkethAKicks = univ2linkethAClip.interface.decodeFunctionResult('kicks', res[184])[0]
 
     const univ2uniethAIlk = vat.interface.decodeFunctionResult('ilks', res[185])
@@ -974,8 +974,8 @@ class App extends Component {
     const jugUniv2uniethADrip = jug.interface.decodeFunctionResult('ilks', res[186])
     const univ2uniethAMat = spot.interface.decodeFunctionResult('ilks', res[187])
     const univ2uniethPrice = univ2uniethAMat.mat.mul(univ2uniethAIlk.spot).div(RAY)
-    const univ2uniethSupply = univ2unieth.interface.decodeFunctionResult('totalSupply', res[188])
-    const univ2uniethALocked = univ2unieth.interface.decodeFunctionResult('balanceOf', res[189])
+    const univ2uniethSupply = univ2unieth.interface.decodeFunctionResult('totalSupply', res[188])[0]
+    const univ2uniethALocked = univ2unieth.interface.decodeFunctionResult('balanceOf', res[189])[0]
     const univ2uniethAKicks = univ2uniethAClip.interface.decodeFunctionResult('kicks', res[190])[0]
 
     const univ2wbtcdaiAIlk = vat.interface.decodeFunctionResult('ilks', res[191])
@@ -983,8 +983,8 @@ class App extends Component {
     const jugUniv2wbtcdaiADrip = jug.interface.decodeFunctionResult('ilks', res[192])
     const univ2wbtcdaiAMat = spot.interface.decodeFunctionResult('ilks', res[193])
     const univ2wbtcdaiPrice = univ2wbtcdaiAMat.mat.mul(univ2wbtcdaiAIlk.spot).div(RAY)
-    const univ2wbtcdaiSupply = univ2wbtcdai.interface.decodeFunctionResult('totalSupply', res[194])
-    const univ2wbtcdaiALocked = univ2wbtcdai.interface.decodeFunctionResult('balanceOf', res[195])
+    const univ2wbtcdaiSupply = univ2wbtcdai.interface.decodeFunctionResult('totalSupply', res[194])[0]
+    const univ2wbtcdaiALocked = univ2wbtcdai.interface.decodeFunctionResult('balanceOf', res[195])[0]
     const univ2wbtcdaiAKicks = univ2wbtcdaiAClip.interface.decodeFunctionResult('kicks', res[196])[0]
 
     const univ2aaveethAIlk = vat.interface.decodeFunctionResult('ilks', res[197])
@@ -992,8 +992,8 @@ class App extends Component {
     const jugUniv2aaveethADrip = jug.interface.decodeFunctionResult('ilks', res[198])
     const univ2aaveethAMat = spot.interface.decodeFunctionResult('ilks', res[199])
     const univ2aaveethPrice = univ2aaveethAMat.mat.mul(univ2aaveethAIlk.spot).div(RAY)
-    const univ2aaveethSupply = univ2aaveeth.interface.decodeFunctionResult('totalSupply', res[200])
-    const univ2aaveethALocked = univ2aaveeth.interface.decodeFunctionResult('balanceOf', res[201])
+    const univ2aaveethSupply = univ2aaveeth.interface.decodeFunctionResult('totalSupply', res[200])[0]
+    const univ2aaveethALocked = univ2aaveeth.interface.decodeFunctionResult('balanceOf', res[201])[0]
     const univ2aaveethAKicks = univ2aaveethAClip.interface.decodeFunctionResult('kicks', res[202])[0]
 
     const univ2daiusdtAIlk = vat.interface.decodeFunctionResult('ilks', res[203])
@@ -1001,14 +1001,14 @@ class App extends Component {
     const jugUniv2daiusdtADrip = jug.interface.decodeFunctionResult('ilks', res[204])
     const univ2daiusdtAMat = spot.interface.decodeFunctionResult('ilks', res[205])
     const univ2daiusdtPrice = univ2daiusdtAMat.mat.mul(univ2daiusdtAIlk.spot).div(RAY)
-    const univ2daiusdtSupply = univ2daiusdt.interface.decodeFunctionResult('totalSupply', res[206])
-    const univ2daiusdtALocked = univ2daiusdt.interface.decodeFunctionResult('balanceOf', res[207])
+    const univ2daiusdtSupply = univ2daiusdt.interface.decodeFunctionResult('totalSupply', res[206])[0]
+    const univ2daiusdtALocked = univ2daiusdt.interface.decodeFunctionResult('balanceOf', res[207])[0]
     const univ2daiusdtAKicks = univ2daiusdtAClip.interface.decodeFunctionResult('kicks', res[208])[0]
 
     const ethCKicks = ethCClip.interface.decodeFunctionResult('kicks', res[209])[0]
     const ethCIlk = vat.interface.decodeFunctionResult('ilks', res[210])
     const ethCFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[211]))
-    const ethCLocked = weth.interface.decodeFunctionResult('balanceOf', res[212])
+    const ethCLocked = weth.interface.decodeFunctionResult('balanceOf', res[212])[0]
     const jugEthCDrip = jug.interface.decodeFunctionResult('ilks', res[213])
 
     const ethAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[214])
@@ -1040,15 +1040,15 @@ class App extends Component {
     const rwa001AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[239]))
     const rwa001ADrip = jug.interface.decodeFunctionResult('ilks', res[239])
     const rwa001Price = rwa001APip.interface.decodeFunctionResult('read', res[240])[0]
-    const rwa001Supply = rwa001.interface.decodeFunctionResult('totalSupply', res[241])
-    const rwa001ALocked = rwa001.interface.decodeFunctionResult('balanceOf', res[242])
+    const rwa001Supply = rwa001.interface.decodeFunctionResult('totalSupply', res[241])[0]
+    const rwa001ALocked = rwa001.interface.decodeFunctionResult('balanceOf', res[242])[0]
 
     const rwa002AIlk = vat.interface.decodeFunctionResult('ilks', res[243])
     const rwa002AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[244]))
     const rwa002ADrip = jug.interface.decodeFunctionResult('ilks', res[244])
     const rwa002Price = rwa002APip.interface.decodeFunctionResult('read', res[245])[0]
-    const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[246])
-    const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[247])
+    const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[246])[0]
+    const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[247])[0]
 
     const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[248])
     const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[249])
@@ -1135,81 +1135,81 @@ class App extends Component {
     const hat = chief.interface.decodeFunctionResult('hat', res[324])
 
     const sysLockedWrong = [
-            ethLocked[0].mul(ethPrice),
-            ethBLocked[0].mul(ethPrice),
-            ethCLocked[0].mul(ethPrice),
-            usdcLocked[0].mul(DP6).mul(usdcPrice),
-            usdcBLocked[0].mul(DP6).mul(usdcPrice),
-            psmUsdcALocked[0].mul(DP6).mul(usdcPrice),
-            wbtcLocked[0].mul(DP8).mul(wbtcPrice),
-            renbtcALocked[0].mul(DP8).mul(wbtcPrice),
-            tusdLocked[0].mul(tusdPrice),
-            paxALocked[0].mul(paxPrice),
-            gusdALocked[0].mul(DP2).mul(gusdPrice),
-            usdtALocked[0].mul(DP6).mul(usdtPrice),
-            batLocked[0].mul(batPrice),
-            kncALocked[0].mul(kncPrice),
-            zrxALocked[0].mul(zrxPrice),
-            manaALocked[0].mul(manaPrice),
-            compALocked[0].mul(compPrice),
-            lrcALocked[0].mul(lrcPrice),
-            linkALocked[0].mul(linkPrice),
-            balALocked[0].mul(balPrice),
-            yfiALocked[0].mul(yfiPrice),
-            uniALocked[0].mul(uniPrice),
-            aaveALocked[0].mul(aavePrice),
-            univ2daiethALocked[0].mul(univ2daiethPrice),
-            univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
-            univ2usdcethALocked[0].mul(univ2usdcethPrice),
-            univ2daiusdcALocked[0].mul(univ2daiusdcPrice),
-            univ2ethusdtALocked[0].mul(univ2ethusdtPrice),
-            univ2linkethALocked[0].mul(univ2linkethPrice),
-            univ2uniethALocked[0].mul(univ2uniethPrice),
-            univ2wbtcdaiALocked[0].mul(univ2wbtcdaiPrice),
-            univ2aaveethALocked[0].mul(univ2aaveethPrice),
-            univ2daiusdtALocked[0].mul(univ2daiusdtPrice),
-            rwa001ALocked[0].mul(rwa001Price),
-            rwa002ALocked[0].mul(rwa002Price)
+            ethLocked.mul(ethPrice),
+            ethBLocked.mul(ethPrice),
+            ethCLocked.mul(ethPrice),
+            usdcLocked.mul(DP6).mul(usdcPrice),
+            usdcBLocked.mul(DP6).mul(usdcPrice),
+            psmUsdcALocked.mul(DP6).mul(usdcPrice),
+            wbtcLocked.mul(DP8).mul(wbtcPrice),
+            renbtcALocked.mul(DP8).mul(wbtcPrice),
+            tusdLocked.mul(tusdPrice),
+            paxALocked.mul(paxPrice),
+            gusdALocked.mul(DP2).mul(gusdPrice),
+            usdtALocked.mul(DP6).mul(usdtPrice),
+            batLocked.mul(batPrice),
+            kncALocked.mul(kncPrice),
+            zrxALocked.mul(zrxPrice),
+            manaALocked.mul(manaPrice),
+            compALocked.mul(compPrice),
+            lrcALocked.mul(lrcPrice),
+            linkALocked.mul(linkPrice),
+            balALocked.mul(balPrice),
+            yfiALocked.mul(yfiPrice),
+            uniALocked.mul(uniPrice),
+            aaveALocked.mul(aavePrice),
+            univ2daiethALocked.mul(univ2daiethPrice),
+            univ2wbtcethALocked.mul(univ2wbtcethPrice),
+            univ2usdcethALocked.mul(univ2usdcethPrice),
+            univ2daiusdcALocked.mul(univ2daiusdcPrice),
+            univ2ethusdtALocked.mul(univ2ethusdtPrice),
+            univ2linkethALocked.mul(univ2linkethPrice),
+            univ2uniethALocked.mul(univ2uniethPrice),
+            univ2wbtcdaiALocked.mul(univ2wbtcdaiPrice),
+            univ2aaveethALocked.mul(univ2aaveethPrice),
+            univ2daiusdtALocked.mul(univ2daiusdtPrice),
+            rwa001ALocked.mul(rwa001Price),
+            rwa002ALocked.mul(rwa002Price)
                 ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
 
     const usdcBN = ethers.BigNumber.from(usdcPrice).mul(DP10)
     const sysLocked = [
-            ethLocked[0].mul(ethPriceMedian.mul(DP10)),
-            ethBLocked[0].mul(ethPriceMedian.mul(DP10)),
-            ethCLocked[0].mul(ethPriceMedian.mul(DP10)),
-            usdcLocked[0].mul(DP7).mul(usdcBN),
-            usdcBLocked[0].mul(DP7).mul(usdcBN),
-            psmUsdcALocked[0].mul(DP7).mul(usdcBN),
-            wbtcLocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
-            renbtcALocked[0].mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
-            tusdLocked[0].mul(usdcBN),
-            paxALocked[0].mul(usdcBN),
-            gusdALocked[0].mul(DP2).mul(usdcBN),
-            usdtALocked[0].mul(DP6).mul(usdtPriceMedian.mul(DP10)),
-            batLocked[0].mul(batPriceMedian.mul(DP10)),
-            kncALocked[0].mul(kncPriceMedian.mul(DP10)),
-            zrxALocked[0].mul(zrxPriceMedian.mul(DP10)),
-            manaALocked[0].mul(manaPriceMedian.mul(DP10)),
-            compALocked[0].mul(compPriceMedian.mul(DP10)),
-            lrcALocked[0].mul(lrcPriceMedian.mul(DP10)),
-            linkALocked[0].mul(linkPriceMedian.mul(DP10)),
-            balALocked[0].mul(balPriceMedian.mul(DP10)),
-            yfiALocked[0].mul(yfiPriceMedian.mul(DP10)),
-            uniALocked[0].mul(uniPriceMedian.mul(DP10)),
-            aaveALocked[0].mul(aavePriceMedian.mul(DP10)),
+            ethLocked.mul(ethPriceMedian.mul(DP10)),
+            ethBLocked.mul(ethPriceMedian.mul(DP10)),
+            ethCLocked.mul(ethPriceMedian.mul(DP10)),
+            usdcLocked.mul(DP7).mul(usdcBN),
+            usdcBLocked.mul(DP7).mul(usdcBN),
+            psmUsdcALocked.mul(DP7).mul(usdcBN),
+            wbtcLocked.mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
+            renbtcALocked.mul(DP8).mul(wbtcPriceMedian.mul(DP10)),
+            tusdLocked.mul(usdcBN),
+            paxALocked.mul(usdcBN),
+            gusdALocked.mul(DP2).mul(usdcBN),
+            usdtALocked.mul(DP6).mul(usdtPriceMedian.mul(DP10)),
+            batLocked.mul(batPriceMedian.mul(DP10)),
+            kncALocked.mul(kncPriceMedian.mul(DP10)),
+            zrxALocked.mul(zrxPriceMedian.mul(DP10)),
+            manaALocked.mul(manaPriceMedian.mul(DP10)),
+            compALocked.mul(compPriceMedian.mul(DP10)),
+            lrcALocked.mul(lrcPriceMedian.mul(DP10)),
+            linkALocked.mul(linkPriceMedian.mul(DP10)),
+            balALocked.mul(balPriceMedian.mul(DP10)),
+            yfiALocked.mul(yfiPriceMedian.mul(DP10)),
+            uniALocked.mul(uniPriceMedian.mul(DP10)),
+            aaveALocked.mul(aavePriceMedian.mul(DP10)),
             // FIXME use medianiser price for these ilks
-            univ2daiethALocked[0].mul(univ2daiethPrice),
-            univ2wbtcethALocked[0].mul(univ2wbtcethPrice),
-            univ2usdcethALocked[0].mul(univ2usdcethPrice),
-            univ2daiusdcALocked[0].mul(univ2daiusdcPrice),
-            univ2ethusdtALocked[0].mul(univ2ethusdtPrice),
-            univ2linkethALocked[0].mul(univ2linkethPrice),
-            univ2uniethALocked[0].mul(univ2uniethPrice),
-            univ2wbtcdaiALocked[0].mul(univ2wbtcdaiPrice),
-            univ2aaveethALocked[0].mul(univ2aaveethPrice),
-            univ2daiusdtALocked[0].mul(univ2daiusdtPrice),
-            rwa001ALocked[0].mul(ethers.BigNumber.from(rwa001Price).mul(DP10)),
-            rwa002ALocked[0].mul(ethers.BigNumber.from(rwa002Price).mul(DP10))
+            univ2daiethALocked.mul(univ2daiethPrice),
+            univ2wbtcethALocked.mul(univ2wbtcethPrice),
+            univ2usdcethALocked.mul(univ2usdcethPrice),
+            univ2daiusdcALocked.mul(univ2daiusdcPrice),
+            univ2ethusdtALocked.mul(univ2ethusdtPrice),
+            univ2linkethALocked.mul(univ2linkethPrice),
+            univ2uniethALocked.mul(univ2uniethPrice),
+            univ2wbtcdaiALocked.mul(univ2wbtcdaiPrice),
+            univ2aaveethALocked.mul(univ2aaveethPrice),
+            univ2daiusdtALocked.mul(univ2daiusdtPrice),
+            rwa001ALocked.mul(ethers.BigNumber.from(rwa001Price).mul(DP10)),
+            rwa002ALocked.mul(ethers.BigNumber.from(rwa002Price).mul(DP10))
                 ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
 
 
@@ -1220,6 +1220,8 @@ class App extends Component {
         blockNumber: block.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
+
+
         ilks: [
           {
             token: "ETH",
@@ -1238,6 +1240,8 @@ class App extends Component {
             dirt: utils.formatUnits(ethADogIlk.dirt, 45),
             kicks: ethKicks.toNumber(),
             drip: this.unixToDateTime(jugEthDrip.rho.toNumber()),
+            locked: utils.formatEther(ethLocked),
+            supply: utils.formatEther(ethSupply),
           },
           {
             token: "BAT",
@@ -1256,6 +1260,8 @@ class App extends Component {
             dirt: utils.formatUnits(batADogIlk.dirt, 45),
             kicks: batKicks.toNumber(),
             drip: this.unixToDateTime(jugBatDrip.rho.toNumber()),
+            locked: utils.formatEther(batLocked),
+            supply: utils.formatEther(batSupply),
           },
           {
             token: "USDC",
@@ -1270,6 +1276,8 @@ class App extends Component {
             dirt: utils.formatUnits(usdcADogIlk.dirt, 45),
             kicks: usdcAKicks.toNumber(),
             drip: this.unixToDateTime(jugUsdcDrip.rho.toNumber()),
+            locked: utils.formatUnits(usdcLocked, 6),
+            supply: utils.formatUnits(usdcSupply, 6),
           },
           {
             token: "WBTC",
@@ -1288,6 +1296,8 @@ class App extends Component {
             dirt: utils.formatUnits(wbtcADogIlk.dirt, 45),
             kicks: wbtcKicks.toNumber(),
             drip: this.unixToDateTime(jugWbtcDrip.rho.toNumber()),
+            locked: utils.formatUnits(wbtcLocked, 8),
+            supply: utils.formatUnits(wbtcSupply, 8),
           },
           {
             token: "USDC",
@@ -1302,6 +1312,8 @@ class App extends Component {
             dirt: utils.formatUnits(usdcBDogIlk.dirt, 45),
             kicks: usdcBKicks.toNumber(),
             drip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
+            locked: utils.formatUnits(usdcBLocked, 6),
+            supply: utils.formatUnits(usdcSupply, 6),
           },
           {
             token: "TUSD",
@@ -1316,6 +1328,8 @@ class App extends Component {
             dirt: utils.formatUnits(tusdADogIlk.dirt, 45),
             kicks: tusdAKicks.toNumber(),
             drip: this.unixToDateTime(jugTusdDrip.rho.toNumber()),
+            locked: utils.formatEther(tusdLocked),
+            supply: utils.formatEther(tusdSupply),
           },
           {
             token: "KNC",
@@ -1334,6 +1348,8 @@ class App extends Component {
             dirt: utils.formatUnits(kncADogIlk.dirt, 45),
             kicks: kncAKicks.toNumber(),
             drip: this.unixToDateTime(jugKncADrip.rho.toNumber()),
+            locked: utils.formatEther(kncALocked),
+            supply: utils.formatEther(kncSupply),
           },
           {
             token: "ZRX",
@@ -1352,6 +1368,8 @@ class App extends Component {
             dirt: utils.formatUnits(zrxADogIlk.dirt, 45),
             kicks: zrxAKicks.toNumber(),
             drip: this.unixToDateTime(jugZrxADrip.rho.toNumber()),
+            locked: utils.formatEther(zrxALocked),
+            supply: utils.formatEther(zrxSupply),
           },
           {
             token: "MANA",
@@ -1370,6 +1388,8 @@ class App extends Component {
             dirt: utils.formatUnits(manaADogIlk.dirt, 45),
             kicks: manaAKicks.toNumber(),
             drip: this.unixToDateTime(jugManaADrip.rho.toNumber()),
+            locked: utils.formatEther(manaALocked),
+            supply: utils.formatEther(manaSupply),
           },
           {
             token: "PAX",
@@ -1384,6 +1404,8 @@ class App extends Component {
             dirt: utils.formatUnits(paxADogIlk.dirt, 45),
             kicks: paxAKicks.toNumber(),
             drip: this.unixToDateTime(jugPaxADrip.rho.toNumber()),
+            locked: utils.formatEther(paxALocked),
+            supply: utils.formatEther(paxSupply),
           },
           {
             token: "USDT",
@@ -1398,6 +1420,8 @@ class App extends Component {
             dirt: utils.formatUnits(usdtADogIlk.dirt, 45),
             kicks: usdtAKicks.toNumber(),
             drip: this.unixToDateTime(jugUsdtADrip.rho.toNumber()),
+            locked: utils.formatUnits(usdtALocked, 6),
+            supply: utils.formatUnits(usdtSupply, 6),
           },
           {
             token: "COMP",
@@ -1416,6 +1440,8 @@ class App extends Component {
             dirt: utils.formatUnits(compADogIlk.dirt, 45),
             kicks: compAKicks.toNumber(),
             drip: this.unixToDateTime(jugCompADrip.rho.toNumber()),
+            locked: utils.formatEther(compALocked),
+            supply: utils.formatEther(compSupply),
           },
           {
             token: "LRC",
@@ -1434,6 +1460,8 @@ class App extends Component {
             dirt: utils.formatUnits(lrcADogIlk.dirt, 45),
             kicks: lrcAKicks.toNumber(),
             drip: this.unixToDateTime(jugLrcADrip.rho.toNumber()),
+            locked: utils.formatEther(lrcALocked),
+            supply: utils.formatEther(lrcSupply),
           },
           {
             token: "LINK",
@@ -1452,6 +1480,8 @@ class App extends Component {
             dirt: utils.formatUnits(linkADogIlk.dirt, 45),
             kicks: linkAKicks.toNumber(),
             drip: this.unixToDateTime(jugLinkADrip.rho.toNumber()),
+            locked: utils.formatEther(linkALocked),
+            supply: utils.formatEther(linkSupply),
           },
           {
             token: "ETH",
@@ -1470,6 +1500,8 @@ class App extends Component {
             dirt: utils.formatUnits(ethBDogIlk.dirt, 45),
             kicks: ethBKicks.toNumber(),
             drip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
+            locked: utils.formatEther(ethBLocked),
+            supply: utils.formatEther(ethSupply),
           },
           {
             token: "BAL",
@@ -1488,6 +1520,8 @@ class App extends Component {
             dirt: utils.formatUnits(balADogIlk.dirt, 45),
             kicks: balAKicks.toNumber(),
             drip: this.unixToDateTime(jugBalADrip.rho.toNumber()),
+            locked: utils.formatEther(balALocked),
+            supply: utils.formatEther(balSupply),
           },
           {
             token: "YFI",
@@ -1506,6 +1540,8 @@ class App extends Component {
             dirt: utils.formatUnits(yfiADogIlk.dirt, 45),
             kicks: yfiAKicks.toNumber(),
             drip: this.unixToDateTime(jugYfiADrip.rho),
+            locked: utils.formatEther(yfiALocked),
+            supply: utils.formatEther(yfiSupply),
           },
           {
             token: "GUSD",
@@ -1520,6 +1556,8 @@ class App extends Component {
             dirt: utils.formatUnits(gusdADogIlk.dirt, 45),
             kicks: gusdAKicks.toNumber(),
             drip: this.unixToDateTime(jugGusdADrip.rho),
+            locked: utils.formatUnits(gusdALocked, 2),
+            supply: utils.formatUnits(gusdSupply, 2),
           },
           {
             token: "UNI",
@@ -1538,6 +1576,8 @@ class App extends Component {
             dirt: utils.formatUnits(uniADogIlk.dirt, 45),
             kicks: uniAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniADrip.rho),
+            locked: utils.formatEther(uniALocked),
+            supply: utils.formatEther(uniSupply),
           },
           {
             token: "RENBTC",
@@ -1556,6 +1596,8 @@ class App extends Component {
             dirt: utils.formatUnits(renbtcADogIlk.dirt, 45),
             kicks: renbtcAKicks.toNumber(),
             drip: this.unixToDateTime(jugRenbtcADrip.rho),
+            locked: utils.formatUnits(renbtcALocked, 8),
+            supply: utils.formatUnits(renbtcSupply, 8),
           },
           {
             token: "AAVE",
@@ -1574,6 +1616,8 @@ class App extends Component {
             dirt: utils.formatUnits(aaveADogIlk.dirt, 45),
             kicks: aaveAKicks.toNumber(),
             drip: this.unixToDateTime(jugAaveADrip.rho),
+            locked: utils.formatEther(aaveALocked),
+            supply: utils.formatEther(aaveSupply),
           },
           {
             token: "UNIV2DAIETH",
@@ -1592,6 +1636,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2daiethADogIlk.dirt, 45),
             kicks: univ2daiethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2daiethADrip.rho),
+            locked: utils.formatEther(univ2daiethALocked),
+            supply: utils.formatEther(univ2daiethSupply),
           },
           {
             token: "UNIV2WBTCETH",
@@ -1610,6 +1656,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2wbtcethADogIlk.dirt, 45),
             kicks: univ2wbtcethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2wbtcethADrip.rho),
+            locked: utils.formatEther(univ2wbtcethALocked),
+            supply: utils.formatEther(univ2wbtcethSupply),
           },
           {
             token: "UNIV2USDCETH",
@@ -1628,6 +1676,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2usdcethADogIlk.dirt, 45),
             kicks: univ2usdcethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2usdcethADrip.rho),
+            locked: utils.formatEther(univ2usdcethALocked),
+            supply: utils.formatEther(univ2usdcethSupply),
           },
           {
             token: "UNIV2DAIUSDC",
@@ -1646,6 +1696,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2daiusdcADogIlk.dirt, 45),
             kicks: univ2daiusdcAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2daiusdcADrip.rho),
+            locked: utils.formatEther(univ2daiusdcALocked),
+            supply: utils.formatEther(univ2daiusdcSupply),
           },
           {
             token: "UNIV2ETHUSDT",
@@ -1664,6 +1716,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2ethusdtADogIlk.dirt, 45),
             kicks: univ2ethusdtAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2ethusdtADrip.rho),
+            locked: utils.formatEther(univ2ethusdtALocked),
+            supply: utils.formatEther(univ2ethusdtSupply),
           },
           {
             token: "UNIV2LINKETH",
@@ -1682,6 +1736,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2linkethADogIlk.dirt, 45),
             kicks: univ2linkethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2linkethADrip.rho),
+            locked: utils.formatEther(univ2linkethALocked),
+            supply: utils.formatEther(univ2linkethSupply),
           },
           {
             token: "UNIV2UNIETH",
@@ -1700,6 +1756,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2uniethADogIlk.dirt, 45),
             kicks: univ2uniethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2uniethADrip.rho),
+            locked: utils.formatEther(univ2uniethALocked),
+            supply: utils.formatEther(univ2uniethSupply),
           },
           {
             token: "UNIV2WBTCDAI",
@@ -1718,6 +1776,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2wbtcdaiADogIlk.dirt, 45),
             kicks: univ2wbtcdaiAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2wbtcdaiADrip.rho),
+            locked: utils.formatEther(univ2wbtcdaiALocked),
+            supply: utils.formatEther(univ2wbtcdaiSupply),
           },
           {
             token: "UNIV2AAVEETH",
@@ -1736,6 +1796,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2aaveethADogIlk.dirt, 45),
             kicks: univ2aaveethAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2aaveethADrip.rho),
+            locked: utils.formatEther(univ2aaveethALocked),
+            supply: utils.formatEther(univ2aaveethSupply),
           },
           {
             token: "UNIV2DAIUSDT",
@@ -1754,6 +1816,8 @@ class App extends Component {
             dirt: utils.formatUnits(univ2daiusdtADogIlk.dirt, 45),
             kicks: univ2daiusdtAKicks.toNumber(),
             drip: this.unixToDateTime(jugUniv2daiusdtADrip.rho),
+            locked: utils.formatEther(univ2daiusdtALocked),
+            supply: utils.formatEther(univ2daiusdtSupply),
           },
           {
             token: "ETH",
@@ -1772,6 +1836,8 @@ class App extends Component {
             dirt: utils.formatUnits(ethCDogIlk.dirt, 45),
             kicks: ethCKicks.toNumber(),
             drip: this.unixToDateTime(jugEthCDrip.rho.toNumber()),
+            locked: utils.formatEther(ethCLocked),
+            supply: utils.formatEther(ethSupply),
           },
           {
             token: "RWA001",
@@ -1782,6 +1848,8 @@ class App extends Component {
             line: utils.formatUnits(rwa001AIlk.line, 45),
             dust: utils.formatUnits(rwa001AIlk.dust, 45),
             drip: this.unixToDateTime(rwa001ADrip.rho),
+            locked: utils.formatEther(rwa001ALocked),
+            supply: utils.formatEther(rwa001Supply),
           },
           {
             token: "RWA002",
@@ -1792,11 +1860,13 @@ class App extends Component {
             line: utils.formatUnits(rwa002AIlk.line, 45),
             dust: utils.formatUnits(rwa002AIlk.dust, 45),
             drip: this.unixToDateTime(rwa002ADrip.rho),
+            locked: utils.formatEther(rwa002ALocked),
+            supply: utils.formatEther(rwa002Supply),
           },
           {  // include PSM in CollateralChart
             token: "USDC",
             ilk: "PSM-USDC-A",
-            Art: utils.formatUnits(psmUsdcALocked[0], 6),
+            Art: utils.formatUnits(psmUsdcALocked, 6),
             rate: 1,
             lineMax: utils.formatUnits(psmusdcAAutoLineIlk.line, 45),
             gap: utils.formatUnits(psmusdcAAutoLineIlk.gap, 45),
@@ -1806,69 +1876,17 @@ class App extends Component {
             hole: utils.formatUnits(psmusdcADogIlk.hole, 45),
             dirt: utils.formatUnits(psmusdcADogIlk.dirt, 45),
             kicks: psmusdcAKicks.toNumber(),
+            locked: utils.formatUnits(psmUsdcALocked, 6),
+            supply: utils.formatUnits(usdcSupply, 6),
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
-        ethSupply: utils.formatEther(ethSupply),
-        ethLocked: utils.formatEther(ethLocked[0]),
-        ethBLocked: utils.formatEther(ethBLocked[0]),
-        ethCLocked: utils.formatEther(ethCLocked[0]),
-        batSupply: utils.formatEther(batSupply[0]),
-        batLocked: utils.formatEther(batLocked[0]),
-        usdcSupply: utils.formatUnits(usdcSupply[0], 6),
-        usdcLocked: utils.formatUnits(usdcLocked[0], 6),
-        usdcBLocked: utils.formatUnits(usdcBLocked[0], 6),
-        paxSupply: utils.formatEther(paxSupply[0]),
-        paxALocked: utils.formatEther(paxALocked[0]),
-        usdtSupply: utils.formatUnits(usdtSupply[0], 6),
-        usdtALocked: utils.formatUnits(usdtALocked[0], 6),
-        compSupply: utils.formatEther(compSupply[0]),
-        compALocked: utils.formatEther(compALocked[0]),
-        lrcSupply: utils.formatEther(lrcSupply[0]),
-        lrcALocked: utils.formatEther(lrcALocked[0]),
-        linkSupply: utils.formatEther(linkSupply[0]),
-        linkALocked: utils.formatEther(linkALocked[0]),
-        balSupply: utils.formatEther(balSupply[0]),
-        balALocked: utils.formatEther(balALocked[0]),
-        yfiSupply: utils.formatEther(yfiSupply[0]),
-        yfiALocked: utils.formatEther(yfiALocked[0]),
-        gusdSupply: utils.formatUnits(gusdSupply[0], 2),
-        gusdALocked: utils.formatUnits(gusdALocked[0], 2),
-        uniSupply: utils.formatEther(uniSupply[0]),
-        uniALocked: utils.formatEther(uniALocked[0]),
-        renbtcSupply: utils.formatUnits(renbtcSupply[0], 8),
-        renbtcALocked: utils.formatUnits(renbtcALocked[0], 8),
-        aaveSupply: utils.formatEther(aaveSupply[0]),
-        aaveALocked: utils.formatEther(aaveALocked[0]),
-        univ2daiethSupply: utils.formatEther(univ2daiethSupply[0]),
-        univ2daiethALocked: utils.formatEther(univ2daiethALocked[0]),
-        univ2wbtcethSupply: utils.formatEther(univ2wbtcethSupply[0]),
-        univ2wbtcethALocked: utils.formatEther(univ2wbtcethALocked[0]),
-        univ2usdcethSupply: utils.formatEther(univ2usdcethSupply[0]),
-        univ2usdcethALocked: utils.formatEther(univ2usdcethALocked[0]),
-        univ2daiusdcSupply: utils.formatEther(univ2daiusdcSupply[0]),
-        univ2daiusdcALocked: utils.formatEther(univ2daiusdcALocked[0]),
-        univ2ethusdtSupply: utils.formatEther(univ2ethusdtSupply[0]),
-        univ2ethusdtALocked: utils.formatEther(univ2ethusdtALocked[0]),
-        univ2linkethSupply: utils.formatEther(univ2linkethSupply[0]),
-        univ2linkethALocked: utils.formatEther(univ2linkethALocked[0]),
-        univ2uniethSupply: utils.formatEther(univ2uniethSupply[0]),
-        univ2uniethALocked: utils.formatEther(univ2uniethALocked[0]),
-        univ2wbtcdaiSupply: utils.formatEther(univ2wbtcdaiSupply[0]),
-        univ2wbtcdaiALocked: utils.formatEther(univ2wbtcdaiALocked[0]),
-        univ2aaveethSupply: utils.formatEther(univ2aaveethSupply[0]),
-        univ2aaveethALocked: utils.formatEther(univ2aaveethALocked[0]),
-        univ2daiusdtSupply: utils.formatEther(univ2daiusdtSupply[0]),
-        univ2daiusdtALocked: utils.formatEther(univ2daiusdtALocked[0]),
-        rwa001Supply: utils.formatEther(rwa001Supply[0]),
-        rwa001ALocked: utils.formatEther(rwa001ALocked[0]),
-        rwa002Supply: utils.formatEther(rwa002Supply[0]),
-        rwa002ALocked: utils.formatEther(rwa002ALocked[0]),
-        psmUsdcALocked: utils.formatUnits(psmUsdcALocked[0], 6),
         gemPit: utils.formatEther(gemPit[0]),
         uniswapDai: utils.formatEther(uniswapDai[0]),
         uniswapMkr: utils.formatEther(uniswapMkr[0]),
         balancerV2Dai: utils.formatEther(balancerV2Dai[0]),
+        psmUsdcALocked: utils.formatUnits(psmUsdcALocked, 6),
+        usdcSupply: utils.formatUnits(usdcSupply, 6),
         ethFee: ethFee.toFixed(2),
         ethBFee: ethBFee.toFixed(2),
         ethCFee: ethCFee.toFixed(2),
@@ -2000,16 +2018,6 @@ class App extends Component {
         bigSin: utils.formatUnits(sin[0], 45),
         daiBrewing: utils.formatUnits(daiBrewing, 45),
         oasisDexDai: utils.formatEther(oasisDexDai[0]),
-        wbtcSupply: utils.formatUnits(wbtcSupply[0], 8),
-        wbtcLocked: utils.formatUnits(wbtcLocked[0], 8),
-        tusdSupply: utils.formatEther(tusdSupply[0]),
-        tusdLocked: utils.formatEther(tusdLocked[0]),
-        kncSupply: utils.formatEther(kncSupply[0]),
-        kncALocked: utils.formatEther(kncALocked[0]),
-        zrxSupply: utils.formatEther(zrxSupply[0]),
-        zrxALocked: utils.formatEther(zrxALocked[0]),
-        manaSupply: utils.formatEther(manaSupply[0]),
-        manaALocked: utils.formatEther(manaALocked[0]),
         protocolTreasury: utils.formatEther(protocolTreasury[0]),
         bkrSupply: utils.formatEther(bkrSupply[0]),
         mkrBroken: utils.formatEther(mkrBroken[0]),

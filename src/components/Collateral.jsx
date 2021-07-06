@@ -68,13 +68,13 @@ function Collateral(props) {
       </div>
       <div className="column">
         <div className="has-text-centered">
-          <h3 className="title" title={props.locked}>
-            {props.showLockedDecimals ? formatDp.format(props.locked) : formatNoDecimals.format(props.locked)}</h3>
+          <h3 className="title" title={props.ilks[props.idx].locked}>
+            {props.showLockedDecimals ? formatDp.format(props.ilks[props.idx].locked) : formatNoDecimals.format(props.ilks[props.idx].locked)}</h3>
           <p className="title subtitle is-size-4">
             {t('daistats.token_locked', { token: props.ilks[props.idx].ilk })}
           </p>
           <p className="subtitle is-size-6">
-            {t('daistats.token_supply_locked', { token: props.ilks[props.idx].ilk })}: {formatPercent.format(props.locked / props.supply)}</p>
+            {t('daistats.token_supply_locked', { token: props.ilks[props.idx].ilk })}: {formatPercent.format(props.ilks[props.idx].locked / props.ilks[props.idx].supply)}</p>
         </div>
       </div>
     </div>
