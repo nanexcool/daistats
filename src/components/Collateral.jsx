@@ -41,40 +41,41 @@ function autoLine(props, label) {
 
 function Collateral(props) {
   const t = useTranslate()
+  const ilk = props.ilks[props.idx]
   return (
     <div>
       <div className="columns">
       <div className="column is-half">
         <div className="has-text-centered">
           <h3 className="title"
-            title={props.ilks[props.idx].Art * props.ilks[props.idx].rate}>
-            {formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate)} / {formatAmount.format(props.ilks[props.idx].line)}
+            title={ilk.Art * ilk.rate}>
+            {formatAmount.format(ilk.Art * ilk.rate)} / {formatAmount.format(ilk.line)}
           </h3>
           <p className="title subtitle is-size-4">
-            {t('daistats.dai_from_token', { token: props.ilks[props.idx].ilk })} ({formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.debt * 100)}%)
+            {t('daistats.dai_from_token', { token: ilk.ilk })} ({formatAmount.format(ilk.Art * ilk.rate / props.debt * 100)}%)
               </p>
           {autoLine(props, t('maker.debt_ceiling'))}
           <p
-            className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(props.ilks[props.idx].Art * props.ilks[props.idx].rate / props.ilks[props.idx].line * 100)}%</p>
+            className="subtitle is-size-6">{t('daistats.utilization')}: {formatAmount.format(ilk.Art * ilk.rate / ilk.line * 100)}%</p>
         </div>
       </div>
       <div className="column">
         <div className="has-text-centered">
           <h3 className="title" title={props.fee}>{props.fee}%</h3>
-          <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: props.ilks[props.idx].ilk })}</p>
-          <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.ilks[props.idx].drip}</p>
-          <p className="title subtitle is-size-6">{/*{t('daistats.dust')}*/}Dust: {formatAmount.format(props.ilks[props.idx].dust)}</p>
+          <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: ilk.ilk })}</p>
+          <p className="subtitle is-size-6">{t('daistats.last_drip')}: {ilk.drip}</p>
+          <p className="title subtitle is-size-6">{/*{t('daistats.dust')}*/}Dust: {formatAmount.format(ilk.dust)}</p>
         </div>
       </div>
       <div className="column">
         <div className="has-text-centered">
-          <h3 className="title" title={props.ilks[props.idx].locked}>
-            {props.showLockedDecimals ? formatDp.format(props.ilks[props.idx].locked) : formatNoDecimals.format(props.ilks[props.idx].locked)}</h3>
+          <h3 className="title" title={ilk.locked}>
+            {props.showLockedDecimals ? formatDp.format(ilk.locked) : formatNoDecimals.format(ilk.locked)}</h3>
           <p className="title subtitle is-size-4">
-            {t('daistats.token_locked', { token: props.ilks[props.idx].ilk })}
+            {t('daistats.token_locked', { token: ilk.ilk })}
           </p>
           <p className="subtitle is-size-6">
-            {t('daistats.token_supply_locked', { token: props.ilks[props.idx].ilk })}: {formatPercent.format(props.ilks[props.idx].locked / props.ilks[props.idx].supply)}</p>
+            {t('daistats.token_supply_locked', { token: ilk.ilk })}: {formatPercent.format(ilk.locked / ilk.supply)}</p>
         </div>
       </div>
     </div>
