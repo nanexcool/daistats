@@ -73,7 +73,7 @@ const CollateralChart = ({ ilks, debt, useValue }) => {
   }
 
   function ilkThreshold(v) {
-    return v["value"] >= 2.0
+    return v["value"] >= 2.2
   }
 
   function label(i) {
