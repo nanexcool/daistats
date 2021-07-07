@@ -122,14 +122,14 @@ const HistoricalDebtChart = ({ data }) => {
             type="step"
             dot={false}
             stackId={1}
-            animationDuration={1000}
+            animationDuration={750}
             stroke="#7E7E87"
           />
           <Area
             dataKey="totalDebt"
             type="monotone"
             stackId={2}
-            animationDuration={1000}
+            animationDuration={750}
             stroke="#008E7B"
             fill="url(#totalDebtColor)"
             fillOpacity={1}
