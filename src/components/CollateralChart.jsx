@@ -10,6 +10,14 @@ const COLORS = ["hsl(171, 100%, 41%)",
     "hsl(48, 100%, 67%)",
     "hsl(348, 100%, 61%)"]
 
+const ILK_TO_COLOUR = {
+    "PSM-USDC-A": "hsl(171, 100%, 41%)",
+    "ETH-A": "hsl(217, 71%, 53%)",
+    "USDC-A": "hsl(204, 86%, 53%)",
+    "WBTC-A": "hsl(141, 71%, 48%)",
+    "ETH-C": "hsl(48, 100%, 67%)",
+    "Others": "hsl(348, 100%, 61%)"}
+
 // bluma light
 const COLORS_LIGHT = [ "hsl(171, 100%, 96%)",
     "hsl(219, 70%, 96%)",
@@ -27,7 +35,7 @@ const COLORS_DARK = [
     "hsl(48, 100%, 29%)",
     "hsl(348, 86%, 43%)"]
 
-const CollateralChart = ({ ilks, debt }) => {
+const CollateralChart = ({ ilks, debt, useValue }) => {
   const t = useTranslate()
 
   const locale = useMemo(() => (
@@ -53,8 +61,15 @@ const CollateralChart = ({ ilks, debt }) => {
   )
 
   function ilkPercent(ilk) {
-    return {"name": ilk['ilk'],
-            "value": ilk.Art * ilk.rate / debt * 100}
+    if (useValue) {
+      return {"name": ilk['ilk'],
+              "valueLocked": ilk.value,
+              "value": ilk.value / debt * 100}
+    } else {
+      return {"name": ilk['ilk'],
+              "valueLocked": ilk.value,
+              "value": ilk.Art * ilk.rate / debt * 100}
+    }
   }
 
   function ilkThreshold(v) {
@@ -62,11 +77,11 @@ const CollateralChart = ({ ilks, debt }) => {
   }
 
   function label(i) {
-      return i["name"]
+    return i["name"]
   }
 
   function tooltip(value, name, props) {
-      return formatPercent.format(value / 100) // + " " + formatTwoDp.format(value) + "B"
+    return formatPercent.format(value / 100) //+ " " + formatTwoDp.format(props.value) + "B"
   }
 
   function sortByTokenPercent(a, b) {
@@ -91,10 +106,12 @@ const CollateralChart = ({ ilks, debt }) => {
         <PieChart>
           <Pie data={data} dataKey="value" nameKey="name"
             label={label} labelLine={false}
-            animationDuration={1000}
+            animationDuration={750}
             startAngle={50} endAngle={410}>
              // FIXME use grey instead of fill colour for labels? set stroke colour?
-             {data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+             //{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+             // FIXME hardwired colour map to match key between charts
+             {data.map((entry, index) => <Cell fill={ILK_TO_COLOUR[entry.name]}/>)}
           </Pie>
           <Tooltip formatter={tooltip}/>
         </PieChart>

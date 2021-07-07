@@ -1178,6 +1178,7 @@ class App extends Component {
                 ].reduce((t, i) => t.add(i), ethers.BigNumber.from('0'))
 
     const usdcBN = ethers.BigNumber.from(usdcPrice).mul(DP10)
+    // FIXME this can now be a reduce on state.ilks list value keys
     const sysLocked = [
             ethLocked.mul(ethPriceMedian.mul(DP10)),
             ethBLocked.mul(ethPriceMedian.mul(DP10)),
@@ -1225,7 +1226,6 @@ class App extends Component {
         blockNumber: block.toString(),
         Line: utils.formatUnits(res[0], 45),
         debt: utils.formatUnits(res[1], 45),
-
         ilks: [
           {
             token: "ETH",
@@ -1250,6 +1250,7 @@ class App extends Component {
             priceNxt: utils.formatEther(ethPriceNxt),
             priceMedian: utils.formatEther(ethPriceMedian),
             zzz: this.unixToTime(+ethZzz + HOP),
+            value: utils.formatUnits(ethLocked.mul(ethPriceMedian.mul(DP10)), 45),
           },
           {
             token: "BAT",
@@ -1274,6 +1275,7 @@ class App extends Component {
             priceNxt: utils.formatEther(batPriceNxt),
             priceMedian: utils.formatEther(batPriceMedian),
             zzz: this.unixToTime(+batZzz + HOP),
+            value: utils.formatUnits(batLocked.mul(batPriceMedian.mul(DP10)), 45),
           },
           {
             token: "USDC",
@@ -1291,6 +1293,7 @@ class App extends Component {
             locked: utils.formatUnits(usdcLocked, 6),
             supply: utils.formatUnits(usdcSupply, 6),
             price: utils.formatEther(usdcPrice),
+            value: utils.formatUnits(usdcLocked.mul(DP7).mul(usdcBN), 45),
           },
           {
             token: "WBTC",
@@ -1315,6 +1318,7 @@ class App extends Component {
             priceNxt: utils.formatEther(wbtcPriceNxt),
             priceMedian: utils.formatEther(wbtcPriceMedian),
             zzz: this.unixToTime(+wbtcZzz + HOP),
+            value: utils.formatUnits(wbtcLocked.mul(DP8).mul(wbtcPriceMedian.mul(DP10)), 45)
           },
           {
             token: "USDC",
@@ -1331,6 +1335,7 @@ class App extends Component {
             drip: this.unixToDateTime(jugUsdcBDrip.rho.toNumber()),
             locked: utils.formatUnits(usdcBLocked, 6),
             supply: utils.formatUnits(usdcSupply, 6),
+            value: utils.formatUnits(usdcBLocked.mul(DP7).mul(usdcBN), 45),
           },
           {
             token: "TUSD",
@@ -1348,6 +1353,7 @@ class App extends Component {
             locked: utils.formatEther(tusdLocked),
             supply: utils.formatEther(tusdSupply),
             price: utils.formatEther(tusdPrice),
+            value: utils.formatUnits(tusdLocked.mul(usdcBN), 45),
           },
           {
             token: "KNC",
@@ -1372,6 +1378,7 @@ class App extends Component {
             priceNxt: utils.formatEther(kncPriceNxt),
             priceMedian: utils.formatEther(kncPriceMedian),
             zzz: this.unixToTime(+kncZzz + HOP),
+            value: utils.formatUnits(kncALocked.mul(kncPriceMedian.mul(DP10)), 45),
           },
           {
             token: "ZRX",
@@ -1396,6 +1403,7 @@ class App extends Component {
             priceNxt: utils.formatEther(zrxPriceNxt),
             priceMedian: utils.formatEther(zrxPriceMedian),
             zzz: this.unixToTime(+zrxZzz + HOP),
+            value: utils.formatUnits(zrxALocked.mul(zrxPriceMedian.mul(DP10)), 45),
           },
           {
             token: "MANA",
@@ -1420,6 +1428,7 @@ class App extends Component {
             priceNxt: utils.formatEther(manaPriceNxt),
             priceMedian: utils.formatEther(manaPriceMedian),
             zzz: this.unixToTime(+manaZzz + HOP),
+            value: utils.formatUnits(manaALocked.mul(manaPriceMedian.mul(DP10)), 45),
           },
           {
             token: "PAX",
@@ -1437,6 +1446,7 @@ class App extends Component {
             locked: utils.formatEther(paxALocked),
             supply: utils.formatEther(paxSupply),
             price: utils.formatEther(paxPrice),
+            value: utils.formatUnits(paxALocked.mul(usdcBN), 45),
           },
           {
             token: "USDT",
@@ -1457,6 +1467,7 @@ class App extends Component {
             priceNxt: utils.formatEther(usdtPriceNxt),
             priceMedian: utils.formatEther(usdtPriceMedian),
             zzz: this.unixToTime(+usdtZzz + HOP),
+            value: utils.formatUnits(usdtALocked.mul(DP6).mul(usdtPriceMedian.mul(DP10)), 45),
           },
           {
             token: "COMP",
@@ -1481,6 +1492,7 @@ class App extends Component {
             priceNxt: utils.formatEther(compPriceNxt),
             priceMedian: utils.formatEther(compPriceMedian),
             zzz: this.unixToTime(+compZzz + HOP),
+            value: utils.formatUnits(compALocked.mul(compPriceMedian.mul(DP10)), 45),
           },
           {
             token: "LRC",
@@ -1505,6 +1517,7 @@ class App extends Component {
             priceNxt: utils.formatEther(lrcPriceNxt),
             priceMedian: utils.formatEther(lrcPriceMedian),
             zzz: this.unixToTime(+lrcZzz + HOP),
+            value: utils.formatUnits(lrcALocked.mul(lrcPriceMedian.mul(DP10)), 45),
           },
           {
             token: "LINK",
@@ -1529,6 +1542,7 @@ class App extends Component {
             priceNxt: utils.formatEther(linkPriceNxt),
             priceMedian: utils.formatEther(linkPriceMedian),
             zzz: this.unixToTime(+linkZzz + HOP),
+            value: utils.formatUnits(linkALocked.mul(linkPriceMedian.mul(DP10)), 45),
           },
           {
             token: "ETH",
@@ -1549,6 +1563,7 @@ class App extends Component {
             drip: this.unixToDateTime(jugEthBDrip.rho.toNumber()),
             locked: utils.formatEther(ethBLocked),
             supply: utils.formatEther(ethSupply),
+            value: utils.formatUnits(ethBLocked.mul(ethPriceMedian.mul(DP10)), 45)
           },
           {
             token: "BAL",
@@ -1573,6 +1588,7 @@ class App extends Component {
             priceNxt: utils.formatEther(balPriceNxt),
             priceMedian: utils.formatEther(balPriceMedian),
             zzz: this.unixToTime(+balZzz + HOP),
+            value: utils.formatUnits(balALocked.mul(balPriceMedian.mul(DP10)), 45),
           },
           {
             token: "YFI",
@@ -1597,6 +1613,7 @@ class App extends Component {
             priceNxt: utils.formatEther(yfiPriceNxt),
             priceMedian: utils.formatEther(yfiPriceMedian),
             zzz: this.unixToTime(+yfiZzz + HOP),
+            value: utils.formatUnits(yfiALocked.mul(yfiPriceMedian.mul(DP10)), 45),
           },
           {
             token: "GUSD",
@@ -1614,6 +1631,7 @@ class App extends Component {
             locked: utils.formatUnits(gusdALocked, 2),
             supply: utils.formatUnits(gusdSupply, 2),
             price: utils.formatUnits(gusdPrice, 27),
+            value: utils.formatUnits(gusdALocked.mul(DP2).mul(usdcBN), 45),
           },
           {
             token: "UNI",
@@ -1638,6 +1656,7 @@ class App extends Component {
             priceNxt: utils.formatEther(uniPriceNxt),
             priceMedian: utils.formatEther(uniPriceMedian),
             zzz: this.unixToTime(+uniZzz + HOP),
+            value: utils.formatUnits(uniALocked.mul(uniPriceMedian.mul(DP10)), 45),
           },
           {
             token: "RENBTC",
@@ -1659,6 +1678,7 @@ class App extends Component {
             locked: utils.formatUnits(renbtcALocked, 8),
             supply: utils.formatUnits(renbtcSupply, 8),
             zzz: this.unixToTime(+renbtcZzz + HOP),
+            value: utils.formatUnits(renbtcALocked.mul(DP8).mul(wbtcPriceMedian.mul(DP10)), 45)
           },
           {
             token: "AAVE",
@@ -1683,6 +1703,7 @@ class App extends Component {
             priceNxt: utils.formatEther(aavePriceNxt),
             priceMedian: utils.formatEther(aavePriceMedian),
             zzz: this.unixToTime(+aaveZzz + HOP),
+            value: utils.formatUnits(aaveALocked.mul(aavePriceMedian.mul(DP10)), 45),
           },
           {
             token: "UNIV2DAIETH",
@@ -1706,6 +1727,7 @@ class App extends Component {
             price: utils.formatUnits(univ2daiethPrice, 27),
             priceNxt: utils.formatEther(univ2daiethPriceNxt),
             zzz: this.unixToTime(+univ2daiethZzz + HOP),
+            value: utils.formatUnits(univ2daiethALocked.mul(univ2daiethPrice), 45),
           },
           {
             token: "UNIV2WBTCETH",
@@ -1729,6 +1751,7 @@ class App extends Component {
             price: utils.formatUnits(univ2wbtcethPrice, 27),
             priceNxt: utils.formatEther(univ2wbtcethPriceNxt),
             zzz: this.unixToTime(+univ2wbtcethZzz + HOP),
+            value: utils.formatUnits(univ2wbtcethALocked.mul(univ2wbtcethPrice), 45),
           },
           {
             token: "UNIV2USDCETH",
@@ -1752,6 +1775,7 @@ class App extends Component {
             price: utils.formatUnits(univ2usdcethPrice, 27),
             priceNxt: utils.formatEther(univ2usdcethPriceNxt),
             zzz: this.unixToTime(+univ2usdcethZzz + HOP),
+            value: utils.formatUnits(univ2usdcethALocked.mul(univ2usdcethPrice), 45),
           },
           {
             token: "UNIV2DAIUSDC",
@@ -1775,6 +1799,7 @@ class App extends Component {
             price: utils.formatUnits(univ2daiusdcPrice, 27),
             priceNxt: utils.formatEther(univ2daiusdcPriceNxt),
             zzz: this.unixToTime(+univ2daiusdcZzz + HOP),
+            value: utils.formatUnits(univ2daiusdcALocked.mul(univ2daiusdcPrice), 45),
           },
           {
             token: "UNIV2ETHUSDT",
@@ -1798,6 +1823,7 @@ class App extends Component {
             price: utils.formatUnits(univ2ethusdtPrice, 27),
             priceNxt: utils.formatEther(univ2ethusdtPriceNxt),
             zzz: this.unixToTime(+univ2ethusdtZzz + HOP),
+            value: utils.formatUnits(univ2ethusdtALocked.mul(univ2ethusdtPrice), 45),
           },
           {
             token: "UNIV2LINKETH",
@@ -1821,6 +1847,7 @@ class App extends Component {
             price: utils.formatUnits(univ2linkethPrice, 27),
             priceNxt: utils.formatEther(univ2linkethPriceNxt),
             zzz: this.unixToTime(+univ2linkethZzz + HOP),
+            value: utils.formatUnits(univ2linkethALocked.mul(univ2linkethPrice), 45),
           },
           {
             token: "UNIV2UNIETH",
@@ -1844,6 +1871,7 @@ class App extends Component {
             price: utils.formatUnits(univ2uniethPrice, 27),
             priceNxt: utils.formatEther(univ2uniethPriceNxt),
             zzz: this.unixToTime(+univ2uniethZzz + HOP),
+            value: utils.formatUnits(univ2uniethALocked.mul(univ2uniethPrice), 45),
           },
           {
             token: "UNIV2WBTCDAI",
@@ -1867,6 +1895,7 @@ class App extends Component {
             price: utils.formatUnits(univ2wbtcdaiPrice, 27),
             priceNxt: utils.formatEther(univ2wbtcdaiPriceNxt),
             zzz: this.unixToTime(+univ2wbtcdaiZzz + HOP),
+            value: utils.formatUnits(univ2wbtcdaiALocked.mul(univ2wbtcdaiPrice), 45),
           },
           {
             token: "UNIV2AAVEETH",
@@ -1890,6 +1919,7 @@ class App extends Component {
             price: utils.formatUnits(univ2aaveethPrice, 27),
             priceNxt: utils.formatEther(univ2aaveethPriceNxt),
             zzz: this.unixToTime(+univ2aaveethZzz + HOP),
+            value: utils.formatUnits(univ2aaveethALocked.mul(univ2aaveethPrice), 45),
           },
           {
             token: "UNIV2DAIUSDT",
@@ -1913,6 +1943,7 @@ class App extends Component {
             price: utils.formatUnits(univ2daiusdtPrice, 27),
             priceNxt: utils.formatEther(univ2daiusdtPriceNxt),
             zzz: this.unixToTime(+univ2daiusdtZzz + HOP),
+            value: utils.formatUnits(univ2daiusdtALocked.mul(univ2daiusdtPrice), 45),
           },
           {
             token: "ETH",
@@ -1933,6 +1964,7 @@ class App extends Component {
             drip: this.unixToDateTime(jugEthCDrip.rho.toNumber()),
             locked: utils.formatEther(ethCLocked),
             supply: utils.formatEther(ethSupply),
+            value: utils.formatUnits(ethCLocked.mul(ethPriceMedian.mul(DP10)), 45),
           },
           {
             token: "RWA001",
@@ -1946,6 +1978,7 @@ class App extends Component {
             locked: utils.formatEther(rwa001ALocked),
             supply: utils.formatEther(rwa001Supply),
             price: utils.formatEther(rwa001Price),
+            value: utils.formatUnits(rwa001ALocked.mul(ethers.BigNumber.from(rwa001Price).mul(DP10)), 45),
           },
           {
             token: "RWA002",
@@ -1959,6 +1992,7 @@ class App extends Component {
             locked: utils.formatEther(rwa002ALocked),
             supply: utils.formatEther(rwa002Supply),
             price: utils.formatEther(rwa002Price),
+            value: utils.formatUnits(rwa002ALocked.mul(ethers.BigNumber.from(rwa002Price).mul(DP10)), 45),
           },
           {  // include PSM in CollateralChart
             token: "USDC",
@@ -1975,6 +2009,7 @@ class App extends Component {
             kicks: psmusdcAKicks.toNumber(),
             locked: utils.formatUnits(psmUsdcALocked, 6),
             supply: utils.formatUnits(usdcSupply, 6),
+            value: utils.formatUnits(psmUsdcALocked.mul(DP7).mul(usdcBN), 45),
           }
         ],
         daiSupply: utils.formatEther(daiSupply[0]),
