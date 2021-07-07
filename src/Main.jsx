@@ -117,12 +117,6 @@ const Main = (props) => {
               <h4 className="subtitle is-size-4">Collateral Backing Dai</h4>
             </div>
           </div>
-          {/*<div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={sysCollat}>{formatPercent.format(sysCollat)}</h3>
-              <h4 className="title subtitle is-size-4">{t('daistats.collat_ratio')}</h4>
-            </div>
-          </div>*/}
           <div className="column">
             <div className="box has-text-centered">
               <CollateralChart ilks={props.ilks} debt={props.debt} />
@@ -135,6 +129,12 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.sysLocked}>{formatAmount.format(props.sysLocked)}</h3>
               <h4 className="subtitle is-size-4">{t('daistats.total_locked')}</h4>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={sysCollat}>{formatPercent.format(sysCollat)}</h3>
+              <h4 className="title subtitle is-size-4">{t('daistats.collat_ratio')}</h4>
             </div>
           </div>
         </div>
