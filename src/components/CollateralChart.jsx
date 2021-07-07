@@ -95,6 +95,9 @@ const CollateralChart = ({ ilks, debt, useValue }) => {
   data.push({"name": "Others",
              "value": others.reduce((t, v) => t + v["value"], 0)})
 
+  // FIXME use grey instead of fill colour for labels? set stroke colour?
+  //{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
+  // FIXME hardwired colour map to match key between charts
   return (
     <div style={{
       height: 200,
@@ -108,9 +111,6 @@ const CollateralChart = ({ ilks, debt, useValue }) => {
             label={label} labelLine={false}
             animationDuration={750}
             startAngle={50} endAngle={410}>
-             // FIXME use grey instead of fill colour for labels? set stroke colour?
-             //{data.map((entry, index) => <Cell fill={COLORS[index % COLORS.length]}/>)}
-             // FIXME hardwired colour map to match key between charts
              {data.map((entry, index) => <Cell fill={ILK_TO_COLOUR[entry.name]}/>)}
           </Pie>
           <Tooltip formatter={tooltip}/>
