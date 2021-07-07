@@ -114,7 +114,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <CollateralChart ilks={props.ilks} debt={props.sysLocked} useValue={true} />
-              <h4 className="subtitle is-size-4">Collateral Backing Dai</h4>
+              <h4 className="subtitle is-size-4">Dai Collateralization</h4>
             </div>
           </div>
           <div className="column">
@@ -127,7 +127,7 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.sysLocked}>{formatAmount.format(props.sysLocked)}</h3>
+              <h3 className="title" title={props.sysLocked}>${formatAmount.format(props.sysLocked)}</h3>
               <h4 className="subtitle is-size-4">{t('daistats.total_locked')}</h4>
             </div>
           </div>
@@ -264,14 +264,6 @@ const Main = (props) => {
           <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
           <Pip {...props} token="RWA002" idx="33" formater={formatTwoDp} />
         </div>
-
-          {/* <div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={sysCollat}>{formatPercent.format(sysCollat)}</h3>
-              <p className="title subtitle is-size-4">{t('daistats.collat_ratio')}</p>
-              <p className="subtitle is-size-6">{t('daistats.total_locked')}: ${formatAmount.format(props.sysLocked)}</p>
-            </div>
-          </div> */}
 
           {/* <div className="column">
               <div className="box has-text-centered">
