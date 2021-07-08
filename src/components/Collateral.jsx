@@ -77,7 +77,7 @@ function Collateral(props) {
           <p className="subtitle is-size-6">
             {t('daistats.token_supply_locked', { token: ilk.ilk })}: {formatPercent.format(ilk.locked / ilk.supply)}</p>
           <p className="title subtitle is-size-6" title={ilk.value}>
-            Value Locked: { formatAmount.format(ilk.value) }
+            Value Locked: ${ formatAmount.format(ilk.value) }
           </p>
         </div>
       </div>
