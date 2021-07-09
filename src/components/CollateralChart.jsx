@@ -67,9 +67,11 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   function ilkPercent(ilk) {
     if (useValue) {
       return {"name": ilk['ilk'],
+              "token": ilk['token'],
               "value": ilk.value / debt * 100}
     } else {
       return {"name": ilk['ilk'],
+              "token": ilk['token'],
               "value": ilk.Art * ilk.rate / debt * 100}
     }
   }
@@ -98,15 +100,15 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   };
 
   function reduce(kv) {
-    return {"ilk": kv[0],
+    return {"name": kv[0],
             "value": kv[1].reduce((t, v) => t + Number(v["value"]), Number("0"))}
   }
 
   var all;
   if (groupBy) {
-    const grouped = group(ilks, "token")
-    const rd = Object.entries(grouped).map(reduce)
-    all = rd.map(ilkPercent)
+    const percent = ilks.map(ilkPercent)
+    const grouped = group(percent, "token")
+    all = Object.entries(grouped).map(reduce)
   } else {
     all = ilks.map(ilkPercent)
   }
