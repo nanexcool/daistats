@@ -27,6 +27,8 @@ add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
+add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
+add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 add["MCD_JOIN_USDC_PSM"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
@@ -646,12 +648,14 @@ class App extends Component {
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 320
 
       [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 323
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])], // 322
 
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
-      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 325
+      [add.CHIEF, chief.interface.encodeFunctionData('hat', [])], // 324
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
+
+      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])], // 327
 
     ], {blockTag: blockNumber})
     let promises = [
@@ -1136,6 +1140,8 @@ class App extends Component {
     const hat = chief.interface.decodeFunctionResult('hat', res[324])
     const esmMin = esm.interface.decodeFunctionResult('min', res[325])[0]
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[326])[0]
+
+    const optimisticDaiSupply = dai.interface.decodeFunctionResult('balanceOf', res[327])[0]
 
     const sysLockedWrong = [
             ethLocked.mul(ethPrice),
@@ -2089,6 +2095,7 @@ class App extends Component {
         hat: hat,
         esmMin: utils.formatEther(esmMin),
         esmSum: utils.formatEther(esmSum),
+        optimisticDaiSupply: utils.formatEther(optimisticDaiSupply),
         historicalDebt,
       }
     })
