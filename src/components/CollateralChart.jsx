@@ -11,11 +11,15 @@ const COLORS = ["hsl(171, 100%, 41%)",
     "hsl(348, 100%, 61%)"]
 
 const ILK_TO_COLOUR = {
+    "USDC": "hsl(171, 100%, 41%)",
     "PSM-USDC-A": "hsl(171, 100%, 41%)",
+    "ETH": "hsl(217, 71%, 53%)",
     "ETH-A": "hsl(217, 71%, 53%)",
-    "USDC-A": "hsl(204, 86%, 53%)",
+    "WBTC": "hsl(141, 71%, 48%)",
     "WBTC-A": "hsl(141, 71%, 48%)",
+    "USDC-A": "hsl(204, 86%, 53%)",
     "ETH-C": "hsl(48, 100%, 67%)",
+    "YFI": "hsl(48, 100%, 67%)",
     "Others": "hsl(348, 100%, 61%)"}
 
 // bluma light
@@ -35,7 +39,7 @@ const COLORS_DARK = [
     "hsl(48, 100%, 29%)",
     "hsl(348, 86%, 43%)"]
 
-const CollateralChart = ({ ilks, debt, useValue }) => {
+const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   const t = useTranslate()
 
   const locale = useMemo(() => (
@@ -63,11 +67,9 @@ const CollateralChart = ({ ilks, debt, useValue }) => {
   function ilkPercent(ilk) {
     if (useValue) {
       return {"name": ilk['ilk'],
-              "valueLocked": ilk.value,
               "value": ilk.value / debt * 100}
     } else {
       return {"name": ilk['ilk'],
-              "valueLocked": ilk.value,
               "value": ilk.Art * ilk.rate / debt * 100}
     }
   }
@@ -88,7 +90,27 @@ const CollateralChart = ({ ilks, debt, useValue }) => {
     return b.value - a.value;
   }
 
-  const all = ilks.map(ilkPercent)
+  var group = function(xs, key) {
+    return xs.reduce(function(rv, x) {
+      (rv[x[key]] = rv[x[key]] || []).push(x);
+        return rv;
+      }, {});
+  };
+
+  function reduce(kv) {
+    return {"ilk": kv[0],
+            "value": kv[1].reduce((t, v) => t + Number(v["value"]), Number("0"))}
+  }
+
+  var all;
+  if (groupBy) {
+    const grouped = group(ilks, "token")
+    const rd = Object.entries(grouped).map(reduce)
+    all = rd.map(ilkPercent)
+  } else {
+    all = ilks.map(ilkPercent)
+  }
+
   all.sort(sortByTokenPercent)
   const others = all.filter(i => !ilkThreshold(i))
   const data = all.filter(ilkThreshold)

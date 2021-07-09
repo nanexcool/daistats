@@ -113,7 +113,7 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <CollateralChart ilks={props.ilks} debt={props.sysLocked} useValue={true} />
+              <CollateralChart ilks={props.ilks} debt={props.sysLocked} useValue={true} groupBy={true} />
               <h4 className="subtitle is-size-4">Dai Collateralization</h4>
             </div>
           </div>
