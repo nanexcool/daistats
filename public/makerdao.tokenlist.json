@@ -1,10 +1,10 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-04-20T02:47:59+00:00",
+    "timestamp": "2021-07-09T04:25:23+00:00",
     "version": {
         "major": 0,
-        "minor": 2,
-        "patch": 1
+        "minor": 3,
+        "patch": 0
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
     "keywords": [
@@ -35,6 +35,17 @@
         {
             "chainId": 1,
             "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+            "symbol": "DAI",
+            "name": "Dai Stablecoin",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 10,
+            "address": "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1",
             "symbol": "DAI",
             "name": "Dai Stablecoin",
             "decimals": 18,

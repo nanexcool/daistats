@@ -31,6 +31,7 @@ from brownie import Contract
 
 ILK_REGISTRY = '0x5a464C28D19848f44199D003BeF5ecc87d090F87'
 DAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
+OPTIMISTIC_DAI = '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1'
 MKR = '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2'
 
 TOKEN_LOGO_URI = 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/%s/logo.png'
@@ -42,8 +43,8 @@ tl = {
     "timestamp": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00'),
     "version": {
         "major": 0,
-        "minor": 2,
-        "patch": 1
+        "minor": 3,
+        "patch": 0
     },
     #logoURI is optional
     # 	"A URI for the logo of the token list; prefer SVG or PNG of size 256x256"
@@ -70,6 +71,17 @@ tl = {
         {
             "chainId": 1,
             "address": DAI,
+            "symbol": "DAI",
+            "name": "Dai Stablecoin",
+            "decimals": 18,
+            "logoURI": TOKEN_LOGO_URI % DAI,
+            "tags": [
+                "stablecoin"
+            ]
+        },
+        {
+            "chainId": 10,
+            "address": OPTIMISTIC_DAI,
             "symbol": "DAI",
             "name": "Dai Stablecoin",
             "decimals": 18,
