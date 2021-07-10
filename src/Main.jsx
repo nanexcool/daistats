@@ -439,6 +439,12 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.optimisticDaiSupply}>{formatAmount.format(props.optimisticDaiSupply)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Optimism' })}</p>
+              <p className="title subtitle is-size-6">
+                <a href="https://gateway.optimism.io/" target="_blank" rel="noopener noreferrer">
+                    Optimism Bridge
+                </a>
+              </p>
+{/*<p className="subtitle is-size-6">{t('daistats.token_in_dex', { token: 'ETH', dex: 'Optimism' })}: {formatAmount.format(props.optimisticEthSupply)}</p> */}
             </div>
           </div>
           <div className="column">
@@ -892,6 +898,14 @@ const Main = (props) => {
               <a href={`https://optimistic.etherscan.io/token/${props.OPTIMISTIC_DAI}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> Optimistic Dai</h3>
                 <p className="subtitle is-size-7">{props.OPTIMISTIC_DAI}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://optimistic.etherscan.io/token/${props.OPTIMISTIC_ETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Optimistic ETH</h3>
+                <p className="subtitle is-size-7">{props.OPTIMISTIC_ETH}</p>
               </a>
             </div>
           </div>
