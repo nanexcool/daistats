@@ -27,20 +27,47 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 
 function Clip(props) {
   const t = useTranslate()
-  const ilk = props.ilks[props.idx]
-  return (
-          <div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={ilk.kicks}>{formatAmount.format(ilk.kicks)}</h3>
-              <p className="subtitle is-size-4">{/*t('daistats.token_clip_auctions', { token: props.token })*/}{props.token} (Clip) Auctions</p>
-              <p className="subtitle is-size-6">Liquidation Penalty (chop) {formatPercent.format(Math.abs(1 - ilk.chop))}</p>
-              <p className="subtitle is-size-6">Limit (hole) {formatAmount.format(ilk.hole)}</p>
-              {/*
-              <p className="subtitle is-size-6">{formatAmount.format(ilk.dirt)}</p>
-              <p className="subtitle is-size-6">Price Change Interval (step) {formatAmount.format(ilk.step)}</p>
-              <p className="subtitle is-size-6">Auction Price Multiplier (buf) {formatAmount.format(ilk.buf)}</p> 
-               FIXME show current starting price*/}
-            {/* 
+  if (props.heading) {
+    return (<thead>
+              <tr>
+                <th>Collateral (Ilk)</th>
+                <th>(Clip) Auctions</th>
+                <th>Active Auctions</th>
+                <th>Bad Debt (dirt)</th>
+                <th>Limit (hole)</th>
+                <th>Liquidation Penalty (chop)</th>
+                <th>Price Change Multiplier (cut)</th>
+                <th>Price Change Interval (step) seconds</th>
+                <th>Auction Price Multiplier (buf)</th>
+                <th>Maximum Auction Drawdown (cusp)</th>
+                <th>Maximum Auction Duration (tail) seconds</th>
+                <th>Proportional Kick Incentive (chip)</th>
+                <th>Flat Kick Incentive (tip)</th>
+              </tr>
+            </thead>)
+  } else{
+    const ilk = props.ilks[props.idx]
+    return (
+          <tr>
+            <td>{props.token}</td>
+            <td>{formatAmount.format(ilk.kicks)}</td>
+            <td>{formatAmount.format(ilk.count)}</td>
+            <td>{formatAmount.format(ilk.dirt)}</td>
+            <td>{formatAmount.format(ilk.hole)}</td>
+            <td>{formatPercent.format(Math.abs(1 - ilk.chop))}</td>
+            <td>{formatAmount.format(ilk.cut)}</td>
+            <td>{formatAmount.format(ilk.step)}</td>
+            <td>{formatAmount.format(ilk.buf)}</td>
+            <td>{formatAmount.format(ilk.cusp)}</td>
+            <td>{formatAmount.format(ilk.tail)}</td>
+            <td>{formatPercent.format(ilk.chip)}</td>
+            <td>{formatAmount.format(ilk.tip)}</td>
+          </tr>
+         )
+  }
+
+{/*
+FIXME show current starting price
 Auction Price
 
     Auction Price Function (calc): Stairstep Exponential   - any way to find this?
@@ -59,11 +86,30 @@ Incentives
     Proportional Kick Incentive (chip): 0.1%
     Flat Kick Incentive (tip): 0 DAI
 
-                */}
-            </div>
-          </div>
+from clip:
+    uint256 public buf;    // Multiplicative factor to increase starting price                  [ray]
+    uint256 public tail;   // Time elapsed before auction reset                                 [seconds]
+    uint256 public cusp;   // Percentage drop before auction reset                              [ray]
+    uint64  public chip;   // Percentage of tab to suck from vow to incentivize keepers         [wad]
+    uint192 public tip;    // Flat fee to suck from vow to incentivize keepers                  [rad]
 
-  )
+    uint256   public kicks;   // Total auctions
+    uint256[] public active;  // Array of active auction ids clip.count()
+
+    Active Auction count abacus.count   or active.length?
+
+    // Levels for circuit breaker
+    // 0: no breaker
+    // 1: no new kick()
+    // 2: no new kick() or redo()
+    // 3: no new kick(), redo(), or take()
+    uint256 public stopped = 0;
+
+clip_calc:
+    uint256 public step; // Length of time between price drops [seconds]
+    uint256 public cut;  // Per-step multiplicative factor     [ray]
+
+*/}
 }
 
 export default Clip

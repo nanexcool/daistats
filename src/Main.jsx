@@ -336,51 +336,48 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
-          <Clip {...props} token="ETH-A" idx="0"/>
-          <Clip {...props} token="ETH-B" idx="14"/>
-          <Clip {...props} token="ETH-C" idx="31"/>
-          <Clip {...props} token="WBTC" idx="3"/>
-          <Clip {...props} token="KNC" idx="6"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="ZRX" idx="7"/>
-          <Clip {...props} token="MANA" idx="8"/>
-          <Clip {...props} token="USDT" idx="10"/>
-          <Clip {...props} token="COMP" idx="11"/>
-          <Clip {...props} token="LRC" idx="12"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="LINK" idx="13"/>
-          <Clip {...props} token="BAL" idx="15"/>
-          <Clip {...props} token="YFI" idx="16"/>
-          <Clip {...props} token="UNI" idx="18"/>
-          <Clip {...props} token="RENBTC" idx="19"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="AAVE" idx="20"/>
-          <Clip {...props} token="UniV2DaiEth" idx="21"/>
-          <Clip {...props} token="UniV2WbtcEth" idx="22"/>
-          <Clip {...props} token="UniV2UsdcEth" idx="23"/>
-          <Clip {...props} token="UniV2DaiUsdc" idx="24"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="UniV2EthUsdt" idx="25"/>
-          <Clip {...props} token="UniV2LinkEth" idx="26"/>
-          <Clip {...props} token="UniV2UniEth" idx="27"/>
-          <Clip {...props} token="UniV2WbtcDai" idx="28"/>
-          <Clip {...props} token="UniV2AaveEth" idx="29"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="UniV2DaiUsdt" idx="30"/>
-          <Clip {...props} token="BAT" idx="1"/>
-          <Clip {...props} token="USDC-A" idx="2"/>
-          <Clip {...props} token="USDC-B" idx="4"/>
-        </div>
-        <div className="columns">
-          <Clip {...props} token="TUSD" idx="5"/>
-          <Clip {...props} token="GUSD" idx="17"/>
-          <Clip {...props} token="PAXUSD" idx="9"/>
-          <Clip {...props} token="PSM-USDC-A" idx="34"/>
+          <div className="column">
+            <div classname="box">
+              <table className="table">
+                <Clip heading={true}/>
+                <tbody>
+                  <Clip {...props} token="ETH-A" idx="0"/>
+                  <Clip {...props} token="ETH-B" idx="14"/>
+                  <Clip {...props} token="ETH-C" idx="31"/>
+                  <Clip {...props} token="WBTC" idx="3"/>
+                  <Clip {...props} token="AAVE" idx="20"/>
+                  <Clip {...props} token="BAL" idx="15"/>
+                  <Clip {...props} token="BAT" idx="1"/>
+                  <Clip {...props} token="COMP" idx="11"/>
+                  <Clip {...props} token="KNC" idx="6"/>
+                  <Clip {...props} token="LINK" idx="13"/>
+                  <Clip {...props} token="LRC" idx="12"/>
+                  <Clip {...props} token="MANA" idx="8"/>
+                  <Clip {...props} token="RENBTC" idx="19"/>
+                  <Clip {...props} token="UNI" idx="18"/>
+                  <Clip {...props} token="YFI" idx="16"/>
+                  <Clip {...props} token="ZRX" idx="7"/>
+                  <Clip {...props} token="UniV2DaiEth" idx="21"/>
+                  <Clip {...props} token="UniV2WbtcEth" idx="22"/>
+                  <Clip {...props} token="UniV2UsdcEth" idx="23"/>
+                  <Clip {...props} token="UniV2DaiUsdc" idx="24"/>
+                  <Clip {...props} token="UniV2EthUsdt" idx="25"/>
+                  <Clip {...props} token="UniV2LinkEth" idx="26"/>
+                  <Clip {...props} token="UniV2UniEth" idx="27"/>
+                  <Clip {...props} token="UniV2WbtcDai" idx="28"/>
+                  <Clip {...props} token="UniV2AaveEth" idx="29"/>
+                  <Clip {...props} token="UniV2DaiUsdt" idx="30"/>
+                  <Clip {...props} token="USDC-A" idx="2"/>
+                  <Clip {...props} token="USDC-B" idx="4"/>
+                  <Clip {...props} token="USDT" idx="10"/>
+                  <Clip {...props} token="TUSD" idx="5"/>
+                  <Clip {...props} token="GUSD" idx="17"/>
+                  <Clip {...props} token="PAXUSD" idx="9"/>
+                  <Clip {...props} token="PSM-USDC-A" idx="34"/>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
           </TabPanel>
           <TabPanel>
