@@ -336,9 +336,8 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
-          <div className="column">
-            <div classname="box">
-              <table className="table">
+          <div className="column table-container">
+              <table className="table is-narrow" style={{backgroundColor: '#192734', color: '#e6e8f1'}}>
                 <Clip heading={true}/>
                 <tbody>
                   <Clip {...props} token="ETH-A" idx="0"/>
@@ -376,7 +375,6 @@ const Main = (props) => {
                   <Clip {...props} token="PSM-USDC-A" idx="34"/>
                 </tbody>
               </table>
-            </div>
           </div>
         </div>
           </TabPanel>
