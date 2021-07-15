@@ -436,7 +436,7 @@ const Main = (props) => {
               <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Optimism' })}</p>
               <p className="title subtitle is-size-6">
                 <a href="https://gateway.optimism.io/" target="_blank" rel="noopener noreferrer">
-                    Optimism Bridge
+                    Optimism Gateway
                 </a>
               </p>
 {/*<p className="subtitle is-size-6">{t('daistats.token_in_dex', { token: 'ETH', dex: 'Optimism' })}: {formatAmount.format(props.optimisticEthSupply)}</p> */}
