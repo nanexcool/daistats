@@ -145,17 +145,17 @@ const Main = (props) => {
           <div className="column is-half">
             <div className="has-text-centered">
               <h3 className="title"
-                title={props.psmUsdcALocked}>
-                {formatAmount.format(props.psmUsdcALocked)} / {formatAmount.format(props.psmUsdcALine)}
+                title={props.ilks[34].locked}>
+                {formatAmount.format(props.ilks[34].locked)} / {formatAmount.format(props.ilks[34].line)}
               </h3>
               <p className="title subtitle is-size-4">
-                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.psmUsdcALocked / props.debt * 100)}%)
+                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.ilks[34].locked / props.debt * 100)}%)
               </p>
               {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(props.ilks[34].lineMax)}</p>}
               {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[34].gap)} Ttl: {props.ilks[34].ttl / 60 / 60}h</p>}
               {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {props.ilks[34].lastInc}</p>}
               <p className="subtitle is-size-6">
-                {t('daistats.utilization')}: {formatAmount.format(props.psmUsdcALocked / props.psmUsdcALine * 100)}%
+                {t('daistats.utilization')}: {formatAmount.format(props.ilks[34].locked / props.ilks[34].line * 100)}%
               </p>
               <p className="subtitle is-size-6">
                 <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
@@ -166,20 +166,20 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="has-text-centered">
-              <h3 className="title" title={props.psmUsdcTin}>{formatPercentFee.format(props.psmUsdcTin)}</h3>
+              <h3 className="title" title={props.ilks[34].tin}>{formatPercentFee.format(props.ilks[34].tin)}</h3>
               <p className="title subtitle is-size-4">Fee in</p>
-              <h3 className="title" title={props.psmUsdcTout}>{formatPercentFee.format(props.psmUsdcTout)}</h3>
+              <h3 className="title" title={props.ilks[34].tout}>{formatPercentFee.format(props.ilks[34].tout)}</h3>
               <p className="title subtitle is-size-4">Fee out</p>
             </div>
           </div>
           <div className="column">
             <div className="has-text-centered">
-              <h3 className="title" title={props.psmUsdcALocked}>{formatNoDecimals.format(props.psmUsdcALocked)}</h3>
+              <h3 className="title" title={props.ilks[34].locked}>{formatNoDecimals.format(props.ilks[34].locked)}</h3>
               <p className="title subtitle is-size-4">
                 {t('daistats.token_locked', { token: 'USDC' })}
               </p>
               <p className="subtitle is-size-6">
-                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.psmUsdcALocked / props.usdcSupply)}</p>
+                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.ilks[34].locked / props.ilks[34].supply)}</p>
             </div>
           </div>
         </div>
