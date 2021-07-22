@@ -185,9 +185,9 @@ const Main = (props) => {
         </div>
         <hr />
         </div>
-        <Collateral {...props} idx="0" fee={props.ethFee} />
-        <Collateral {...props} idx="14" fee={props.ethBFee} />
-        <Collateral {...props} idx="31" fee={props.ethCFee} />
+        <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
+        <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
+        <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
         <Collateral {...props} idx="1" fee={props.batFee} />
         <Collateral {...props} idx="2" fee={props.usdcFee} />
         <Collateral {...props} idx="4" fee={props.usdcBFee} />

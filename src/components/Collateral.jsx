@@ -40,8 +40,14 @@ function autoLine(props, label) {
 }
 
 function Collateral(props) {
+  var supply
   const t = useTranslate()
   const ilk = props.ilks[props.idx]
+  if (props.supply) {
+      supply = props.supply
+  } else {
+      supply = ilk.supply
+  }
   return (
     <div>
       <div className="columns">
@@ -61,7 +67,7 @@ function Collateral(props) {
       </div>
       <div className="column">
         <div className="has-text-centered">
-          <h3 className="title" title={props.fee}>{props.fee}%</h3>
+          <h3 className="title" title={ilk.fee}>{formatPercent.format(ilk.fee)}</h3>
           <p className="title subtitle is-size-4">{t('daistats.token_stability_fee', { token: ilk.ilk })}</p>
           <p className="subtitle is-size-6">{t('daistats.last_drip')}: {ilk.drip}</p>
           <p className="title subtitle is-size-6">{/*{t('daistats.dust')}*/}Dust: {formatAmount.format(ilk.dust)}</p>
@@ -75,7 +81,7 @@ function Collateral(props) {
             {t('daistats.token_locked', { token: ilk.ilk })}
           </p>
           <p className="subtitle is-size-6">
-            {t('daistats.token_supply_locked', { token: ilk.ilk })}: {formatPercent.format(ilk.locked / ilk.supply)}</p>
+            {t('daistats.token_supply_locked', { token: ilk.ilk })}: {formatPercent.format(ilk.locked / supply)}</p>
           <p className="title subtitle is-size-6" title={ilk.value}>
             Value Locked: ${ formatAmount.format(ilk.value) }
           </p>
