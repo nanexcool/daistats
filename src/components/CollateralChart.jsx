@@ -81,7 +81,11 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   }
 
   function label(i) {
-    return i["name"]
+    if (i["name"] == "ETH") {
+      return "ETH 🇪🇹"
+    } else {
+      return i["name"]
+    }
   }
 
   function tooltip(value, name, props) {
