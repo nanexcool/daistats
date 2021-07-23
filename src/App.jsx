@@ -454,9 +454,10 @@ class App extends Component {
     const savingsDai = savingsPie.mul(pieChi);
     const potDrip = pot.interface.decodeFunctionResult('rho', res[12])[0]
     const cdps = manager.interface.decodeFunctionResult('cdpi', res[13])
-    const base = '0x' + jug.interface.decodeFunctionResult('base', res[14]) // hack cast to bignumber for "jug.base = 0"
-    const vow_dai = vat.interface.decodeFunctionResult('dai', res[15])[0] //FIXME should be vow not vat?
-    const vow_sin = vat.interface.decodeFunctionResult('sin', res[16])[0] //FIXME should be vow not vat?
+    // hack cast to bignumber for "jug.base = 0"
+    const base = '0x' + jug.interface.decodeFunctionResult('base', res[14])
+    const vow_dai = vat.interface.decodeFunctionResult('dai', res[15])[0]
+    const vow_sin = vat.interface.decodeFunctionResult('sin', res[16])[0]
     const sin = vow.interface.decodeFunctionResult('Sin', res[17])[0]
     const ash = vow.interface.decodeFunctionResult('Ash', res[18])[0]
 
