@@ -280,6 +280,7 @@ const Main = (props) => {
               <h3 className="title" title={props.flapKicks}>{formatAmount.format(props.flapKicks)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.dai_surplus_auctions')}</p>
               <p className="subtitle is-size-6">{t('daistats.till_next_flap')}: {nextFlap()}</p>
+              <p className="title subtitle is-size-6">Beg: {formatPercent.format(props.flapBeg - 1)} Ttl: {props.flapTtl / 60}m Tau: {props.flapTau / 60 / 60}h</p>
             </div>
           </div>
           <div className="column">
@@ -305,9 +306,10 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.flopKicks}>{formatAmount.format(props.flopKicks)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.debt_flop_auctions')}</p>
-              <p className="subtitle is-size-6">
-                {t('daistats.initial_lot_size')}: {formatAmount.format(props.debtDump)} MKR {t('daistats.initial_price')}: ${formatAmount.format(props.debtSize / props.debtDump)}
-              </p>
+              <p className="title subtitle is-size-6">{t('daistats.initial_lot_size')}: {formatAmount.format(props.debtDump)} MKR</p>
+              <p className="title subtitle is-size-6">{t('daistats.initial_price')}: ${formatAmount.format(props.debtSize / props.debtDump)}</p>
+              <p className="title subtitle is-size-6">Beg: {formatPercent.format(props.flopBeg - 1)} Pad: {formatPercent.format(props.flopPad - 1)}</p>
+              <p className="title subtitle is-size-6">Ttl: {props.flopTtl / 60}m Tau: {props.flopTau / 60 / 60}h</p>
             </div>
           </div>
           <div className="column">
@@ -322,7 +324,8 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
-              <p className="subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)} / {t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
+              <p className="title subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)}</p>
+              <p className="title subtitle is-size-6" title={props.surplusBump}>{t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
             </div>
           </div>
         </div>
@@ -882,6 +885,42 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.RWA002}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA002</h3>
                 <p className="subtitle is-size-7">{props.RWA002}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA003}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA003</h3>
+                <p className="subtitle is-size-7">{props.RWA003}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA004}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA004</h3>
+                <p className="subtitle is-size-7">{props.RWA004}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA005}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA005</h3>
+                <p className="subtitle is-size-7">{props.RWA005}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA006}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA006</h3>
+                <p className="subtitle is-size-7">{props.RWA006}</p>
               </a>
             </div>
           </div>

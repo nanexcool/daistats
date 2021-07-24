@@ -86,6 +86,43 @@ add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 //add["MEDIAN_RWA001
 //add["MEDIAN_RWA002
 
+// "RWA003-A: Centrifuge: ConsolFreight"
+add["RWA003"] = "0x07F0A80aD7AeB7BfB7f139EA71B3C8f7E17156B9"
+add["RWA003_OPERATOR"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
+add["PIP_RWA003"] = "waiting for DSValue init"
+add["MCD_JOIN_RWA003_A"] = "0x1Fe789BBac5b141bdD795A3Bc5E12Af29dDB4b86"
+add["RWA003_A_URN"] = "0x7bF825718e7C388c3be16CFe9982539A7455540F"
+add["RWA003_A_INPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
+add["RWA003_A_OUTPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
+
+// "RWA004-A: Centrifuge: Harbor Trade Credit"
+add["RWA004"] = "0x873F2101047A62F84456E3B2B13df2287925D3F9"
+add["RWA004_OPERATOR"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
+add["PIP_RWA004"] = "waiting for DSValue init"
+add["MCD_JOIN_RWA004_A"] = "0xD50a8e9369140539D1c2D113c4dC1e659c6242eB"
+add["RWA004_A_URN"] = "0xeF1699548717aa4Cf47aD738316280b56814C821"
+add["RWA004_A_INPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
+add["RWA004_A_OUTPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
+
+// "RWA005-A: Centrifuge: Fortunafi"
+add["RWA005"] = "0x6DB236515E90fC831D146f5829407746EDdc5296"
+add["RWA005_OPERATOR"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
+add["PIP_RWA005"] = "waiting for DSValue init"
+add["MCD_JOIN_RWA005_A"] = "0xA4fD373b93aD8e054970A3d6cd4Fd4C31D08192e"
+add["RWA005_A_URN"] = "0xc40907545C57dB30F01a1c2acB242C7c7ACB2B90"
+add["RWA005_A_INPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
+add["RWA005_A_OUTPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
+
+// "RWA006-A: Centrifuge: Alternative Equity Advisers"
+add["RWA006"] = "0x4EE03cfBF6E784c462839f5954d60f7C2B60b113"
+add["RWA006_OPERATOR"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
+add["PIP_RWA006"] = "waiting for DSValue init"
+add["MCD_JOIN_RWA006_A"] = "0x5E11E34b6745FeBa9449Ae53c185413d6EdC66BE"
+add["RWA006_A_URN"] = "0x0C185bf5388DdfDB288F4D875265d456D18FD9Cb"
+add["RWA006_A_INPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
+add["RWA006_A_OUTPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
+
+
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
@@ -148,6 +185,10 @@ const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
 const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
 const rwa001 = build(add.RWA001, "ERC20")
 const rwa002 = build(add.RWA002, "ERC20")
+const rwa003 = build(add.RWA003, "ERC20")
+const rwa004 = build(add.RWA004, "ERC20")
+const rwa005 = build(add.RWA005, "ERC20")
+const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
@@ -166,6 +207,10 @@ const usdtPip = build(add.PIP_USDT, "DSValue")
 const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwa001APip = build(add.PIP_RWA001, "DSValue")
 const rwa002APip = build(add.PIP_RWA002, "DSValue")
+const rwa003APip = build(add.PIP_RWA003, "DSValue")
+const rwa004APip = build(add.PIP_RWA004, "DSValue")
+const rwa005APip = build(add.PIP_RWA005, "DSValue")
+const rwa006APip = build(add.PIP_RWA006, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
 const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A");
@@ -203,6 +248,10 @@ const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A");
 const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A");
 const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A");
 const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A");
+const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A");
+const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A");
+const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A");
+const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -292,7 +341,14 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])], // 23
 
+      [add.MCD_FLAP, flap.interface.encodeFunctionData('beg', [])],
+      [add.MCD_FLAP, flap.interface.encodeFunctionData('ttl', [])],
+      [add.MCD_FLAP, flap.interface.encodeFunctionData('tau', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_FLOP, flop.interface.encodeFunctionData('beg', [])],
+      [add.MCD_FLOP, flop.interface.encodeFunctionData('pad', [])],
+      [add.MCD_FLOP, flop.interface.encodeFunctionData('ttl', [])],
+      [add.MCD_FLOP, flop.interface.encodeFunctionData('tau', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])], // 26
 
@@ -437,83 +493,92 @@ class App extends Component {
         univ2aaveethPriceNxt, univ2daiusdtPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
-    const line = res[0] // vat.interface.decodeFunctionResult('Line', res[0])
-    const debt = res[1] //vat.interface.decodeFunctionResult('debt', res[1])
-    const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[2])[0]
-    const debtSize = vow.interface.decodeFunctionResult('sump', res[3])[0]
-    const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[4])[0]
+    var offset = 0;
 
-    const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[5])[0]
-    const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[6])[0]
-    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[7])[0]
-    const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[8])[0]
-    const optimisticDaiSupply = dai.interface.decodeFunctionResult('balanceOf', res[9])[0]
+    const line = res[offset++] // vat.interface.decodeFunctionResult('Line', res[0])
+    const debt = res[offset++] //vat.interface.decodeFunctionResult('debt', res[1])
+    const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[offset++])[0]
+    const debtSize = vow.interface.decodeFunctionResult('sump', res[offset++])[0]
+    const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
 
-    const savingsPie = pot.interface.decodeFunctionResult('Pie', res[10])[0]
-    const pieChi = pot.interface.decodeFunctionResult('chi', res[11])[0]
+    const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const uniswapDai = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const optimisticDaiSupply = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+
+    const savingsPie = pot.interface.decodeFunctionResult('Pie', res[offset++])[0]
+    const pieChi = pot.interface.decodeFunctionResult('chi', res[offset++])[0]
     const savingsDai = savingsPie.mul(pieChi);
-    const potDrip = pot.interface.decodeFunctionResult('rho', res[12])[0]
-    const cdps = manager.interface.decodeFunctionResult('cdpi', res[13])
+    const potDrip = pot.interface.decodeFunctionResult('rho', res[offset++])[0]
+    const cdps = manager.interface.decodeFunctionResult('cdpi', res[offset++])
     // hack cast to bignumber for "jug.base = 0"
-    const base = '0x' + jug.interface.decodeFunctionResult('base', res[14])
-    const vow_dai = vat.interface.decodeFunctionResult('dai', res[15])[0]
-    const vow_sin = vat.interface.decodeFunctionResult('sin', res[16])[0]
-    const sin = vow.interface.decodeFunctionResult('Sin', res[17])[0]
-    const ash = vow.interface.decodeFunctionResult('Ash', res[18])[0]
+    const base = '0x' + jug.interface.decodeFunctionResult('base', res[offset++])
+    const vow_dai = vat.interface.decodeFunctionResult('dai', res[offset++])[0]
+    const vow_sin = vat.interface.decodeFunctionResult('sin', res[offset++])[0]
+    const sin = vow.interface.decodeFunctionResult('Sin', res[offset++])[0]
+    const ash = vow.interface.decodeFunctionResult('Ash', res[offset++])[0]
 
-    const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[19])[0])
-    const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[20])[0]
+    const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[offset++])[0])
+    const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
-    const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[21])[0]
-    const vice = vat.interface.decodeFunctionResult('vice', res[22])[0]
-    const surplusBump = vow.interface.decodeFunctionResult('bump', res[23])[0]
+    const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const vice = vat.interface.decodeFunctionResult('vice', res[offset++])[0]
+    const surplusBump = vow.interface.decodeFunctionResult('bump', res[offset++])[0]
 
-    const flapKicks = flap.interface.decodeFunctionResult('kicks', res[24])[0]
-    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[25])[0]
-    const debtDump = vow.interface.decodeFunctionResult('dump', res[26])[0]
+    const flapBeg = flap.interface.decodeFunctionResult('beg', res[offset++])[0]
+    const flapTtl = flap.interface.decodeFunctionResult('ttl', res[offset++])
+    const flapTau = flap.interface.decodeFunctionResult('tau', res[offset++])
+    const flapKicks = flap.interface.decodeFunctionResult('kicks', res[offset++])[0]
+    const flopBeg = flop.interface.decodeFunctionResult('beg', res[offset++])[0]
+    const flopPad = flop.interface.decodeFunctionResult('pad', res[offset++])[0]
+    const flopTtl = flop.interface.decodeFunctionResult('ttl', res[offset++])
+    const flopTau = flop.interface.decodeFunctionResult('tau', res[offset++])
+    const flopKicks = flop.interface.decodeFunctionResult('kicks', res[offset++])[0]
+    const debtDump = vow.interface.decodeFunctionResult('dump', res[offset++])[0]
 
-    const psmUsdcTin = psmUsdc.interface.decodeFunctionResult('tin', res[27])[0]
-    const psmUsdcTout = psmUsdc.interface.decodeFunctionResult('tout', res[28])[0]
-    const psmUsdcAIlk = vat.interface.decodeFunctionResult('ilks', res[29])
-    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[30])[0]
-    const psmusdcAKicks = clip.interface.decodeFunctionResult('kicks', res[31])[0]
-    const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[32])
-    const psmusdcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[33])
-    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[34])[0]
-    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[35])[0]
+    const psmUsdcTin = psmUsdc.interface.decodeFunctionResult('tin', res[offset++])[0]
+    const psmUsdcTout = psmUsdc.interface.decodeFunctionResult('tout', res[offset++])[0]
+    const psmUsdcAIlk = vat.interface.decodeFunctionResult('ilks', res[offset++])
+    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const psmusdcAKicks = clip.interface.decodeFunctionResult('kicks', res[offset++])[0]
+    const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[offset++])
+    const psmusdcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[offset++])
+    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[offset++])[0]
+    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
 
-    const rwa001AIlk = vat.interface.decodeFunctionResult('ilks', res[36])
-    const rwa001AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[37]))
-    const rwa001ADrip = jug.interface.decodeFunctionResult('ilks', res[37])
-    const rwa001Price = rwa001APip.interface.decodeFunctionResult('read', res[38])[0]
-    const rwa001Supply = rwa001.interface.decodeFunctionResult('totalSupply', res[39])[0]
-    const rwa001ALocked = rwa001.interface.decodeFunctionResult('balanceOf', res[40])[0]
+    const rwa001AIlk = vat.interface.decodeFunctionResult('ilks', res[offset++])
+    const rwa001AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[offset]))
+    const rwa001ADrip = jug.interface.decodeFunctionResult('ilks', res[offset++])
+    const rwa001Price = rwa001APip.interface.decodeFunctionResult('read', res[offset++])[0]
+    const rwa001Supply = rwa001.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const rwa001ALocked = rwa001.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
 
-    const rwa002AIlk = vat.interface.decodeFunctionResult('ilks', res[41])
-    const rwa002AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[42]))
-    const rwa002ADrip = jug.interface.decodeFunctionResult('ilks', res[42])
-    const rwa002Price = rwa002APip.interface.decodeFunctionResult('read', res[43])[0]
-    const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[44])[0]
-    const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[45])[0]
+    const rwa002AIlk = vat.interface.decodeFunctionResult('ilks', res[offset++])
+    const rwa002AFee = this.getFee(base, jug.interface.decodeFunctionResult('ilks', res[offset]))
+    const rwa002ADrip = jug.interface.decodeFunctionResult('ilks', res[offset++])
+    const rwa002Price = rwa002APip.interface.decodeFunctionResult('read', res[offset++])[0]
+    const rwa002Supply = rwa002.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const rwa002ALocked = rwa002.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
 
-    const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[46])[0]
-    const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[47])[0]
-    const mkrBroken = mkr.interface.decodeFunctionResult('balanceOf', res[48])[0]
-    const hole = dog.interface.decodeFunctionResult('Hole', res[49])[0]
-    const dirt = dog.interface.decodeFunctionResult('Dirt', res[50])[0]
+    const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const mkrBroken = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const hole = dog.interface.decodeFunctionResult('Hole', res[offset++])[0]
+    const dirt = dog.interface.decodeFunctionResult('Dirt', res[offset++])[0]
 
-    const flashLine = flash.interface.decodeFunctionResult('max', res[51])[0]
-    const flashToll = flash.interface.decodeFunctionResult('toll', res[52])[0]
-    const pauseDelay = pause.interface.decodeFunctionResult('delay', res[53])[0]
-    const hat = chief.interface.decodeFunctionResult('hat', res[54])
-    const esmMin = esm.interface.decodeFunctionResult('min', res[55])[0]
-    const esmSum = esm.interface.decodeFunctionResult('Sum', res[56])[0]
+    const flashLine = flash.interface.decodeFunctionResult('max', res[offset++])[0]
+    const flashToll = flash.interface.decodeFunctionResult('toll', res[offset++])[0]
+    const pauseDelay = pause.interface.decodeFunctionResult('delay', res[offset++])[0]
+    const hat = chief.interface.decodeFunctionResult('hat', res[offset++])
+    const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
+    const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
 
-    // remaining 8 calls in PSM-USDC-A map
 
-    const ILK_CALL_START_IDX = 65;
     const ILK_CALL_COUNT = 17;
-    var offset = ILK_CALL_START_IDX;
+    var preMapSectionEnd = offset;
+    // remaining 8 calls in PSM-USDC-A map
+    offset += 8
 
     const usdcBN = ethers.BigNumber.from(usdcPrice).mul(DP10)
     const ilks = [
@@ -594,14 +659,14 @@ class App extends Component {
             chop: utils.formatUnits(psmusdcADogIlk.chop, 18),
             hole: utils.formatUnits(psmusdcADogIlk.hole, 45),
             dirt: utils.formatUnits(psmusdcADogIlk.dirt, 45),
-            buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[57])[0], 27),
-            tail: clip.interface.decodeFunctionResult('tail', res[58])[0],
-            cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[59])[0], 27),
-            chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[60])[0], 18),
-            tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[61])[0], 45),
-            count: clip.interface.decodeFunctionResult('count', res[62])[0],
-            cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[63])[0], 27),
-            step: calc.interface.decodeFunctionResult('step', res[64])[0],
+            buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[preMapSectionEnd++])[0], 27), // 57
+            tail: clip.interface.decodeFunctionResult('tail', res[preMapSectionEnd++])[0],
+            cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[preMapSectionEnd++])[0], 27),
+            chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[preMapSectionEnd++])[0], 18),
+            tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[preMapSectionEnd++])[0], 45),
+            count: clip.interface.decodeFunctionResult('count', res[preMapSectionEnd++])[0],
+            cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[preMapSectionEnd++])[0], 27),
+            step: calc.interface.decodeFunctionResult('step', res[preMapSectionEnd++])[0],
             kicks: psmusdcAKicks.toNumber(),
             tin: utils.formatEther(psmUsdcTin),
             tout: utils.formatEther(psmUsdcTout),
@@ -642,7 +707,14 @@ class App extends Component {
         potDrip: this.unixToDateTime(potDrip.toNumber()),
         hole: utils.formatUnits(hole, 45),
         dirt: utils.formatUnits(dirt, 45),
+        flapBeg: utils.formatUnits(flapBeg, 18),
+        flapTtl: flapTtl,
+        flapTau: flapTau,
         flapKicks: flapKicks.toNumber(),
+        flopBeg: utils.formatUnits(flopBeg, 18),
+        flopPad: utils.formatUnits(flopPad, 18),
+        flopTtl: flopTtl,
+        flopTau: flopTau,
         flopKicks: flopKicks.toNumber(),
         cdps: cdps.toString(),
         sysLocked: utils.formatUnits(sysLocked, 45),
