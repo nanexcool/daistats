@@ -40,7 +40,7 @@ function Clip(props) {
                 <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Price Change Interval (step) seconds</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Auction Price Multiplier (buf)</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Maximum Auction Drawdown (cusp)</th>
-                <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Max Auction Duration (tail) seconds</th>
+                <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Max Auction Duration (tail) minutes</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Kick Incentive (chip)</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400, paddingLeft: "0.1em", paddingRight: "0.1em"}}>Flat Kick Incentive (tip)</th>
               </tr>
@@ -59,7 +59,7 @@ function Clip(props) {
             <td className="has-text-right">{formatAmount.format(ilk.step)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.buf)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.cusp)}</td>
-            <td className="has-text-right">{formatAmount.format(ilk.tail)}</td>
+            <td className="has-text-right">{formatAmount.format(ilk.tail / 60)}</td>
             <td className="has-text-right">{formatPercent.format(ilk.chip)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.tip)}</td>
           </tr>
