@@ -34,9 +34,9 @@ add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 add["MCD_JOIN_USDC_PSM_A"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
-add["MCD_PSM_USDC_PSM"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
-add["MCD_CLIP_PSM_USDC_A"] = "0x66609b4799fd7cE12BA799AD01094aBD13d5014D"
-add["MCD_CLIP_CALC_PSM_USDC_A"] = "0xbeE028b5Fa9eb0aDAC5eeF7E5B13383172b91A4E"
+add["MCD_PSM_USDC_PSM_A"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
+add["MCD_CLIP_USDC_PSM_A"] = "0x66609b4799fd7cE12BA799AD01094aBD13d5014D"
+add["MCD_CLIP_CALC_USDC_PSM_A"] = "0xbeE028b5Fa9eb0aDAC5eeF7E5B13383172b91A4E"
 
 add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
 add["GOV_MULTISIG_2"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
@@ -190,7 +190,7 @@ const rwa004 = build(add.RWA004, "ERC20")
 const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
-const psmUsdc = build(add.MCD_PSM_USDC_PSM, "DssPsm")
+const psmUsdc = build(add.MCD_PSM_USDC_PSM_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -347,16 +347,6 @@ class App extends Component {
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])], // 33
 
-      [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tin', [])], // 34
-      [add.MCD_PSM_USDC_PSM, psmUsdc.interface.encodeFunctionData('tout', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])],
-      [add.USDC, usdc.interface.encodeFunctionData('balanceOf', [add.MCD_JOIN_USDC_PSM_A])], // 37
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])],
-      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [psmusdcAIlkBytes])], // 40
-      [add.PIP_USDC, usdcPip.interface.encodeFunctionData('read', [])],
-      [add.USDC, usdc.interface.encodeFunctionData('totalSupply', [])], // 42
-
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
       [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])],
@@ -369,15 +359,6 @@ class App extends Component {
       [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])], // 63
-
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('buf', [])], // 64
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('tail', [])],
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('cusp', [])],
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('chip', [])],
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('tip', [])],
-      [add.MCD_CLIP_PSM_USDC_A, clip.interface.encodeFunctionData('count', [])],
-      [add.MCD_CLIP_CALC_PSM_USDC_A, calc.interface.encodeFunctionData('cut', [])],
-      [add.MCD_CLIP_CALC_PSM_USDC_A, calc.interface.encodeFunctionData('step', [])], // 71
 
     ].concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
@@ -413,6 +394,7 @@ class App extends Component {
      .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
      .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
      .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
+     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
 //     .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
 //     .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
 //     .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
@@ -526,16 +508,6 @@ class App extends Component {
     const flopKicks = flop.interface.decodeFunctionResult('kicks', res[offset++])[0]
     const debtDump = vow.interface.decodeFunctionResult('dump', res[offset++])[0]
 
-    const psmUsdcTin = psmUsdc.interface.decodeFunctionResult('tin', res[offset++])[0]
-    const psmUsdcTout = psmUsdc.interface.decodeFunctionResult('tout', res[offset++])[0]
-    const psmUsdcAIlk = vat.interface.decodeFunctionResult('ilks', res[offset++])
-    const psmUsdcALocked = usdc.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
-    const psmusdcAKicks = clip.interface.decodeFunctionResult('kicks', res[offset++])[0]
-    const psmusdcADogIlk = dog.interface.decodeFunctionResult('ilks', res[offset++])
-    const psmusdcAAutoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[offset++])
-    const usdcPrice = usdcPip.interface.decodeFunctionResult('read', res[offset++])[0]
-    const usdcSupply = usdc.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
-
     const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
     const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const mkrBroken = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
@@ -549,14 +521,9 @@ class App extends Component {
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
 
-
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 5;
-    var preMapSectionEnd = offset;
-    // remaining 8 calls in PSM-USDC-A map
-    offset += 8
 
-    const usdcBN = ethers.BigNumber.from(usdcPrice).mul(DP10)
     const ilks = [
           this.getIlkMap(res, offset, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
@@ -592,39 +559,12 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base), // 606
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base), // 611
+          // include PSM in CollateralChart
+          this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
 //          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
 //          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
 //          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
 //          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
-          {  // include PSM in CollateralChart
-            token: "USDC",
-            ilk: "PSM-USDC-A",
-            Art: utils.formatUnits(psmUsdcALocked, 6),
-            rate: 1,
-            line: utils.formatUnits(psmUsdcAIlk.line, 45),
-            lineMax: utils.formatUnits(psmusdcAAutoLineIlk.line, 45),
-            gap: utils.formatUnits(psmusdcAAutoLineIlk.gap, 45),
-            ttl: psmusdcAAutoLineIlk.ttl,
-            lastInc: this.unixToDateTime(psmusdcAAutoLineIlk.lastInc),
-            chop: utils.formatUnits(psmusdcADogIlk.chop, 18),
-            hole: utils.formatUnits(psmusdcADogIlk.hole, 45),
-            dirt: utils.formatUnits(psmusdcADogIlk.dirt, 45),
-            buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[preMapSectionEnd++])[0], 27), // 57
-            tail: clip.interface.decodeFunctionResult('tail', res[preMapSectionEnd++])[0],
-            cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[preMapSectionEnd++])[0], 27),
-            chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[preMapSectionEnd++])[0], 18),
-            tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[preMapSectionEnd++])[0], 45),
-            count: clip.interface.decodeFunctionResult('count', res[preMapSectionEnd++])[0],
-            cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[preMapSectionEnd++])[0], 27),
-            step: calc.interface.decodeFunctionResult('step', res[preMapSectionEnd++])[0],
-            kicks: psmusdcAKicks.toNumber(),
-            tin: utils.formatEther(psmUsdcTin),
-            tout: utils.formatEther(psmUsdcTout),
-            locked: utils.formatUnits(psmUsdcALocked, 6),
-            supply: utils.formatUnits(usdcSupply, 6),
-            value: utils.formatUnits(psmUsdcALocked.mul(DP7).mul(usdcBN), 45),
-            valueBn: psmUsdcALocked.mul(DP7).mul(usdcBN)
-          }
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -844,6 +784,77 @@ class App extends Component {
       valueBn: locked.mul(ethers.BigNumber.from(price).mul(DP10)),
     }
   }
+
+  getPsmIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd, psm) => {
+    const psmAdd = add['MCD_PSM_' + ilkSuffix]
+    const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
+    const clipAdd = add['MCD_CLIP_' + ilkSuffix]
+    const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
+    return [
+      [psmAdd, psm.interface.encodeFunctionData('tin', [])], // 34
+      [psmAdd, psm.interface.encodeFunctionData('tout', [])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ilkBytes])],
+      [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])], // 37
+      [clipAdd, clip.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [ilkBytes])],
+      [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ilkBytes])], // 40
+      [pipAdd, usdcPip.interface.encodeFunctionData('read', [])],
+      [gemAdd, gem.interface.encodeFunctionData('totalSupply', [])], // 42
+
+      [clipAdd, clip.interface.encodeFunctionData('buf', [])],
+      [clipAdd, clip.interface.encodeFunctionData('tail', [])], // 10
+      [clipAdd, clip.interface.encodeFunctionData('cusp', [])],
+      [clipAdd, clip.interface.encodeFunctionData('chip', [])],
+      [clipAdd, clip.interface.encodeFunctionData('tip', [])],
+      [clipAdd, clip.interface.encodeFunctionData('count', [])],
+      [calcAdd, calc.interface.encodeFunctionData('cut', [])], // 15
+      [calcAdd, calc.interface.encodeFunctionData('step', [])],
+    ]
+  }
+
+  getPsmIlkMap = (res, idx, token, ilkName, psm) => {
+    const tin = psm.interface.decodeFunctionResult('tin', res[idx++])[0]
+    const tout = psm.interface.decodeFunctionResult('tout', res[idx++])[0]
+    const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
+    const locked = usdc.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    const kicks = clip.interface.decodeFunctionResult('kicks', res[idx++])[0]
+    const dogIlk = dog.interface.decodeFunctionResult('ilks', res[idx++])
+    const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
+    const price = usdcPip.interface.decodeFunctionResult('read', res[idx++])[0]
+    const supply = usdc.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
+    const priceBN = ethers.BigNumber.from(price).mul(DP10)
+
+    return {
+      token: token,
+      ilk: ilkName,
+      Art: utils.formatUnits(locked, 6),
+      rate: 1,
+      line: utils.formatUnits(ilk.line, 45),
+      lineMax: utils.formatUnits(autoLineIlk.line, 45),
+      gap: utils.formatUnits(autoLineIlk.gap, 45),
+      ttl: autoLineIlk.ttl,
+      lastInc: this.unixToDateTime(autoLineIlk.lastInc),
+      chop: utils.formatUnits(dogIlk.chop, 18),
+      hole: utils.formatUnits(dogIlk.hole, 45),
+      dirt: utils.formatUnits(dogIlk.dirt, 45),
+      buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[idx++])[0], 27), // 57
+      tail: clip.interface.decodeFunctionResult('tail', res[idx++])[0],
+      cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[idx++])[0], 27),
+      chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[idx++])[0], 18),
+      tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
+      count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
+      cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
+      step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
+      kicks: kicks.toNumber(),
+      tin: utils.formatEther(tin),
+      tout: utils.formatEther(tout),
+      locked: utils.formatUnits(locked, 6),
+      supply: utils.formatUnits(supply, 6),
+      value: utils.formatUnits(locked.mul(DP7).mul(priceBN), 45),
+      valueBn: locked.mul(DP7).mul(priceBN)
+    }
+  }
+
 
   isLoaded = () => {
     return this.state.blockNumber !== null
