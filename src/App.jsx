@@ -86,7 +86,6 @@ add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 //add["MEDIAN_RWA001
 //add["MEDIAN_RWA002
 
-// "RWA003-A: Centrifuge: ConsolFreight"
 add["RWA003"] = "0x07F0A80aD7AeB7BfB7f139EA71B3C8f7E17156B9"
 add["RWA003_OPERATOR"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
 add["PIP_RWA003"] = "waiting for DSValue init"
@@ -95,7 +94,6 @@ add["RWA003_A_URN"] = "0x7bF825718e7C388c3be16CFe9982539A7455540F"
 add["RWA003_A_INPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
 add["RWA003_A_OUTPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
 
-// "RWA004-A: Centrifuge: Harbor Trade Credit"
 add["RWA004"] = "0x873F2101047A62F84456E3B2B13df2287925D3F9"
 add["RWA004_OPERATOR"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
 add["PIP_RWA004"] = "waiting for DSValue init"
@@ -104,7 +102,6 @@ add["RWA004_A_URN"] = "0xeF1699548717aa4Cf47aD738316280b56814C821"
 add["RWA004_A_INPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
 add["RWA004_A_OUTPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
 
-// "RWA005-A: Centrifuge: Fortunafi"
 add["RWA005"] = "0x6DB236515E90fC831D146f5829407746EDdc5296"
 add["RWA005_OPERATOR"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
 add["PIP_RWA005"] = "waiting for DSValue init"
@@ -113,7 +110,6 @@ add["RWA005_A_URN"] = "0xc40907545C57dB30F01a1c2acB242C7c7ACB2B90"
 add["RWA005_A_INPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
 add["RWA005_A_OUTPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
 
-// "RWA006-A: Centrifuge: Alternative Equity Advisers"
 add["RWA006"] = "0x4EE03cfBF6E784c462839f5954d60f7C2B60b113"
 add["RWA006_OPERATOR"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 add["PIP_RWA006"] = "waiting for DSValue init"
@@ -122,6 +118,12 @@ add["RWA006_A_URN"] = "0x0C185bf5388DdfDB288F4D875265d456D18FD9Cb"
 add["RWA006_A_INPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 add["RWA006_A_OUTPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 
+const rwaName = {"RWA001": "6s Capital"} // FIXME read from ilk registry
+rwaName["RWA002"] = "NS-DROP"
+rwaName["RWA003"] = "Centrifuge: ConsolFreight"
+rwaName["RWA004"] = "Centrifuge: Harbor Trade Credit"
+rwaName["RWA005"] = "Centrifuge: Fortunafi"
+rwaName["RWA006"] = "Centrifuge: Alternative Equity Advisers"
 
 let provider;
 let networkId;
@@ -774,6 +776,7 @@ class App extends Component {
     return {
       token: token,
       ilk: ilkName,
+      name: rwaName[token],
       Art:  utils.formatEther(ilk.Art),
       rate: utils.formatUnits(ilk.rate, 27),
       spot: utils.formatUnits(ilk.spot, 27),

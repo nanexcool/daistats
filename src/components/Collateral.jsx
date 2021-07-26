@@ -57,6 +57,7 @@ function Collateral(props) {
             title={ilk.Art * ilk.rate}>
             {formatAmount.format(ilk.Art * ilk.rate)} / {formatAmount.format(ilk.line)}
           </h3>
+          {ilk.name && <p className="title subtitle is-size-4">{ ilk.name }</p>}
           <p className="title subtitle is-size-4">
             {t('daistats.dai_from_token', { token: ilk.ilk })} ({formatAmount.format(ilk.Art * ilk.rate / props.debt * 100)}%)
               </p>
