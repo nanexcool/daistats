@@ -118,13 +118,6 @@ add["RWA006_A_URN"] = "0x0C185bf5388DdfDB288F4D875265d456D18FD9Cb"
 add["RWA006_A_INPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 add["RWA006_A_OUTPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 
-const rwaName = {"RWA001": "6s Capital"} // FIXME read from ilk registry
-rwaName["RWA002"] = "Centrifuge: New Silver"
-rwaName["RWA003"] = "Centrifuge: ConsolFreight"
-rwaName["RWA004"] = "Centrifuge: Harbor Trade Credit"
-rwaName["RWA005"] = "Centrifuge: Fortunafi"
-rwaName["RWA006"] = "Centrifuge: Alternative Equity Advisers"
-
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
@@ -143,6 +136,7 @@ const build = (address, name) => {
 }
 
 const multi = build(add.MULTICALL, "Multicall")
+const ilkRegistry = build(add.ILK_REGISTRY, "IlkRegistry")
 const vat = build(add.MCD_VAT, "Vat")
 const pot = build(add.MCD_POT, "Pot")
 const jug = build(add.MCD_JUG, "Jug")
@@ -526,7 +520,7 @@ class App extends Component {
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
-    const ILK_RWA_CALL_COUNT = 5;
+    const ILK_RWA_CALL_COUNT = 6;
 
     const ilks = [
           this.getIlkMap(res, offset, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
@@ -763,6 +757,7 @@ class App extends Component {
       [pipAdd, rwaPip.interface.encodeFunctionData('read', [])],
       [gemAdd, gem.interface.encodeFunctionData('totalSupply', [])],
       [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])],
+      [add.ILK_REGISTRY, ilkRegistry.interface.encodeFunctionData('name', [ilkBytes])],
     ]
   }
 
@@ -772,11 +767,12 @@ class App extends Component {
     const price = rwaPip.interface.decodeFunctionResult('read', res[idx++])[0]
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
     const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    const name = ilkRegistry.interface.decodeFunctionResult('name', res[idx++])
 
     return {
       token: token,
       ilk: ilkName,
-      name: rwaName[token],
+      name: String(name).replace(ilkName + ': ', ''),
       Art:  utils.formatEther(ilk.Art),
       rate: utils.formatUnits(ilk.rate, 27),
       spot: utils.formatUnits(ilk.spot, 27),
