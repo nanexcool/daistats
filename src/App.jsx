@@ -119,7 +119,7 @@ add["RWA006_A_INPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 add["RWA006_A_OUTPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
 
 const rwaName = {"RWA001": "6s Capital"} // FIXME read from ilk registry
-rwaName["RWA002"] = "NS-DROP"
+rwaName["RWA002"] = "Centrifuge: New Silver"
 rwaName["RWA003"] = "Centrifuge: ConsolFreight"
 rwaName["RWA004"] = "Centrifuge: Harbor Trade Credit"
 rwaName["RWA005"] = "Centrifuge: Fortunafi"
