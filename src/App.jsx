@@ -308,6 +308,7 @@ class App extends Component {
 
   all = async (blockNumber) => {
     let p1 = multi.callStatic.aggregate([
+      [add.MULTICALL, multi.interface.encodeFunctionData('getCurrentBlockTimestamp', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('Line', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
@@ -466,6 +467,7 @@ class App extends Component {
 
     var offset = 0;
 
+    const timestamp = multi.interface.decodeFunctionResult('getCurrentBlockTimestamp', res[offset++])
     const line = res[offset++] // vat.interface.decodeFunctionResult('Line', res[0])
     const debt = res[offset++] //vat.interface.decodeFunctionResult('debt', res[1])
     const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[offset++])[0]
@@ -575,6 +577,8 @@ class App extends Component {
       return {
         networkId: networkId,
         blockNumber: block.toString(),
+        timestamp: this.unixToDateTime(timestamp),
+        timestampHHMM: this.unixToTime(timestamp),
         Line: utils.formatUnits(line, 45),
         debt: utils.formatUnits(debt, 45),
         ilks: ilks,
@@ -999,7 +1003,7 @@ class App extends Component {
           {/* <NavBar /> */}
           <div className="notification is-primary has-text-centered">
             { /* eslint-disable-next-line */ }
-            {t('daistats.block')}: <strong>{this.state.blockNumber}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
+            {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
             <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
             <br />
