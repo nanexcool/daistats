@@ -624,7 +624,7 @@ const Main = (props) => {
                 <h3 className="title">MakerDAO Tokenlist v0.3.0</h3>
               </a>
               <a href="/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
-                <p className="subtitle is-size-7">{`https://DaiStats.com/makerdao.tokenlist.json`}</p>
+                <p className="subtitle is-size-7">{`DaiStats.com/makerdao.tokenlist.json`}</p>
               </a>
             </div>
           </div>
