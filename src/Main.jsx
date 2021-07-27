@@ -620,6 +620,18 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
+              <a href="https://tokenlists.org/token-list?url=https://daistats.com/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
+                <h3 className="title">MakerDAO Tokenlist v0.3.0</h3>
+              </a>
+              <a href="/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
+                <p className="subtitle is-size-7">{`https://DaiStats.com/makerdao.tokenlist.json`}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.MCD_DAI}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> Dai</h3>
                 <p className="subtitle is-size-7">{props.MCD_DAI}</p>
