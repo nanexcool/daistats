@@ -426,7 +426,7 @@ const Main = (props) => {
 
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.potFee}>{props.potFee}%</h3>
+              <h3 className="title" title={props.potFee}>{formatPercent.format(props.potFee)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.dai_savings_rate')}</p>
               <p className="subtitle is-size-6">{t('daistats.last_drip')}: {props.potDrip}</p>
             </div>

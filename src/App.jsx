@@ -488,7 +488,7 @@ class App extends Component {
     const sin = vow.interface.decodeFunctionResult('Sin', res[offset++])[0]
     const ash = vow.interface.decodeFunctionResult('Ash', res[offset++])[0]
 
-    const potFee = this.calcFee(pot.interface.decodeFunctionResult('dsr', res[offset++])[0])
+    const dsr = pot.interface.decodeFunctionResult('dsr', res[offset++])[0]
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
@@ -591,7 +591,7 @@ class App extends Component {
         surplusBump: utils.formatUnits(surplusBump, 45),
         debtDump: utils.formatEther(debtDump),
         debtSize: utils.formatUnits(debtSize, 45),
-        potFee: potFee.toFixed(2),
+        potFee: this.calcFee(dsr),
         savingsPie: utils.formatEther(savingsPie),
         savingsDai: utils.formatUnits(savingsDai, 45),
         potDrip: this.unixToDateTime(potDrip.toNumber()),
