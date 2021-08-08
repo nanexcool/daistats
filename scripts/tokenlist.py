@@ -32,6 +32,7 @@ from brownie import Contract
 ILK_REGISTRY = '0x5a464C28D19848f44199D003BeF5ecc87d090F87'
 DAI = '0x6B175474E89094C44Da98b954EedeAC495271d0F'
 OPTIMISTIC_DAI = '0xda10009cbd5d07dd0cecc66161fc93d7c9000da1'
+OPTIMISTIC_MKR = '0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5'
 MKR = '0x9f8F72aA9304c8B593d555F12eF6589cC3A579A2'
 
 TOKEN_LOGO_URI = 'https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/%s/logo.png'
@@ -42,9 +43,9 @@ tl = {
     "name": "MakerDAO",
     "timestamp": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00'),
     "version": {
-        "major": 0,
-        "minor": 3,
-        "patch": 0
+        "major": 0, # del token
+        "minor": 4, # add token
+        "patch": 0  # change detail
     },
     #logoURI is optional
     # 	"A URI for the logo of the token list; prefer SVG or PNG of size 256x256"
@@ -93,6 +94,14 @@ tl = {
         {
             "chainId": 1,
             "address": MKR,
+            "symbol": "MKR",
+            "name": "Maker",
+            "decimals": 18,
+            "logoURI": TOKEN_LOGO_URI % MKR,
+        },
+        {
+            "chainId": 10,
+            "address": OPTIMISTIC_MKR,
             "symbol": "MKR",
             "name": "Maker",
             "decimals": 18,
