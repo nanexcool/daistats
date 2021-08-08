@@ -535,6 +535,19 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.COM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Governance Communications Core Unit</h3>
+                <p className="subtitle is-size-7">{props.COM_MULTISIG}</p>
+              </a>
+              <a href={`https://etherscan.io/address/${props.COM_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                <p className="subtitle is-size-7">{props.COM_ER_MULTISIG}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
               <a href={`https://etherscan.io/address/${props.RWF_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> Real World Core Unit</h3>
                 <p className="subtitle is-size-7">{props.RWF_MULTISIG}</p>
