@@ -145,17 +145,17 @@ const Main = (props) => {
           <div className="column is-half">
             <div className="has-text-centered">
               <h3 className="title"
-                title={props.ilks[34].locked}>
-                {formatAmount.format(props.ilks[34].locked)} / {formatAmount.format(props.ilks[34].line)}
+                title={props.ilks[props.psmIdx].locked}>
+                {formatAmount.format(props.ilks[props.psmIdx].locked)} / {formatAmount.format(props.ilks[props.psmIdx].line)}
               </h3>
               <p className="title subtitle is-size-4">
-                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.ilks[34].locked / props.debt * 100)}%)
+                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.ilks[props.psmIdx].locked / props.debt * 100)}%)
               </p>
-              {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(props.ilks[34].lineMax)}</p>}
-              {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[34].gap)} Ttl: {props.ilks[34].ttl / 60 / 60}h</p>}
-              {props.ilks[34].lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {props.ilks[34].lastInc}</p>}
+              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(props.ilks[props.psmIdx].lineMax)}</p>}
+              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[props.psmIdx].gap)} Ttl: {props.ilks[props.psmIdx].ttl / 60 / 60}h</p>}
+              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {props.ilks[props.psmIdx].lastInc}</p>}
               <p className="subtitle is-size-6">
-                {t('daistats.utilization')}: {formatAmount.format(props.ilks[34].locked / props.ilks[34].line * 100)}%
+                {t('daistats.utilization')}: {formatAmount.format(props.ilks[props.psmIdx].locked / props.ilks[props.psmIdx].line * 100)}%
               </p>
               <p className="subtitle is-size-6">
                 <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
@@ -166,20 +166,20 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="has-text-centered">
-              <h3 className="title" title={props.ilks[34].tin}>{formatPercentFee.format(props.ilks[34].tin)}</h3>
+              <h3 className="title" title={props.ilks[props.psmIdx].tin}>{formatPercentFee.format(props.ilks[props.psmIdx].tin)}</h3>
               <p className="title subtitle is-size-4">Fee in</p>
-              <h3 className="title" title={props.ilks[34].tout}>{formatPercentFee.format(props.ilks[34].tout)}</h3>
+              <h3 className="title" title={props.ilks[props.psmIdx].tout}>{formatPercentFee.format(props.ilks[props.psmIdx].tout)}</h3>
               <p className="title subtitle is-size-4">Fee out</p>
             </div>
           </div>
           <div className="column">
             <div className="has-text-centered">
-              <h3 className="title" title={props.ilks[34].locked}>{formatNoDecimals.format(props.ilks[34].locked)}</h3>
+              <h3 className="title" title={props.ilks[props.psmIdx].locked}>{formatNoDecimals.format(props.ilks[props.psmIdx].locked)}</h3>
               <p className="title subtitle is-size-4">
                 {t('daistats.token_locked', { token: 'USDC' })}
               </p>
               <p className="subtitle is-size-6">
-                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.ilks[34].locked / props.ilks[34].supply)}</p>
+                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.ilks[props.psmIdx].locked / props.ilks[props.psmIdx].supply)}</p>
             </div>
           </div>
         </div>
@@ -219,6 +219,10 @@ const Main = (props) => {
         <Collateral {...props} idx="30" fee={props.univ2daiusdtAFee} />
         <Collateral {...props} idx="32" fee={props.rwa001AFee} />
         <Collateral {...props} idx="33" fee={props.rwa002AFee} />
+        <Collateral {...props} idx="34" fee={props.rwa003AFee} />
+        <Collateral {...props} idx="35" fee={props.rwa004AFee} />
+        <Collateral {...props} idx="36" fee={props.rwa005AFee} />
+        <Collateral {...props} idx="37" fee={props.rwa006AFee} />
           </TabPanel>
           <TabPanel>
         <div className="columns">
@@ -263,6 +267,14 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
           <Pip {...props} token="RWA002" idx="33" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
+          <Pip {...props} token="RWA003" idx="34" formater={formatTwoDp} />
+          <Pip {...props} token="RWA004" idx="35" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
+          <Pip {...props} token="RWA005" idx="36" formater={formatTwoDp} />
+          <Pip {...props} token="RWA006" idx="37" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
@@ -375,7 +387,7 @@ const Main = (props) => {
                   <Clip {...props} token="TUSD" idx="5"/>
                   <Clip {...props} token="GUSD" idx="17"/>
                   <Clip {...props} token="PAXUSD" idx="9"/>
-                  <Clip {...props} token="PSM-USDC-A" idx="34"/>
+                  <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
                 </tbody>
               </table>
           </div>

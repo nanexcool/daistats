@@ -88,7 +88,7 @@ add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 
 add["RWA003"] = "0x07F0A80aD7AeB7BfB7f139EA71B3C8f7E17156B9"
 add["RWA003_OPERATOR"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
-add["PIP_RWA003"] = "waiting for DSValue init"
+add["PIP_RWA003"] = "0xDeF7E88447F7D129420FC881B2a854ABB52B73B8"
 add["MCD_JOIN_RWA003_A"] = "0x1Fe789BBac5b141bdD795A3Bc5E12Af29dDB4b86"
 add["RWA003_A_URN"] = "0x7bF825718e7C388c3be16CFe9982539A7455540F"
 add["RWA003_A_INPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
@@ -96,7 +96,7 @@ add["RWA003_A_OUTPUT_CONDUIT"] = "0x2A9798c6F165B6D60Cfb923Fe5BFD6f338695D9B"
 
 add["RWA004"] = "0x873F2101047A62F84456E3B2B13df2287925D3F9"
 add["RWA004_OPERATOR"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
-add["PIP_RWA004"] = "waiting for DSValue init"
+add["PIP_RWA004"] = "0x5eEE1F3d14850332A75324514CcbD2DBC8Bbc566"
 add["MCD_JOIN_RWA004_A"] = "0xD50a8e9369140539D1c2D113c4dC1e659c6242eB"
 add["RWA004_A_URN"] = "0xeF1699548717aa4Cf47aD738316280b56814C821"
 add["RWA004_A_INPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
@@ -104,7 +104,7 @@ add["RWA004_A_OUTPUT_CONDUIT"] = "0xe1ed3F588A98bF8a3744f4BF74Fd8540e81AdE3f"
 
 add["RWA005"] = "0x6DB236515E90fC831D146f5829407746EDdc5296"
 add["RWA005_OPERATOR"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
-add["PIP_RWA005"] = "waiting for DSValue init"
+add["PIP_RWA005"] = "0x8E6039C558738eb136833aB50271ae065c700d2B"
 add["MCD_JOIN_RWA005_A"] = "0xA4fD373b93aD8e054970A3d6cd4Fd4C31D08192e"
 add["RWA005_A_URN"] = "0xc40907545C57dB30F01a1c2acB242C7c7ACB2B90"
 add["RWA005_A_INPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
@@ -112,7 +112,7 @@ add["RWA005_A_OUTPUT_CONDUIT"] = "0x5b702e1fEF3F556cbe219eE697D7f170A236cc66"
 
 add["RWA006"] = "0x4EE03cfBF6E784c462839f5954d60f7C2B60b113"
 add["RWA006_OPERATOR"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
-add["PIP_RWA006"] = "waiting for DSValue init"
+add["PIP_RWA006"] = "0xB8AeCF04Fdf22Ef6C0c6b6536896e1F2870C41D3"
 add["MCD_JOIN_RWA006_A"] = "0x5E11E34b6745FeBa9449Ae53c185413d6EdC66BE"
 add["RWA006_A_URN"] = "0x0C185bf5388DdfDB288F4D875265d456D18FD9Cb"
 add["RWA006_A_INPUT_CONDUIT"] = "0x8Fe38D1E4293181273E2e323e4c16e0D1d4861e3"
@@ -391,11 +391,11 @@ class App extends Component {
      .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
      .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
      .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
+     .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
+     .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
+     .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
+     .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
-//     .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
-//     .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
-//     .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
-//     .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -521,6 +521,7 @@ class App extends Component {
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 6;
+    const ILK_PSM_CALL_COUNT = 17;
 
     const ilks = [
           this.getIlkMap(res, offset, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
@@ -557,12 +558,12 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base), // 606
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base), // 611
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
           // include PSM in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
-//          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
-//          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
-//          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
-//          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -571,6 +572,7 @@ class App extends Component {
 
     this.setState(state => {
       return {
+        psmIdx: ilks.length - 1,
         networkId: networkId,
         blockNumber: block.toString(),
         timestamp: this.unixToDateTime(timestamp),
