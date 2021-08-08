@@ -633,7 +633,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <a href="https://tokenlists.org/token-list?url=https://daistats.com/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
-                <h3 className="title">MakerDAO Tokenlist v0.3.0</h3>
+                <h3 className="title">MakerDAO Tokenlist v0.4.0</h3>
               </a>
               <a href="/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
                 <p className="subtitle is-size-7">{`DaiStats.com/makerdao.tokenlist.json`}</p>
@@ -961,9 +961,9 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://optimistic.etherscan.io/token/${props.OPTIMISTIC_ETH}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> Optimistic ETH</h3>
-                <p className="subtitle is-size-7">{props.OPTIMISTIC_ETH}</p>
+              <a href={`https://optimistic.etherscan.io/token/${props.OPTIMISTIC_MKR}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Optimistic MKR</h3>
+                <p className="subtitle is-size-7">{props.OPTIMISTIC_MKR}</p>
               </a>
             </div>
           </div>
