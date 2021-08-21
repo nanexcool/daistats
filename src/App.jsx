@@ -94,6 +94,12 @@ add["MCD_CLIP_MATIC_A"] = "0x29342F530ed6120BDB219D602DaFD584676293d1"
 add["MCD_CLIP_CALC_MATIC_A"] = "0xdF8C347B06a31c6ED11f8213C2366348BFea68dB"
 add["PIP_MATIC"] = "0x8874964279302e6d4e523Fb1789981C39a1034Ba"
 
+// aka PAXUSD add["PAX"] = "0x8E870D67F660D95d5be530380D0eC0bd388289E1"
+add["MCD_JOIN_PSM_PAX_A"] = "0x7bbd8cA5e413bCa521C2c80D8d1908616894Cf21"
+add["MCD_CLIP_PSM_PAX_A"] = "0x5322a3551bc6a1b39d5D142e5e38Dc5B4bc5B3d2"
+add["MCD_CLIP_CALC_PSM_PAX_A"] = "0xC19eAc21A4FccdD30812F5fF5FebFbD6817b7593"
+add["MCD_PSM_PAX_A"] = "0x961Ae24a1Ceba861D1FDf723794f6024Dc5485Cf"
+add["PIP_PSM_PAX"] = "0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"
 
 let provider;
 let networkId;
@@ -165,6 +171,7 @@ const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM_A, "DssPsm")
+const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -206,6 +213,7 @@ const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A");
 const aaveAIlkBytes = utils.formatBytes32String("AAVE-A");
 const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A");
 const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A");
+const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A");
 const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A");
 const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A");
 const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A");
@@ -376,6 +384,7 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
+     .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PAX_PSM_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -548,6 +557,7 @@ class App extends Component {
           // include PSM in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
+          this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -556,7 +566,8 @@ class App extends Component {
 
     this.setState(state => {
       return {
-        psmIdx: ilks.length - 1,
+        psmIdx: 38,
+        psmPaxIdx: 40,
         networkId: networkId,
         blockNumber: block.toString(),
         timestamp: this.unixToDateTime(timestamp),

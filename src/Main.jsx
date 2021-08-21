@@ -1,6 +1,7 @@
 import React from 'react'
 import { useTranslate } from 'react-polyglot';
 import Collateral from './components/Collateral';
+import Psm from './components/Psm';
 import HistoricalDebtChart from './components/HistoricalDebtChart';
 import Pip from './components/Pip'
 import CollateralChart from './components/CollateralChart';
@@ -140,51 +141,8 @@ const Main = (props) => {
         </div>
           </TabPanel>
           <TabPanel>
-        <div>
-          <div className="columns">
-          <div className="column is-half">
-            <div className="has-text-centered">
-              <h3 className="title"
-                title={props.ilks[props.psmIdx].locked}>
-                {formatAmount.format(props.ilks[props.psmIdx].locked)} / {formatAmount.format(props.ilks[props.psmIdx].line)}
-              </h3>
-              <p className="title subtitle is-size-4">
-                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(props.ilks[props.psmIdx].locked / props.debt * 100)}%)
-              </p>
-              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(props.ilks[props.psmIdx].lineMax)}</p>}
-              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[props.psmIdx].gap)} Ttl: {props.ilks[props.psmIdx].ttl / 60 / 60}h</p>}
-              {props.ilks[props.psmIdx].lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {props.ilks[props.psmIdx].lastInc}</p>}
-              <p className="subtitle is-size-6">
-                {t('daistats.utilization')}: {formatAmount.format(props.ilks[props.psmIdx].locked / props.ilks[props.psmIdx].line * 100)}%
-              </p>
-              <p className="subtitle is-size-6">
-                <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
-                  Trade DAI & USDC with no price impact using the PSM
-                </a>
-              </p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="has-text-centered">
-              <h3 className="title" title={props.ilks[props.psmIdx].tin}>{formatPercentFee.format(props.ilks[props.psmIdx].tin)}</h3>
-              <p className="title subtitle is-size-4">Fee in</p>
-              <h3 className="title" title={props.ilks[props.psmIdx].tout}>{formatPercentFee.format(props.ilks[props.psmIdx].tout)}</h3>
-              <p className="title subtitle is-size-4">Fee out</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="has-text-centered">
-              <h3 className="title" title={props.ilks[props.psmIdx].locked}>{formatNoDecimals.format(props.ilks[props.psmIdx].locked)}</h3>
-              <p className="title subtitle is-size-4">
-                {t('daistats.token_locked', { token: 'USDC' })}
-              </p>
-              <p className="subtitle is-size-6">
-                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(props.ilks[props.psmIdx].locked / props.ilks[props.psmIdx].supply)}</p>
-            </div>
-          </div>
-        </div>
-        <hr />
-        </div>
+        <Psm {...props} idx="38" />
+        <Psm {...props} idx="40" />
         <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
         <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
         <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
@@ -391,6 +349,7 @@ const Main = (props) => {
                   <Clip {...props} token="GUSD" idx="17"/>
                   <Clip {...props} token="PAXUSD" idx="9"/>
                   <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
+                  <Clip {...props} token="PSM-PAX-A" idx={props.psmPaxIdx}/>
                 </tbody>
               </table>
           </div>
