@@ -86,8 +86,13 @@ add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
 add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
-//add["MEDIAN_RWA001
-//add["MEDIAN_RWA002
+add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
+
+add["MATIC"] = "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0"
+add["MCD_JOIN_MATIC_A"] = "0x885f16e177d45fC9e7C87e1DA9fd47A9cfcE8E13"
+add["MCD_CLIP_MATIC_A"] = "0x29342F530ed6120BDB219D602DaFD584676293d1"
+add["MCD_CLIP_CALC_MATIC_A"] = "0xdF8C347B06a31c6ED11f8213C2366348BFea68dB"
+add["PIP_MATIC"] = "0x8874964279302e6d4e523Fb1789981C39a1034Ba"
 
 
 let provider;
@@ -158,6 +163,7 @@ const rwa004 = build(add.RWA004, "ERC20")
 const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
+const matic = build(add.MATIC, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
@@ -215,6 +221,7 @@ const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A");
 const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A");
 const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A");
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A");
+const maticAIlkBytes = utils.formatBytes32String("MATIC-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -368,6 +375,7 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
+     .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -400,6 +408,8 @@ class App extends Component {
       this.getPrice(add.MEDIAN_UNI, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_AAVE, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_AAVE, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_MATIC, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_MATIC, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
@@ -428,6 +438,7 @@ class App extends Component {
         manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
         lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
         yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
+        maticPriceNxt, maticPriceMedian,
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
         univ2aaveethPriceNxt, univ2daiusdtPriceNxt,
@@ -536,6 +547,7 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
           // include PSM in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
+          this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))

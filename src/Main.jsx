@@ -207,6 +207,7 @@ const Main = (props) => {
         <Collateral {...props} idx="18" fee={props.uniAFee} />
         <Collateral {...props} idx="19" fee={props.renbtcAFee} />
         <Collateral {...props} idx="20" fee={props.aaveAFee} />
+        <Collateral {...props} idx="39" fee={props.maticAFee} />
         <Collateral {...props} idx="21" fee={props.univ2daiethAFee} />
         <Collateral {...props} idx="22" fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
         <Collateral {...props} idx="23" fee={props.univ2usdcethAFee} showLockedDecimals={true} />
@@ -244,12 +245,13 @@ const Main = (props) => {
           <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
         </div>
         <div className="columns">
+          <Pip {...props} token="MATIC" idx="39" formater={formatCurrency} />
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
           <Pip {...props} token="USDC, TUSD, PAX, GUSD" idx="2" formater={formatCurrency}/>
-          <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
         </div>
         <div className="columns">
+          <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
           <Pip {...props} token="UniV2UniEth" idx="27" formater={formatTwoDp} />
           <Pip {...props} token="UniV2WbtcEth" idx="22" formater={formatNoDecimals} />
           <Pip {...props} token="UniV2UsdcEth" idx="23" formater={formatNoDecimals} />
@@ -367,6 +369,7 @@ const Main = (props) => {
                   <Clip {...props} token="LINK" idx="13"/>
                   <Clip {...props} token="LRC" idx="12"/>
                   <Clip {...props} token="MANA" idx="8"/>
+                  <Clip {...props} token="MATIC" idx="39"/>
                   <Clip {...props} token="RENBTC" idx="19"/>
                   <Clip {...props} token="UNI" idx="18"/>
                   <Clip {...props} token="YFI" idx="16"/>
@@ -646,7 +649,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <a href="https://tokenlists.org/token-list?url=https://daistats.com/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
-                <h3 className="title">MakerDAO Tokenlist v0.4.0</h3>
+                <h3 className="title">MakerDAO Tokenlist v0.5.0</h3>
               </a>
               <a href="/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
                 <p className="subtitle is-size-7">{`DaiStats.com/makerdao.tokenlist.json`}</p>
@@ -823,6 +826,14 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.MATIC}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> MATIC</h3>
+                <p className="subtitle is-size-7">{props.MATIC}</p>
+              </a>
+            </div>
+          </div>
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.UNIV2DAIETH}`} target="_blank" rel="noopener noreferrer">
