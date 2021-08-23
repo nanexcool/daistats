@@ -14,16 +14,16 @@ const formatNoDecimals = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 })
 
-const formatDp = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 8,
-  maximumFractionDigits: 8
-})
-
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
+})
+
+const formatPercentFee = new Intl.NumberFormat('en-US', {
+  style: 'percent',
+  minimumFractionDigits: 2,
+  maximumFractionDigits: 4
 })
 
 function Psm(props) {
@@ -41,9 +41,9 @@ function Psm(props) {
               <p className="title subtitle is-size-4">
                 {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(ilk.locked / props.debt * 100)}%)
               </p>
-              {ilks.lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(ilk.lineMax)}</p>}
-              {ilks.lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(ilk.gap)} Ttl: {ilk.ttl / 60 / 60}h</p>}
-              {ilks.lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {ilk.lastInc}</p>}
+              {ilk.lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(ilk.lineMax)}</p>}
+              {ilk.lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(ilk.gap)} Ttl: {ilk.ttl / 60 / 60}h</p>}
+              {ilk.lineMax > 0 && <p className="title subtitle is-size-6">Last Change: {ilk.lastInc}</p>}
               <p className="subtitle is-size-6">
                 {t('daistats.utilization')}: {formatAmount.format(ilk.locked / ilk.line * 100)}%
               </p>
