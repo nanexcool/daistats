@@ -39,7 +39,7 @@ function Psm(props) {
                 {formatAmount.format(ilk.locked)} / {formatAmount.format(ilk.line)}
               </h3>
               <p className="title subtitle is-size-4">
-                {t('daistats.dai_from_token', { token: 'PSM-USDC-A' })} ({formatAmount.format(ilk.locked / props.debt * 100)}%)
+                {t('daistats.dai_from_token', { token: ilk.ilk })} ({formatAmount.format(ilk.locked / props.debt * 100)}%)
               </p>
               {ilk.lineMax > 0 && <p className="title subtitle is-size-6">{t('maker.debt_ceiling')}: {formatAmount.format(ilk.lineMax)}</p>}
               {ilk.lineMax > 0 && <p className="title subtitle is-size-6">Gap: {formatAmount.format(ilk.gap)} Ttl: {ilk.ttl / 60 / 60}h</p>}
@@ -47,11 +47,12 @@ function Psm(props) {
               <p className="subtitle is-size-6">
                 {t('daistats.utilization')}: {formatAmount.format(ilk.locked / ilk.line * 100)}%
               </p>
+              {ilk.ilk === "PSM-USDC-A" &&
               <p className="subtitle is-size-6">
                 <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
                   Trade DAI & USDC with no price impact using the PSM
                 </a>
-              </p>
+              </p>}
             </div>
           </div>
           <div className="column">
@@ -66,10 +67,10 @@ function Psm(props) {
             <div className="has-text-centered">
               <h3 className="title" title={ilk.locked}>{formatNoDecimals.format(ilk.locked)}</h3>
               <p className="title subtitle is-size-4">
-                {t('daistats.token_locked', { token: 'USDC' })}
+                {t('daistats.token_locked', { token: ilk.token })}
               </p>
               <p className="subtitle is-size-6">
-                {t('daistats.token_supply_locked', { token: 'USDC' })}: {formatPercent.format(ilk.locked / ilk.supply)}</p>
+                {t('daistats.token_supply_locked', { token: ilk.token })}: {formatPercent.format(ilk.locked / ilk.supply)}</p>
             </div>
           </div>
         </div>
