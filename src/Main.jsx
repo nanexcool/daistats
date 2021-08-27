@@ -141,8 +141,8 @@ const Main = (props) => {
         </div>
           </TabPanel>
           <TabPanel>
-        <Psm {...props} idx="38" />
-        <Psm {...props} idx="40" />
+        <Psm {...props} idx={props.psmIdx} />
+        <Psm {...props} idx={props.psmPaxIdx} />
         <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
         <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
         <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
@@ -165,7 +165,7 @@ const Main = (props) => {
         <Collateral {...props} idx="18" fee={props.uniAFee} />
         <Collateral {...props} idx="19" fee={props.renbtcAFee} />
         <Collateral {...props} idx="20" fee={props.aaveAFee} />
-        <Collateral {...props} idx="39" fee={props.maticAFee} />
+        <Collateral {...props} idx="38" fee={props.maticAFee} />
         <Collateral {...props} idx="21" fee={props.univ2daiethAFee} />
         <Collateral {...props} idx="22" fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
         <Collateral {...props} idx="23" fee={props.univ2usdcethAFee} showLockedDecimals={true} />
@@ -203,7 +203,7 @@ const Main = (props) => {
           <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="MATIC" idx="39" formater={formatCurrency} />
+          <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
           <Pip {...props} token="USDC, TUSD, PAX, GUSD" idx="2" formater={formatCurrency}/>
@@ -327,7 +327,7 @@ const Main = (props) => {
                   <Clip {...props} token="LINK" idx="13"/>
                   <Clip {...props} token="LRC" idx="12"/>
                   <Clip {...props} token="MANA" idx="8"/>
-                  <Clip {...props} token="MATIC" idx="39"/>
+                  <Clip {...props} token="MATIC" idx="38"/>
                   <Clip {...props} token="RENBTC" idx="19"/>
                   <Clip {...props} token="UNI" idx="18"/>
                   <Clip {...props} token="YFI" idx="16"/>

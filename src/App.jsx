@@ -32,11 +32,19 @@ add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5"
 add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+
 add["MCD_JOIN_USDC_PSM_A"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
-add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
+//add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 add["MCD_PSM_USDC_PSM_A"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
 add["MCD_CLIP_USDC_PSM_A"] = "0x66609b4799fd7cE12BA799AD01094aBD13d5014D"
 add["MCD_CLIP_CALC_USDC_PSM_A"] = "0xbeE028b5Fa9eb0aDAC5eeF7E5B13383172b91A4E"
+
+// aka PAXUSD add["PAX"] = "0x8E870D67F660D95d5be530380D0eC0bd388289E1"
+add["MCD_JOIN_PAX_PSM_A"] = "0x7bbd8cA5e413bCa521C2c80D8d1908616894Cf21"
+add["MCD_PSM_PAX_PSM_A"] = "0x961Ae24a1Ceba861D1FDf723794f6024Dc5485Cf"
+add["MCD_CLIP_PAX_PSM_A"] = "0x5322a3551bc6a1b39d5D142e5e38Dc5B4bc5B3d2"
+add["MCD_CLIP_CALC_PAX_PSM_A"] = "0xC19eAc21A4FccdD30812F5fF5FebFbD6817b7593"
+//add["PIP_PSM_PAX"] = "0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"
 
 add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
 add["GOV_MULTISIG_2"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
@@ -93,13 +101,6 @@ add["MCD_JOIN_MATIC_A"] = "0x885f16e177d45fC9e7C87e1DA9fd47A9cfcE8E13"
 add["MCD_CLIP_MATIC_A"] = "0x29342F530ed6120BDB219D602DaFD584676293d1"
 add["MCD_CLIP_CALC_MATIC_A"] = "0xdF8C347B06a31c6ED11f8213C2366348BFea68dB"
 add["PIP_MATIC"] = "0x8874964279302e6d4e523Fb1789981C39a1034Ba"
-
-// aka PAXUSD add["PAX"] = "0x8E870D67F660D95d5be530380D0eC0bd388289E1"
-add["MCD_JOIN_PSM_PAX_A"] = "0x7bbd8cA5e413bCa521C2c80D8d1908616894Cf21"
-add["MCD_CLIP_PSM_PAX_A"] = "0x5322a3551bc6a1b39d5D142e5e38Dc5B4bc5B3d2"
-add["MCD_CLIP_CALC_PSM_PAX_A"] = "0xC19eAc21A4FccdD30812F5fF5FebFbD6817b7593"
-add["MCD_PSM_PAX_A"] = "0x961Ae24a1Ceba861D1FDf723794f6024Dc5485Cf"
-add["PIP_PSM_PAX"] = "0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"
 
 let provider;
 let networkId;
@@ -171,7 +172,7 @@ const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_PSM_A, "DssPsm")
-const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
+const psmPax = build(add.MCD_PSM_PAX_PSM_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -382,8 +383,8 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
-     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
+     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PAX_PSM_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      ,{blockTag: blockNumber})
     let promises = [
@@ -554,10 +555,10 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
-          // include PSM in CollateralChart
-          this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
-          this.getPsmIlkMap(res, offset += ILK_RWA_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax),
+          // include PSM's in CollateralChart
+          this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
+          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -566,7 +567,7 @@ class App extends Component {
 
     this.setState(state => {
       return {
-        psmIdx: 38,
+        psmIdx: 39,
         psmPaxIdx: 40,
         networkId: networkId,
         blockNumber: block.toString(),
