@@ -44,7 +44,7 @@ tl = {
     "timestamp": datetime.datetime.utcnow().strftime('%Y-%m-%dT%H:%M:%S+00:00'),
     "version": {
         "major": 0, # del token
-        "minor": 4, # add token
+        "minor": 5, # add token
         "patch": 0  # change detail
     },
     #logoURI is optional

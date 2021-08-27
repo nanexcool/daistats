@@ -1,9 +1,9 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-08-08T07:18:28+00:00",
+    "timestamp": "2021-08-27T22:58:20+00:00",
     "version": {
         "major": 0,
-        "minor": 4,
+        "minor": 5,
         "patch": 0
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
@@ -340,7 +340,7 @@
         {
             "chainId": 1,
             "address": "0x10b2aA5D77Aa6484886d8e244f0686aB319a270d",
-            "symbol": "RWA001-A",
+            "symbol": "RWA001",
             "name": "RWA001-A: 6s Capital",
             "decimals": 18,
             "tags": [
@@ -350,7 +350,7 @@
         {
             "chainId": 1,
             "address": "0xAAA760c2027817169D7C8DB0DC61A2fb4c19AC23",
-            "symbol": "RWA002-A",
+            "symbol": "RWA002",
             "name": "RWA002-A: Centrifuge: New Silver",
             "decimals": 18,
             "tags": [
@@ -360,7 +360,7 @@
         {
             "chainId": 1,
             "address": "0x07F0A80aD7AeB7BfB7f139EA71B3C8f7E17156B9",
-            "symbol": "RWA003-A",
+            "symbol": "RWA003",
             "name": "RWA003-A: Centrifuge: ConsolFreight",
             "decimals": 18,
             "tags": [
@@ -370,7 +370,7 @@
         {
             "chainId": 1,
             "address": "0x873F2101047A62F84456E3B2B13df2287925D3F9",
-            "symbol": "RWA004-A",
+            "symbol": "RWA004",
             "name": "RWA004-A: Centrifuge: Harbor Trade Credi",
             "decimals": 18,
             "tags": [
@@ -380,7 +380,7 @@
         {
             "chainId": 1,
             "address": "0x6DB236515E90fC831D146f5829407746EDdc5296",
-            "symbol": "RWA005-A",
+            "symbol": "RWA005",
             "name": "RWA005-A: Centrifuge: Fortunafi",
             "decimals": 18,
             "tags": [
@@ -390,12 +390,20 @@
         {
             "chainId": 1,
             "address": "0x4EE03cfBF6E784c462839f5954d60f7C2B60b113",
-            "symbol": "RWA006-A",
+            "symbol": "RWA006",
             "name": "RWA006-A: Centrifuge: Alternative Equity",
             "decimals": 18,
             "tags": [
                 "rwa"
             ]
+        },
+        {
+            "chainId": 1,
+            "address": "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0",
+            "symbol": "MATIC",
+            "name": "Matic Token",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0/logo.png"
         }
     ]
 }
