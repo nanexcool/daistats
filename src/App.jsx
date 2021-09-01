@@ -251,6 +251,7 @@ const DP6 = ethers.BigNumber.from("1000000000000")
 const DP7 = ethers.BigNumber.from("1000000000000")
 const DP8 = ethers.BigNumber.from("10000000000")
 const DP10 = ethers.BigNumber.from("1000000000")
+const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
@@ -557,8 +558,8 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
-          this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax),
+          this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
+          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax, 18, DP10, DP18),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -813,7 +814,7 @@ class App extends Component {
     ]
   }
 
-  getPsmIlkMap = (res, idx, token, ilkName, psm) => {
+  getPsmIlkMap = (res, idx, token, ilkName, psm, dp, tokenDp, priceDp) => {
     const tin = psm.interface.decodeFunctionResult('tin', res[idx++])[0]
     const tout = psm.interface.decodeFunctionResult('tout', res[idx++])[0]
     const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
@@ -823,12 +824,12 @@ class App extends Component {
     const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
     const price = usdcPip.interface.decodeFunctionResult('read', res[idx++])[0]
     const supply = usdc.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
-    const priceBN = ethers.BigNumber.from(price).mul(DP10)
+    const priceBN = ethers.BigNumber.from(price).mul(priceDp)
 
     return {
       token: token,
       ilk: ilkName,
-      Art: utils.formatUnits(locked, 6),
+      Art: utils.formatUnits(locked, dp),
       rate: 1,
       line: utils.formatUnits(ilk.line, 45),
       lineMax: utils.formatUnits(autoLineIlk.line, 45),
@@ -849,10 +850,10 @@ class App extends Component {
       kicks: kicks.toNumber(),
       tin: utils.formatEther(tin),
       tout: utils.formatEther(tout),
-      locked: utils.formatUnits(locked, 6),
-      supply: utils.formatUnits(supply, 6),
-      value: utils.formatUnits(locked.mul(DP7).mul(priceBN), 45),
-      valueBn: locked.mul(DP7).mul(priceBN)
+      locked: utils.formatUnits(locked, dp),
+      supply: utils.formatUnits(supply, dp),
+      value: utils.formatUnits(locked.mul(tokenDp).mul(priceBN), 45),
+      valueBn: locked.mul(tokenDp).mul(priceBN)
     }
   }
 
