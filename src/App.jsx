@@ -298,6 +298,12 @@ class App extends Component {
       [add.MCD_VAT, vat.interface.encodeFunctionData('debt', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])], // 18
+      [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])], // 23
+      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])], // 33
+      [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
 
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.GEM_PIT])],
@@ -311,16 +317,11 @@ class App extends Component {
       [add.MCD_POT, pot.interface.encodeFunctionData('rho', [])],
       [add.CDP_MANAGER, manager.interface.encodeFunctionData('cdpi', [])], // 13
       [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])], // 18
 
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
       [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])], // 23
 
       [add.MCD_FLAP, flap.interface.encodeFunctionData('beg', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('ttl', [])],
@@ -331,7 +332,6 @@ class App extends Component {
       [add.MCD_FLOP, flop.interface.encodeFunctionData('ttl', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('tau', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('kicks', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])], // 33
 
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.MCD_PAUSE_PROXY])],
       [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
@@ -462,6 +462,12 @@ class App extends Component {
     const debt = res[offset++] //vat.interface.decodeFunctionResult('debt', res[1])
     const surplusBuffer = vow.interface.decodeFunctionResult('hump', res[offset++])[0]
     const debtSize = vow.interface.decodeFunctionResult('sump', res[offset++])[0]
+    const sin = vow.interface.decodeFunctionResult('Sin', res[offset++])[0]
+    const ash = vow.interface.decodeFunctionResult('Ash', res[offset++])[0]
+    const surplusBump = vow.interface.decodeFunctionResult('bump', res[offset++])[0]
+    const debtDump = vow.interface.decodeFunctionResult('dump', res[offset++])[0]
+    const vow_dai = vat.interface.decodeFunctionResult('dai', res[offset++])[0]
+    const vow_sin = vat.interface.decodeFunctionResult('sin', res[offset++])[0]
     const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
 
     const gemPit = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
@@ -477,17 +483,12 @@ class App extends Component {
     const cdps = manager.interface.decodeFunctionResult('cdpi', res[offset++])
     // hack cast to bignumber for "jug.base = 0"
     const base = '0x' + jug.interface.decodeFunctionResult('base', res[offset++])
-    const vow_dai = vat.interface.decodeFunctionResult('dai', res[offset++])[0]
-    const vow_sin = vat.interface.decodeFunctionResult('sin', res[offset++])[0]
-    const sin = vow.interface.decodeFunctionResult('Sin', res[offset++])[0]
-    const ash = vow.interface.decodeFunctionResult('Ash', res[offset++])[0]
 
     const dsr = pot.interface.decodeFunctionResult('dsr', res[offset++])[0]
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const vice = vat.interface.decodeFunctionResult('vice', res[offset++])[0]
-    const surplusBump = vow.interface.decodeFunctionResult('bump', res[offset++])[0]
 
     const flapBeg = flap.interface.decodeFunctionResult('beg', res[offset++])[0]
     const flapTtl = flap.interface.decodeFunctionResult('ttl', res[offset++])
@@ -498,7 +499,6 @@ class App extends Component {
     const flopTtl = flop.interface.decodeFunctionResult('ttl', res[offset++])
     const flopTau = flop.interface.decodeFunctionResult('tau', res[offset++])
     const flopKicks = flop.interface.decodeFunctionResult('kicks', res[offset++])[0]
-    const debtDump = vow.interface.decodeFunctionResult('dump', res[offset++])[0]
 
     const protocolTreasury = mkr.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
     const bkrSupply = bkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
