@@ -134,6 +134,7 @@ const flash = build(add.MCD_FLASH, "DssFlash")
 const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
 const esm = build(add.MCD_ESM, "ESM")
+const end = build(add.MCD_END, "End")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -299,9 +300,9 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('hump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('sump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('Sin', [])],
-      [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])], // 18
-      [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])], // 23
-      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])], // 33
+      [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
@@ -312,10 +313,10 @@ class App extends Component {
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])],
 
-      [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])], // 10
+      [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('chi', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('rho', [])],
-      [add.CDP_MANAGER, manager.interface.encodeFunctionData('cdpi', [])], // 13
+      [add.CDP_MANAGER, manager.interface.encodeFunctionData('cdpi', [])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('base', [])],
 
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
@@ -337,14 +338,15 @@ class App extends Component {
       [add.BKR, bkr.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('balanceOf', [add.BKR])],
       [add.MCD_DOG, dog.interface.encodeFunctionData('Hole', [])],
-      [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])], // 57
+      [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])],
 
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])], // 58
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
       [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])],
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
       [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
-      [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])], // 63
+      [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
+      [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
 
     ].concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
@@ -512,6 +514,7 @@ class App extends Component {
     const hat = chief.interface.decodeFunctionResult('hat', res[offset++])
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
+    const endWait = end.interface.decodeFunctionResult('wait', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 6;
@@ -624,6 +627,7 @@ class App extends Component {
         hat: hat,
         esmMin: utils.formatEther(esmMin),
         esmSum: utils.formatEther(esmSum),
+        endWait: endWait.toNumber(),
         optimisticDaiSupply: utils.formatEther(optimisticDaiSupply),
         historicalDebt,
       }
