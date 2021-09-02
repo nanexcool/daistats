@@ -282,6 +282,7 @@ const Main = (props) => {
               <p className="title subtitle is-size-6">{t('daistats.initial_price')}: ${formatAmount.format(props.debtSize / props.debtDump)}</p>
               <p className="title subtitle is-size-6">Beg: {formatPercent.format(props.flopBeg - 1)} Pad: {formatPercent.format(props.flopPad - 1)}</p>
               <p className="title subtitle is-size-6">Ttl: {props.flopTtl / 60}m Tau: {props.flopTau / 60 / 60}h</p>
+              <p className="title subtitle is-size-6">Flop delay: {props.flopDelay / 60 / 60}h</p>
             </div>
           </div>
           <div className="column">

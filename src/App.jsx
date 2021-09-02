@@ -303,6 +303,7 @@ class App extends Component {
       [add.MCD_VOW, vow.interface.encodeFunctionData('Ash', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('bump', [])],
       [add.MCD_VOW, vow.interface.encodeFunctionData('dump', [])],
+      [add.MCD_VOW, vow.interface.encodeFunctionData('wait', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('dai', [add.MCD_VOW])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('sin', [add.MCD_VOW])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('totalSupply', [])],
@@ -468,6 +469,7 @@ class App extends Component {
     const ash = vow.interface.decodeFunctionResult('Ash', res[offset++])[0]
     const surplusBump = vow.interface.decodeFunctionResult('bump', res[offset++])[0]
     const debtDump = vow.interface.decodeFunctionResult('dump', res[offset++])[0]
+    const vowWait = vow.interface.decodeFunctionResult('wait', res[offset++])[0]
     const vow_dai = vat.interface.decodeFunctionResult('dai', res[offset++])[0]
     const vow_sin = vat.interface.decodeFunctionResult('sin', res[offset++])[0]
     const daiSupply = dai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
@@ -608,6 +610,7 @@ class App extends Component {
         flopTtl: flopTtl,
         flopTau: flopTau,
         flopKicks: flopKicks.toNumber(),
+        flopDelay: vowWait.toNumber(),
         cdps: cdps.toString(),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
