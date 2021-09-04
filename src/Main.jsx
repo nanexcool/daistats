@@ -594,6 +594,24 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.DAIF_WALLET}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Dai Foundation Core Unit</h3>
+                <p className="subtitle is-size-7">{props.DAIF_WALLET}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.DAIF_EF_WALLET}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Dai Foundation Emergency Fund</h3>
+                <p className="subtitle is-size-7">{props.DAIF_EF_WALLET}</p>
+              </a>
+            </div>
+          </div>
+        </div>
         <hr />
         <div className="columns">
           <div className="column">
