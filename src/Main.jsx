@@ -6,6 +6,7 @@ import HistoricalDebtChart from './components/HistoricalDebtChart';
 import Pip from './components/Pip'
 import CollateralChart from './components/CollateralChart';
 import Clip from './components/Clip';
+import Vest from './components/Vest';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useLocation, useHistory } from "react-router-dom";
@@ -80,7 +81,7 @@ const Main = (props) => {
   // hack till Main component is broken into component per section
   const location = useLocation();
   const history = useHistory();
-  const indexToTab = ['/overview', '/collateral', '/oracles', '/auctions', '/ecosystem', '/addresses']
+  const indexToTab = ['/overview', '/collateral', '/oracles', '/auctions', '/ecosystem', '/addresses', '/vesting']
   function tabNameToIndex() {
     let i = indexToTab.indexOf(location.pathname)
     return (i >= 0 ? i : 0)
@@ -97,6 +98,7 @@ const Main = (props) => {
             <Tab><p className="is-size-5">Auctions</p></Tab>
             <Tab><p className="is-size-5">Ecosystem</p></Tab>
             <Tab><p className="is-size-5">Addresses</p></Tab>
+            <Tab><p className="is-size-5">Vesting</p></Tab>
           </TabList>
 
           <TabPanel>
@@ -968,6 +970,38 @@ const Main = (props) => {
                 <h3 className="title"><i className="fal fa-file-code"></i> Optimistic MKR</h3>
                 <p className="subtitle is-size-7">{props.OPTIMISTIC_MKR}</p>
               </a>
+            </div>
+          </div>
+        </div>
+          </TabPanel>
+          <TabPanel>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title">Dai</h3>
+              <table className="table" style={{margin: '0 auto', backgroundColor: '#192734', color: '#e6e8f1'}}>
+                <Vest heading={true}/>
+                <tbody>
+                  {props.vestingDai.map((award, idx) => (
+                    <Vest award={award} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title">MKR</h3>
+              <table className="table" style={{margin: '0 auto', backgroundColor: '#192734', color: '#e6e8f1'}}>
+                <Vest heading={true}/>
+                <tbody>
+                  {props.vestingMkr.map((award, idx) => (
+                    <Vest award={award} />
+                  ))}
+                </tbody>
+              </table>
             </div>
           </div>
         </div>

@@ -22,6 +22,8 @@ const jsonFetch = url => fetch(url).then(res => res.json())
 const add = require('./addresses.json')
 add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
+add["MCD_VEST_DAI"] = "0x2Cc583c0AaCDaC9e23CB601fDA8F1A0c56Cdcb71"
+add["MCD_VEST_MKR"] = "0x0fC8D4f2151453ca0cA56f07359049c8f07997Bd"
 add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
 add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
@@ -137,6 +139,8 @@ const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
 const esm = build(add.MCD_ESM, "ESM")
 const end = build(add.MCD_END, "End")
+const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
+const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -258,6 +262,9 @@ const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
+const VEST_DAI_IDS = 0 // 9
+const VEST_MKR_IDS = 0 // 16
+
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
   { mode: "cors" }
@@ -351,7 +358,9 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
 
-    ].concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
+    ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
+     .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
+     .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
      .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
      .concat(this.getIlkCall(wbtcIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
@@ -524,8 +533,11 @@ class App extends Component {
     const ILK_RWA_CALL_COUNT = 6;
     const ILK_PSM_CALL_COUNT = 17;
 
+    const vestingDai = this.getVestingMaps(res, offset, vestDai, VEST_DAI_IDS)
+    const vestingMkr = this.getVestingMaps(res, offset += VEST_DAI_IDS, vestMkr, VEST_MKR_IDS)
+
     const ilks = [
-          this.getIlkMap(res, offset, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+          this.getIlkMap(res, offset += VEST_MKR_IDS, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
@@ -584,6 +596,8 @@ class App extends Component {
         Line: utils.formatUnits(line, 45),
         debt: utils.formatUnits(debt, 45),
         ilks: ilks,
+        vestingDai: vestingDai,
+        vestingMkr: vestingMkr,
         daiSupply: utils.formatEther(daiSupply),
         ethSupply: utils.formatEther(ethSupply),
         gemPit: utils.formatEther(gemPit),
@@ -864,6 +878,45 @@ class App extends Component {
       value: utils.formatUnits(locked.mul(tokenDp).mul(priceBN), 45),
       valueBn: locked.mul(tokenDp).mul(priceBN)
     }
+  }
+
+  getVestingCalls = (address, vest, ids) => {
+    var r = []
+    for (let i = 1; i <= ids; i++) {
+      r.push([address, vest.interface.encodeFunctionData('awards', [i])])
+      r.push([address, vest.interface.encodeFunctionData('accrued', [i])])
+      r.push([address, vest.interface.encodeFunctionData('unpaid', [i])])
+    }
+    return r
+  }
+
+  getVestingMaps = (res, idx, vest, ids) => {
+    //struct Award
+    //    address usr;   // Vesting recipient
+    //    uint48  bgn;   // Start of vesting period  [timestamp]
+    //    uint48  clf;   // The cliff date           [timestamp]
+    //    uint48  fin;   // End of vesting period    [timestamp]
+    //    address mgr;   // A manager address that can yank
+    //    uint8   res;   // Restricted
+    //    uint128 tot;   // Total reward amount
+    //    uint128 rxd;   // Amount of vest claimed
+    //}
+    var r = []
+    for (let i = 0; i < ids; i++) {
+      var award = vest.interface.decodeFunctionResult('awards', res[idx + i])
+      r.push({
+        // id: i,
+        usr: award.usr,
+        bgn: this.unixToDateTime(award.bgn),
+        clf: this.unixToDateTime(award.clf),
+        fin: this.unixToDateTime(award.fin),
+        tot: award.tot,
+        rxd: award.rxd,
+        accrued: vest.interface.decodeFunctionResult('accrued', res[idx + i]),
+        unpaid: vest.interface.decodeFunctionResult('unpaid', res[idx + i])
+      })
+    }
+    return r
   }
 
 
