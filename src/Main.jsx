@@ -995,7 +995,7 @@ const Main = (props) => {
                 <Vest heading={true}/>
                 <tbody>
                   {props.vestingDai.map((award, idx) => (
-                    <Vest award={award} />
+                    <Vest key={award.usr + award.bgn} award={award} />
                   ))}
                 </tbody>
               </table>
@@ -1010,7 +1010,7 @@ const Main = (props) => {
                 <Vest heading={true}/>
                 <tbody>
                   {props.vestingMkr.map((award, idx) => (
-                    <Vest award={award} />
+                    <Vest key={award.usr + award.bgn} award={award} />
                   ))}
                 </tbody>
               </table>

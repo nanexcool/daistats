@@ -262,8 +262,8 @@ const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
-const VEST_DAI_IDS = 0 // 9
-const VEST_MKR_IDS = 0 // 16
+const VEST_DAI_IDS = 9
+const VEST_MKR_IDS = 16
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -532,12 +532,13 @@ class App extends Component {
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 6;
     const ILK_PSM_CALL_COUNT = 17;
+    const VEST_CALL_COUNT = 3
 
     const vestingDai = this.getVestingMaps(res, offset, vestDai, VEST_DAI_IDS)
-    const vestingMkr = this.getVestingMaps(res, offset += VEST_DAI_IDS, vestMkr, VEST_MKR_IDS)
+    const vestingMkr = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkr, VEST_MKR_IDS)
 
     const ilks = [
-          this.getIlkMap(res, offset += VEST_MKR_IDS, "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+          this.getIlkMap(res, offset += (VEST_MKR_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
@@ -891,40 +892,32 @@ class App extends Component {
   }
 
   getVestingMaps = (res, idx, vest, ids) => {
-    //struct Award
-    //    address usr;   // Vesting recipient
-    //    uint48  bgn;   // Start of vesting period  [timestamp]
-    //    uint48  clf;   // The cliff date           [timestamp]
-    //    uint48  fin;   // End of vesting period    [timestamp]
+    // TODO show:
     //    address mgr;   // A manager address that can yank
     //    uint8   res;   // Restricted
-    //    uint128 tot;   // Total reward amount
-    //    uint128 rxd;   // Amount of vest claimed
-    //}
     var r = []
     for (let i = 0; i < ids; i++) {
-      var award = vest.interface.decodeFunctionResult('awards', res[idx + i])
+      var award = vest.interface.decodeFunctionResult('awards', res[idx + (i * 3)])
       r.push({
-        // id: i,
         usr: award.usr,
-        bgn: this.unixToDateTime(award.bgn),
-        clf: this.unixToDateTime(award.clf),
-        fin: this.unixToDateTime(award.fin),
-        tot: award.tot,
-        rxd: award.rxd,
-        accrued: vest.interface.decodeFunctionResult('accrued', res[idx + i]),
-        unpaid: vest.interface.decodeFunctionResult('unpaid', res[idx + i])
+        bgn: this.unixToDate(award.bgn),
+        clf: this.unixToDate(award.clf),
+        fin: this.unixToDate(award.fin),
+        tot: utils.formatEther(award.tot),
+        rxd: utils.formatEther(award.rxd),
+        accrued: utils.formatEther(vest.interface.decodeFunctionResult('accrued', res[idx + (i * 3) + 1])[0]),
+        unpaid: utils.formatEther(vest.interface.decodeFunctionResult('unpaid', res[idx + (i * 3) + 2])[0])
       })
     }
     return r
   }
-
 
   isLoaded = () => {
     return this.state.blockNumber !== null
   }
 
   unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
+  unixToDate = stamp => new Date(stamp * 1000).toLocaleDateString("en-US")
   unixToTime = stamp => new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 1 - 1;
