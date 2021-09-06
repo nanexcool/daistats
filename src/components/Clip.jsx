@@ -7,18 +7,6 @@ const formatAmount = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
-const formatNoDecimals = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-})
-
-const formatDp = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 8,
-  maximumFractionDigits: 8
-})
-
 const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
@@ -65,8 +53,8 @@ function Clip(props) {
           </tr>
          )
   }
-
-{/*
+}
+/*
 FIXME show current starting price
 Auction Price
 
@@ -109,7 +97,6 @@ clip_calc:
     uint256 public step; // Length of time between price drops [seconds]
     uint256 public cut;  // Per-step multiplicative factor     [ray]
 
-*/}
-}
+*/
 
 export default Clip

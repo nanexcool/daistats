@@ -18,12 +18,6 @@ const formatAmount = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
-const formatForWBTC = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 4
-})
-
 const formatNoDecimals = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 0,
@@ -46,12 +40,6 @@ const formatPercent = new Intl.NumberFormat('en-US', {
   style: 'percent',
   minimumFractionDigits: 2,
   maximumFractionDigits: 2
-})
-
-const formatPercentFee = new Intl.NumberFormat('en-US', {
-  style: 'percent',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 4
 })
 
 const formatFiveDp = new Intl.NumberFormat('en-US', {
@@ -106,7 +94,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.debt}>
-                {props.debt >= 420000000 && props.debt < 421000000 && <span>🌲</span>} {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
+                {props.debt >= 420000000 && props.debt < 421000000 && <span role="img" aria-label="Tree">🌲</span>} {formatAmount.format(props.debt)} / {formatAmount.format(props.Line)}
               </h3>
               <h4 className="subtitle is-size-3">{t('daistats.total_token', { token: 'Dai' })}</h4>
               <HistoricalDebtChart data={props.historicalDebt} />

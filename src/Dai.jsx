@@ -6,24 +6,6 @@ const formatAmount = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 2
 })
 
-const formatNoDecimals = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 0,
-  maximumFractionDigits: 0
-})
-
-const formatCurrency = new Intl.NumberFormat('en-US', {
-  style: 'decimal',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 4
-})
-
-const formatPercent = new Intl.NumberFormat('en-US', {
-  style: 'percent',
-  minimumFractionDigits: 2,
-  maximumFractionDigits: 2
-})
-
 const Dai = (props) => {
   document.title = `Total Supply of Dai - Dai Stats`
   const {debt, vice, daiSupply, savingsDai, vow_dai, vow_sin, bigSin} = props
