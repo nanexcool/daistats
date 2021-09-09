@@ -106,6 +106,8 @@ add["MCD_CLIP_MATIC_A"] = "0x29342F530ed6120BDB219D602DaFD584676293d1"
 add["MCD_CLIP_CALC_MATIC_A"] = "0xdF8C347B06a31c6ED11f8213C2366348BFea68dB"
 add["PIP_MATIC"] = "0x8874964279302e6d4e523Fb1789981C39a1034Ba"
 
+const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
+
 let provider;
 let networkId;
 if (typeof window.ethereum !== 'undefined') {
@@ -899,6 +901,7 @@ class App extends Component {
     for (let i = 0; i < ids; i++) {
       var award = vest.interface.decodeFunctionResult('awards', res[idx + (i * 3)])
       r.push({
+        usrName: reverseAddresses[award.usr],
         usr: award.usr,
         bgn: this.unixToDate(award.bgn),
         clf: this.unixToDate(award.clf),
@@ -916,8 +919,11 @@ class App extends Component {
     return this.state.blockNumber !== null
   }
 
-  unixToDateTime = stamp => new Date(stamp * 1000).toLocaleDateString("en-US") + " " + new Date(stamp * 1000).toLocaleTimeString("en-US")
-  unixToDate = stamp => new Date(stamp * 1000).toLocaleDateString("en-US")
+  unixToDateTime = stamp => this.unixToDate(stamp) + " " + this.unixToTime(stamp)
+  unixToDate = stamp => {
+    const d = new Date(stamp * 1000)
+    return d.getFullYear() + "-" + ("0" + (d.getMonth() + 1)).slice(-2) + "-" + ("0" + d.getDate()).slice(-2)
+  }
   unixToTime = stamp => new Date(stamp * 1000).toLocaleTimeString("en-US")
 
   calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 1 - 1;
