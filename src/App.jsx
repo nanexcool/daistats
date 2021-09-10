@@ -22,8 +22,6 @@ const jsonFetch = url => fetch(url).then(res => res.json())
 const add = require('./addresses.json')
 add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
-add["MCD_VEST_DAI"] = "0x2Cc583c0AaCDaC9e23CB601fDA8F1A0c56Cdcb71"
-add["MCD_VEST_MKR"] = "0x0fC8D4f2151453ca0cA56f07359049c8f07997Bd"
 add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
 add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441"
@@ -35,18 +33,7 @@ add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
 add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
 add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 
-add["MCD_JOIN_USDC_PSM_A"] = "0x0A59649758aa4d66E25f08Dd01271e891fe52199"
 //add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
-add["MCD_PSM_USDC_PSM_A"] = "0x89B78CfA322F6C5dE0aBcEecab66Aee45393cC5A"
-add["MCD_CLIP_USDC_PSM_A"] = "0x66609b4799fd7cE12BA799AD01094aBD13d5014D"
-add["MCD_CLIP_CALC_USDC_PSM_A"] = "0xbeE028b5Fa9eb0aDAC5eeF7E5B13383172b91A4E"
-
-// aka PAXUSD add["PAX"] = "0x8E870D67F660D95d5be530380D0eC0bd388289E1"
-add["MCD_JOIN_PAX_PSM_A"] = "0x7bbd8cA5e413bCa521C2c80D8d1908616894Cf21"
-add["MCD_PSM_PAX_PSM_A"] = "0x961Ae24a1Ceba861D1FDf723794f6024Dc5485Cf"
-add["MCD_CLIP_PAX_PSM_A"] = "0x5322a3551bc6a1b39d5D142e5e38Dc5B4bc5B3d2"
-add["MCD_CLIP_CALC_PAX_PSM_A"] = "0xC19eAc21A4FccdD30812F5fF5FebFbD6817b7593"
-//add["PIP_PSM_PAX"] = "0x043B963E1B2214eC90046167Ea29C2c8bDD7c0eC"
 
 add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
 add["GOV_MULTISIG_2"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
@@ -99,12 +86,6 @@ add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
-
-add["MATIC"] = "0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0"
-add["MCD_JOIN_MATIC_A"] = "0x885f16e177d45fC9e7C87e1DA9fd47A9cfcE8E13"
-add["MCD_CLIP_MATIC_A"] = "0x29342F530ed6120BDB219D602DaFD584676293d1"
-add["MCD_CLIP_CALC_MATIC_A"] = "0xdF8C347B06a31c6ED11f8213C2366348BFea68dB"
-add["PIP_MATIC"] = "0x8874964279302e6d4e523Fb1789981C39a1034Ba"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -180,8 +161,8 @@ const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
-const psmUsdc = build(add.MCD_PSM_USDC_PSM_A, "DssPsm")
-const psmPax = build(add.MCD_PSM_PAX_PSM_A, "DssPsm")
+const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
+const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -401,8 +382,8 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
-     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'USDC_PSM_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
-     .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PAX_PSM_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
+     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
+     .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -814,7 +795,7 @@ class App extends Component {
   }
 
   getPsmIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd, psm) => {
-    const psmAdd = add['MCD_PSM_' + ilkSuffix]
+    const psmAdd = add['MCD_' + ilkSuffix]
     const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
     const clipAdd = add['MCD_CLIP_' + ilkSuffix]
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
