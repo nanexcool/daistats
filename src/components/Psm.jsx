@@ -47,12 +47,11 @@ function Psm(props) {
               <p className="subtitle is-size-6">
                 {t('daistats.utilization')}: {formatAmount.format(ilk.locked / ilk.line * 100)}%
               </p>
-              {ilk.ilk === "PSM-USDC-A" &&
               <p className="subtitle is-size-6">
-                <a href="https://ipfs.io/ipfs/QmY9WUjD3YYfyzmegDYxE8yZFcNT3L9TRQSGCJQaWjXxwk/" target="_blank" rel="noopener noreferrer">
-                  Trade DAI & USDC with no price impact using the PSM
+                <a href="https://ipfs.io/ipfs/QmXRmkz1NmKZ72NAFQv2qoqUzsXrvCRjLjnm3BjTeMzvRi/" target="_blank" rel="noopener noreferrer">
+                  Trade DAI & {ilk.token} with no price impact using the PSM
                 </a>
-              </p>}
+              </p>
             </div>
           </div>
           <div className="column">
