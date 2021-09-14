@@ -131,8 +131,14 @@ const Main = (props) => {
         </div>
           </TabPanel>
           <TabPanel>
-        <Psm {...props} idx={props.psmIdx} />
-        <Psm {...props} idx={props.psmPaxIdx} />
+        <Tabs>
+          <TabList>
+            <Tab><p className="is-size-5">ERC-20</p></Tab>
+            <Tab><p className="is-size-5">Real World Assets</p></Tab>
+            <Tab><p className="is-size-5">Peg Stability Modules</p></Tab>
+          </TabList>
+
+          <TabPanel>
         <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
         <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
         <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
@@ -166,12 +172,20 @@ const Main = (props) => {
         <Collateral {...props} idx="28" fee={props.univ2wbtcdaiAFee} showLockedDecimals={true} />
         <Collateral {...props} idx="29" fee={props.univ2aaveethAFee} showLockedDecimals={true} />
         <Collateral {...props} idx="30" fee={props.univ2daiusdtAFee} />
+          </TabPanel>
+          <TabPanel>
         <Collateral {...props} idx="32" fee={props.rwa001AFee} />
         <Collateral {...props} idx="33" fee={props.rwa002AFee} />
         <Collateral {...props} idx="34" fee={props.rwa003AFee} />
         <Collateral {...props} idx="35" fee={props.rwa004AFee} />
         <Collateral {...props} idx="36" fee={props.rwa005AFee} />
         <Collateral {...props} idx="37" fee={props.rwa006AFee} />
+          </TabPanel>
+          <TabPanel>
+        <Psm {...props} idx={props.psmIdx} />
+        <Psm {...props} idx={props.psmPaxIdx} />
+          </TabPanel>
+        </Tabs>
           </TabPanel>
           <TabPanel>
         <div className="columns">
