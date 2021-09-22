@@ -296,7 +296,7 @@ const Main = (props) => {
               <h3 className="title" title={Math.min(props.vow_dai, props.sysDebt)}>{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
               <p className="title subtitle is-size-4">{t('daistats.debt_available_heal')}</p>
               <p className="title subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
-              <p className="title subtitle is-size-6" title={props.vice}>Total Unbacked Dai (vice): {formatAmount.format(props.vice)}</p>
+              {/*<p className="title subtitle is-size-6" title={props.vice}>Total Unbacked Dai (vice): {formatAmount.format(props.vice)}</p>*/}
             </div>
           </div>
           <div className="column">
