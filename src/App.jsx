@@ -526,7 +526,7 @@ class App extends Component {
     const endWait = end.interface.decodeFunctionResult('wait', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
-    const ILK_RWA_CALL_COUNT = 6;
+    const ILK_RWA_CALL_COUNT = 8;
     const ILK_PSM_CALL_COUNT = 17;
     const VEST_CALL_COUNT = 3
 
@@ -771,12 +771,16 @@ class App extends Component {
 
   getRwaIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
     const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
+    const conduitInAdd = add[ilkSuffix + '_INPUT_CONDUIT']
+    const conduitOutAdd = add[ilkSuffix + '_OUTPUT_CONDUIT']
     return [
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ilkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ilkBytes])],
       [pipAdd, rwaPip.interface.encodeFunctionData('read', [])],
       [gemAdd, gem.interface.encodeFunctionData('totalSupply', [])],
       [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])],
+      [add.MCD_DAI, gem.interface.encodeFunctionData('balanceOf', [conduitInAdd])],
+      [add.MCD_DAI, gem.interface.encodeFunctionData('balanceOf', [conduitOutAdd])],
       [add.ILK_REGISTRY, ilkRegistry.interface.encodeFunctionData('name', [ilkBytes])],
     ]
   }
@@ -787,6 +791,8 @@ class App extends Component {
     const price = rwaPip.interface.decodeFunctionResult('read', res[idx++])[0]
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
     const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    const conduitIn = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    const conduitOut = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
     const name = ilkRegistry.interface.decodeFunctionResult('name', res[idx++])
 
     return {
@@ -802,6 +808,8 @@ class App extends Component {
       fee: this.getFee(base, jugIlk),
       locked: utils.formatEther(locked),
       supply: utils.formatEther(supply),
+      conduitIn: utils.formatEther(conduitIn),
+      conduitOut: utils.formatEther(conduitOut),
       price: utils.formatEther(price),
       value: utils.formatUnits(locked.mul(ethers.BigNumber.from(price).mul(DP10)), 45),
       valueBn: locked.mul(ethers.BigNumber.from(price).mul(DP10)),

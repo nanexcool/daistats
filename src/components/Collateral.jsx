@@ -86,6 +86,8 @@ function Collateral(props) {
           <p className="title subtitle is-size-6" title={ilk.value}>
             Value Locked: ${ formatAmount.format(ilk.value) }
           </p>
+          {ilk.conduitIn && <p className="title subtitle is-size-6">Conduit In: {formatAmount.format(ilk.conduitIn)}</p>}
+          {ilk.conduitOut && <p className="title subtitle is-size-6">Conduit Out: {formatAmount.format(ilk.conduitOut)}</p>}
         </div>
       </div>
     </div>
