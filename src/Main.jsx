@@ -295,8 +295,8 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={Math.min(props.vow_dai, props.sysDebt)}>{formatAmount.format(Math.min(props.vow_dai, props.sysDebt))}</h3>
               <p className="title subtitle is-size-4">{t('daistats.debt_available_heal')}</p>
-              <p className="subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
-              {/* <p className="subtitle is-size-6">vice: {formatAmount.format(props.vice)}</p> */}
+              <p className="title subtitle is-size-6">{t('daistats.debt_buffer')}: {formatAmount.format(props.debtSize)}</p>
+              <p className="title subtitle is-size-6" title={props.vice}>Total Unbacked Dai (vice): {formatAmount.format(props.vice)}</p>
             </div>
           </div>
           <div className="column">
@@ -312,8 +312,8 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.dirt}>{formatAmount.format(props.dirt)}</h3>
-              <p className="title subtitle is-size-4">{/*t('daistats.Dirt')*/}Total Bad Debt including Penalties (Dirt)</p>
-              <p className="subtitle is-size-6">{/*t('daistats.Hole')*/}Global Limit (Hole) {formatAmount.format(props.hole)}</p>
+              <p className="title subtitle is-size-4" title="Aggregate Dai collection target of all active auctions across all collateral types">{/*t('daistats.Dirt')*/}Total Unbacked Dai including Penalties (Dirt)</p>
+              <p className="subtitle is-size-6" title={props.hole}>{/*t('daistats.Hole')*/}Global Limit (Hole) {formatAmount.format(props.hole)}</p>
             </div>
           </div>
         </div>
