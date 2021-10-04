@@ -19,7 +19,8 @@ const ILK_TO_COLOUR = {
     "WBTC-A": "hsl(141, 71%, 48%)",
     "USDC-A": "hsl(204, 86%, 53%)",
     "ETH-C": "hsl(48, 100%, 67%)",
-    "YFI": "hsl(48, 100%, 67%)",
+    "PSM-PAX-A": "hsl(171, 100%, 29%)",
+    "PAX": "hsl(171, 100%, 29%)",
     "Others": "hsl(348, 100%, 61%)"}
 
 // bluma light
