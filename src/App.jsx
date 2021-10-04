@@ -545,7 +545,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "KNC", "KNC-A", knc, 18, base, kncPriceNxt, kncPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ZRX", "ZRX-A", zrx, 18, base, zrxPriceNxt, zrxPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "MANA", "MANA-A", mana, 18, base, manaPriceNxt, manaPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "PAX", "PAX-A", pax, 18, base, null, null, DP10),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDP", "USDP-A", pax, 18, base, null, null, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDT", "USDT-A", usdt, 6, base, usdtPriceNxt, usdtPriceMedian, DP10, DP6),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "COMP", "COMP-A", comp, 18, base, compPriceNxt, compPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "LRC", "LRC-A", lrc, 18, base, lrcPriceNxt, lrcPriceMedian, DP10),
@@ -577,7 +577,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "PAX", "PSM-PAX-A", psmPax, 18, DP10, DP18),
+          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
         ]
 
@@ -697,7 +697,7 @@ class App extends Component {
     const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
-    if (['USDC', 'TUSD', 'PAX', 'GUSD'].includes(token)) {
+    if (['USDC', 'TUSD', 'USDP', 'GUSD'].includes(token)) {
         zzz = null;
         //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
         // FIXME read fails for TUSD

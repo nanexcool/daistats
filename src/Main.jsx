@@ -211,7 +211,7 @@ const Main = (props) => {
           <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
-          <Pip {...props} token="USDC, TUSD, PAX, GUSD" idx="2" formater={formatCurrency}/>
+          <Pip {...props} token="USDC, TUSD, USDP, GUSD" idx="2" formater={formatCurrency}/>
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
@@ -355,9 +355,9 @@ const Main = (props) => {
                   <Clip {...props} token="USDT" idx="10"/>
                   <Clip {...props} token="TUSD" idx="5"/>
                   <Clip {...props} token="GUSD" idx="17"/>
-                  <Clip {...props} token="PAXUSD" idx="9"/>
+                  <Clip {...props} token="USDP" idx="9"/>
                   <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
-                  <Clip {...props} token="PSM-PAX-A" idx={props.psmPaxIdx}/>
+                  <Clip {...props} token="PSM-USDP-A" idx={props.psmPaxIdx}/>
                 </tbody>
               </table>
           </div>
@@ -769,7 +769,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.PAXUSD}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> PAX</h3>
+                <h3 className="title"><i className="fal fa-file-code"></i> USDP</h3>
                 <p className="subtitle is-size-7">{props.PAXUSD}</p>
               </a>
             </div>
