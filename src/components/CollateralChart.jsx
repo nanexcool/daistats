@@ -82,10 +82,10 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
   }
 
   function label(i) {
-    if (i["name"] === "ETH") {
-      return "ETH 🇪🇹"
-    } else {
+    if (useValue) {
       return i["name"]
+    } else {
+      return i["name"] + " " + formatPercent.format(i.value / 100)
     }
   }
 
@@ -142,7 +142,7 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
             startAngle={50} endAngle={410}>
              {data.map((entry, index) => <Cell fill={ILK_TO_COLOUR[entry.name]}/>)}
           </Pie>
-          <Tooltip formatter={tooltip}/>
+          {useValue && <Tooltip formatter={tooltip}/>}
         </PieChart>
       </ResponsiveContainer>
     </div>
