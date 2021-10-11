@@ -96,6 +96,15 @@ add["MCD_CLIP_CALC_GUNIV3DAIUSDC1_A"] = "0x25B17065b94e3fDcD97d94A2DA29E7F77105a
 add["PIP_GUNIV3DAIUSDC1"] = "0x7F6d78CC0040c87943a0e0c140De3F77a273bd58"
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 
+add["MCD_VEST_MKR_TREASURY"] = "0x6D635c8d08a1eA2F1687a5E46b666949c977B7dd"
+add["OPTIMISM_DAI_BRIDGE"] = "0x10E6593CDda8c58a1d0f14C5164B376352a55f2F"
+add["OPTIMISM_ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
+add["OPTIMISM_GOV_RELAY"] = "0x09B354CDA89203BB7B3131CC728dFa06ab09Ae2F"
+add["ARBITRUM_DAI_BRIDGE"] = "0xD3B5b60020504bc3489D6949d545893982BA3011"
+add["ARBITRUM_ESCROW"] = "0xA10c7CE4b876998858b1a9E12b10092229539400"
+add["ARBITRUM_GOV_RELAY"] = "0x9ba25c289e351779E0D481Ba37489317c34A899d"
+
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -133,6 +142,7 @@ const esm = build(add.MCD_ESM, "ESM")
 const end = build(add.MCD_END, "End")
 const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
 const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
+const vestMkrTreasury = build(add.MCD_VEST_MKR_TREASURY, "DssVestTransferrable")
 const weth = build(add.ETH, "ERC20")
 const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
@@ -259,6 +269,7 @@ const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_IDS = 12
 const VEST_MKR_IDS = 16
+const VEST_MKR_TREASURY_IDS = 1
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -355,6 +366,7 @@ class App extends Component {
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
+     .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
      .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
@@ -534,9 +546,10 @@ class App extends Component {
 
     const vestingDai = this.getVestingMaps(res, offset, vestDai, VEST_DAI_IDS)
     const vestingMkr = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkr, VEST_MKR_IDS)
+    const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_MKR_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
 
     const ilks = [
-          this.getIlkMap(res, offset += (VEST_MKR_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+          this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
@@ -598,6 +611,7 @@ class App extends Component {
         ilks: ilks,
         vestingDai: vestingDai,
         vestingMkr: vestingMkr,
+        vestingMkrTreasury: vestingMkrTreasury,
         daiSupply: utils.formatEther(daiSupply),
         ethSupply: utils.formatEther(ethSupply),
         gemPit: utils.formatEther(gemPit),

@@ -1043,6 +1043,9 @@ const Main = (props) => {
                   {props.vestingMkr.map((award, idx) => (
                     <Vest key={award.usr + award.bgn} award={award} />
                   ))}
+                  {props.vestingMkrTreasury.map((award, idx) => (
+                    <Vest key={award.usr + award.bgn} award={award} />
+                  ))}
                 </tbody>
               </table>
             </div>
