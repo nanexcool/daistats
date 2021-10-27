@@ -142,6 +142,7 @@ const Main = (props) => {
         <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
         <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
         <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
+        <Collateral {...props} idx="42" fee={props.wstethAFee} />
         <Collateral {...props} idx="1" fee={props.batFee} />
         <Collateral {...props} idx="2" fee={props.usdcFee} />
         <Collateral {...props} idx="4" fee={props.usdcBFee} />
@@ -229,6 +230,9 @@ const Main = (props) => {
           <Pip {...props} token="UniV2AaveEth" idx="29" formater={formatTwoDp} />
           <Pip {...props} token="UniV2DaiUsdt" idx="30" formater={formatTwoDp} />
           <Pip {...props} token="GUniV3DaiUsdc1" idx="41" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
+          <Pip {...props} token="WstEth" idx="42" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
@@ -325,6 +329,7 @@ const Main = (props) => {
                   <Clip {...props} token="ETH-A" idx="0"/>
                   <Clip {...props} token="ETH-B" idx="14"/>
                   <Clip {...props} token="ETH-C" idx="31"/>
+                  <Clip {...props} token="WSTETH-A" idx="42"/>
                   <Clip {...props} token="WBTC" idx="3"/>
                   <Clip {...props} token="AAVE" idx="20"/>
                   <Clip {...props} token="BAL" idx="15"/>
@@ -993,6 +998,14 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.RWA006}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA006</h3>
                 <p className="subtitle is-size-7">{props.RWA006}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.WSTETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> WSTETH</h3>
+                <p className="subtitle is-size-7">{props.WSTETH}</p>
               </a>
             </div>
           </div>

@@ -88,10 +88,10 @@ add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
+//add["MEDIAN_WSTETH"] = "FIXME" //FIXME
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 
-add["WSTETH-A"] = "0x5753544554482d41000000000000000000000000000000000000000000000000"
 add["WSTETH"] = "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0"
 add["PIP_WSTETH"] = "0xFe7a2aC0B945f12089aEEB6eCebf4F384D9f043F"
 add["MCD_JOIN_WSTETH_A"] = "0x10CD5fbe1b404B7E19Ef964B63939907bdaf42E2"
@@ -175,6 +175,7 @@ const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
+const wsteth = build(add.WSTETH, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
@@ -237,6 +238,7 @@ const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A");
 const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A");
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A");
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A");
+const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -403,6 +405,7 @@ class App extends Component {
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
+     .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -459,6 +462,8 @@ class App extends Component {
       //this.getPrice(add.MEDIAN_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
+      //this.getPrice(add.MEDIAN_WSTETH, this.POSITION_UNIV2_NXT),
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
@@ -470,7 +475,7 @@ class App extends Component {
         maticPriceNxt, maticPriceMedian,
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
-        univ2aaveethPriceNxt, univ2daiusdtPriceNxt, guniv3daiusdc1PriceNxt,
+        univ2aaveethPriceNxt, univ2daiusdtPriceNxt, guniv3daiusdc1PriceNxt, wstethPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
@@ -586,6 +591,7 @@ class App extends Component {
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
