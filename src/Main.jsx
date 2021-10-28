@@ -192,8 +192,8 @@ const Main = (props) => {
           <TabPanel>
         <div className="columns">
           <Pip {...props} token="ETH" idx="0" formater={formatTwoDp} />
+          <Pip {...props} token="wstETH" idx="42" formater={formatTwoDp} />
           <Pip {...props} token="BTC" idx="3" formater={formatTwoDp} />
-          <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} />
           <Pip {...props} token="UNI" idx="18" formater={formatTwoDp} />
         </div>
         <div className="columns">
@@ -211,7 +211,10 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
+          <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} />
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
+        </div>
+        <div className="columns">
           <Pip {...props} token="USDC, TUSD, USDP, GUSD" idx="2" formater={formatCurrency}/>
         </div>
         <div className="columns">
@@ -230,9 +233,6 @@ const Main = (props) => {
           <Pip {...props} token="UniV2AaveEth" idx="29" formater={formatTwoDp} />
           <Pip {...props} token="UniV2DaiUsdt" idx="30" formater={formatTwoDp} />
           <Pip {...props} token="GUniV3DaiUsdc1" idx="41" formater={formatTwoDp} />
-        </div>
-        <div className="columns">
-          <Pip {...props} token="WstEth" idx="42" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
