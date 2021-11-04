@@ -1,9 +1,9 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-08-27T22:58:20+00:00",
+    "timestamp": "2021-11-04T01:53:01+00:00",
     "version": {
         "major": 0,
-        "minor": 5,
+        "minor": 6,
         "patch": 0
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
@@ -404,6 +404,30 @@
             "name": "Matic Token",
             "decimals": 18,
             "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x7D1AfA7B718fb893dB30A3aBc0Cfc608AaCfeBB0/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0xAbDDAfB225e10B90D798bB8A886238Fb835e2053",
+            "symbol": "G-UNI",
+            "name": "Gelato Uniswap DAI/USDC LP",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xAbDDAfB225e10B90D798bB8A886238Fb835e2053/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0",
+            "symbol": "wstETH",
+            "name": "Wrapped liquid staked Ether 2.0",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x7f39C581F595B53c5cb19bD0b3f8dA6c935E2Ca0/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x028171bCA77440897B824Ca71D1c56caC55b68A3",
+            "symbol": "aDAI",
+            "name": "Aave interest bearing DAI",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x028171bCA77440897B824Ca71D1c56caC55b68A3/logo.png"
         }
     ]
 }
