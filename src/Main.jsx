@@ -189,7 +189,39 @@ const Main = (props) => {
         <Psm {...props} idx={props.psmPaxIdx} />
           </TabPanel>
           <TabPanel>
-        <Collateral {...props} idx="43" fee={props.adaiFee} />
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiTargetSupply}>{formatAmount.format(props.d3mAdaiTargetSupply)}</h3>
+              <h4 className="title subtitle is-size-4">aDAI Target Supply</h4>
+              <p className="subtitle is-size-6" title={props.d3mAdaiAdjustment}>Adjustment: {formatAmount.format(props.d3mAdaiAdjustment)}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiAvailableLiquidity}>{formatAmount.format(props.d3mAdaiAvailableLiquidity)}</h3>
+              <h4 className="title subtitle is-size-4">Available Liquidity</h4>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiTotalSupply}>{formatAmount.format(props.d3mAdaiTotalSupply)}</h3>
+              <h4 className="title subtitle is-size-4">aDAI Total Supply</h4>
+              <p className="title subtitle is-size-6">Variable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyVariable)}</p>
+              <p className="title subtitle is-size-6">Stable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyFixed)}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiBar}>{formatPercent.format(props.d3mAdaiBar)}</h3>
+              <h4 className="title subtitle is-size-4">aDAI Target Interest Rate</h4>
+              <p className="title subtitle is-size-6" title={props.d3mAdaiFeesPending}>Fees Pending: {formatAmount.format(props.d3mAdaiFeesPending)}</p>
+            </div>
+          </div>
+        </div>
+        <Collateral {...props} idx={props.d3mAdaiIdx} fee={props.adaiFee} />
           </TabPanel>
         </Tabs>
           </TabPanel>

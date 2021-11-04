@@ -92,6 +92,8 @@ add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 //add["MEDIAN_WSTETH"] = "FIXME" //FIXME
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
+add['MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE'] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
+add['MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE'] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -182,6 +184,7 @@ const clip = build(add.MCD_CLIP_ETH_A, "Clipper"); // FIXME are these all the sa
 const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease");
 const flap = build(add.MCD_FLAP, "Flapper");
 const flop = build(add.MCD_FLOP, "Flopper");
+const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai");
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
@@ -356,6 +359,14 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
+      // FIXME lookup targetInterestRate, need onchain helper function so can do with one multicall
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('40000000000000000000000000')])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
+      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
+      [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
+      // FIXME shoud be erc20 for token not adai? Is a interface for each gem required?
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
@@ -535,6 +546,12 @@ class App extends Component {
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
     const endWait = end.interface.decodeFunctionResult('wait', res[offset++])[0]
+    const d3mAdaiTargetSupply = d3mAdai.interface.decodeFunctionResult('calculateTargetSupply', res[offset++])[0]
+    const d3mAdaiBar = d3mAdai.interface.decodeFunctionResult('bar', res[offset++])[0]
+    const d3mAdaiAvailableLiquidity = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const d3mAdaiDaiDebt = vat.interface.decodeFunctionResult('urns', res[offset++])[1]
+    const d3mAdaiTotalSupplyVariable = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const d3mAdaiTotalSupplyFixed = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -594,6 +611,10 @@ class App extends Component {
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
+    const d3mAdaiIdx = 43
+    const d3mAdaiFeesPending = ilks[d3mAdaiIdx].lockedBn.sub(d3mAdaiDaiDebt)
+    const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
+    const d3mAdaiAdjustment = d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
 
@@ -601,6 +622,7 @@ class App extends Component {
       return {
         psmIdx: 39,
         psmPaxIdx: 40,
+        d3mAdaiIdx: d3mAdaiIdx,
         networkId: networkId,
         blockNumber: block.toString(),
         timestamp: this.unixToDateTime(timestamp),
@@ -661,6 +683,15 @@ class App extends Component {
         esmSum: utils.formatEther(esmSum),
         endWait: endWait.toNumber(),
         optimisticDaiSupply: utils.formatEther(optimisticDaiSupply),
+        d3mAdaiTargetSupply: utils.formatEther(d3mAdaiTargetSupply),
+        d3mAdaiBar: utils.formatUnits(d3mAdaiBar, 27),
+        d3mAdaiAvailableLiquidity: utils.formatUnits(d3mAdaiAvailableLiquidity, 18),
+        d3mAdaiDaiDebt: utils.formatUnits(d3mAdaiDaiDebt, 18),
+        d3mAdaiFeesPending: utils.formatUnits(d3mAdaiFeesPending, 18),
+        d3mAdaiTotalSupplyVariable: utils.formatUnits(d3mAdaiTotalSupplyVariable, 18),
+        d3mAdaiTotalSupplyFixed: utils.formatUnits(d3mAdaiTotalSupplyFixed, 18),
+        d3mAdaiTotalSupply: utils.formatUnits(d3mAdaiTotalSupply, 18),
+        d3mAdaiAdjustment: utils.formatUnits(d3mAdaiAdjustment, 18),
         historicalDebt,
       }
     })
@@ -767,6 +798,7 @@ class App extends Component {
         drip: this.unixToDateTime(jugIlk.rho.toNumber()),
         fee: this.getFee(base, jugIlk),
         locked: utils.formatUnits(locked, units),
+        lockedBn: locked,
         supply: utils.formatUnits(supply, units),
         price: utils.formatUnits(price, 27),
         value: value,
