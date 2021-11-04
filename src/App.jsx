@@ -99,6 +99,14 @@ add["MCD_JOIN_WSTETH_A"] = "0x10CD5fbe1b404B7E19Ef964B63939907bdaf42E2"
 add["MCD_CLIP_WSTETH_A"] = "0x49A33A28C4C7D9576ab28898F4C9ac7e52EA457A"
 add["MCD_CLIP_CALC_WSTETH_A"] = "0x15282b886675cc1Ce04590148f456428E87eaf13"
 
+add["ADAI"] = "0x028171bCA77440897B824Ca71D1c56caC55b68A3"
+add["PIP_ADAI"] = "0x6A858592fC4cBdf432Fc9A1Bc8A0422B99330bdF"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI"] = "0xa13C0c8eB109F5A13c6c90FC26AFb23bEB3Fb04a"
+add["MCD_CLIP_DIRECT_AAVEV2_DAI"] = "0xa93b98e57dDe14A3E301f20933d59DC19BF8212E"
+add["MCD_CLIP_CALC_DIRECT_AAVEV2_DAI"] = "0x786DC9b69abeA503fd101a2A9fa95bcE82C20d0A"
+add["DIRECT_MOM"] = "0x99A219f3dD2DeEC02c6324df5009aaa60bA36d38"
+//JOIN_FAB     = 0xf1738d22140783707Ca71CB3746e0dc7Bf2b0264;
+//LERP_FAB     = 0x9175561733D138326FDeA86CdFdF53e92b588276;
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -177,6 +185,7 @@ const rwa006 = build(add.RWA006, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
+const adai = build(add.ADAI, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
@@ -197,6 +206,7 @@ const rwaPip = build(add.PIP_RWA001, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
 const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const univ3Pip = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
+const adaiPip = build(add.PIP_ADAI, "DSValue")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A");
 const ethBIlkBytes = utils.formatBytes32String("ETH-B");
 const ethCIlkBytes = utils.formatBytes32String("ETH-C");
@@ -240,6 +250,7 @@ const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A");
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A");
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A");
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A");
+const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI");
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -407,6 +418,7 @@ class App extends Component {
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
+     .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -551,7 +563,7 @@ class App extends Component {
     const ilks = [
           this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7), // NOTE this dsValue is also shown for TUSD, USDP, GUSD, aDAI
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-B", usdc, 6, base, null, null, DP10, DP7),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "TUSD", "TUSD-A", tusd, 18, base, null, null, DP10),
@@ -593,6 +605,7 @@ class App extends Component {
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base)
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
@@ -674,7 +687,7 @@ class App extends Component {
     const clipAdd = add['MCD_CLIP_' + ilkSuffix]
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
     // use pip.zzz or pip.read depending if dsvalue or osm
-    if ([usdc, tusd, pax, gusd].includes(gem)) {
+    if ([usdc, tusd, pax, gusd, adai].includes(gem)) {
         pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
     } else {
         pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
@@ -712,7 +725,7 @@ class App extends Component {
     const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
-    if (['USDC', 'TUSD', 'USDP', 'GUSD'].includes(token)) {
+    if (['USDC', 'TUSD', 'USDP', 'GUSD', 'ADAI'].includes(token)) {
         zzz = null;
         //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
         // FIXME read fails for TUSD

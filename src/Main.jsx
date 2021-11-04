@@ -136,6 +136,7 @@ const Main = (props) => {
             <Tab><p className="is-size-5">ERC-20</p></Tab>
             <Tab><p className="is-size-5">Real World Assets</p></Tab>
             <Tab><p className="is-size-5">Peg Stability Modules</p></Tab>
+            <Tab><p className="is-size-5">Direct Deposits</p></Tab>
           </TabList>
 
           <TabPanel>
@@ -187,6 +188,9 @@ const Main = (props) => {
         <Psm {...props} idx={props.psmIdx} />
         <Psm {...props} idx={props.psmPaxIdx} />
           </TabPanel>
+          <TabPanel>
+        <Collateral {...props} idx="43" fee={props.adaiFee} />
+          </TabPanel>
         </Tabs>
           </TabPanel>
           <TabPanel>
@@ -215,7 +219,7 @@ const Main = (props) => {
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="USDC, TUSD, USDP, GUSD" idx="2" formater={formatCurrency}/>
+          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" idx="2" formater={formatCurrency}/>
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
@@ -363,6 +367,7 @@ const Main = (props) => {
                   <Clip {...props} token="USDP" idx="9"/>
                   <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
                   <Clip {...props} token="PSM-USDP-A" idx={props.psmPaxIdx}/>
+                  <Clip {...props} token="DIRECT-AAVEV2-DAI" idx="43"/>
                 </tbody>
               </table>
           </div>
@@ -509,6 +514,14 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/address/${props.IN_WALLET}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> Data Insights Core Unit</h3>
+                <p className="subtitle is-size-7">{props.IN_WALLET}</p>
+              </a>
+            </div>
+          </div>
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/address/${props.COM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
@@ -855,6 +868,16 @@ const Main = (props) => {
               </a>
             </div>
           </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.ADAI}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> ADAI</h3>
+                <p className="subtitle is-size-7">{props.ADAI}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.UNIV2DAIETH}`} target="_blank" rel="noopener noreferrer">
