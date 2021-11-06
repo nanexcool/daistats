@@ -221,6 +221,26 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiDepositAPR}>{formatPercent.format(props.d3mAdaiDepositAPR)}</h3>
+              <h4 className="title subtitle is-size-4">Deposit Rate (APR)</h4>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiVariableBorrowAPR}>{formatPercent.format(props.d3mAdaiVariableBorrowAPR)}</h3>
+              <h4 className="title subtitle is-size-4">Variable Borrow Rate (APR)</h4>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mAdaiStableBorrowAPR}>{formatPercent.format(props.d3mAdaiStableBorrowAPR)}</h3>
+              <h4 className="title subtitle is-size-4">Stable Borrow Rate (APR)</h4>
+            </div>
+          </div>
+        </div>
         <Collateral {...props} idx={props.d3mAdaiIdx} fee={props.adaiFee} />
           </TabPanel>
         </Tabs>

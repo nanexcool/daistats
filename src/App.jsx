@@ -92,8 +92,9 @@ add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 //add["MEDIAN_WSTETH"] = "FIXME" //FIXME
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
-add['MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE'] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
-add['MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE'] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -173,6 +174,7 @@ const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
+const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
@@ -359,14 +361,15 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
-      // FIXME lookup targetInterestRate, need onchain helper function so can do with one multicall
+      // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('40000000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
       // FIXME shoud be erc20 for token not adai? Is a interface for each gem required?
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])]
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
@@ -552,6 +555,11 @@ class App extends Component {
     const d3mAdaiDaiDebt = vat.interface.decodeFunctionResult('urns', res[offset++])[1]
     const d3mAdaiTotalSupplyVariable = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const d3mAdaiTotalSupplyFixed = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    //[, liquidityIndex, variableBorrowIndex, currentLiquidityRate, currentVariableBorrowRate,
+    //currentStableBorrowRate, , aTokenAddress, stableDebtTokenAddress,
+    //variableDebtTokenAddress, , ] = LendingPool.getReserveData(asset.address)
+    // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
+    const d3mAdaiReserve = aaveLendingPool.interface.decodeFunctionResult('getReserveData', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -692,6 +700,9 @@ class App extends Component {
         d3mAdaiTotalSupplyFixed: utils.formatUnits(d3mAdaiTotalSupplyFixed, 18),
         d3mAdaiTotalSupply: utils.formatUnits(d3mAdaiTotalSupply, 18),
         d3mAdaiAdjustment: utils.formatUnits(d3mAdaiAdjustment, 18),
+        d3mAdaiDepositAPR: utils.formatUnits(d3mAdaiReserve.currentLiquidityRate, 27),
+        d3mAdaiVariableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentVariableBorrowRate, 27),
+        d3mAdaiStableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentStableBorrowRate, 27),
         historicalDebt,
       }
     })
