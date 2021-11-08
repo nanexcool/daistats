@@ -218,6 +218,7 @@ const Main = (props) => {
               <h3 className="title" title={props.d3mAdaiBar}>{formatPercent.format(props.d3mAdaiBar)}</h3>
               <h4 className="title subtitle is-size-4">aDAI Target Interest Rate</h4>
               <p className="title subtitle is-size-6" title={props.d3mAdaiFeesPending}>Fees Pending: {formatAmount.format(props.d3mAdaiFeesPending)}</p>
+              <p className="title subtitle is-size-6" title={props.d3mAdaiIncentive}>Incentive Balance: {formatAmount.format(props.d3mAdaiIncentive)} stkAAVE</p>
             </div>
           </div>
         </div>

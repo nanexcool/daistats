@@ -95,6 +95,7 @@ add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -181,12 +182,13 @@ const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
-const clip = build(add.MCD_CLIP_ETH_A, "Clipper"); // FIXME are these all the same now?
+const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
-const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease");
-const flap = build(add.MCD_FLAP, "Flapper");
-const flop = build(add.MCD_FLOP, "Flopper");
-const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai");
+const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
+const flap = build(add.MCD_FLAP, "Flapper")
+const flop = build(add.MCD_FLOP, "Flopper")
+const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
+const aaveIncentive = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, "StakedTokenIncentivesController")
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
@@ -197,50 +199,50 @@ const pip = build(add.PIP_ETH, "OSM")
 const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const univ3Pip = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
 const adaiPip = build(add.PIP_ADAI, "DSValue")
-const ethAIlkBytes = utils.formatBytes32String("ETH-A");
-const ethBIlkBytes = utils.formatBytes32String("ETH-B");
-const ethCIlkBytes = utils.formatBytes32String("ETH-C");
+const ethAIlkBytes = utils.formatBytes32String("ETH-A")
+const ethBIlkBytes = utils.formatBytes32String("ETH-B")
+const ethCIlkBytes = utils.formatBytes32String("ETH-C")
 const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
 const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
-const wbtcIlkBytes = utils.formatBytes32String("WBTC-A");
-const kncAIlkBytes = utils.formatBytes32String("KNC-A");
-const zrxAIlkBytes = utils.formatBytes32String("ZRX-A");
-const manaAIlkBytes = utils.formatBytes32String("MANA-A");
-const paxAIlkBytes = utils.formatBytes32String("PAXUSD-A");
-const usdtAIlkBytes = utils.formatBytes32String("USDT-A");
-const compAIlkBytes = utils.formatBytes32String("COMP-A");
-const lrcAIlkBytes = utils.formatBytes32String("LRC-A");
-const linkAIlkBytes = utils.formatBytes32String("LINK-A");
-const balAIlkBytes = utils.formatBytes32String("BAL-A");
-const yfiAIlkBytes = utils.formatBytes32String("YFI-A");
-const gusdAIlkBytes = utils.formatBytes32String("GUSD-A");
-const uniAIlkBytes = utils.formatBytes32String("UNI-A");
-const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A");
-const aaveAIlkBytes = utils.formatBytes32String("AAVE-A");
-const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A");
-const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A");
-const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A");
-const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A");
-const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A");
-const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A");
-const univ2ethusdtAIlkBytes = utils.formatBytes32String("UNIV2ETHUSDT-A");
-const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A");
-const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A");
-const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A");
-const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A");
-const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A");
-const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A");
-const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A");
-const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A");
-const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A");
-const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A");
-const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A");
-const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A");
-const maticAIlkBytes = utils.formatBytes32String("MATIC-A");
-const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A");
-const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI");
+const wbtcIlkBytes = utils.formatBytes32String("WBTC-A")
+const kncAIlkBytes = utils.formatBytes32String("KNC-A")
+const zrxAIlkBytes = utils.formatBytes32String("ZRX-A")
+const manaAIlkBytes = utils.formatBytes32String("MANA-A")
+const paxAIlkBytes = utils.formatBytes32String("PAXUSD-A")
+const usdtAIlkBytes = utils.formatBytes32String("USDT-A")
+const compAIlkBytes = utils.formatBytes32String("COMP-A")
+const lrcAIlkBytes = utils.formatBytes32String("LRC-A")
+const linkAIlkBytes = utils.formatBytes32String("LINK-A")
+const balAIlkBytes = utils.formatBytes32String("BAL-A")
+const yfiAIlkBytes = utils.formatBytes32String("YFI-A")
+const gusdAIlkBytes = utils.formatBytes32String("GUSD-A")
+const uniAIlkBytes = utils.formatBytes32String("UNI-A")
+const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A")
+const aaveAIlkBytes = utils.formatBytes32String("AAVE-A")
+const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A")
+const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A")
+const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
+const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
+const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
+const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
+const univ2ethusdtAIlkBytes = utils.formatBytes32String("UNIV2ETHUSDT-A")
+const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
+const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
+const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
+const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
+const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A")
+const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
+const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
+const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
+const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
+const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
+const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
+const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
+const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
+const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
+const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -369,7 +371,8 @@ class App extends Component {
       // FIXME shoud be erc20 for token not adai? Is a interface for each gem required?
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])]
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
@@ -560,6 +563,7 @@ class App extends Component {
     //variableDebtTokenAddress, , ] = LendingPool.getReserveData(asset.address)
     // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
     const d3mAdaiReserve = aaveLendingPool.interface.decodeFunctionResult('getReserveData', res[offset++])[0]
+    const d3mAdaiIncentive = aaveIncentive.interface.decodeFunctionResult('getRewardsBalance', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -703,6 +707,7 @@ class App extends Component {
         d3mAdaiDepositAPR: utils.formatUnits(d3mAdaiReserve.currentLiquidityRate, 27),
         d3mAdaiVariableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentVariableBorrowRate, 27),
         d3mAdaiStableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentStableBorrowRate, 27),
+        d3mAdaiIncentive: utils.formatEther(d3mAdaiIncentive),
         historicalDebt,
       }
     })
