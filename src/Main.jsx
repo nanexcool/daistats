@@ -194,7 +194,7 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiTargetSupply}>{formatAmount.format(props.d3mAdaiTargetSupply)}</h3>
               <h4 className="title subtitle is-size-4">aDAI Target Supply</h4>
-              <p className="subtitle is-size-6" title={props.d3mAdaiAdjustment}>Adjustment: {formatAmount.format(props.d3mAdaiAdjustment)}</p>
+              <h6 className="subtitle is-size-6" title={props.d3mAdaiAdjustment}>Adjustment: {formatAmount.format(props.d3mAdaiAdjustment)}</h6>
             </div>
           </div>
           <div className="column">
@@ -209,16 +209,16 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiTotalSupply}>{formatAmount.format(props.d3mAdaiTotalSupply)}</h3>
               <h4 className="title subtitle is-size-4">aDAI Total Supply</h4>
-              <p className="title subtitle is-size-6">Variable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyVariable)}</p>
-              <p className="title subtitle is-size-6">Stable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyFixed)}</p>
+              <h6 className="title subtitle is-size-6">Variable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyVariable)}</h6>
+              <h6 className="title subtitle is-size-6">Stable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyFixed)}</h6>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiBar}>{formatPercent.format(props.d3mAdaiBar)}</h3>
               <h4 className="title subtitle is-size-4">aDAI Target Interest Rate</h4>
-              <p className="title subtitle is-size-6" title={props.d3mAdaiFeesPending}>Fees Pending: {formatAmount.format(props.d3mAdaiFeesPending)}</p>
-              <p className="title subtitle is-size-6" title={props.d3mAdaiIncentive}>Incentive Balance: {formatAmount.format(props.d3mAdaiIncentive)} stkAAVE</p>
+              <h6 className="title subtitle is-size-6" title={props.d3mAdaiFeesPending}>Fees Pending: {formatAmount.format(props.d3mAdaiFeesPending)}</h6>
+              <h6 className="title subtitle is-size-6" title={props.d3mAdaiIncentive}>Incentive Balance: {formatAmount.format(props.d3mAdaiIncentive)} stkAAVE</h6>
             </div>
           </div>
         </div>
