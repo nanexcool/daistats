@@ -13,6 +13,7 @@ function Vest(props) {
   if (props.heading) {
     return (<thead>
               <tr>
+                <th style={{color: "#e6e8f1", fontWeight: 400}}>ID</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400}}>Recipient</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400}}>Claimed</th>
                 <th style={{color: "#e6e8f1", fontWeight: 400}}>Unpaid</th>
@@ -26,6 +27,7 @@ function Vest(props) {
   } else {
     return (
           <tr>
+            <td className="has-text-right" title={award.id}>{award.id}</td>
             <td className="has-text-left">
               <a href={`https://etherscan.io/address/${award.usr}`} target="_blank" rel="noopener noreferrer">
                 <p className="subtitle is-size-6" style={{'lineHeight': '24px'}}>
@@ -38,9 +40,9 @@ function Vest(props) {
             <td className="has-text-right" title={award.unpaid}>{formatTwoDp.format(award.unpaid)}</td>
             <td className="has-text-right" title={award.accrued}>{formatTwoDp.format(award.accrued)}</td>
             <td className="has-text-right" title={award.tot}>{formatTwoDp.format(award.tot)}</td>
-            <td className="has-text-right">{award.bgn}</td>
-            <td className="has-text-right">{award.clf}</td>
-            <td className="has-text-right">{award.fin}</td>
+            <td className="has-text-right" style={{paddingLeft: "0.2em", paddingRight: "0.2em"}}>{award.bgn}</td>
+            <td className="has-text-right" style={{paddingLeft: "0.2em", paddingRight: "0.2em"}}>{award.clf}</td>
+            <td className="has-text-right" style={{paddingLeft: "0.2em", paddingRight: "0.2em"}}>{award.fin}</td>
           </tr>
          )
   }

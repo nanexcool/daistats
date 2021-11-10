@@ -967,6 +967,7 @@ class App extends Component {
     for (let i = 0; i < ids; i++) {
       var award = vest.interface.decodeFunctionResult('awards', res[idx + (i * 3)])
       r.push({
+        id: i + 1,
         usrName: reverseAddresses[award.usr],
         usr: award.usr,
         bgn: this.unixToDate(award.bgn),
