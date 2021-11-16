@@ -260,19 +260,18 @@ const Main = (props) => {
           <Pip {...props} token="COMP" idx="11" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="KNC" idx="6" formater={formatCurrency} />
           <Pip {...props} token="LINK" idx="13" formater={formatTwoDp} />
           <Pip {...props} token="LRC" idx="12" formater={formatCurrency} />
           <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
+          <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
           <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} />
           <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
+          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" idx="2" formater={formatCurrency}/>
         </div>
         <div className="columns">
-          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" idx="2" formater={formatCurrency}/>
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
