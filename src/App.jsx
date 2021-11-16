@@ -67,6 +67,7 @@ add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
 add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
 add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
 add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
+add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
 //add["MEDIAN_PAXUSD
 add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
 add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
@@ -430,6 +431,8 @@ class App extends Component {
       this.getPrice(add.MEDIAN_ZRX, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_MANA, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_MANA, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_USDT, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_USDT, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_COMP, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_COMP, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_LRC, this.POSITION_NXT),
@@ -471,7 +474,7 @@ class App extends Component {
 
     let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, batPriceMedian,
         wbtcPriceNxt, wbtcPriceMedian, kncPriceNxt, kncPriceMedian, zrxPriceNxt, zrxPriceMedian,
-        manaPriceNxt, manaPriceMedian, compPriceNxt, compPriceMedian,
+        manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
         lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
         yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
         maticPriceNxt, maticPriceMedian,
