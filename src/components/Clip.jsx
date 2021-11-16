@@ -34,7 +34,7 @@ function Clip(props) {
               </tr>
             </thead>)
   } else{
-    const ilk = props.ilks[props.idx]
+    const ilk = props.ilksByName[props.ilk]
     return (
           <tr>
             <td className="has-text-left">{props.token}</td>

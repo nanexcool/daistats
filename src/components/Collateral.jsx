@@ -26,12 +26,13 @@ const formatPercent = new Intl.NumberFormat('en-US', {
 })
 
 function autoLine(props, label) {
-  if (props.ilks[props.idx].lineMax > 0) {
+  const ilk = props.ilksByName[props.ilk]
+  if (ilk.lineMax > 0) {
     return (
       <>
-          <p className="title subtitle is-size-6">{label}: {formatAmount.format(props.ilks[props.idx].lineMax)}</p>
-          <p className="title subtitle is-size-6">Gap: {formatAmount.format(props.ilks[props.idx].gap)} Ttl: {props.ilks[props.idx].ttl / 60 / 60}h</p>
-          <p className="title subtitle is-size-6">Last Change: {props.ilks[props.idx].lastInc}</p>
+          <p className="title subtitle is-size-6">{label}: {formatAmount.format(ilk.lineMax)}</p>
+          <p className="title subtitle is-size-6">Gap: {formatAmount.format(ilk.gap)} Ttl: {ilk.ttl / 60 / 60}h</p>
+          <p className="title subtitle is-size-6">Last Change: {ilk.lastInc}</p>
       </>
     )
   } else {
@@ -42,7 +43,7 @@ function autoLine(props, label) {
 function Collateral(props) {
   var supply
   const t = useTranslate()
-  const ilk = props.ilks[props.idx]
+  const ilk = props.ilksByName[props.ilk]
   if (props.supply) {
       supply = props.supply
   } else {

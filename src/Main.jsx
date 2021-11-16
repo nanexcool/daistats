@@ -140,53 +140,51 @@ const Main = (props) => {
           </TabList>
 
           <TabPanel>
-        <Collateral {...props} idx="0" fee={props.ethFee} supply={props.ethSupply} />
-        <Collateral {...props} idx="14" fee={props.ethBFee} supply={props.ethSupply} />
-        <Collateral {...props} idx="31" fee={props.ethCFee} supply={props.ethSupply} />
-        <Collateral {...props} idx="42" fee={props.wstethAFee} />
-        <Collateral {...props} idx="1" fee={props.batFee} />
-        <Collateral {...props} idx="2" fee={props.usdcFee} />
-        <Collateral {...props} idx="4" fee={props.usdcBFee} />
-        <Collateral {...props} idx="3" fee={props.wbtcFee} />
-        <Collateral {...props} idx="5" fee={props.tusdFee} />
-        <Collateral {...props} idx="6" fee={props.kncAFee} />
-        <Collateral {...props} idx="7" fee={props.zrxAFee} />
-        <Collateral {...props} idx="8" fee={props.manaAFee} />
-        <Collateral {...props} idx="9" fee={props.paxAFee} />
-        <Collateral {...props} idx="10" fee={props.usdtAFee} />
-        <Collateral {...props} idx="11" fee={props.compAFee} />
-        <Collateral {...props} idx="12" fee={props.lrcAFee} />
-        <Collateral {...props} idx="13" fee={props.linkAFee} />
-        <Collateral {...props} idx="15" fee={props.balAFee} />
-        <Collateral {...props} idx="16" fee={props.yfiAFee} />
-        <Collateral {...props} idx="17" fee={props.gusdAFee} />
-        <Collateral {...props} idx="18" fee={props.uniAFee} />
-        <Collateral {...props} idx="19" fee={props.renbtcAFee} />
-        <Collateral {...props} idx="20" fee={props.aaveAFee} />
-        <Collateral {...props} idx="38" fee={props.maticAFee} />
-        <Collateral {...props} idx="21" fee={props.univ2daiethAFee} />
-        <Collateral {...props} idx="22" fee={props.univ2wbtcethAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="23" fee={props.univ2usdcethAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="24" fee={props.univ2daiusdcAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="25" fee={props.univ2ethusdtAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="26" fee={props.univ2linkethAFee} />
-        <Collateral {...props} idx="27" fee={props.univ2uniethAFee} />
-        <Collateral {...props} idx="28" fee={props.univ2wbtcdaiAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="29" fee={props.univ2aaveethAFee} showLockedDecimals={true} />
-        <Collateral {...props} idx="30" fee={props.univ2daiusdtAFee} />
-        <Collateral {...props} idx="41" fee={props.guniv3daiusdc1AFee} />
+        <Collateral {...props} ilk="ETH-A" supply={props.ethSupply} />
+        <Collateral {...props} ilk="ETH-B" supply={props.ethSupply} />
+        <Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />
+        <Collateral {...props} ilk="WSTETH-A" />
+        <Collateral {...props} ilk="BAT-A" />
+        <Collateral {...props} ilk="USDC-A" />
+        <Collateral {...props} ilk="USDC-B" />
+        <Collateral {...props} ilk="WBTC-A" />
+        <Collateral {...props} ilk="TUSD-A" />
+        <Collateral {...props} ilk="KNC-A" />
+        <Collateral {...props} ilk="ZRX-A" />
+        <Collateral {...props} ilk="MANA-A" />
+        <Collateral {...props} ilk="USDP-A" />
+        <Collateral {...props} ilk="USDT-A" />
+        <Collateral {...props} ilk="COMP-A" />
+        <Collateral {...props} ilk="LRC-A" />
+        <Collateral {...props} ilk="LINK-A" />
+        <Collateral {...props} ilk="BAL-A" />
+        <Collateral {...props} ilk="YFI-A" />
+        <Collateral {...props} ilk="GUSD-A" />
+        <Collateral {...props} ilk="UNI-A" />
+        <Collateral {...props} ilk="RENBTC-A" />
+        <Collateral {...props} ilk="AAVE-A" />
+        <Collateral {...props} ilk="MATIC-A" />
+        <Collateral {...props} ilk="UNIV2DAIETH-A" />
+        <Collateral {...props} ilk="UNIV2WBTCETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2DAIUSDC-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2LINKETH-A" />
+        <Collateral {...props} ilk="UNIV2UNIETH-A" />
+        <Collateral {...props} ilk="UNIV2WBTCDAI-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
           </TabPanel>
           <TabPanel>
-        <Collateral {...props} idx="32" fee={props.rwa001AFee} />
-        <Collateral {...props} idx="33" fee={props.rwa002AFee} />
-        <Collateral {...props} idx="34" fee={props.rwa003AFee} />
-        <Collateral {...props} idx="35" fee={props.rwa004AFee} />
-        <Collateral {...props} idx="36" fee={props.rwa005AFee} />
-        <Collateral {...props} idx="37" fee={props.rwa006AFee} />
+        <Collateral {...props} ilk="RWA001-A" />
+        <Collateral {...props} ilk="RWA002-A" />
+        <Collateral {...props} ilk="RWA003-A" />
+        <Collateral {...props} ilk="RWA004-A" />
+        <Collateral {...props} ilk="RWA005-A" />
+        <Collateral {...props} ilk="RWA006-A" />
           </TabPanel>
           <TabPanel>
-        <Psm {...props} idx={props.psmIdx} />
-        <Psm {...props} idx={props.psmPaxIdx} />
+        <Psm {...props} ilk="PSM-USDC-A" />
+        <Psm {...props} ilk="PSM-USDP-A" />
           </TabPanel>
           <TabPanel>
         <div className="columns">
@@ -242,64 +240,63 @@ const Main = (props) => {
             </div>
           </div>
         </div>
-        <Collateral {...props} idx={props.d3mAdaiIdx} fee={props.adaiFee} />
+        <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />
           </TabPanel>
         </Tabs>
           </TabPanel>
           <TabPanel>
         <div className="columns">
-          <Pip {...props} token="ETH" idx="0" formater={formatTwoDp} />
-          <Pip {...props} token="wstETH" idx="41" formater={formatTwoDp} />
-          <Pip {...props} token="BTC" idx="3" formater={formatTwoDp} />
-          <Pip {...props} token="UNI" idx="18" formater={formatTwoDp} />
+          <Pip {...props} token="ETH" ilk="ETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="wstETH" ilk="WSTETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
+          <Pip {...props} token="UNI" ilk="UNI-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="AAVE" idx="20" formater={formatTwoDp} />
-          <Pip {...props} token="BAL" idx="15" formater={formatTwoDp} />
-          <Pip {...props} token="BAT" idx="1" formater={formatCurrency} />
-          <Pip {...props} token="COMP" idx="11" formater={formatTwoDp} />
+          <Pip {...props} token="AAVE" ilk="AAVE-A" formater={formatTwoDp} />
+          <Pip {...props} token="BAL" ilk="BAL-A" formater={formatTwoDp} />
+          <Pip {...props} token="BAT" ilk="BAT-A" formater={formatCurrency} />
+          <Pip {...props} token="COMP" ilk="COMP-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="LINK" idx="13" formater={formatTwoDp} />
-          <Pip {...props} token="LRC" idx="12" formater={formatCurrency} />
-          <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
-          <Pip {...props} token="MATIC" idx="37" formater={formatCurrency} />
+          <Pip {...props} token="LINK" ilk="LINK-A" formater={formatTwoDp} />
+          <Pip {...props} token="LRC" ilk="LRC-A" formater={formatCurrency} />
+          <Pip {...props} token="MANA" ilk="MANA-A" formater={formatCurrency} />
+          <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
-          <Pip {...props} token="YFI" idx="16" formater={formatTwoDp} />
-          <Pip {...props} token="ZRX" idx="7" formater={formatCurrency} />
-          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" idx="2" formater={formatCurrency}/>
+          <Pip {...props} token="USDT" ilk="USDT-A" formater={formatCurrency} />
+          <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
+          <Pip {...props} token="ZRX" ilk="ZRX-A" formater={formatCurrency} />
+          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
         <div className="columns">
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2UniEth" idx="26" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2WbtcEth" idx="22" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2DaiEth" ilk="UNIV2DAIETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2UniEth" ilk="UNIV2UNIETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2WbtcEth" ilk="UNIV2WBTCETH-A" formater={formatNoDecimals} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2UsdcEth" idx="23" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2DaiUsdc" idx="24" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2LinkEth" idx="25" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2DaiUsdc" ilk="UNIV2DAIUSDC-A" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2LinkEth" ilk="UNIV2LINKETH-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2WbtcDai" idx="27" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2AaveEth" idx="28" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2DaiUsdt" idx="29" formater={formatTwoDp} />
-          <Pip {...props} token="GUniV3DaiUsdc1" idx="40" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2AaveEth" ilk="UNIV2AAVEETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA001" idx="31" formater={formatTwoDp} />
-          <Pip {...props} token="RWA002" idx="32" formater={formatTwoDp} />
+          <Pip {...props} token="RWA001" ilk="RWA001-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA002" ilk="RWA002-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA003" idx="33" formater={formatTwoDp} />
-          <Pip {...props} token="RWA004" idx="34" formater={formatTwoDp} />
+          <Pip {...props} token="RWA003" ilk="RWA003-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA004" ilk="RWA004-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA005" idx="35" formater={formatTwoDp} />
-          <Pip {...props} token="RWA006" idx="36" formater={formatTwoDp} />
+          <Pip {...props} token="RWA005" ilk="RWA005-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA006" ilk="RWA006-A" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
@@ -381,43 +378,42 @@ const Main = (props) => {
               <table className="table is-narrow" style={{backgroundColor: '#192734', color: '#e6e8f1'}}>
                 <Clip heading={true}/>
                 <tbody>
-                  <Clip {...props} token="ETH-A" idx="0"/>
-                  <Clip {...props} token="ETH-B" idx="14"/>
-                  <Clip {...props} token="ETH-C" idx="30"/>
-                  <Clip {...props} token="WSTETH-A" idx="41"/>
-                  <Clip {...props} token="WBTC" idx="3"/>
-                  <Clip {...props} token="AAVE" idx="20"/>
-                  <Clip {...props} token="BAL" idx="15"/>
-                  <Clip {...props} token="BAT" idx="1"/>
-                  <Clip {...props} token="COMP" idx="11"/>
-                  <Clip {...props} token="KNC" idx="6"/>
-                  <Clip {...props} token="LINK" idx="13"/>
-                  <Clip {...props} token="LRC" idx="12"/>
-                  <Clip {...props} token="MANA" idx="8"/>
-                  <Clip {...props} token="MATIC" idx="37"/>
-                  <Clip {...props} token="RENBTC" idx="19"/>
-                  <Clip {...props} token="UNI" idx="18"/>
-                  <Clip {...props} token="YFI" idx="16"/>
-                  <Clip {...props} token="ZRX" idx="7"/>
-                  <Clip {...props} token="UniV2DaiEth" idx="21"/>
-                  <Clip {...props} token="UniV2WbtcEth" idx="22"/>
-                  <Clip {...props} token="UniV2UsdcEth" idx="23"/>
-                  <Clip {...props} token="UniV2DaiUsdc" idx="24"/>
-                  <Clip {...props} token="UniV2LinkEth" idx="25"/>
-                  <Clip {...props} token="UniV2UniEth" idx="26"/>
-                  <Clip {...props} token="UniV2WbtcDai" idx="27"/>
-                  <Clip {...props} token="UniV2AaveEth" idx="28"/>
-                  <Clip {...props} token="UniV2DaiUsdt" idx="29"/>
-                  <Clip {...props} token="GUniV3DaiUsdc1" idx="40"/>
-                  <Clip {...props} token="USDC-A" idx="2"/>
-                  <Clip {...props} token="USDC-B" idx="4"/>
-                  <Clip {...props} token="USDT" idx="10"/>
-                  <Clip {...props} token="TUSD" idx="5"/>
-                  <Clip {...props} token="GUSD" idx="17"/>
-                  <Clip {...props} token="USDP" idx="9"/>
-                  <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
-                  <Clip {...props} token="PSM-USDP-A" idx={props.psmPaxIdx}/>
-                  <Clip {...props} token="DIRECT-AAVEV2-DAI" idx="42"/>
+                  <Clip {...props} token="ETH-A" ilk="ETH-A"/>
+                  <Clip {...props} token="ETH-B" ilk="ETH-B"/>
+                  <Clip {...props} token="ETH-C" ilk="ETH-C"/>
+                  <Clip {...props} token="WSTETH-A" ilk="WSTETH-A"/>
+                  <Clip {...props} token="WBTC" ilk="WBTC-A"/>
+                  <Clip {...props} token="AAVE" ilk="AAVE-A"/>
+                  <Clip {...props} token="BAL" ilk="BAL-A"/>
+                  <Clip {...props} token="BAT" ilk="BAT-A"/>
+                  <Clip {...props} token="COMP" ilk="COMP-A"/>
+                  <Clip {...props} token="KNC" ilk="KNC-A"/>
+                  <Clip {...props} token="LINK" ilk="LINK-A"/>
+                  <Clip {...props} token="LRC" ilk="LRC-A"/>
+                  <Clip {...props} token="MANA" ilk="MANA-A"/>
+                  <Clip {...props} token="MATIC" ilk="MATIC-A"/>
+                  <Clip {...props} token="RENBTC" ilk="RENBTC-A"/>
+                  <Clip {...props} token="UNI" ilk="UNI-A"/>
+                  <Clip {...props} token="YFI" ilk="YFI-A"/>
+                  <Clip {...props} token="ZRX" ilk="ZRX-A"/>
+                  <Clip {...props} token="UniV2DaiEth" ilk="UNIV2DAIETH-A"/>
+                  <Clip {...props} token="UniV2WbtcEth" ilk="UNIV2WBTCETH-A"/>
+                  <Clip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A"/>
+                  <Clip {...props} token="UniV2DaiUsdc" ilk="UNIV2DAIUSDC-A"/>
+                  <Clip {...props} token="UniV2LinkEth" ilk="UNIV2LINKETH-A"/>
+                  <Clip {...props} token="UniV2UniEth" ilk="UNIV2USDCETH-A"/>
+                  <Clip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A"/>
+                  <Clip {...props} token="UniV2AaveEth" ilk="UNIV2AAVEETH-A"/>
+                  <Clip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A"/>
+                  <Clip {...props} token="USDC-A" ilk="USDC-A"/>
+                  <Clip {...props} token="USDC-B" ilk="USDC-B"/>
+                  <Clip {...props} token="USDT" ilk="USDT-A"/>
+                  <Clip {...props} token="TUSD" ilk="TUSD-A"/>
+                  <Clip {...props} token="GUSD" ilk="GUSD-A"/>
+                  <Clip {...props} token="USDP" ilk="USDP-A"/>
+                  <Clip {...props} token="PSM-USDC-A" ilk="PSM-USDC-A"/>
+                  <Clip {...props} token="PSM-USDP-A" ilk="PSM-USDP-A"/>
+                  <Clip {...props} token="DIRECT-AAVEV2-DAI" ilk="DIRECT-AAVEV2-DAI"/>
                 </tbody>
               </table>
           </div>
@@ -998,14 +994,6 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
-          <div className="column">
-            <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.UNIV2DAIUSDT}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> UniV2DaiUsdt</h3>
-                <p className="subtitle is-size-7">{props.UNIV2DAIUSDT}</p>
-              </a>
-            </div>
-          </div>
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.GUNIV3DAIUSDC1}`} target="_blank" rel="noopener noreferrer">

@@ -82,12 +82,10 @@ add["MEDIAN_UNIV2DAIETH"] = "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11"
 add["MEDIAN_UNIV2WBTCETH"] = "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940"
 add["MEDIAN_UNIV2USDCETH"] = "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc"
 add["MEDIAN_UNIV2DAIUSDC"] = "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5"
-add["MEDIAN_UNIV2ETHUSDT"] = "0x0d4a11d5EEaaC28EC3F61d100daF4d40471f1852"
 add["MEDIAN_UNIV2LINKETH"] = "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974"
 add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
 add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
-add["MEDIAN_UNIV2DAIUSDT"] = "0xB20bd5D04BE54f870D5C0d3cA85d82b34B836405"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 //add["MEDIAN_WSTETH"] = "FIXME" //FIXME
 
@@ -164,7 +162,6 @@ const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
 const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
 const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
-const univ2daiusdt = build(add.UNIV2DAIUSDT, "ERC20")
 const guniv3daiusdc1 = build(add.GUNIV3DAIUSDC1, "ERC20")
 const rwa001 = build(add.RWA001, "ERC20")
 const rwa002 = build(add.RWA002, "ERC20")
@@ -232,7 +229,6 @@ const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
 const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
 const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
 const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
-const univ2daiusdtAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDT-A")
 const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
 const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
 const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
@@ -406,7 +402,6 @@ class App extends Component {
      .concat(this.getIlkCall(univ2uniethAIlkBytes, 'UNIV2UNIETH_A', univ2unieth, add.UNIV2UNIETH, add.PIP_UNIV2UNIETH))
      .concat(this.getIlkCall(univ2wbtcdaiAIlkBytes, 'UNIV2WBTCDAI_A', univ2wbtcdai, add.UNIV2WBTCDAI, add.PIP_UNIV2WBTCDAI))
      .concat(this.getIlkCall(univ2aaveethAIlkBytes, 'UNIV2AAVEETH_A', univ2aaveeth, add.UNIV2AAVEETH, add.PIP_UNIV2AAVEETH))
-     .concat(this.getIlkCall(univ2daiusdtAIlkBytes, 'UNIV2DAIUSDT_A', univ2daiusdt, add.UNIV2DAIUSDT, add.PIP_UNIV2DAIUSDT))
      .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
      .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
      .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
@@ -462,8 +457,6 @@ class App extends Component {
       //this.getPrice(add.MEDIAN_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2ETHUSDT, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2ETHUSDT, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
@@ -472,8 +465,6 @@ class App extends Component {
       //this.getPrice(add.MEDIAN_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2DAIUSDT, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
@@ -488,8 +479,8 @@ class App extends Component {
         yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
         maticPriceNxt, maticPriceMedian,
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
-        univ2ethusdtPriceNxt, univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
-        univ2aaveethPriceNxt, univ2daiusdtPriceNxt, guniv3daiusdc1PriceNxt, wstethPriceNxt,
+        univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
+        univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, wstethPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
@@ -603,7 +594,6 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2UNIETH", "UNIV2UNIETH-A", univ2unieth, 18, base, univ2uniethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2AAVEETH", "UNIV2AAVEETH-A", univ2aaveeth, 18, base, univ2aaveethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIUSDT", "UNIV2DAIUSDT-A", univ2daiusdt, 18, base, univ2daiusdtPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
           this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base), // 606
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base), // 611
@@ -620,9 +610,9 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base)
         ]
 
+    const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
-    const d3mAdaiIdx = 42
-    const d3mAdaiFeesPending = ilks[d3mAdaiIdx].lockedBn.sub(d3mAdaiDaiDebt)
+    const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
     const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiAdjustment = d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
 
@@ -630,9 +620,6 @@ class App extends Component {
 
     this.setState(state => {
       return {
-        psmIdx: 38,
-        psmPaxIdx: 39,
-        d3mAdaiIdx: d3mAdaiIdx,
         networkId: networkId,
         blockNumber: block.toString(),
         timestamp: this.unixToDateTime(timestamp),
@@ -640,6 +627,7 @@ class App extends Component {
         Line: utils.formatUnits(line, 45),
         debt: utils.formatUnits(debt, 45),
         ilks: ilks,
+        ilksByName: ilksByName,
         vestingDai: vestingDai,
         vestingMkr: vestingMkr,
         vestingMkrTreasury: vestingMkrTreasury,

@@ -13,7 +13,7 @@ function nextPrice(price, priceNxt) {
 
 function Pip(props) {
   const t = useTranslate()
-  const ilk = props.ilks[props.idx]
+  const ilk = props.ilksByName[props.ilk]
   return (
       <div className="column">
         <div className="box has-text-centered">

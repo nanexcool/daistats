@@ -28,7 +28,7 @@ const formatPercentFee = new Intl.NumberFormat('en-US', {
 
 function Psm(props) {
   const t = useTranslate()
-  const ilk = props.ilks[props.idx]
+  const ilk = props.ilksByName[props.ilk]
   return (
         <div>
           <div className="columns">
