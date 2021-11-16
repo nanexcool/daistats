@@ -264,7 +264,6 @@ const Main = (props) => {
           <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="USDT" ilk="USDT-A" formater={formatCurrency} />
           <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
           <Pip {...props} token="ZRX" ilk="ZRX-A" formater={formatCurrency} />
           <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
