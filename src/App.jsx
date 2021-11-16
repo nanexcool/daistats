@@ -97,6 +97,8 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
 
+//PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -158,7 +160,6 @@ const univ2daieth = build(add.UNIV2DAIETH, "ERC20")
 const univ2wbtceth = build(add.UNIV2WBTCETH, "ERC20")
 const univ2usdceth = build(add.UNIV2USDCETH, "ERC20")
 const univ2daiusdc = build(add.UNIV2DAIUSDC, "ERC20")
-const univ2ethusdt = build(add.UNIV2ETHUSDT, "ERC20")
 const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
 const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
@@ -227,7 +228,6 @@ const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
 const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
 const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
 const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
-const univ2ethusdtAIlkBytes = utils.formatBytes32String("UNIV2ETHUSDT-A")
 const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
 const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
 const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
@@ -402,7 +402,6 @@ class App extends Component {
      .concat(this.getIlkCall(univ2wbtcethAIlkBytes, 'UNIV2WBTCETH_A', univ2wbtceth, add.UNIV2WBTCETH, add.PIP_UNIV2WBTCETH))
      .concat(this.getIlkCall(univ2usdcethAIlkBytes, 'UNIV2USDCETH_A', univ2usdceth, add.UNIV2USDCETH, add.PIP_UNIV2USDCETH))
      .concat(this.getIlkCall(univ2daiusdcAIlkBytes, 'UNIV2DAIUSDC_A', univ2daiusdc, add.UNIV2DAIUSDC, add.PIP_UNIV2DAIUSDC))
-     .concat(this.getIlkCall(univ2ethusdtAIlkBytes, 'UNIV2ETHUSDT_A', univ2ethusdt, add.UNIV2ETHUSDT, add.PIP_UNIV2ETHUSDT))
      .concat(this.getIlkCall(univ2linkethAIlkBytes, 'UNIV2LINKETH_A', univ2linketh, add.UNIV2LINKETH, add.PIP_UNIV2LINKETH))
      .concat(this.getIlkCall(univ2uniethAIlkBytes, 'UNIV2UNIETH_A', univ2unieth, add.UNIV2UNIETH, add.PIP_UNIV2UNIETH))
      .concat(this.getIlkCall(univ2wbtcdaiAIlkBytes, 'UNIV2WBTCDAI_A', univ2wbtcdai, add.UNIV2WBTCDAI, add.PIP_UNIV2WBTCDAI))
@@ -600,7 +599,6 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCETH", "UNIV2WBTCETH-A", univ2wbtceth, 18, base, univ2wbtcethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2USDCETH", "UNIV2USDCETH-A", univ2usdceth, 18, base, univ2usdcethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIUSDC", "UNIV2DAIUSDC-A", univ2daiusdc, 18, base, univ2daiusdcPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2ETHUSDT", "UNIV2ETHUSDT-A", univ2ethusdt, 18, base, univ2ethusdtPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2LINKETH", "UNIV2LINKETH-A", univ2linketh, 18, base, univ2linkethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2UNIETH", "UNIV2UNIETH-A", univ2unieth, 18, base, univ2uniethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
@@ -623,7 +621,7 @@ class App extends Component {
         ]
 
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
-    const d3mAdaiIdx = 43
+    const d3mAdaiIdx = 42
     const d3mAdaiFeesPending = ilks[d3mAdaiIdx].lockedBn.sub(d3mAdaiDaiDebt)
     const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiAdjustment = d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
@@ -632,8 +630,8 @@ class App extends Component {
 
     this.setState(state => {
       return {
-        psmIdx: 39,
-        psmPaxIdx: 40,
+        psmIdx: 38,
+        psmPaxIdx: 39,
         d3mAdaiIdx: d3mAdaiIdx,
         networkId: networkId,
         blockNumber: block.toString(),

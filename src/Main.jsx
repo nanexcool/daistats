@@ -249,7 +249,7 @@ const Main = (props) => {
           <TabPanel>
         <div className="columns">
           <Pip {...props} token="ETH" idx="0" formater={formatTwoDp} />
-          <Pip {...props} token="wstETH" idx="42" formater={formatTwoDp} />
+          <Pip {...props} token="wstETH" idx="41" formater={formatTwoDp} />
           <Pip {...props} token="BTC" idx="3" formater={formatTwoDp} />
           <Pip {...props} token="UNI" idx="18" formater={formatTwoDp} />
         </div>
@@ -263,7 +263,7 @@ const Main = (props) => {
           <Pip {...props} token="LINK" idx="13" formater={formatTwoDp} />
           <Pip {...props} token="LRC" idx="12" formater={formatCurrency} />
           <Pip {...props} token="MANA" idx="8" formater={formatCurrency} />
-          <Pip {...props} token="MATIC" idx="38" formater={formatCurrency} />
+          <Pip {...props} token="MATIC" idx="37" formater={formatCurrency} />
         </div>
         <div className="columns">
           <Pip {...props} token="USDT" idx="10" formater={formatCurrency} />
@@ -275,32 +275,31 @@ const Main = (props) => {
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2DaiEth" idx="21" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2UniEth" idx="27" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2UniEth" idx="26" formater={formatTwoDp} />
           <Pip {...props} token="UniV2WbtcEth" idx="22" formater={formatNoDecimals} />
+        </div>
+        <div className="columns">
           <Pip {...props} token="UniV2UsdcEth" idx="23" formater={formatNoDecimals} />
-        </div>
-        <div className="columns">
           <Pip {...props} token="UniV2DaiUsdc" idx="24" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2EthUsdt" idx="25" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2LinkEth" idx="26" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2LinkEth" idx="25" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2WbtcDai" idx="28" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2AaveEth" idx="29" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2DaiUsdt" idx="30" formater={formatTwoDp} />
-          <Pip {...props} token="GUniV3DaiUsdc1" idx="41" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2WbtcDai" idx="27" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2AaveEth" idx="28" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2DaiUsdt" idx="29" formater={formatTwoDp} />
+          <Pip {...props} token="GUniV3DaiUsdc1" idx="40" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA001" idx="32" formater={formatTwoDp} />
-          <Pip {...props} token="RWA002" idx="33" formater={formatTwoDp} />
+          <Pip {...props} token="RWA001" idx="31" formater={formatTwoDp} />
+          <Pip {...props} token="RWA002" idx="32" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA003" idx="34" formater={formatTwoDp} />
-          <Pip {...props} token="RWA004" idx="35" formater={formatTwoDp} />
+          <Pip {...props} token="RWA003" idx="33" formater={formatTwoDp} />
+          <Pip {...props} token="RWA004" idx="34" formater={formatTwoDp} />
         </div>
         <div className="columns">
-          <Pip {...props} token="RWA005" idx="36" formater={formatTwoDp} />
-          <Pip {...props} token="RWA006" idx="37" formater={formatTwoDp} />
+          <Pip {...props} token="RWA005" idx="35" formater={formatTwoDp} />
+          <Pip {...props} token="RWA006" idx="36" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
@@ -384,8 +383,8 @@ const Main = (props) => {
                 <tbody>
                   <Clip {...props} token="ETH-A" idx="0"/>
                   <Clip {...props} token="ETH-B" idx="14"/>
-                  <Clip {...props} token="ETH-C" idx="31"/>
-                  <Clip {...props} token="WSTETH-A" idx="42"/>
+                  <Clip {...props} token="ETH-C" idx="30"/>
+                  <Clip {...props} token="WSTETH-A" idx="41"/>
                   <Clip {...props} token="WBTC" idx="3"/>
                   <Clip {...props} token="AAVE" idx="20"/>
                   <Clip {...props} token="BAL" idx="15"/>
@@ -395,7 +394,7 @@ const Main = (props) => {
                   <Clip {...props} token="LINK" idx="13"/>
                   <Clip {...props} token="LRC" idx="12"/>
                   <Clip {...props} token="MANA" idx="8"/>
-                  <Clip {...props} token="MATIC" idx="38"/>
+                  <Clip {...props} token="MATIC" idx="37"/>
                   <Clip {...props} token="RENBTC" idx="19"/>
                   <Clip {...props} token="UNI" idx="18"/>
                   <Clip {...props} token="YFI" idx="16"/>
@@ -404,13 +403,12 @@ const Main = (props) => {
                   <Clip {...props} token="UniV2WbtcEth" idx="22"/>
                   <Clip {...props} token="UniV2UsdcEth" idx="23"/>
                   <Clip {...props} token="UniV2DaiUsdc" idx="24"/>
-                  <Clip {...props} token="UniV2EthUsdt" idx="25"/>
-                  <Clip {...props} token="UniV2LinkEth" idx="26"/>
-                  <Clip {...props} token="UniV2UniEth" idx="27"/>
-                  <Clip {...props} token="UniV2WbtcDai" idx="28"/>
-                  <Clip {...props} token="UniV2AaveEth" idx="29"/>
-                  <Clip {...props} token="UniV2DaiUsdt" idx="30"/>
-                  <Clip {...props} token="GUniV3DaiUsdc1" idx="41"/>
+                  <Clip {...props} token="UniV2LinkEth" idx="25"/>
+                  <Clip {...props} token="UniV2UniEth" idx="26"/>
+                  <Clip {...props} token="UniV2WbtcDai" idx="27"/>
+                  <Clip {...props} token="UniV2AaveEth" idx="28"/>
+                  <Clip {...props} token="UniV2DaiUsdt" idx="29"/>
+                  <Clip {...props} token="GUniV3DaiUsdc1" idx="40"/>
                   <Clip {...props} token="USDC-A" idx="2"/>
                   <Clip {...props} token="USDC-B" idx="4"/>
                   <Clip {...props} token="USDT" idx="10"/>
@@ -419,7 +417,7 @@ const Main = (props) => {
                   <Clip {...props} token="USDP" idx="9"/>
                   <Clip {...props} token="PSM-USDC-A" idx={props.psmIdx}/>
                   <Clip {...props} token="PSM-USDP-A" idx={props.psmPaxIdx}/>
-                  <Clip {...props} token="DIRECT-AAVEV2-DAI" idx="43"/>
+                  <Clip {...props} token="DIRECT-AAVEV2-DAI" idx="42"/>
                 </tbody>
               </table>
           </div>
@@ -961,14 +959,6 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.UNIV2DAIUSDC}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> UniV2DaiUsdc</h3>
                 <p className="subtitle is-size-7">{props.UNIV2DAIUSDC}</p>
-              </a>
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.UNIV2ETHUSDT}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> UniV2EthUsdt</h3>
-                <p className="subtitle is-size-7">{props.UNIV2ETHUSDT}</p>
               </a>
             </div>
           </div>
