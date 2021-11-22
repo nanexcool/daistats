@@ -97,6 +97,10 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98
 
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
 
+add["MCD_JOIN_WBTC_B"] = "0xfA8c996e158B80D77FbD0082BB437556A65B96E0"
+add["MCD_CLIP_WBTC_B"] = "0xe30663C6f83A06eDeE6273d72274AE24f1084a22"
+add["MCD_CLIP_CALC_WBTC_B"] = "0xeb911E99D7ADD1350DC39d84D60835BA9B287D96"
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -204,7 +208,8 @@ const batIlkBytes = utils.formatBytes32String("BAT-A")
 const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
 const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
 const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
-const wbtcIlkBytes = utils.formatBytes32String("WBTC-A")
+const wbtcAIlkBytes = utils.formatBytes32String("WBTC-A")
+const wbtcBIlkBytes = utils.formatBytes32String("WBTC-B")
 const kncAIlkBytes = utils.formatBytes32String("KNC-A")
 const zrxAIlkBytes = utils.formatBytes32String("ZRX-A")
 const manaAIlkBytes = utils.formatBytes32String("MANA-A")
@@ -376,7 +381,8 @@ class App extends Component {
      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
      .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
-     .concat(this.getIlkCall(wbtcIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
+     .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
+     .concat(this.getIlkCall(wbtcBIlkBytes, 'WBTC_B', wbtc, add.WBTC, add.PIP_WBTC))
      .concat(this.getIlkCall(usdcBIlkBytes, 'USDC_B', usdc, add.USDC, add.PIP_USDC))
      .concat(this.getIlkCall(tusdAIlkBytes, 'TUSD_A', tusd, add.TUSD, add.PIP_TUSD))
      .concat(this.getIlkCall(kncAIlkBytes, 'KNC_A', knc, add.KNC, add.PIP_KNC))
@@ -569,6 +575,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7), // NOTE this dsValue is also shown for TUSD, USDP, GUSD, aDAI
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-B", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-B", usdc, 6, base, null, null, DP10, DP7),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "TUSD", "TUSD-A", tusd, 18, base, null, null, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "KNC", "KNC-A", knc, 18, base, kncPriceNxt, kncPriceMedian, DP10),
