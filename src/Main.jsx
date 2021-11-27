@@ -149,6 +149,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="USDC-B" />
         <Collateral {...props} ilk="WBTC-A" />
         <Collateral {...props} ilk="WBTC-B" />
+        <Collateral {...props} ilk="WBTC-C" />
         <Collateral {...props} ilk="TUSD-A" />
         <Collateral {...props} ilk="KNC-A" />
         <Collateral {...props} ilk="ZRX-A" />
@@ -384,6 +385,7 @@ const Main = (props) => {
                   <Clip {...props} token="WSTETH-A" ilk="WSTETH-A"/>
                   <Clip {...props} token="WBTC-A" ilk="WBTC-A"/>
                   <Clip {...props} token="WBTC-B" ilk="WBTC-B"/>
+                  <Clip {...props} token="WBTC-C" ilk="WBTC-C"/>
                   <Clip {...props} token="AAVE" ilk="AAVE-A"/>
                   <Clip {...props} token="BAL" ilk="BAL-A"/>
                   <Clip {...props} token="BAT" ilk="BAT-A"/>
