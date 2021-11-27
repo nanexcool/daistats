@@ -105,6 +105,11 @@ add["MCD_JOIN_WBTC_C"] = "0x7f62f9592b823331E012D3c5DdF2A7714CfB9de2"
 add["MCD_CLIP_WBTC_C"] = "0x39F29773Dcb94A32529d0612C6706C49622161D1"
 add["MCD_CLIP_CALC_WBTC_C"] = "0x4fa2A328E7f69D023fE83454133c273bF5ACD435"
 
+add["MCD_JOIN_PSM_GUSD_A"] = "0x79A0FA989fb7ADf1F8e80C93ee605Ebb94F7c6A5"
+add["MCD_CLIP_PSM_GUSD_A"] = "0xf93CC3a50f450ED245e003BFecc8A6Ec1732b0b2"
+add["MCD_CLIP_CALC_PSM_GUSD_A"] = "0x7f67a68a0ED74Ea89A82eD9F243C159ed43a502a"
+add["MCD_PSM_GUSD_A"] = "0x204659B2Fd2aD5723975c362Ce2230Fba11d3900"
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -184,6 +189,7 @@ const adai = build(add.ADAI, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
+const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -232,6 +238,7 @@ const aaveAIlkBytes = utils.formatBytes32String("AAVE-A")
 const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A")
 const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A")
 const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
+const psmgusdAIlkBytes = utils.formatBytes32String("PSM-GUSD-A")
 const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
 const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
 const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
@@ -424,6 +431,7 @@ class App extends Component {
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
+     .concat(this.getPsmIlkCall(psmgusdAIlkBytes, 'PSM_GUSD_A', gusd, add.GUSD, add.PIP_GUSD, psmGusd))
      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
@@ -619,6 +627,7 @@ class App extends Component {
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
+          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 18, DP10, DP18),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base)

@@ -187,6 +187,7 @@ const Main = (props) => {
           <TabPanel>
         <Psm {...props} ilk="PSM-USDC-A" />
         <Psm {...props} ilk="PSM-USDP-A" />
+        <Psm {...props} ilk="PSM-GUSD-A" />
           </TabPanel>
           <TabPanel>
         <div className="columns">
@@ -416,6 +417,7 @@ const Main = (props) => {
                   <Clip {...props} token="USDP" ilk="USDP-A"/>
                   <Clip {...props} token="PSM-USDC-A" ilk="PSM-USDC-A"/>
                   <Clip {...props} token="PSM-USDP-A" ilk="PSM-USDP-A"/>
+                  <Clip {...props} token="PSM-GUSD-A" ilk="PSM-GUSD-A"/>
                   <Clip {...props} token="DIRECT-AAVEV2-DAI" ilk="DIRECT-AAVEV2-DAI"/>
                 </tbody>
               </table>
