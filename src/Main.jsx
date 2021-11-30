@@ -252,23 +252,15 @@ const Main = (props) => {
           <Pip {...props} token="ETH" ilk="ETH-A" formater={formatTwoDp} />
           <Pip {...props} token="wstETH" ilk="WSTETH-A" formater={formatTwoDp} />
           <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
-          <Pip {...props} token="UNI" ilk="UNI-A" formater={formatTwoDp} />
-        </div>
-        <div className="columns">
-          <Pip {...props} token="AAVE" ilk="AAVE-A" formater={formatTwoDp} />
-          <Pip {...props} token="BAL" ilk="BAL-A" formater={formatTwoDp} />
-          <Pip {...props} token="BAT" ilk="BAT-A" formater={formatCurrency} />
-          <Pip {...props} token="COMP" ilk="COMP-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="LINK" ilk="LINK-A" formater={formatTwoDp} />
-          <Pip {...props} token="LRC" ilk="LRC-A" formater={formatCurrency} />
           <Pip {...props} token="MANA" ilk="MANA-A" formater={formatCurrency} />
           <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
         </div>
         <div className="columns">
+          <Pip {...props} token="UNI" ilk="UNI-A" formater={formatTwoDp} />
           <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
-          <Pip {...props} token="ZRX" ilk="ZRX-A" formater={formatCurrency} />
           <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
         <div className="columns">
@@ -281,11 +273,9 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A" formater={formatNoDecimals} />
           <Pip {...props} token="UniV2DaiUsdc" ilk="UNIV2DAIUSDC-A" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2LinkEth" ilk="UNIV2LINKETH-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2AaveEth" ilk="UNIV2AAVEETH-A" formater={formatTwoDp} />
           <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
