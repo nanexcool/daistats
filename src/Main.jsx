@@ -175,6 +175,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="UNIV2WBTCDAI-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
+        <Collateral {...props} ilk="GUNIV3DAIUSDC2-A" />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="RWA001-A" />
@@ -266,8 +267,8 @@ const Main = (props) => {
         <div className="columns">
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2DaiEth" ilk="UNIV2DAIETH-A" formater={formatTwoDp} />
-          <Pip {...props} token="UniV2UniEth" ilk="UNIV2UNIETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="UniV2DaiEth" ilk="UNIV2DAIETH-A" formater={formatFiveDp} />
+          <Pip {...props} token="UniV2UniEth" ilk="UNIV2UNIETH-A" formater={formatFiveDp} />
           <Pip {...props} token="UniV2WbtcEth" ilk="UNIV2WBTCETH-A" formater={formatNoDecimals} />
         </div>
         <div className="columns">
@@ -277,6 +278,7 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
           <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
+          <Pip {...props} token="GUniV3DaiUsdc2" ilk="GUNIV3DAIUSDC2-A" formater={formatFiveDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" ilk="RWA001-A" formater={formatTwoDp} />
@@ -399,6 +401,7 @@ const Main = (props) => {
                   <Clip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A"/>
                   <Clip {...props} token="UniV2AaveEth" ilk="UNIV2AAVEETH-A"/>
                   <Clip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A"/>
+                  <Clip {...props} token="GUniV3DaiUsdc2" ilk="GUNIV3DAIUSDC2-A"/>
                   <Clip {...props} token="USDC-A" ilk="USDC-A"/>
                   <Clip {...props} token="USDC-B" ilk="USDC-B"/>
                   <Clip {...props} token="USDT" ilk="USDT-A"/>
@@ -994,6 +997,14 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.GUNIV3DAIUSDC1}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> GUniV3DaiUsdc1</h3>
                 <p className="subtitle is-size-7">{props.GUNIV3DAIUSDC1}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.GUNIV3DAIUSDC2}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> GUniV3DaiUsdc2</h3>
+                <p className="subtitle is-size-7">{props.GUNIV3DAIUSDC2}</p>
               </a>
             </div>
           </div>

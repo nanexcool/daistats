@@ -166,6 +166,7 @@ const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
 const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
 const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
 const guniv3daiusdc1 = build(add.GUNIV3DAIUSDC1, "ERC20")
+const guniv3daiusdc2 = build(add.GUNIV3DAIUSDC2, "ERC20")
 const rwa001 = build(add.RWA001, "ERC20")
 const rwa002 = build(add.RWA002, "ERC20")
 const rwa003 = build(add.RWA003, "ERC20")
@@ -199,7 +200,8 @@ const gusdPip = build(add.PIP_GUSD, "DSValue")
 const rwaPip = build(add.PIP_RWA001, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
 const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
-const univ3Pip = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
+const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
+const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
 const adaiPip = build(add.PIP_ADAI, "DSValue")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A")
 const ethBIlkBytes = utils.formatBytes32String("ETH-B")
@@ -237,6 +239,7 @@ const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
 const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
 const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
 const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
+const guniv3daiusdc2AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC2-A")
 const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
 const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
 const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
@@ -423,6 +426,7 @@ class App extends Component {
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
      .concat(this.getPsmIlkCall(psmgusdAIlkBytes, 'PSM_GUSD_A', gusd, add.GUSD, add.PIP_GUSD, psmGusd))
      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
+     .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      ,{blockTag: blockNumber})
@@ -477,6 +481,8 @@ class App extends Component {
       //this.getPrice(add.MEDIAN_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.PIP_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
+      //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
       //this.getPrice(add.MEDIAN_WSTETH, this.POSITION_UNIV2_NXT),
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
@@ -490,7 +496,7 @@ class App extends Component {
         maticPriceNxt, maticPriceMedian,
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
-        univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, wstethPriceNxt,
+        univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
         historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
@@ -619,6 +625,7 @@ class App extends Component {
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 18, DP10, DP18),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base)
         ]
