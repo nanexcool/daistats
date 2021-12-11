@@ -309,6 +309,7 @@ const Main = (props) => {
               <p className="title subtitle is-size-4">{t('daistats.dai_surplus_auctions')}</p>
               <p className="subtitle is-size-6">{t('daistats.till_next_flap')}: {nextFlap()}</p>
               <p className="title subtitle is-size-6">Beg: {formatPercent.format(props.flapBeg - 1)} Ttl: {props.flapTtl / 60}m Tau: {props.flapTau / 60 / 60}h</p>
+              <p className="title subtitle is-size-6" title={props.surplusBump}>{t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
             </div>
           </div>
           <div className="column">
@@ -354,7 +355,13 @@ const Main = (props) => {
               <h3 className="title" title={props.sysSurplus}>{formatAmount.format(props.sysSurplus)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.system_surplus')}</p>
               <p className="title subtitle is-size-6" title={props.surplusBuffer}>{t('daistats.surplus_buffer')}: {formatAmount.format(props.surplusBuffer)}</p>
-              <p className="title subtitle is-size-6" title={props.surplusBump}>{t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
+              <p className="title subtitle is-size-4">Hump Lerp</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpStart}>Start: {formatNoDecimals.format(props.lerpHumpStart)}</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpCurrent}>Value: {formatNoDecimals.format(props.lerpHumpCurrent)}</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpEnd}>End: {formatNoDecimals.format(props.lerpHumpEnd)}</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpStartTime}>Start Date: {props.lerpHumpStartTime}</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpDuration}>Duration: {formatAmount.format(props.lerpHumpDuration / 86400)} Days</p>
+              <p className="title subtitle is-size-6" title={props.lerpHumpAdjustment}>Pending Change: {formatNoDecimals.format(props.lerpHumpAdjustment)}</p>
             </div>
           </div>
         </div>

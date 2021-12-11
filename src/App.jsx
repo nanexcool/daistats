@@ -99,6 +99,7 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69dd
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
 
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
+add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -203,6 +204,7 @@ const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
 const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
 const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
 const adaiPip = build(add.PIP_ADAI, "DSValue")
+const lerp = build(add.LERP_HUMP, "Lerp")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A")
 const ethBIlkBytes = utils.formatBytes32String("ETH-B")
 const ethCIlkBytes = utils.formatBytes32String("ETH-C")
@@ -378,7 +380,11 @@ class App extends Component {
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])]
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
+      [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
+      [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
+      [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
+      [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
@@ -570,6 +576,10 @@ class App extends Component {
     // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
     const d3mAdaiReserve = aaveLendingPool.interface.decodeFunctionResult('getReserveData', res[offset++])[0]
     const d3mAdaiIncentive = aaveIncentive.interface.decodeFunctionResult('getRewardsBalance', res[offset++])[0]
+    const lerpHumpStart = lerp.interface.decodeFunctionResult('start', res[offset++])[0]
+    const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
+    const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
+    const lerpHumpDuration = lerp.interface.decodeFunctionResult('duration', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -635,6 +645,7 @@ class App extends Component {
     const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
     const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiAdjustment = d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
+    const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
 
@@ -714,6 +725,12 @@ class App extends Component {
         d3mAdaiVariableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentVariableBorrowRate, 27),
         d3mAdaiStableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentStableBorrowRate, 27),
         d3mAdaiIncentive: utils.formatEther(d3mAdaiIncentive),
+        lerpHumpStart: utils.formatUnits(lerpHumpStart, 45),
+        lerpHumpEnd: utils.formatUnits(lerpHumpEnd, 45),
+        lerpHumpStartTime: this.unixToDate(lerpHumpStartTime),
+        lerpHumpDuration: lerpHumpDuration,
+        lerpHumpCurrent: utils.formatUnits(lerpHumpCurrent, 45),
+        lerpHumpAdjustment: utils.formatUnits(lerpHumpCurrent.sub(surplusBuffer), 45),
         historicalDebt,
       }
     })
@@ -986,6 +1003,19 @@ class App extends Component {
       })
     }
     return r
+  }
+
+  getLerp = (start, end, startTime, duration, timestamp) => {
+      // from LerpFactory.sol:75
+      // https://etherscan.io/address/0x0239311b645a8ef91dc899471497732a1085ba8b#code#L75
+      if (timestamp.gte(startTime)) {
+          if (timestamp.lt(startTime.add(duration))) {
+              let t = timestamp.sub(startTime).mul(WAD).div(duration)
+              return end.mul(t).div(WAD).add(start).sub(start.mul(t).div(WAD))
+          } else {
+              return ethers.BigNumber.from("0")
+          }
+      }
   }
 
   isLoaded = () => {
