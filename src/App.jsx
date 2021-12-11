@@ -1015,6 +1015,8 @@ class App extends Component {
           } else {
               return ethers.BigNumber.from("0")
           }
+      } else {
+          return ethers.BigNumber.from("0")
       }
   }
 
