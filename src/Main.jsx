@@ -1119,9 +1119,6 @@ const Main = (props) => {
               <table className="table" style={{margin: '0 auto', backgroundColor: '#192734', color: '#e6e8f1'}}>
                 <Vest heading={true}/>
                 <tbody>
-                  {props.vestingMkr.map((award, idx) => (
-                    <Vest key={award.usr + award.bgn} award={award} />
-                  ))}
                   {props.vestingMkrTreasury.map((award, idx) => (
                     <Vest key={award.usr + award.bgn} award={award} />
                   ))}

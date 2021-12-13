@@ -276,8 +276,7 @@ const DP18 = ethers.BigNumber.from("1")
 const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_IDS = 21
-const VEST_MKR_IDS = 16
-const VEST_MKR_TREASURY_IDS = 1
+const VEST_MKR_TREASURY_IDS = 17
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -387,7 +386,6 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
-     .concat(this.getVestingCalls(add.MCD_VEST_MKR, vestMkr, VEST_MKR_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
@@ -587,8 +585,7 @@ class App extends Component {
     const VEST_CALL_COUNT = 3
 
     const vestingDai = this.getVestingMaps(res, offset, vestDai, VEST_DAI_IDS)
-    const vestingMkr = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkr, VEST_MKR_IDS)
-    const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_MKR_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
+    const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
 
     const ilks = [
           this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
@@ -660,7 +657,6 @@ class App extends Component {
         ilks: ilks,
         ilksByName: ilksByName,
         vestingDai: vestingDai,
-        vestingMkr: vestingMkr,
         vestingMkrTreasury: vestingMkrTreasury,
         daiSupply: utils.formatEther(daiSupply),
         ethSupply: utils.formatEther(ethSupply),
