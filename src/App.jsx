@@ -371,7 +371,7 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('39000000000000000000000000')])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('37500000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
@@ -812,6 +812,7 @@ class App extends Component {
         Art:  utils.formatEther(ilk.Art),
         rate: utils.formatUnits(ilk.rate, 27),
         spot: utils.formatUnits(ilk.spot, 27),
+        mat: utils.formatUnits(spotIlk.mat, 27),
         line: utils.formatUnits(ilk.line, 45),
         dust: utils.formatUnits(ilk.dust, 45),
         lineMax: utils.formatUnits(autoLineIlk.line, 45),
