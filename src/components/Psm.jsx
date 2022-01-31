@@ -48,7 +48,7 @@ function Psm(props) {
                 {t('daistats.utilization')}: {formatAmount.format(ilk.locked / ilk.line * 100)}%
               </p>
               <p className="subtitle is-size-6">
-                <a href="https://ipfs.io/ipfs/QmXRmkz1NmKZ72NAFQv2qoqUzsXrvCRjLjnm3BjTeMzvRi/" target="_blank" rel="noopener noreferrer">
+                <a href="https://ipfs.io/ipfs/QmdFEcowhVbEabe68LMH8UuXweU8jnmQ7J28uUhFeeaY9X/" target="_blank" rel="noopener noreferrer">
                   Trade DAI & {ilk.token} with no price impact using the PSM
                 </a>
               </p>
