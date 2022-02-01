@@ -630,7 +630,7 @@ class App extends Component {
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 18, DP10, DP18),
+          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
