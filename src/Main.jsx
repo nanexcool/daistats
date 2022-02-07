@@ -48,6 +48,12 @@ const formatFiveDp = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 5
 })
 
+const formatSixDp = new Intl.NumberFormat('en-US', {
+  style: 'decimal',
+  minimumFractionDigits: 6,
+  maximumFractionDigits: 6
+})
+
 const formatEightDp = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 8,
@@ -443,7 +449,7 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.esmMin}>{formatAmount.format(props.esmMin)}</h3>
               <p className="title subtitle is-size-4">{/*t('daistats.esm_threshold')*/}ESM Threshold</p>
-              <p className="subtitle is-size-6" title={props.esmSum}>{/*t('daistats.total_MKR_burned')}*/}Total MKR Burned: {formatFiveDp.format(props.esmSum)}</p>
+              <p className="subtitle is-size-6" title={props.esmSum}>{/*t('daistats.total_MKR_burned')}*/}Total MKR Burned: {formatSixDp.format(props.esmSum)}</p>
               <p className="title subtitle is-size-6" title={props.endWait}>{/*t('daistats.end_wait')}*/}ESM Delay: {props.endWait / 60 / 60}h</p>
             </div>
           </div>

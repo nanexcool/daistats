@@ -109,6 +109,8 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
+add["MCD_ESM"] = "0x09e05fF6142F2f9de8B6B65855A1d56B6cfE4c58"
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
