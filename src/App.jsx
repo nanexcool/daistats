@@ -381,7 +381,7 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('37500000000000000000000000')])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('35000000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
