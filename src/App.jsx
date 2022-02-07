@@ -283,7 +283,7 @@ const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
-const VEST_DAI_IDS = 27
+const VEST_DAI_IDS = 29
 const VEST_MKR_TREASURY_IDS = 19
 
 const subgraphClient = new GraphQLClient(
