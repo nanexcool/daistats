@@ -38,6 +38,7 @@ add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
 add["GOV_MULTISIG"] = "0x73f09254a81e1F835Ee442d1b3262c1f1d7A13ff"
 add["GOV_MULTISIG_2"] = "0x01D26f8c5cC009868A4BF66E268c17B057fF7A73"
 add["RISK_MULTISIG"] = "0xd98ef20520048a35EdA9A202137847A62120d2d9"
+add["RISK_001_WALLET"] "0xb386Bc4e8bAE87c3F67ae94Da36F385C100a370a"
 add["RWF_MULTISIG"] = "0x9e1585d9CA64243CE43D42f7dD7333190F66Ca09"
 add["GRO_MULTISIG"] = "0x7800C137A645c07132886539217ce192b9F0528e"
 add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
@@ -68,6 +69,7 @@ add["SF_001_WALLET"] = "0xf737C76D2B358619f7ef696cf3F94548fEcec379"
 add["RWF_001_WALLET"] = "0x96d7b01Cc25B141520C717fa369844d34FF116ec"
 add["SF_001_VEST_01"] = "0xBC7fd5AA2016C3e2C8F0dBf4e919485C6BBb59e2"
 add["SF_001_VEST_02"] = "0xCC81578d163A04ea8d2EaE6904d0C8E61A84E1Bb"
+add["CES_001_WALLET"] = "0x25307aB59Cd5d8b4E2C01218262Ddf6a89Ff86da"
 
 
 add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
@@ -285,7 +287,7 @@ const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
-const VEST_DAI_IDS = 29
+const VEST_DAI_IDS = 32
 const VEST_MKR_TREASURY_IDS = 19
 
 const subgraphClient = new GraphQLClient(
@@ -381,7 +383,7 @@ class App extends Component {
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('35000000000000000000000000')])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('28500000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
