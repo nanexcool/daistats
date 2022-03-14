@@ -114,6 +114,19 @@ add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 add["MCD_ESM"] = "0x09e05fF6142F2f9de8B6B65855A1d56B6cfE4c58"
 add["MCD_FLAP"] = "0xa4f79bC4a5612bdDA35904FDF55Fc4Cb53D1BFf6"
 
+add["PROXY_ACTIONS_CROPPER"] = "0xa2f69F8B9B341CFE9BfBb3aaB5fe116C89C95bAF"
+add["PROXY_ACTIONS_END_CROPPER"] = "0xAa61752a5Abf86A527A09546F23FE8bCB8fAB2C4"
+add["CROPPER"] = "0x8377CD01a5834a6EaD3b7efb482f678f2092b77e"
+add["CROPPER_IMP"] = "0xaFB21A0e9669cdbA539a4c91Bf6B94c5F013c0DE"
+add["ETHSTETH"] = "0x06325440D014e39736583c165C2963BA99fAf14E"
+add["PIP_ETHSTETH"] = "0x0A7DA4e31582a2fB4FD4067943e88f127F70ab39"
+add["MCD_JOIN_ETHSTETH_A"] = "0x82D8bfDB61404C796385f251654F6d7e92092b5D"
+add["MCD_CLIP_ETHSTETH_A"] = "0x1926862F899410BfC19FeFb8A3C69C7Aed22463a"
+add["MCD_CLIP_CALC_ETHSTETH_A"] = "0x8a4780acABadcae1a297b2eAe5DeEbd7d50DEeB8"
+add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
+add["WSTETH_MEDIAN"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
+
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -192,6 +205,7 @@ const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
+const ethsteth = build(add.ETHSTETH, "ERC20")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
@@ -264,6 +278,7 @@ const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
+const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -448,6 +463,7 @@ class App extends Component {
      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
+     .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'ETHSTETH_A', ethsteth, add.ETHSTETH, add.PIP_ETHSTETH))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -651,7 +667,8 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETHSTETH", "CRVV1ETHSTETH-A", ethsteth, 18, base)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})

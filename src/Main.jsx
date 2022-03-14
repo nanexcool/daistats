@@ -182,6 +182,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
         <Collateral {...props} ilk="GUNIV3DAIUSDC2-A" />
+        <Collateral {...props} ilk="CRVV1ETHSTETH-A" />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="RWA001-A" />
@@ -416,6 +417,7 @@ const Main = (props) => {
                   <Clip {...props} token="UniV2AaveEth" ilk="UNIV2AAVEETH-A"/>
                   <Clip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A"/>
                   <Clip {...props} token="GUniV3DaiUsdc2" ilk="GUNIV3DAIUSDC2-A"/>
+                  <Clip {...props} token="CrvV1EthSteth" ilk="CRVV1ETHSTETH-A"/>
                   <Clip {...props} token="USDC-A" ilk="USDC-A"/>
                   <Clip {...props} token="USDC-B" ilk="USDC-B"/>
                   <Clip {...props} token="USDT" ilk="USDT-A"/>
