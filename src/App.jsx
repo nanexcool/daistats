@@ -112,6 +112,7 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
 add["MCD_ESM"] = "0x09e05fF6142F2f9de8B6B65855A1d56B6cfE4c58"
+add["MCD_FLAP"] = "0xa4f79bC4a5612bdDA35904FDF55Fc4Cb53D1BFf6"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -363,6 +364,8 @@ class App extends Component {
       [add.MCD_FLAP, flap.interface.encodeFunctionData('ttl', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('tau', [])],
       [add.MCD_FLAP, flap.interface.encodeFunctionData('kicks', [])],
+      [add.MCD_FLAP, flap.interface.encodeFunctionData('lid', [])],
+      [add.MCD_FLAP, flap.interface.encodeFunctionData('fill', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('beg', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('pad', [])],
       [add.MCD_FLOP, flop.interface.encodeFunctionData('ttl', [])],
@@ -555,6 +558,8 @@ class App extends Component {
     const flapTtl = flap.interface.decodeFunctionResult('ttl', res[offset++])
     const flapTau = flap.interface.decodeFunctionResult('tau', res[offset++])
     const flapKicks = flap.interface.decodeFunctionResult('kicks', res[offset++])[0]
+    const flapLid = flap.interface.decodeFunctionResult('lid', res[offset++])[0]
+    const flapFill = flap.interface.decodeFunctionResult('fill', res[offset++])[0]
     const flopBeg = flop.interface.decodeFunctionResult('beg', res[offset++])[0]
     const flopPad = flop.interface.decodeFunctionResult('pad', res[offset++])[0]
     const flopTtl = flop.interface.decodeFunctionResult('ttl', res[offset++])
@@ -693,6 +698,8 @@ class App extends Component {
         flapTtl: flapTtl,
         flapTau: flapTau,
         flapKicks: flapKicks.toNumber(),
+        flapLid: utils.formatUnits(flapLid, 45),
+        flapFill: utils.formatUnits(flapFill, 45),
         flopBeg: utils.formatUnits(flopBeg, 18),
         flopPad: utils.formatUnits(flopPad, 18),
         flopTtl: flopTtl,

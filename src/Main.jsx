@@ -315,7 +315,8 @@ const Main = (props) => {
               <p className="title subtitle is-size-4">{t('daistats.dai_surplus_auctions')}</p>
               <p className="subtitle is-size-6">{t('daistats.till_next_flap')}: {nextFlap()}</p>
               <p className="title subtitle is-size-6">Beg: {formatPercent.format(props.flapBeg - 1)} Ttl: {props.flapTtl / 60}m Tau: {props.flapTau / 60 / 60}h</p>
-              <p className="title subtitle is-size-6" title={props.surplusBump}>{t('daistats.lot')}: {formatAmount.format(props.surplusBump)}</p>
+              <p className="title subtitle is-size-6" title={props.surplusBump}>{t('daistats.lot')}: {formatAmount.format(props.surplusBump)} Lid: {formatAmount.format(props.flapLid)}</p>
+              <p className="title subtitle is-size-6" title={props.flapFill}>Fill: {formatAmount.format(props.flapFill)}</p>
             </div>
           </div>
           <div className="column">
