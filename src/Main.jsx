@@ -286,7 +286,7 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
           <Pip {...props} token="GUniV3DaiUsdc2" ilk="GUNIV3DAIUSDC2-A" formater={formatFiveDp} />
-          <Pip {...props} token="EthSteth" ilk="CRVV1ETHSTETH-A" formater={formatTwoDp} />
+          <Pip {...props} token="CrvV1EthSteth" ilk="CRVV1ETHSTETH-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" ilk="RWA001-A" formater={formatTwoDp} />
