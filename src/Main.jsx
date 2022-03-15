@@ -281,11 +281,12 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A" formater={formatNoDecimals} />
           <Pip {...props} token="UniV2DaiUsdc" ilk="UNIV2DAIUSDC-A" formater={formatNoDecimals} />
+          <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
           <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
           <Pip {...props} token="GUniV3DaiUsdc2" ilk="GUNIV3DAIUSDC2-A" formater={formatFiveDp} />
+          <Pip {...props} token="EthSteth" ilk="CRVV1ETHSTETH-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
           <Pip {...props} token="RWA001" ilk="RWA001-A" formater={formatTwoDp} />
@@ -1081,6 +1082,16 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.WSTETH}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> WSTETH</h3>
                 <p className="subtitle is-size-7">{props.WSTETH}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.ETHSTETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> ETHSTETH</h3>
+                <p className="subtitle is-size-7">{props.ETHSTETH}</p>
               </a>
             </div>
           </div>

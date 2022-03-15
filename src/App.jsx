@@ -100,7 +100,7 @@ add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
 add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
-//add["MEDIAN_WSTETH"] = "FIXME" //FIXME
+add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
@@ -124,7 +124,6 @@ add["MCD_JOIN_ETHSTETH_A"] = "0x82D8bfDB61404C796385f251654F6d7e92092b5D"
 add["MCD_CLIP_ETHSTETH_A"] = "0x1926862F899410BfC19FeFb8A3C69C7Aed22463a"
 add["MCD_CLIP_CALC_ETHSTETH_A"] = "0x8a4780acABadcae1a297b2eAe5DeEbd7d50DEeB8"
 add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
-add["WSTETH_MEDIAN"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
 
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
@@ -519,7 +518,8 @@ class App extends Component {
       this.getPrice(add.PIP_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
       //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
-      //this.getPrice(add.MEDIAN_WSTETH, this.POSITION_UNIV2_NXT),
+      this.getPrice(add.MEDIAN_WSTETH, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
@@ -532,7 +532,7 @@ class App extends Component {
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
         univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
-        historicalDebt] = await Promise.all(promises)
+        wstethPriceMedian, ethstethPriceNext, historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
 
@@ -666,9 +666,9 @@ class App extends Component {
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETHSTETH", "CRVV1ETHSTETH-A", ethsteth, 18, base)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETHSTETH", "CRVV1ETHSTETH-A", ethsteth, 18, base, ethstethPriceNext)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
