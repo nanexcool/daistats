@@ -182,7 +182,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
         <Collateral {...props} ilk="GUNIV3DAIUSDC2-A" />
-        <Collateral {...props} ilk="CRVV1ETHSTETH-A" />
+        <Collateral {...props} ilk="CRVV1ETHSTETH-A" showLockedDecimals={true} />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="RWA001-A" />
@@ -1080,7 +1080,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.WSTETH}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> CrvV1EthSteth</h3>
+                <h3 className="title"><i className="fal fa-file-code"></i> WSTETH</h3>
                 <p className="subtitle is-size-7">{props.WSTETH}</p>
               </a>
             </div>

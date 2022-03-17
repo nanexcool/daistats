@@ -205,6 +205,7 @@ const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const ethsteth = build(add.ETHSTETH, "ERC20")
+const cropJoin = build(add.MCD_JOIN_ETHSTETH_A, "SynthetixJoin")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
@@ -769,7 +770,7 @@ class App extends Component {
   }
 
   getIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
-    var pipCall;
+    var pipCall, lockedCall;
     const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
     const clipAdd = add['MCD_CLIP_' + ilkSuffix]
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
@@ -779,6 +780,14 @@ class App extends Component {
     } else {
         pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
     }
+
+    // locked tokens are in the rewards contract - use join.total() instead of gem.balanceOf()
+    if (gem === ethsteth) {
+        lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
+    } else {
+        lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
+    }
+
     return [
       [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ilkBytes])],
       [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ilkBytes])],
@@ -786,7 +795,7 @@ class App extends Component {
       // FIXME only include autoline when needed?
       [add.MCD_IAM_AUTO_LINE, autoline.interface.encodeFunctionData('ilks', [ilkBytes])],
       [add.MCD_DOG, dog.interface.encodeFunctionData('ilks', [ilkBytes])], // 5
-      [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])],
+      lockedCall,
       [gemAdd, gem.interface.encodeFunctionData('totalSupply', [])],
       pipCall,
       [clipAdd, clip.interface.encodeFunctionData('buf', [])],
@@ -802,14 +811,18 @@ class App extends Component {
   }
 
   getIlkMap = (res, idx, token, ilkName, gem, units, base, priceNxt=null, priceMedian=null, medianDp=null, tokenDp=null) => {
-    var zzz, price, value, valueBn;
+    var locked, zzz, price, value, valueBn;
       // variations no autoline USDT
     const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
     const jugIlk = jug.interface.decodeFunctionResult('ilks', res[idx++])
     const spotIlk = spot.interface.decodeFunctionResult('ilks', res[idx++])
     const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
     const dogIlk = dog.interface.decodeFunctionResult('ilks', res[idx++])
-    const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    if (token === 'ETHSTETH') {
+        locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
+    } else {
+        locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+    }
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
     if (['USDC', 'TUSD', 'USDP', 'GUSD', 'ADAI'].includes(token)) {
