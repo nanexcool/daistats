@@ -667,7 +667,7 @@ class App extends Component {
           this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETHSTETH", "CRVV1ETHSTETH-A", ethsteth, 18, base, ethstethPriceNext)
         ]
