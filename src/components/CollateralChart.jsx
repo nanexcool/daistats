@@ -25,6 +25,8 @@ const ILK_TO_COLOUR = {
     "USDC-A": "hsl(204, 86%, 53%)",
     "USDP": "hsl(171, 100%, 29%)",
     "PSM-USDP-A": "hsl(171, 100%, 29%)",
+    "ADAI": "hsl(308, 34%, 51%)",
+    "DIRECT-AAVEV2-DAI": "hsl(308, 34%, 51%)",
     "Others": "hsl(348, 100%, 61%)"}
 
 // bluma light
