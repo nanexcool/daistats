@@ -111,18 +111,6 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
-add["MCD_ESM"] = "0x09e05fF6142F2f9de8B6B65855A1d56B6cfE4c58"
-add["MCD_FLAP"] = "0xa4f79bC4a5612bdDA35904FDF55Fc4Cb53D1BFf6"
-
-add["PROXY_ACTIONS_CROPPER"] = "0xa2f69F8B9B341CFE9BfBb3aaB5fe116C89C95bAF"
-add["PROXY_ACTIONS_END_CROPPER"] = "0xAa61752a5Abf86A527A09546F23FE8bCB8fAB2C4"
-add["CROPPER"] = "0x8377CD01a5834a6EaD3b7efb482f678f2092b77e"
-add["CROPPER_IMP"] = "0xaFB21A0e9669cdbA539a4c91Bf6B94c5F013c0DE"
-add["ETHSTETH"] = "0x06325440D014e39736583c165C2963BA99fAf14E"
-add["PIP_ETHSTETH"] = "0x0A7DA4e31582a2fB4FD4067943e88f127F70ab39"
-add["MCD_JOIN_ETHSTETH_A"] = "0x82D8bfDB61404C796385f251654F6d7e92092b5D"
-add["MCD_CLIP_ETHSTETH_A"] = "0x1926862F899410BfC19FeFb8A3C69C7Aed22463a"
-add["MCD_CLIP_CALC_ETHSTETH_A"] = "0x8a4780acABadcae1a297b2eAe5DeEbd7d50DEeB8"
 add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
 
 
@@ -204,8 +192,8 @@ const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
-const ethsteth = build(add.ETHSTETH, "ERC20")
-const cropJoin = build(add.MCD_JOIN_ETHSTETH_A, "SynthetixJoin")
+const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
+const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
 const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
 const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
 const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
@@ -463,7 +451,7 @@ class App extends Component {
      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
-     .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'ETHSTETH_A', ethsteth, add.ETHSTETH, add.PIP_ETHSTETH))
+     .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -520,7 +508,7 @@ class App extends Component {
       //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getPrice(add.MEDIAN_WSTETH, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
+      this.getPrice(add.PIP_CRVV1ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getHistoricalDebt({ blockInterval: 5700 /* ≈ 1 day */, periods: 240 /* 8 months */ }),
     ]
 
@@ -533,7 +521,7 @@ class App extends Component {
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
         univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
-        wstethPriceMedian, ethstethPriceNext, historicalDebt] = await Promise.all(promises)
+        wstethPriceMedian, crvv1ethstethPriceNext, historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
 
@@ -669,7 +657,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETHSTETH", "CRVV1ETHSTETH-A", ethsteth, 18, base, ethstethPriceNext)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
@@ -782,7 +770,7 @@ class App extends Component {
     }
 
     // locked tokens are in the rewards contract - use join.total() instead of gem.balanceOf()
-    if (gem === ethsteth) {
+    if (gem === crvv1ethsteth) {
         lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
     } else {
         lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
@@ -818,7 +806,7 @@ class App extends Component {
     const spotIlk = spot.interface.decodeFunctionResult('ilks', res[idx++])
     const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
     const dogIlk = dog.interface.decodeFunctionResult('ilks', res[idx++])
-    if (token === 'ETHSTETH') {
+    if (token === 'CRVV1ETHSTETH') {
         locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
     } else {
         locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
