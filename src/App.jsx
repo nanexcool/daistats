@@ -1030,6 +1030,7 @@ class App extends Component {
         id: i + 1,
         usrName: reverseAddresses[award.usr],
         usr: award.usr,
+        res: award.res,
         bgn: this.unixToDate(award.bgn),
         clf: this.unixToDate(award.clf),
         fin: this.unixToDate(award.fin),
