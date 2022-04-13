@@ -37,7 +37,7 @@ function Vest(props) {
                 </p>
               </a>
             </td>
-            <td className="has-text-left" title={award.res}>{award.res == 0 ? 'Yes' : 'No'}</td>
+            <td className="has-text-left" title={award.res}>{award.res === 0 ? 'Yes' : 'No'}</td>
             <td className="has-text-right" title={award.rxd}>{formatTwoDp.format(award.rxd)}</td>
             <td className="has-text-right" title={award.unpaid}>{formatTwoDp.format(award.unpaid)}</td>
             <td className="has-text-right" title={award.accrued}>{formatTwoDp.format(award.accrued)}</td>
