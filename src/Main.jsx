@@ -1086,9 +1086,9 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.ETHSTETH}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> ETHSTETH</h3>
-                <p className="subtitle is-size-7">{props.ETHSTETH}</p>
+              <a href={`https://etherscan.io/token/${props.CRVV1ETHSTETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> CrvV1EthSteth</h3>
+                <p className="subtitle is-size-7">{props.CRVV1ETHSTETH}</p>
               </a>
             </div>
           </div>
