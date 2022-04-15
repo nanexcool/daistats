@@ -1,9 +1,9 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2021-11-04T01:53:01+00:00",
+    "timestamp": "2022-04-15T08:24:55+00:00",
     "version": {
         "major": 0,
-        "minor": 6,
+        "minor": 7,
         "patch": 0
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
@@ -428,6 +428,14 @@
             "name": "Aave interest bearing DAI",
             "decimals": 18,
             "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x028171bCA77440897B824Ca71D1c56caC55b68A3/logo.png"
+        },
+        {
+            "chainId": 1,
+            "address": "0x06325440D014e39736583c165C2963BA99fAf14E",
+            "symbol": "steCRV",
+            "name": "Curve.fi ETH/stETH",
+            "decimals": 18,
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x06325440D014e39736583c165C2963BA99fAf14E/logo.png"
         }
     ]
 }
