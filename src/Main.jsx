@@ -732,7 +732,7 @@ const Main = (props) => {
           <div className="column">
             <div className="box has-text-centered">
               <a href="https://tokenlists.org/token-list?url=https://daistats.com/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
-                <h3 className="title">MakerDAO Tokenlist v0.6.0</h3>
+                <h3 className="title">MakerDAO Tokenlist v0.7.0</h3>
               </a>
               <a href="/makerdao.tokenlist.json" target="_blank" rel="noopener noreferrer">
                 <p className="subtitle is-size-7">{`DaiStats.com/makerdao.tokenlist.json`}</p>
