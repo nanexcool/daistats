@@ -1,10 +1,10 @@
 {
     "name": "MakerDAO",
-    "timestamp": "2022-04-15T08:24:55+00:00",
+    "timestamp": "2022-04-15T08:46:52+00:00",
     "version": {
         "major": 0,
         "minor": 7,
-        "patch": 0
+        "patch": 1
     },
     "logoURI": "https://makerdao-forum-backup.s3.dualstack.us-east-1.amazonaws.com/original/1X/68e5b859631b8f66624f5880acb8c189a32aee64.png",
     "keywords": [
@@ -408,10 +408,13 @@
         {
             "chainId": 1,
             "address": "0xAbDDAfB225e10B90D798bB8A886238Fb835e2053",
-            "symbol": "G-UNI",
+            "symbol": "G-UNI-DAI-USDC",
             "name": "Gelato Uniswap DAI/USDC LP",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xAbDDAfB225e10B90D798bB8A886238Fb835e2053/logo.png"
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xAbDDAfB225e10B90D798bB8A886238Fb835e2053/logo.png",
+            "tags": [
+                "lp"
+            ]
         },
         {
             "chainId": 1,
@@ -435,7 +438,10 @@
             "symbol": "steCRV",
             "name": "Curve.fi ETH/stETH",
             "decimals": 18,
-            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x06325440D014e39736583c165C2963BA99fAf14E/logo.png"
+            "logoURI": "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x06325440D014e39736583c165C2963BA99fAf14E/logo.png",
+            "tags": [
+                "lp"
+            ]
         }
     ]
 }
