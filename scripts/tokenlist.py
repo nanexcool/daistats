@@ -45,7 +45,7 @@ tl = {
     "version": {
         "major": 0, # del token
         "minor": 7, # add token
-        "patch": 0  # change detail
+        "patch": 1  # change detail
     },
     #logoURI is optional
     # 	"A URI for the logo of the token list; prefer SVG or PNG of size 256x256"
@@ -134,8 +134,18 @@ def main():
             token1 = Contract.from_explorer(uniLp.token1())
             name = f'Uniswap V2 {token0.symbol()}/{token1.symbol()} LP'
             symbol = f'UNI-V2-{token0.symbol()}-{token1.symbol()}'
+        elif symbol == 'G-UNI':
+            tags.append('lp')
+            uniLp = Contract.from_explorer(gem)
+            token0 = Contract.from_explorer(uniLp.token0())
+            token1 = Contract.from_explorer(uniLp.token1())
+            name = c.name(i)
+            symbol = f'G-UNI-{token0.symbol()}-{token1.symbol()}'
         else:
             name = c.name(i)
+
+        if 'CRV' in symbol:
+            tags.append('lp')
 
         if name not in names:
             names.add(name)
