@@ -24,7 +24,8 @@ add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
 add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
 add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
-add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11"
+add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441" //v1
+add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11" //v3
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
 add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
 add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
@@ -116,6 +117,8 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
 add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
+//add["MCD_CLIP_CALC_TUSD_A"] = "0x9B207AfAAAD1ae300Ea659e71306a7Bd6D81C160"
+add["PIP_CRVV1ETHSTETH"] = "0xEa508F82728927454bd3ce853171b0e2705880D4"
 
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
@@ -208,6 +211,7 @@ const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
 const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
+const calcLinear = build(add.MCD_CLIP_CALC_TUSD_A, "LinearDecrease")
 const flap = build(add.MCD_FLAP, "Flapper")
 const flop = build(add.MCD_FLOP, "Flopper")
 const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
