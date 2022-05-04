@@ -1124,6 +1124,7 @@ const Main = (props) => {
                   {props.vestingDaiLegacy.map((award, idx) => (
                     <Vest key={award.usr + award.bgn} award={award} />
                   ))}
+                  <tr><td colspan="10">&nbsp;</td></tr>
                   {props.vestingDai.map((award, idx) => (
                     <Vest key={award.usr + award.bgn} award={award} />
                   ))}
