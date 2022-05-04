@@ -46,7 +46,7 @@ add["RWF_MULTISIG"] = "0x9e1585d9CA64243CE43D42f7dD7333190F66Ca09"
 add["GRO_MULTISIG"] = "0x7800C137A645c07132886539217ce192b9F0528e"
 add["CP_MULTISIG"] = "0x6A0Ce7dBb43Fe537E3Fd0Be12dc1882393895237"
 add["CP_MULTISIG_2"] = "0xDCAF2C84e1154c8DdD3203880e5db965bfF09B60"
-add["SES_AUDITORS_MULTISIG"] = "0x87AcDD9208f73bFc9207e1f6F0fDE906bcA95cc6"
+add["SES_AUDIT_MULTISIG"] = "0x87AcDD9208f73bFc9207e1f6F0fDE906bcA95cc6"
 add["SES_PERMANENT_TEAM_MULTISIG"] = "0xb5eB779cE300024EDB3dF9b6C007E312584f6F4f"
 add["SES_INCUBATION_PROGRAM_MULTISIG"] = "0x7c09Ff9b59BAAebfd721cbDA3676826aA6d7BaE8"
 add["SES_GRANTS_PROGRAM_MULTISIG"] = "0xf95eB8eC63D6059bA62b0A8A7F843c7D92f41de2"
@@ -76,6 +76,7 @@ add["CES_001_WALLET"] = "0x25307aB59Cd5d8b4E2C01218262Ddf6a89Ff86da"
 add["GELATO_WALLET_OLD"] = "0x926c21602FeC84d6d0fA6450b40Edba595B5c6e4"
 add["GELATO_WALLET"] = "0x478c7Ce3e1df09130f8D65a23AD80e05b352af62"
 add["AMBASSADOR_WALLET"] = "0xF411d823a48D18B32e608274Df16a9957fE33E45"
+add["EVENTS_WALLET"] = "0x3D274fbAc29C92D2F624483495C0113B44dBE7d2"
 
 add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
 add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
@@ -120,6 +121,8 @@ add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
 //add["MCD_CLIP_CALC_TUSD_A"] = "0x9B207AfAAAD1ae300Ea659e71306a7Bd6D81C160"
 add["PIP_CRVV1ETHSTETH"] = "0xEa508F82728927454bd3ce853171b0e2705880D4"
 
+add["MCD_VEST_DAI_LEGACY"] = "0x2Cc583c0AaCDaC9e23CB601fDA8F1A0c56Cdcb71"
+add["MCD_VEST_DAI"] = "0xa4c22f0e25C6630B2017979AcF1f865e94695C4b"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -299,7 +302,8 @@ const DP18 = ethers.BigNumber.from("1")
 
 const HOP = 3600 // assumes all OSM's have same hop
 
-const VEST_DAI_IDS = 37
+const VEST_DAI_LEGACY_IDS = 37
+const VEST_DAI_IDS = 4
 const VEST_MKR_TREASURY_IDS = 22
 
 const subgraphClient = new GraphQLClient(
@@ -411,7 +415,8 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
 
-    ].concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
+    ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
+     .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
@@ -614,7 +619,8 @@ class App extends Component {
     const ILK_PSM_CALL_COUNT = 17;
     const VEST_CALL_COUNT = 3
 
-    const vestingDai = this.getVestingMaps(res, offset, vestDai, VEST_DAI_IDS)
+    const vestingDaiLegacy = this.getVestingMaps(res, offset, vestDai, VEST_DAI_LEGACY_IDS)
+    const vestingDai = this.getVestingMaps(res, offset += (VEST_DAI_LEGACY_IDS * VEST_CALL_COUNT), vestDai, VEST_DAI_IDS)
     const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
 
     const ilks = [
@@ -687,6 +693,7 @@ class App extends Component {
         debt: utils.formatUnits(debt, 45),
         ilks: ilks,
         ilksByName: ilksByName,
+        vestingDaiLegacy: vestingDaiLegacy,
         vestingDai: vestingDai,
         vestingMkrTreasury: vestingMkrTreasury,
         daiSupply: utils.formatEther(daiSupply),
