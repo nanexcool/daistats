@@ -124,6 +124,9 @@ add["PIP_CRVV1ETHSTETH"] = "0xEa508F82728927454bd3ce853171b0e2705880D4"
 add["MCD_VEST_DAI_LEGACY"] = "0x2Cc583c0AaCDaC9e23CB601fDA8F1A0c56Cdcb71"
 add["MCD_VEST_DAI"] = "0xa4c22f0e25C6630B2017979AcF1f865e94695C4b"
 
+add["MCD_JOIN_WSTETH_B"] = "0x248cCBf4864221fC0E840F29BB042ad5bFC89B5c"
+add["MCD_CLIP_WSTETH_B"] = "0x3ea60191b7d5990a3544B6Ef79983fD67e85494A"
+add["MCD_CLIP_CALC_WSTETH_B"] = "0x95098b29F579dbEb5c198Db6F30E28F7f3955Fbb"
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -277,6 +280,7 @@ const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
+const wstethAIlkBytes = utils.formatBytes32String("WSTETH-B")
 const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 window.utils = utils
@@ -464,6 +468,7 @@ class App extends Component {
      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
+     .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      ,{blockTag: blockNumber})
@@ -671,6 +676,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
         ]

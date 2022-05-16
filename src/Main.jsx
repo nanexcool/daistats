@@ -150,6 +150,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="ETH-B" supply={props.ethSupply} />
         <Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />
         <Collateral {...props} ilk="WSTETH-A" />
+        <Collateral {...props} ilk="WSTETH-B" />
         <Collateral {...props} ilk="BAT-A" />
         <Collateral {...props} ilk="USDC-A" />
         <Collateral {...props} ilk="USDC-B" />
@@ -392,6 +393,7 @@ const Main = (props) => {
                   <Clip {...props} token="ETH-B" ilk="ETH-B"/>
                   <Clip {...props} token="ETH-C" ilk="ETH-C"/>
                   <Clip {...props} token="WSTETH-A" ilk="WSTETH-A"/>
+                  <Clip {...props} token="WSTETH-B" ilk="WSTETH-B"/>
                   <Clip {...props} token="WBTC-A" ilk="WBTC-A"/>
                   <Clip {...props} token="WBTC-B" ilk="WBTC-B"/>
                   <Clip {...props} token="WBTC-C" ilk="WBTC-C"/>
