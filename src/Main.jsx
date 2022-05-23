@@ -448,7 +448,7 @@ const Main = (props) => {
             <div className="box has-text-centered">
               <h3 className="title" title={props.flashLine}>{formatAmount.format(props.flashLine)}</h3>
               <p className="title subtitle is-size-4">{/*t('daistats.flash_loan_limit')*/}Dai Flash Loan Limit</p>
-              <p className="subtitle is-size-6">{/*t('daistats.fee')}*/}Fee: 0%</p>
+              <p className="subtitle is-size-6">{/*t('daistats.fee')}*/}Fee: 0.00%</p>
               <p className="title subtitle is-size-6" title={props.flashLegacyLine}>Legacy Limit: {formatAmount.format(props.flashLegacyLine)}</p>
               <p className="title subtitle is-size-6">{/*t('daistats.fee')}*/}Legacy Fee: {formatPercent.format(props.flashLegacyToll)}</p>
             </div>
