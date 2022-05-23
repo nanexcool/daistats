@@ -22,6 +22,7 @@ const ILK_TO_COLOUR = {
     "WSTETH-A": "hsl(217, 71%, 43%)",
     "WBTC": "hsl(141, 71%, 48%)",
     "WBTC-A": "hsl(141, 71%, 48%)",
+    "WBTC-C": "hsl(141, 71%, 48%)",
     "USDC-A": "hsl(204, 86%, 53%)",
     "USDP": "hsl(171, 100%, 29%)",
     "PSM-USDP-A": "hsl(171, 100%, 29%)",
