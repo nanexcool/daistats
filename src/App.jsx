@@ -128,6 +128,11 @@ add["MCD_JOIN_WSTETH_B"] = "0x248cCBf4864221fC0E840F29BB042ad5bFC89B5c"
 add["MCD_CLIP_WSTETH_B"] = "0x3ea60191b7d5990a3544B6Ef79983fD67e85494A"
 add["MCD_CLIP_CALC_WSTETH_B"] = "0x95098b29F579dbEb5c198Db6F30E28F7f3955Fbb"
 
+add["MCD_END"] = "0x0e2e8F1D1326A4B9633D96222Ce399c708B19c28"
+add["MCD_CURE"] = "0x0085c9feAb2335447E1F4DC9bf3593a8e28bdfc7"
+add["MCD_FLASH"] = "0x60744434d6339a6B27d73d9Eda62b6F66a0a04FA"
+add["MCD_FLASH_LEGACY"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -158,6 +163,7 @@ const cat = build(add.MCD_CAT, "Cat")
 const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
+const flashLegacy = build(add.MCD_FLASH_LEGACY, "DssFlashLegacy")
 const flash = build(add.MCD_FLASH, "DssFlash")
 const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
@@ -398,13 +404,16 @@ class App extends Component {
       [add.MCD_DOG, dog.interface.encodeFunctionData('Hole', [])],
       [add.MCD_DOG, dog.interface.encodeFunctionData('Dirt', [])],
 
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])],
-      [add.MCD_FLASH, flash.interface.encodeFunctionData('toll', [])],
+      [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])], // or use EIP 3156 maxFlashLoan(token)
+      // flash toll hardwired to 0
+      [add.MCD_FLASH_LEGACY, flashLegacy.interface.encodeFunctionData('max', [])],
+      [add.MCD_FLASH_LEGACY, flashLegacy.interface.encodeFunctionData('toll', [])],
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
       [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('Sum', [])],
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
+      // FIXME show  end live, when, debt
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('35000000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
@@ -597,7 +606,8 @@ class App extends Component {
     const dirt = dog.interface.decodeFunctionResult('Dirt', res[offset++])[0]
 
     const flashLine = flash.interface.decodeFunctionResult('max', res[offset++])[0]
-    const flashToll = flash.interface.decodeFunctionResult('toll', res[offset++])[0]
+    const flashLegacyLine = flashLegacy.interface.decodeFunctionResult('max', res[offset++])[0]
+    const flashLegacyToll = flashLegacy.interface.decodeFunctionResult('toll', res[offset++])[0]
     const pauseDelay = pause.interface.decodeFunctionResult('delay', res[offset++])[0]
     const hat = chief.interface.decodeFunctionResult('hat', res[offset++])
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
@@ -748,7 +758,8 @@ class App extends Component {
         bkrSupply: utils.formatEther(bkrSupply),
         mkrBroken: utils.formatEther(mkrBroken),
         flashLine: utils.formatEther(flashLine),
-        flashToll: utils.formatEther(flashToll),
+        flashLegacyLine: utils.formatEther(flashLegacyLine),
+        flashLegacyToll: utils.formatEther(flashLegacyToll),
         pauseDelay: pauseDelay.toNumber(),
         hat: hat,
         esmMin: utils.formatEther(esmMin),
