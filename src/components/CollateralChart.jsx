@@ -146,7 +146,7 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
           <Pie data={data} dataKey="value" nameKey="name"
             label={label} labelLine={false}
             animationDuration={750}
-            startAngle={50} endAngle={410}>
+            startAngle={70} endAngle={440}>
              {data.map((entry, index) => <Cell fill={ILK_TO_COLOUR[entry.name]}/>)}
           </Pie>
           {useValue && <Tooltip formatter={tooltip}/>}
