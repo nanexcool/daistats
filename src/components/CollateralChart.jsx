@@ -13,6 +13,8 @@ const COLORS = ["hsl(171, 100%, 41%)",
 const ILK_TO_COLOUR = {
     "USDC": "hsl(171, 100%, 41%)",
     "PSM-USDC-A": "hsl(171, 100%, 41%)",
+    "GUNIV3DAIUSDC1": "hsl(171, 100%, 36%)",
+    "GUNIV3DAIUSDC1-A": "hsl(171, 100%, 36%)",
     "GUNIV3DAIUSDC2": "hsl(171, 100%, 36%)",
     "GUNIV3DAIUSDC2-A": "hsl(171, 100%, 36%)",
     "ETH": "hsl(217, 71%, 53%)",
