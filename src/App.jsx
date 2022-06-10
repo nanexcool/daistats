@@ -133,6 +133,9 @@ add["MCD_CURE"] = "0x0085c9feAb2335447E1F4DC9bf3593a8e28bdfc7"
 add["MCD_FLASH"] = "0x60744434d6339a6B27d73d9Eda62b6F66a0a04FA"
 add["MCD_FLASH_LEGACY"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
 
+//STARKNET_DAI_BRIDGE: 0x659a00c33263d9254Fed382dE81349426C795BB6
+//STARKNET_ESCROW_MOM: 0xc238E3D63DfD677Fa0FA9985576f0945C581A266
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -415,7 +418,7 @@ class App extends Component {
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME show  end live, when, debt
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('35000000000000000000000000')])],
+      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('27500000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
