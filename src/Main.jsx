@@ -140,9 +140,11 @@ const Main = (props) => {
         <Tabs>
           <TabList>
             <Tab><p className="is-size-5">ERC-20</p></Tab>
+            <Tab><p className="is-size-5">ERC-20 LP</p></Tab>
             <Tab><p className="is-size-5">Real World Assets</p></Tab>
             <Tab><p className="is-size-5">Peg Stability Modules</p></Tab>
             <Tab><p className="is-size-5">Direct Deposits</p></Tab>
+            <Tab><p className="is-size-5">Deprecated</p></Tab>
           </TabList>
 
           <TabPanel>
@@ -151,36 +153,26 @@ const Main = (props) => {
         <Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />
         <Collateral {...props} ilk="WSTETH-A" />
         <Collateral {...props} ilk="WSTETH-B" />
-        <Collateral {...props} ilk="BAT-A" />
         <Collateral {...props} ilk="USDC-A" />
-        <Collateral {...props} ilk="USDC-B" />
         <Collateral {...props} ilk="WBTC-A" />
         <Collateral {...props} ilk="WBTC-B" />
         <Collateral {...props} ilk="WBTC-C" />
-        <Collateral {...props} ilk="TUSD-A" />
-        <Collateral {...props} ilk="KNC-A" />
-        <Collateral {...props} ilk="ZRX-A" />
         <Collateral {...props} ilk="MANA-A" />
         <Collateral {...props} ilk="USDP-A" />
-        <Collateral {...props} ilk="USDT-A" />
-        <Collateral {...props} ilk="COMP-A" />
-        <Collateral {...props} ilk="LRC-A" />
         <Collateral {...props} ilk="LINK-A" />
-        <Collateral {...props} ilk="BAL-A" />
         <Collateral {...props} ilk="YFI-A" />
         <Collateral {...props} ilk="GUSD-A" />
         <Collateral {...props} ilk="UNI-A" />
         <Collateral {...props} ilk="RENBTC-A" />
-        <Collateral {...props} ilk="AAVE-A" />
         <Collateral {...props} ilk="MATIC-A" />
+          </TabPanel>
+          <TabPanel>
         <Collateral {...props} ilk="UNIV2DAIETH-A" />
         <Collateral {...props} ilk="UNIV2WBTCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2DAIUSDC-A" showLockedDecimals={true} />
-        <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="UNIV2UNIETH-A" />
         <Collateral {...props} ilk="UNIV2WBTCDAI-A" showLockedDecimals={true} />
-        <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
         <Collateral {...props} ilk="GUNIV3DAIUSDC2-A" />
         <Collateral {...props} ilk="CRVV1ETHSTETH-A" showLockedDecimals={true} />
@@ -253,6 +245,20 @@ const Main = (props) => {
           </div>
         </div>
         <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />
+          </TabPanel>
+          <TabPanel>
+        <Collateral {...props} ilk="AAVE-A" />
+        <Collateral {...props} ilk="BAL-A" />
+        <Collateral {...props} ilk="BAT-A" />
+        <Collateral {...props} ilk="COMP-A" />
+        <Collateral {...props} ilk="KNC-A" />
+        <Collateral {...props} ilk="LRC-A" />
+        <Collateral {...props} ilk="TUSD-A" />
+        <Collateral {...props} ilk="USDC-B" />
+        <Collateral {...props} ilk="USDT-A" />
+        <Collateral {...props} ilk="UNIV2LINKETH-A" />
+        <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="ZRX-A" />
           </TabPanel>
         </Tabs>
           </TabPanel>
