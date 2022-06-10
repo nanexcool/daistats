@@ -256,8 +256,8 @@ const Main = (props) => {
         <Collateral {...props} ilk="TUSD-A" />
         <Collateral {...props} ilk="USDC-B" />
         <Collateral {...props} ilk="USDT-A" />
-        <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="ZRX-A" />
           </TabPanel>
         </Tabs>
