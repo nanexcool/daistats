@@ -19,6 +19,7 @@ const ILK_TO_COLOUR = {
     "GUNIV3DAIUSDC2-A": "hsl(171, 100%, 36%)",
     "ETH": "hsl(217, 71%, 53%)",
     "ETH-A": "hsl(217, 71%, 53%)",
+    "ETH-B": "hsl(48, 100%, 67%)",
     "ETH-C": "hsl(48, 100%, 67%)",
     "WSTETH": "hsl(217, 71%, 43%)",
     "WSTETH-A": "hsl(217, 71%, 43%)",
