@@ -59,6 +59,7 @@ add["DAIF_WALLET"] = "0x34D8d61050Ef9D2B48Ab00e6dc8A8CA6581c5d63"
 add["DAIF_EF_WALLET"] = "0x5F5c328732c9E52DfCb81067b8bA56459b33921f"
 add["SNE_WALLET"] = "0x6D348f18c88D45243705D4fdEeB6538c6a9191F1"
 add["SH_WALLET"] = "0x955993Df48b0458A01cfB5fd7DF5F5DCa6443550"
+add["SH_MULTISIG"] = "0xc657aC882Fb2D6CcF521801da39e910F8519508d"
 add["IN_WALLET"] = "0x7327Aed0Ddf75391098e8753512D8aEc8D740a1F"
 add["SAS_WALLET"] = "0xb1f950a51516a697E103aaa69E152d839182f6Fe"
 add["IS_WALLET"] = "0xd1F2eEf8576736C1EbA36920B957cd2aF07280F4"
@@ -317,8 +318,8 @@ const DP18 = ethers.BigNumber.from("1")
 const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_LEGACY_IDS = 37
-const VEST_DAI_IDS = 4
-const VEST_MKR_TREASURY_IDS = 22
+const VEST_DAI_IDS = 5
+const VEST_MKR_TREASURY_IDS = 23
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
