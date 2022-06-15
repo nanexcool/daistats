@@ -134,7 +134,8 @@ add["MCD_CURE"] = "0x0085c9feAb2335447E1F4DC9bf3593a8e28bdfc7"
 add["MCD_FLASH"] = "0x60744434d6339a6B27d73d9Eda62b6F66a0a04FA"
 add["MCD_FLASH_LEGACY"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
 
-//STARKNET_DAI_BRIDGE: 0x659a00c33263d9254Fed382dE81349426C795BB6
+add["STARKNET_DAI_BRIDGE"] = "0x659a00c33263d9254Fed382dE81349426C795BB6"
+add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 //STARKNET_ESCROW_MOM: 0xc238E3D63DfD677Fa0FA9985576f0945C581A266
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
@@ -378,6 +379,7 @@ class App extends Component {
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OASIS_DEX])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.BALANCER_V2])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.OPTIMISTIC_L1ESCROW])],
+      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.STARKNET_DAI_ESCROW])],
 
       [add.MCD_POT, pot.interface.encodeFunctionData('Pie', [])],
       [add.MCD_POT, pot.interface.encodeFunctionData('chi', [])],
@@ -576,6 +578,7 @@ class App extends Component {
     const oasisDexDai = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
     const balancerV2Dai = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
     const optimisticDaiSupply = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    const starknetDaiSupply = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
 
     const savingsPie = pot.interface.decodeFunctionResult('Pie', res[offset++])[0]
     const pieChi = pot.interface.decodeFunctionResult('chi', res[offset++])[0]
@@ -770,6 +773,7 @@ class App extends Component {
         esmSum: utils.formatEther(esmSum),
         endWait: endWait.toNumber(),
         optimisticDaiSupply: utils.formatEther(optimisticDaiSupply),
+        starknetDaiSupply: utils.formatEther(starknetDaiSupply),
         d3mAdaiTargetSupply: utils.formatEther(d3mAdaiTargetSupply),
         d3mAdaiBar: utils.formatUnits(d3mAdaiBar, 27),
         d3mAdaiAvailableLiquidity: utils.formatUnits(d3mAdaiAvailableLiquidity, 18),

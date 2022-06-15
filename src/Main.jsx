@@ -511,6 +511,12 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
+              <h3 className="title" title={props.starknetDaiSupply}>{formatAmount.format(props.starknetDaiSupply)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Starknet' })}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
               <h3 className="title" title={props.balancerV2Dai}>{formatAmount.format(props.balancerV2Dai)}</h3>
               <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Balancer V2' })}</p>
             </div>
