@@ -421,7 +421,7 @@ class App extends Component {
       [add.MCD_END, end.interface.encodeFunctionData('wait', [])],
       // FIXME show  end live, when, debt
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('27500000000000000000000000')])],
+      //[add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('27500000000000000000000000')])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
       [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
@@ -620,7 +620,8 @@ class App extends Component {
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
     const endWait = end.interface.decodeFunctionResult('wait', res[offset++])[0]
-    const d3mAdaiTargetSupply = d3mAdai.interface.decodeFunctionResult('calculateTargetSupply', res[offset++])[0]
+    //const d3mAdaiTargetSupply = d3mAdai.interface.decodeFunctionResult('calculateTargetSupply', res[offset++])[0]
+    const d3mAdaiTargetSupply = ethers.BigNumber.from("0")
     const d3mAdaiBar = d3mAdai.interface.decodeFunctionResult('bar', res[offset++])[0]
     const d3mAdaiAvailableLiquidity = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
     const d3mAdaiDaiDebt = vat.interface.decodeFunctionResult('urns', res[offset++])[1]
@@ -702,7 +703,7 @@ class App extends Component {
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
     const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
     const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
-    const d3mAdaiAdjustment = d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
+    const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
     const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
