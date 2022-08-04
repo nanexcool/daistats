@@ -184,7 +184,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="RWA005-A" />
         <Collateral {...props} ilk="RWA006-A" />
         <Collateral {...props} ilk="RWA008-A" />
-      {/*<Collateral {...props} ilk="RWA009-A" />*/}
+        <Collateral {...props} ilk="RWA009-A" />
           </TabPanel>
           <TabPanel>
         <Psm {...props} ilk="PSM-USDC-A" />
@@ -311,7 +311,7 @@ const Main = (props) => {
         </div>
         <div className="columns">
           <Pip {...props} token="RWA008" ilk="RWA008-A" formater={formatTwoDp} />
-          {/*<Pip {...props} token="RWA009" ilk="RWA009-A" formater={formatTwoDp} />*/}
+          <Pip {...props} token="RWA009" ilk="RWA009-A" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
