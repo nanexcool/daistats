@@ -139,6 +139,23 @@ add["STARKNET_DAI_BRIDGE"] = "0x659a00c33263d9254Fed382dE81349426C795BB6"
 add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 //STARKNET_ESCROW_MOM: 0xc238E3D63DfD677Fa0FA9985576f0945C581A266
 
+// -- RWA009 MIP21 components --
+add["RWA008"] = "0xb9737098b50d7c536b6416dAeB32879444F59fCA"
+add["PIP_RWA008"] = "0x2623dE50D8A6FdC2f0D583327142210b8b464bfd"
+add["MCD_JOIN_RWA008_A"] = "0x56eDD5067d89D4E65Bf956c49eAF054e6Ff0b262"
+add["RWA008_A_URN"] = "0x495215cabc630830071F80263a908E8826a66121"
+add["RWA008_A_URN_CLOSE_HELPER"] = "0xCfc4043675EE82EEAe63C90D6eb3aB2dcf833431"
+add["RWA008_A_INPUT_CONDUIT"] = "0xa397a23dDA051186F202C67148c90683c413383C"
+add["RWA008_A_OUTPUT_CONDUIT"] = "0x21CF5Ad1311788D762f9035829f81B9f54610F0C"
+// -- RWA009 MIP21 components --
+add["RWA009"] = "0x8b9734bbaA628bFC0c9f323ba08Ed184e5b88Da2"
+add["PIP_RWA009"] = "0xdc7D370A089797Fe9556A2b0400496eBb3a61E44"
+add["MCD_JOIN_RWA009_A"] = "0xEe0FC514280f09083a32AE906cCbD2FAc4c680FA"
+add["RWA009_A_URN"] = "0x1818EE501cd28e01E058E7C283E178E9e04a1e79"
+add["RWA009_A_JAR"] = "0x6C6d4Be2223B5d202263515351034861dD9aFdb6"
+add["RWA009_A_OUTPUT_CONDUIT"] = "0x508D982e13263Fc8e1b5A4E6bf59b335202e36b4"
+
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -213,6 +230,8 @@ const rwa003 = build(add.RWA003, "ERC20")
 const rwa004 = build(add.RWA004, "ERC20")
 const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
+const rwa008 = build(add.RWA008, "ERC20")
+const rwa009 = build(add.RWA009, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
@@ -290,6 +309,8 @@ const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
 const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
 const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
+const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
+const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
@@ -477,6 +498,8 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
+     .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
+     //.concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
@@ -681,12 +704,14 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2AAVEETH", "UNIV2AAVEETH-A", univ2aaveeth, 18, base, univ2aaveethPriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base), // 606
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base), // 611
+          this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
+          //this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
@@ -1247,7 +1272,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            <a href="https://twitter.com/nanexcool" target="_blank" rel="noopener noreferrer">{t('daistats.say_hi')}</a>
+            Welcome Societe Generale 🇫🇷
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
