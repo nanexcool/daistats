@@ -568,7 +568,7 @@ class App extends Component {
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getPrice(add.MEDIAN_WSTETH, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_CRVV1ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
-      this.getHistoricalDebt({ blockInterval: 39900 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
+      this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
     ]
 
     let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, batPriceMedian,
