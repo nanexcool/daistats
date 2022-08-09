@@ -25,6 +25,7 @@ const ILK_TO_COLOUR = {
     "ETH-C": "hsl(48, 100%, 67%)",
     "WSTETH": "hsl(217, 71%, 43%)",
     "WSTETH-A": "hsl(217, 71%, 43%)",
+    "WSTETH-B": "hsl(217, 71%, 43%)",
     "WBTC": "hsl(141, 71%, 48%)",
     "WBTC-A": "hsl(141, 71%, 48%)",
     "WBTC-C": "hsl(141, 71%, 48%)",
