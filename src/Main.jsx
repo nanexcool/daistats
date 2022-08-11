@@ -168,7 +168,6 @@ const Main = (props) => {
           <TabPanel>
         <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2DAIUSDC-A" showLockedDecimals={true} />
-        <Collateral {...props} ilk="UNIV2WBTCDAI-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="GUNIV3DAIUSDC1-A" />
         <Collateral {...props} ilk="GUNIV3DAIUSDC2-A" />
         <Collateral {...props} ilk="CRVV1ETHSTETH-A" showLockedDecimals={true} />
@@ -257,6 +256,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="UNIV2DAIETH-A" />
         <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="UNIV2UNIETH-A" />
+        <Collateral {...props} ilk="UNIV2WBTCDAI-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2WBTCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="USDC-B" />
         <Collateral {...props} ilk="USDT-A" />
@@ -282,12 +282,8 @@ const Main = (props) => {
         <div className="columns">
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2UniEth" ilk="UNIV2UNIETH-A" formater={formatFiveDp} />
-        </div>
-        <div className="columns">
           <Pip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A" formater={formatNoDecimals} />
           <Pip {...props} token="UniV2DaiUsdc" ilk="UNIV2DAIUSDC-A" formater={formatNoDecimals} />
-          <Pip {...props} token="UniV2WbtcDai" ilk="UNIV2WBTCDAI-A" formater={formatNoDecimals} />
         </div>
         <div className="columns">
           <Pip {...props} token="GUniV3DaiUsdc1" ilk="GUNIV3DAIUSDC1-A" formater={formatTwoDp} />
