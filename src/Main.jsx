@@ -162,7 +162,6 @@ const Main = (props) => {
         <Collateral {...props} ilk="LINK-A" />
         <Collateral {...props} ilk="YFI-A" />
         <Collateral {...props} ilk="GUSD-A" />
-        <Collateral {...props} ilk="UNI-A" />
         <Collateral {...props} ilk="RENBTC-A" />
         <Collateral {...props} ilk="MATIC-A" />
           </TabPanel>
@@ -255,11 +254,12 @@ const Main = (props) => {
         <Collateral {...props} ilk="KNC-A" />
         <Collateral {...props} ilk="LRC-A" />
         <Collateral {...props} ilk="TUSD-A" />
-        <Collateral {...props} ilk="USDC-B" />
-        <Collateral {...props} ilk="USDT-A" />
+        <Collateral {...props} ilk="UNI-A" />
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="UNIV2UNIETH-A" />
+        <Collateral {...props} ilk="USDC-B" />
+        <Collateral {...props} ilk="USDT-A" />
         <Collateral {...props} ilk="ZRX-A" />
           </TabPanel>
         </Tabs>
@@ -276,7 +276,6 @@ const Main = (props) => {
           <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
         </div>
         <div className="columns">
-          <Pip {...props} token="UNI" ilk="UNI-A" formater={formatTwoDp} />
           <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
           <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
