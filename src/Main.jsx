@@ -166,7 +166,6 @@ const Main = (props) => {
         <Collateral {...props} ilk="MATIC-A" />
           </TabPanel>
           <TabPanel>
-        <Collateral {...props} ilk="UNIV2DAIETH-A" />
         <Collateral {...props} ilk="UNIV2WBTCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
         <Collateral {...props} ilk="UNIV2DAIUSDC-A" showLockedDecimals={true} />
@@ -256,6 +255,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="TUSD-A" />
         <Collateral {...props} ilk="UNI-A" />
         <Collateral {...props} ilk="UNIV2AAVEETH-A" showLockedDecimals={true} />
+        <Collateral {...props} ilk="UNIV2DAIETH-A" />
         <Collateral {...props} ilk="UNIV2LINKETH-A" />
         <Collateral {...props} ilk="UNIV2UNIETH-A" />
         <Collateral {...props} ilk="USDC-B" />
@@ -282,7 +282,6 @@ const Main = (props) => {
         <div className="columns">
         </div>
         <div className="columns">
-          <Pip {...props} token="UniV2DaiEth" ilk="UNIV2DAIETH-A" formater={formatFiveDp} />
           <Pip {...props} token="UniV2UniEth" ilk="UNIV2UNIETH-A" formater={formatFiveDp} />
           <Pip {...props} token="UniV2WbtcEth" ilk="UNIV2WBTCETH-A" formater={formatNoDecimals} />
         </div>
