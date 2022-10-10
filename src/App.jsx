@@ -459,59 +459,59 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
-     .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
-     .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
-     .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
-     .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
-     .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(wbtcBIlkBytes, 'WBTC_B', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(wbtcCIlkBytes, 'WBTC_C', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(usdcBIlkBytes, 'USDC_B', usdc, add.USDC, add.PIP_USDC))
-     .concat(this.getIlkCall(tusdAIlkBytes, 'TUSD_A', tusd, add.TUSD, add.PIP_TUSD))
-     .concat(this.getIlkCall(kncAIlkBytes, 'KNC_A', knc, add.KNC, add.PIP_KNC))
-     .concat(this.getIlkCall(zrxAIlkBytes, 'ZRX_A', zrx, add.ZRX, add.PIP_ZRX))
-     .concat(this.getIlkCall(manaAIlkBytes, 'MANA_A', mana, add.MANA, add.PIP_MANA))
-     .concat(this.getIlkCall(paxAIlkBytes, 'PAXUSD_A', pax, add.PAXUSD, add.PIP_PAXUSD))
-     .concat(this.getIlkCall(usdtAIlkBytes, 'USDT_A', usdt, add.USDT, add.PIP_USDT))
-     .concat(this.getIlkCall(compAIlkBytes, 'COMP_A', comp, add.COMP, add.PIP_COMP))
-     .concat(this.getIlkCall(lrcAIlkBytes, 'LRC_A', lrc, add.LRC, add.PIP_LRC))
-     .concat(this.getIlkCall(linkAIlkBytes, 'LINK_A', link, add.LINK, add.PIP_LINK))
-     .concat(this.getIlkCall(ethBIlkBytes, 'ETH_B', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getIlkCall(balAIlkBytes, 'BAL_A', bal, add.BAL, add.PIP_BAL))
-     .concat(this.getIlkCall(yfiAIlkBytes, 'YFI_A', yfi, add.YFI, add.PIP_YFI))
-     .concat(this.getIlkCall(gusdAIlkBytes, 'GUSD_A', gusd, add.GUSD, add.PIP_GUSD))
-     .concat(this.getIlkCall(uniAIlkBytes, 'UNI_A', uni, add.UNI, add.PIP_UNI))
-     .concat(this.getIlkCall(renbtcAIlkBytes, 'RENBTC_A', renbtc, add.RENBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(aaveAIlkBytes, 'AAVE_A', aave, add.AAVE, add.PIP_AAVE))
-     .concat(this.getIlkCall(univ2daiethAIlkBytes, 'UNIV2DAIETH_A', univ2daieth, add.UNIV2DAIETH, add.PIP_UNIV2DAIETH))
-     .concat(this.getIlkCall(univ2wbtcethAIlkBytes, 'UNIV2WBTCETH_A', univ2wbtceth, add.UNIV2WBTCETH, add.PIP_UNIV2WBTCETH))
-     .concat(this.getIlkCall(univ2usdcethAIlkBytes, 'UNIV2USDCETH_A', univ2usdceth, add.UNIV2USDCETH, add.PIP_UNIV2USDCETH))
-     .concat(this.getIlkCall(univ2daiusdcAIlkBytes, 'UNIV2DAIUSDC_A', univ2daiusdc, add.UNIV2DAIUSDC, add.PIP_UNIV2DAIUSDC))
-     .concat(this.getIlkCall(univ2linkethAIlkBytes, 'UNIV2LINKETH_A', univ2linketh, add.UNIV2LINKETH, add.PIP_UNIV2LINKETH))
-     .concat(this.getIlkCall(univ2uniethAIlkBytes, 'UNIV2UNIETH_A', univ2unieth, add.UNIV2UNIETH, add.PIP_UNIV2UNIETH))
-     .concat(this.getIlkCall(univ2wbtcdaiAIlkBytes, 'UNIV2WBTCDAI_A', univ2wbtcdai, add.UNIV2WBTCDAI, add.PIP_UNIV2WBTCDAI))
-     .concat(this.getIlkCall(univ2aaveethAIlkBytes, 'UNIV2AAVEETH_A', univ2aaveeth, add.UNIV2AAVEETH, add.PIP_UNIV2AAVEETH))
-     .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
-     .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
-     .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
-     .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
-     .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
-     .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
-     .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
-     .concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
-     .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
-     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
-     .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
-     .concat(this.getPsmIlkCall(psmgusdAIlkBytes, 'PSM_GUSD_A', gusd, add.GUSD, add.PIP_GUSD, psmGusd))
-     .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
-     .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
-     .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
-     .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
-     .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
-     .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
-     ,{blockTag: blockNumber})
+      .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
+      .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
+      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
+      .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
+      .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(wbtcBIlkBytes, 'WBTC_B', wbtc, add.WBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(wbtcCIlkBytes, 'WBTC_C', wbtc, add.WBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(usdcBIlkBytes, 'USDC_B', usdc, add.USDC, add.PIP_USDC))
+      .concat(this.getIlkCall(tusdAIlkBytes, 'TUSD_A', tusd, add.TUSD, add.PIP_TUSD))
+      .concat(this.getIlkCall(kncAIlkBytes, 'KNC_A', knc, add.KNC, add.PIP_KNC))
+      .concat(this.getIlkCall(zrxAIlkBytes, 'ZRX_A', zrx, add.ZRX, add.PIP_ZRX))
+      .concat(this.getIlkCall(manaAIlkBytes, 'MANA_A', mana, add.MANA, add.PIP_MANA))
+      .concat(this.getIlkCall(paxAIlkBytes, 'PAXUSD_A', pax, add.PAXUSD, add.PIP_PAXUSD))
+      .concat(this.getIlkCall(usdtAIlkBytes, 'USDT_A', usdt, add.USDT, add.PIP_USDT))
+      .concat(this.getIlkCall(compAIlkBytes, 'COMP_A', comp, add.COMP, add.PIP_COMP))
+      .concat(this.getIlkCall(lrcAIlkBytes, 'LRC_A', lrc, add.LRC, add.PIP_LRC))
+      .concat(this.getIlkCall(linkAIlkBytes, 'LINK_A', link, add.LINK, add.PIP_LINK))
+      .concat(this.getIlkCall(ethBIlkBytes, 'ETH_B', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getIlkCall(balAIlkBytes, 'BAL_A', bal, add.BAL, add.PIP_BAL))
+      .concat(this.getIlkCall(yfiAIlkBytes, 'YFI_A', yfi, add.YFI, add.PIP_YFI))
+      .concat(this.getIlkCall(gusdAIlkBytes, 'GUSD_A', gusd, add.GUSD, add.PIP_GUSD))
+      .concat(this.getIlkCall(uniAIlkBytes, 'UNI_A', uni, add.UNI, add.PIP_UNI))
+      .concat(this.getIlkCall(renbtcAIlkBytes, 'RENBTC_A', renbtc, add.RENBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(aaveAIlkBytes, 'AAVE_A', aave, add.AAVE, add.PIP_AAVE))
+      .concat(this.getIlkCall(univ2daiethAIlkBytes, 'UNIV2DAIETH_A', univ2daieth, add.UNIV2DAIETH, add.PIP_UNIV2DAIETH))
+      .concat(this.getIlkCall(univ2wbtcethAIlkBytes, 'UNIV2WBTCETH_A', univ2wbtceth, add.UNIV2WBTCETH, add.PIP_UNIV2WBTCETH))
+      .concat(this.getIlkCall(univ2usdcethAIlkBytes, 'UNIV2USDCETH_A', univ2usdceth, add.UNIV2USDCETH, add.PIP_UNIV2USDCETH))
+      .concat(this.getIlkCall(univ2daiusdcAIlkBytes, 'UNIV2DAIUSDC_A', univ2daiusdc, add.UNIV2DAIUSDC, add.PIP_UNIV2DAIUSDC))
+      .concat(this.getIlkCall(univ2linkethAIlkBytes, 'UNIV2LINKETH_A', univ2linketh, add.UNIV2LINKETH, add.PIP_UNIV2LINKETH))
+      .concat(this.getIlkCall(univ2uniethAIlkBytes, 'UNIV2UNIETH_A', univ2unieth, add.UNIV2UNIETH, add.PIP_UNIV2UNIETH))
+      .concat(this.getIlkCall(univ2wbtcdaiAIlkBytes, 'UNIV2WBTCDAI_A', univ2wbtcdai, add.UNIV2WBTCDAI, add.PIP_UNIV2WBTCDAI))
+      .concat(this.getIlkCall(univ2aaveethAIlkBytes, 'UNIV2AAVEETH_A', univ2aaveeth, add.UNIV2AAVEETH, add.PIP_UNIV2AAVEETH))
+      .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
+      .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
+      .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
+      .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
+      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
+      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
+      .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
+      .concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
+      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
+      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
+      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
+      .concat(this.getPsmIlkCall(psmgusdAIlkBytes, 'PSM_GUSD_A', gusd, add.GUSD, add.PIP_GUSD, psmGusd))
+      .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
+      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
+      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
+      .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
+      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
+      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
+      , { blockTag: blockNumber })
     let promises = [
       p1,
       this.etherscanEthSupply(),
@@ -572,15 +572,15 @@ class App extends Component {
     ]
 
     let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, batPriceMedian,
-        wbtcPriceNxt, wbtcPriceMedian, kncPriceNxt, kncPriceMedian, zrxPriceNxt, zrxPriceMedian,
-        manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
-        lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
-        yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
-        maticPriceNxt, maticPriceMedian,
-        univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
-        univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
-        univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
-        wstethPriceMedian, crvv1ethstethPriceNext, historicalDebt] = await Promise.all(promises)
+      wbtcPriceNxt, wbtcPriceMedian, kncPriceNxt, kncPriceMedian, zrxPriceNxt, zrxPriceMedian,
+      manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
+      lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
+      yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
+      maticPriceNxt, maticPriceMedian,
+      univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
+      univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
+      univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
+      wstethPriceMedian, crvv1ethstethPriceNext, historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
 
@@ -673,63 +673,63 @@ class App extends Component {
     const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
 
     const ilks = [
-          this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7), // NOTE this dsValue is also shown for TUSD, USDP, GUSD, aDAI
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-B", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-C", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-B", usdc, 6, base, null, null, DP10, DP7),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "TUSD", "TUSD-A", tusd, 18, base, null, null, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "KNC", "KNC-A", knc, 18, base, kncPriceNxt, kncPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ZRX", "ZRX-A", zrx, 18, base, zrxPriceNxt, zrxPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "MANA", "MANA-A", mana, 18, base, manaPriceNxt, manaPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDP", "USDP-A", pax, 18, base, null, null, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDT", "USDT-A", usdt, 6, base, usdtPriceNxt, usdtPriceMedian, DP10, DP6),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "COMP", "COMP-A", comp, 18, base, compPriceNxt, compPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "LRC", "LRC-A", lrc, 18, base, lrcPriceNxt, lrcPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "LINK", "LINK-A", link, 18, base, linkPriceNxt, linkPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-B", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAL", "BAL-A", bal, 18, base, balPriceNxt, balPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "YFI", "YFI-A", yfi, 18, base, yfiPriceNxt, yfiPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUSD", "GUSD-A", gusd, 2, base, null, null, DP10, DP2),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNI", "UNI-A", uni, 18, base, uniPriceNxt, uniPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RENBTC", "RENBTC-A", renbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "AAVE", "AAVE-A", aave, 18, base, aavePriceNxt, aavePriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIETH", "UNIV2DAIETH-A", univ2daieth, 18, base, univ2daiethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCETH", "UNIV2WBTCETH-A", univ2wbtceth, 18, base, univ2wbtcethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2USDCETH", "UNIV2USDCETH-A", univ2usdceth, 18, base, univ2usdcethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIUSDC", "UNIV2DAIUSDC-A", univ2daiusdc, 18, base, univ2daiusdcPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2LINKETH", "UNIV2LINKETH-A", univ2linketh, 18, base, univ2linkethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2UNIETH", "UNIV2UNIETH-A", univ2unieth, 18, base, univ2uniethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2AAVEETH", "UNIV2AAVEETH-A", univ2aaveeth, 18, base, univ2aaveethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
-          this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
-          // include PSM's in CollateralChart
-          this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
-          this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
-        ]
+      this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7), // NOTE this dsValue is also shown for TUSD, USDP, GUSD, aDAI
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-B", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-C", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-B", usdc, 6, base, null, null, DP10, DP7),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "TUSD", "TUSD-A", tusd, 18, base, null, null, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "KNC", "KNC-A", knc, 18, base, kncPriceNxt, kncPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ZRX", "ZRX-A", zrx, 18, base, zrxPriceNxt, zrxPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "MANA", "MANA-A", mana, 18, base, manaPriceNxt, manaPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDP", "USDP-A", pax, 18, base, null, null, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDT", "USDT-A", usdt, 6, base, usdtPriceNxt, usdtPriceMedian, DP10, DP6),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "COMP", "COMP-A", comp, 18, base, compPriceNxt, compPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "LRC", "LRC-A", lrc, 18, base, lrcPriceNxt, lrcPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "LINK", "LINK-A", link, 18, base, linkPriceNxt, linkPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-B", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAL", "BAL-A", bal, 18, base, balPriceNxt, balPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "YFI", "YFI-A", yfi, 18, base, yfiPriceNxt, yfiPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUSD", "GUSD-A", gusd, 2, base, null, null, DP10, DP2),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNI", "UNI-A", uni, 18, base, uniPriceNxt, uniPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "RENBTC", "RENBTC-A", renbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "AAVE", "AAVE-A", aave, 18, base, aavePriceNxt, aavePriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIETH", "UNIV2DAIETH-A", univ2daieth, 18, base, univ2daiethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCETH", "UNIV2WBTCETH-A", univ2wbtceth, 18, base, univ2wbtcethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2USDCETH", "UNIV2USDCETH-A", univ2usdceth, 18, base, univ2usdcethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIUSDC", "UNIV2DAIUSDC-A", univ2daiusdc, 18, base, univ2daiusdcPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2LINKETH", "UNIV2LINKETH-A", univ2linketh, 18, base, univ2linkethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2UNIETH", "UNIV2UNIETH-A", univ2unieth, 18, base, univ2uniethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2AAVEETH", "UNIV2AAVEETH-A", univ2aaveeth, 18, base, univ2aaveethPriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
+      this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
+      this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
+      // include PSM's in CollateralChart
+      this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
+      this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
+      this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
+      this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
+    ]
 
-    const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
+    const ilksByName = ilks.reduce((a, x) => ({ ...a, [x.ilk]: x }), {})
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
     const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
-    const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
+    const d3mAdaiTotalSupply = d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
     const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
     ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
@@ -834,16 +834,16 @@ class App extends Component {
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
     // use pip.zzz or pip.read depending if dsvalue or osm
     if ([usdc, tusd, pax, gusd, adai].includes(gem)) {
-        pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
+      pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
     } else {
-        pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
+      pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
     }
 
     // locked tokens are in the rewards contract - use join.total() instead of gem.balanceOf()
     if (gem === crvv1ethsteth) {
-        lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
+      lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
     } else {
-        lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
+      lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
     }
 
     return [
@@ -868,87 +868,87 @@ class App extends Component {
     ]
   }
 
-  getIlkMap = (res, idx, token, ilkName, gem, units, base, priceNxt=null, priceMedian=null, medianDp=null, tokenDp=null) => {
+  getIlkMap = (res, idx, token, ilkName, gem, units, base, priceNxt = null, priceMedian = null, medianDp = null, tokenDp = null) => {
     var locked, zzz, price, value, valueBn;
-      // variations no autoline USDT
+    // variations no autoline USDT
     const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
     const jugIlk = jug.interface.decodeFunctionResult('ilks', res[idx++])
     const spotIlk = spot.interface.decodeFunctionResult('ilks', res[idx++])
     const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
     const dogIlk = dog.interface.decodeFunctionResult('ilks', res[idx++])
     if (token === 'CRVV1ETHSTETH') {
-        locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
+      locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
     } else {
-        locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+      locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
     }
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
     if (['USDC', 'TUSD', 'USDP', 'GUSD', 'ADAI'].includes(token)) {
-        zzz = null;
-        //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
-        // FIXME read fails for TUSD
-        idx++
-        // FIXME hardwired price to 1
-        price = ethers.BigNumber.from(1).mul(DP10)
-        if (tokenDp) {
-            value = locked.mul(tokenDp).mul(price)
-        } else {
-            value = locked.mul(price)
-        }
-        price = RAY
-        valueBn = value.mul(WAD)
-        value = utils.formatUnits(value, 27)
+      zzz = null;
+      //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
+      // FIXME read fails for TUSD
+      idx++
+      // FIXME hardwired price to 1
+      price = ethers.BigNumber.from(1).mul(DP10)
+      if (tokenDp) {
+        value = locked.mul(tokenDp).mul(price)
+      } else {
+        value = locked.mul(price)
+      }
+      price = RAY
+      valueBn = value.mul(WAD)
+      value = utils.formatUnits(value, 27)
     } else {
-        zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
-        price = spotIlk.mat.mul(ilk.spot).div(RAY);
+      zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
+      price = spotIlk.mat.mul(ilk.spot).div(RAY);
 
-        if (tokenDp) {
-          value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
-        } else if (medianDp) {
-          value = locked.mul(priceMedian.mul(medianDp))
-        } else {
-          value = locked.mul(priceMedian || price)
-        }
-        valueBn = value
-        value = utils.formatUnits(value, 45)
+      if (tokenDp) {
+        value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
+      } else if (medianDp) {
+        value = locked.mul(priceMedian.mul(medianDp))
+      } else {
+        value = locked.mul(priceMedian || price)
+      }
+      valueBn = value
+      value = utils.formatUnits(value, 45)
     }
 
     const r = {
-        token: token,
-        ilk: ilkName,
-        Art:  utils.formatEther(ilk.Art),
-        rate: utils.formatUnits(ilk.rate, 27),
-        spot: utils.formatUnits(ilk.spot, 27),
-        mat: utils.formatUnits(spotIlk.mat, 27),
-        line: utils.formatUnits(ilk.line, 45),
-        dust: utils.formatUnits(ilk.dust, 45),
-        lineMax: utils.formatUnits(autoLineIlk.line, 45),
-        gap: utils.formatUnits(autoLineIlk.gap, 45),
-        ttl: autoLineIlk.ttl,
-        lastInc: this.unixToDateTime(autoLineIlk.lastInc),
-        chop: utils.formatUnits(dogIlk.chop, 18),
-        hole: utils.formatUnits(dogIlk.hole, 45),
-        dirt: utils.formatUnits(dogIlk.dirt, 45),
-        buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[idx++])[0], 27),
-        tail: clip.interface.decodeFunctionResult('tail', res[idx++])[0],
-        cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[idx++])[0], 27),
-        chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[idx++])[0], 18),
-        tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
-        count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
-        kicks: clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber(),
-        cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
-        step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
-        drip: this.unixToDateTime(jugIlk.rho.toNumber()),
-        fee: this.getFee(base, jugIlk),
-        locked: utils.formatUnits(locked, units),
-        lockedBn: locked,
-        supply: utils.formatUnits(supply, units),
-        price: utils.formatUnits(price, 27),
-        value: value,
-        valueBn: valueBn
-      };
+      token: token,
+      ilk: ilkName,
+      Art: utils.formatEther(ilk.Art),
+      rate: utils.formatUnits(ilk.rate, 27),
+      spot: utils.formatUnits(ilk.spot, 27),
+      mat: utils.formatUnits(spotIlk.mat, 27),
+      line: utils.formatUnits(ilk.line, 45),
+      dust: utils.formatUnits(ilk.dust, 45),
+      lineMax: utils.formatUnits(autoLineIlk.line, 45),
+      gap: utils.formatUnits(autoLineIlk.gap, 45),
+      ttl: autoLineIlk.ttl,
+      lastInc: this.unixToDateTime(autoLineIlk.lastInc),
+      chop: utils.formatUnits(dogIlk.chop, 18),
+      hole: utils.formatUnits(dogIlk.hole, 45),
+      dirt: utils.formatUnits(dogIlk.dirt, 45),
+      buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[idx++])[0], 27),
+      tail: clip.interface.decodeFunctionResult('tail', res[idx++])[0],
+      cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[idx++])[0], 27),
+      chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[idx++])[0], 18),
+      tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
+      count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
+      kicks: clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber(),
+      cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
+      step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
+      drip: this.unixToDateTime(jugIlk.rho.toNumber()),
+      fee: this.getFee(base, jugIlk),
+      locked: utils.formatUnits(locked, units),
+      lockedBn: locked,
+      supply: utils.formatUnits(supply, units),
+      price: utils.formatUnits(price, 27),
+      value: value,
+      valueBn: valueBn
+    };
     if (zzz) {
-        r.zzz = this.unixToTime(+zzz + HOP);
+      r.zzz = this.unixToTime(+zzz + HOP);
     }
     if (priceNxt) {
       r.priceNxt = utils.formatEther(priceNxt);
@@ -989,7 +989,7 @@ class App extends Component {
       token: token,
       ilk: ilkName,
       name: String(name).replace(ilkName + ': ', ''),
-      Art:  utils.formatEther(ilk.Art),
+      Art: utils.formatEther(ilk.Art),
       rate: utils.formatUnits(ilk.rate, 27),
       spot: utils.formatUnits(ilk.spot, 27),
       line: utils.formatUnits(ilk.line, 45),
@@ -1111,18 +1111,18 @@ class App extends Component {
   }
 
   getLerp = (start, end, startTime, duration, timestamp) => {
-      // from LerpFactory.sol:75
-      // https://etherscan.io/address/0x0239311b645a8ef91dc899471497732a1085ba8b#code#L75
-      if (timestamp.gte(startTime)) {
-          if (timestamp.lt(startTime.add(duration))) {
-              let t = timestamp.sub(startTime).mul(WAD).div(duration)
-              return end.mul(t).div(WAD).add(start).sub(start.mul(t).div(WAD))
-          } else {
-              return ethers.BigNumber.from("0")
-          }
+    // from LerpFactory.sol:75
+    // https://etherscan.io/address/0x0239311b645a8ef91dc899471497732a1085ba8b#code#L75
+    if (timestamp.gte(startTime)) {
+      if (timestamp.lt(startTime.add(duration))) {
+        let t = timestamp.sub(startTime).mul(WAD).div(duration)
+        return end.mul(t).div(WAD).add(start).sub(start.mul(t).div(WAD))
       } else {
-          return ethers.BigNumber.from("0")
+        return ethers.BigNumber.from("0")
       }
+    } else {
+      return ethers.BigNumber.from("0")
+    }
   }
 
   isLoaded = () => {
@@ -1136,10 +1136,10 @@ class App extends Component {
   }
   unixToTime = stamp => new Date(stamp * 1000).toLocaleTimeString("en-US")
 
-  calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 1 - 1;
+  calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60 * 60 * 24 * 365) * 1 - 1;
 
   getFee = (base, ilk) => {
-    const {duty} = ilk;
+    const { duty } = ilk;
     const combo = duty.add(base);
     return this.calcFee(combo);
   }
@@ -1200,24 +1200,24 @@ class App extends Component {
     const dsrRate = potFee / 100
 
     const mkrAnnualBurn = (
-    (  (daiFromETH * stabilityETH)
-     + (daiFromETHB * stabilityETHB)
-     + (daiFromBAT * stabilityBAT)
-     + (daiFromWBTC * stabilityWBTC)
-     + (daiFromUSDC * stabilityUSDC)
-     + (daiFromUSDCB * stabilityUSDCB)
-     + (daiFromTUSD * stabilityTUSD)
-     + (daiFromKNCA * stabilityKNCA)
-     + (daiFromZRXA * stabilityZRXA)
-     + (daiFromMANAA * stabilityMANAA)
-     + (daiFromPAXA * stabilityPAXA)
-     + (daiFromUSDTA * stabilityUSDTA)
-     + (daiFromCOMPA * stabilityCOMPA)
-     + (daiFromLRCA * stabilityLRCA)
-     + (daiFromLINKA * stabilityLINKA)
-     - (dsrDai * dsrRate)
-    )
-    / mkrPrice
+      ((daiFromETH * stabilityETH)
+        + (daiFromETHB * stabilityETHB)
+        + (daiFromBAT * stabilityBAT)
+        + (daiFromWBTC * stabilityWBTC)
+        + (daiFromUSDC * stabilityUSDC)
+        + (daiFromUSDCB * stabilityUSDCB)
+        + (daiFromTUSD * stabilityTUSD)
+        + (daiFromKNCA * stabilityKNCA)
+        + (daiFromZRXA * stabilityZRXA)
+        + (daiFromMANAA * stabilityMANAA)
+        + (daiFromPAXA * stabilityPAXA)
+        + (daiFromUSDTA * stabilityUSDTA)
+        + (daiFromCOMPA * stabilityCOMPA)
+        + (daiFromLRCA * stabilityLRCA)
+        + (daiFromLINKA * stabilityLINKA)
+        - (dsrDai * dsrRate)
+      )
+      / mkrPrice
     )
 
     return mkrAnnualBurn
@@ -1257,7 +1257,7 @@ class App extends Component {
           return result
         }
       }
-    } catch(err) {
+    } catch (err) {
       console.error("Historical debt could not be obtained due to an error.", err)
     }
 
@@ -1270,8 +1270,8 @@ class App extends Component {
       return (
         <Router basename="/">
           {/* <NavBar /> */}
-          <div className="notification is-primary has-text-centered">
-            { /* eslint-disable-next-line */ }
+          <div className="notification has-text-centered">
+            { /* eslint-disable-next-line */}
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
             Welcome Societe Generale 🇫🇷 and H.V. BANK 🏦
@@ -1298,7 +1298,7 @@ class App extends Component {
             </div>
           </div>
           <Switch>
-            <Route path="/dai">
+            <Route path="/gsuc">
               <Dai {...this.state} {...add} />
             </Route>
             <Route path="/">
@@ -1310,15 +1310,15 @@ class App extends Component {
     } else {
       return (
         <section className="section">
-         <div className="container has-text-centered">
-           <figure className="image is-128x128 container">
-             <img src={daiLogo} alt="Dai Logo" />
-           </figure>
-           <br />
-           <progress className="progress is-small is-primary" max="100">15%</progress>
+          <div className="container has-text-centered">
+            <figure className="image is-128x128 container">
+              <img src={daiLogo} alt="GSUc Logo" />
+            </figure>
+            <br />
+            <progress className="progress is-small is-primary" max="100">15%</progress>
             <p>{t('daistats.one_sec')}</p>
-         </div>
-       </section>
+          </div>
+        </section>
       )
     }
   }
@@ -1328,10 +1328,10 @@ const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
-      <div className="navbar-brand">
-        <Link className="navbar-item" to="/">Home</Link>
-        <Link className="navbar-item" to="/dai">What's the total supply of Dai?</Link>
-      </div>
+        <div className="navbar-brand">
+          <Link className="navbar-item" to="/">Home</Link>
+          <Link className="navbar-item" to="/gsuc">What's the total supply of GSUc?</Link>
+        </div>
       </div>
     </nav>
   )

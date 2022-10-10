@@ -49,7 +49,7 @@ function Psm(props) {
               </p>
               <p className="subtitle is-size-6">
                 <a href="https://ipfs.io/ipfs/QmdFEcowhVbEabe68LMH8UuXweU8jnmQ7J28uUhFeeaY9X/" target="_blank" rel="noopener noreferrer">
-                  Trade DAI & {ilk.token} with no price impact using the PSM
+                  Trade GSUc & {ilk.token} with no price impact using the PSM
                 </a>
               </p>
             </div>

@@ -8,7 +8,7 @@ async function flapMakerProtocol(debt, surplus) {
     console.log('debtAmt', debt);
     console.log('surplusAmt', surplus);
     const provider = window.vow.provider;
-    document.title = "Dai Stats"
+    document.title = "GSUc Stats"
     await window.ethereum.enable()
     document.title = title
     const signer = provider.getSigner();

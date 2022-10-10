@@ -82,7 +82,7 @@ const HistoricalDebtChart = ({ data }) => {
       }
 
       if (name === "totalDebt") {
-        return [output, t("daistats.total_token", { token: "Dai" })]
+        return [output, t("daistats.total_token", { token: "GSUc" })]
       }
 
       return output
@@ -107,8 +107,8 @@ const HistoricalDebtChart = ({ data }) => {
         <ComposedChart data={data}>
           <defs>
             <linearGradient id="totalDebtColor" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="5%" stopColor="#1AAB9B" stopOpacity={0.95} />
-              <stop offset="95%" stopColor="#087C6D" stopOpacity={0.7} />
+              <stop offset="5%" stopColor="#d42f5d" stopOpacity={0.95} />
+              <stop offset="95%" stopColor="#b21f1e" stopOpacity={0.7} />
             </linearGradient>
           </defs>
           <XAxis
@@ -130,7 +130,7 @@ const HistoricalDebtChart = ({ data }) => {
             type="monotone"
             stackId={2}
             animationDuration={750}
-            stroke="#008E7B"
+            stroke="#d42f5d"
             fill="url(#totalDebtColor)"
             fillOpacity={1}
           />

@@ -1,8 +1,8 @@
 {
-  "name": "daistats",
+  "name": "gsucstats",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://daistats.com",
+  "homepage": "https://gsucstats.com",
   "dependencies": {
     "defi18n": "^0.0.13",
     "ethers": "^5.0.31",

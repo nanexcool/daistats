@@ -7,7 +7,7 @@ async function healMakerProtocol(debt) {
   try {
     console.log(debt);
     const provider = window.vow.provider;
-    document.title = "Dai Stats"
+    document.title = "GSUc Stats"
     await window.ethereum.enable()
     document.title = title
     const signer = provider.getSigner();

@@ -1,1 +1,107 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600"><linearGradient id="a" gradientUnits="userSpaceOnUse" x1="300" y1="685" x2="300" y2="-63" gradientTransform="matrix(1 0 0 -1 0 600)"><stop offset="0" stop-color="#f9a606"/><stop offset="1" stop-color="#fbcc5f"/></linearGradient><circle cx="300" cy="300" r="300" fill="url(#a)"/><path d="M477.9 250.5h-35.6c-19.6-54.4-72.3-91.7-141.8-91.7H186.2v91.7h-39.7v32.9h39.7v34.5h-39.7v32.9h39.7v90.6h114.3c68.7 0 121-37 141.1-90.6h36.3v-32.9h-28.3c.7-5.8 1.1-11.8 1.1-17.8v-.8c0-5.4-.3-10.7-.8-15.9H478v-32.9zm-259.7-62.4h82.3c51 0 88.9 25.1 106.4 62.3H218.2v-62.3zm82.3 223.7h-82.3v-61.1h188.5c-17.6 36.6-55.4 61.1-106.2 61.1zm117.1-111c0 5.8-.4 11.5-1.2 17H218.2v-34.5h198.3c.7 5.4 1.1 11 1.1 16.7v.8z" fill="#fff"/></svg>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="264.58334mm"
+   height="264.58334mm"
+   viewBox="0 0 264.58334 264.58334"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (1:1.1+202205011111+08b2f3d93c)"
+   sodipodi:docname="GSU_LOGO.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#505050"
+     bordercolor="#eeeeee"
+     borderopacity="1"
+     inkscape:pageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     showguides="true"
+     inkscape:guide-bbox="true"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:zoom="0.42582772"
+     inkscape:cx="110.37327"
+     inkscape:cy="412.1385"
+     inkscape:window-width="1920"
+     inkscape:window-height="952"
+     inkscape:window-x="0"
+     inkscape:window-y="36"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <sodipodi:guide
+       position="-173.39945,300.40701"
+       orientation="1,0"
+       id="guide35947" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient37776">
+      <stop
+         style="stop-color:#e71761;stop-opacity:1"
+         offset="0"
+         id="stop37772" />
+      <stop
+         style="stop-color:#e5091b;stop-opacity:1"
+         offset="1"
+         id="stop37774" />
+    </linearGradient>
+    <radialGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient37776"
+       id="radialGradient36754"
+       cx="591.08099"
+       cy="189.33246"
+       fx="591.08099"
+       fy="189.33246"
+       r="33.394669"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.865356,0,0,1,-511.49546,0)" />
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-557.68636,-155.9378)">
+    <g
+       id="g47590"
+       inkscape:export-filename="/home/faizi/Desktop/gsu logo 32.png"
+       inkscape:export-xdpi="12.17"
+       inkscape:export-ydpi="12.17"
+       transform="matrix(3.9614607,0,0,3.9614607,-1651.5661,-461.80363)"
+       style="stroke-width:0.252432">
+      <circle
+         style="opacity:1;fill:url(#radialGradient36754);fill-opacity:1;stroke:none;stroke-width:0.252432;stroke-linecap:square;stroke-linejoin:round;paint-order:stroke fill markers;stop-color:#000000"
+         id="circle33914"
+         cx="591.08099"
+         cy="189.33246"
+         r="33.394669" />
+      <g
+         id="g36602"
+         style="fill:#ffffff;stroke-width:0.295871"
+         transform="matrix(0.85318759,0,0,0.85318759,86.868204,27.736473)">
+        <path
+           style="color:#000000;fill:#ffffff;stroke-width:0.295871;stroke-linecap:square;-inkscape-stroke:none"
+           d="m 591.53153,182.38381 v 4.97132 h 2.48836 17.70999 2.48836 v -4.97132 h -2.48836 -17.70999 z"
+           id="path35620" />
+        <path
+           style="color:#000000;fill:#ffffff;stroke-width:0.295871;stroke-linecap:square;-inkscape-stroke:none"
+           d="m 593.2912,166.26615 c -4.88875,-0.3467 -9.89239,0.87696 -14.19069,3.73523 -8.59659,5.7166 -12.25906,16.55169 -8.90087,26.31402 3.35819,9.76233 12.91079,16.04111 23.20489,15.25941 9.03826,-0.68632 16.6883,-6.65663 19.66939,-14.98951 0.82279,-2.24099 1.25846,-4.99775 1.35187,-6.5313 h -20.4059 -2.48836 v 4.97133 h 2.48836 14.30402 c -2.35919,6.43664 -8.26571,11.05502 -15.29722,11.58896 -8.06202,0.6122 -15.49559,-4.27265 -18.12562,-11.91822 -2.63002,-7.64557 0.22496,-16.07215 6.9577,-20.54922 6.73257,-4.47703 15.60622,-3.84943 21.63956,1.53296 l 1.85142,1.65711 3.31422,-3.71365 -1.85683,-1.65711 c -3.85186,-3.43629 -8.62722,-5.35329 -13.51594,-5.70001 z"
+           id="path34098"
+           sodipodi:nodetypes="sssscccccccsssccccs" />
+      </g>
+    </g>
+  </g>
+</svg>

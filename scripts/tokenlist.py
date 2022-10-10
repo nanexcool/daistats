@@ -80,17 +80,17 @@ tl = {
                 "stablecoin"
             ]
         },
-        {
-            "chainId": 10,
-            "address": OPTIMISTIC_DAI,
-            "symbol": "DAI",
-            "name": "Dai Stablecoin",
-            "decimals": 18,
-            "logoURI": TOKEN_LOGO_URI % DAI,
-            "tags": [
-                "stablecoin"
-            ]
-        },
+        # {
+        #     "chainId": 10,
+        #     "address": OPTIMISTIC_DAI,
+        #     "symbol": "DAI",
+        #     "name": "Dai Stablecoin",
+        #     "decimals": 18,
+        #     "logoURI": TOKEN_LOGO_URI % DAI,
+        #     "tags": [
+        #         "stablecoin"
+        #     ]
+        # },
         {
             "chainId": 1,
             "address": MKR,
@@ -99,14 +99,14 @@ tl = {
             "decimals": 18,
             "logoURI": TOKEN_LOGO_URI % MKR,
         },
-        {
-            "chainId": 10,
-            "address": OPTIMISTIC_MKR,
-            "symbol": "MKR",
-            "name": "Maker",
-            "decimals": 18,
-            "logoURI": TOKEN_LOGO_URI % MKR,
-        }
+        # {
+        #     "chainId": 10,
+        #     "address": OPTIMISTIC_MKR,
+        #     "symbol": "MKR",
+        #     "name": "Maker",
+        #     "decimals": 18,
+        #     "logoURI": TOKEN_LOGO_URI % MKR,
+        # }
     ]
 }
 

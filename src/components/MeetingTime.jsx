@@ -6,7 +6,7 @@ var now = new Date()
 
 // Community Meeting - 5:00 PM UTC Tuesdays
 var communityMeeting = now.getDay() === 2 && now.getUTCHours() === 17
-var communityTitle = "MakerDAO Community Meeting"
+var communityTitle = "GSU protocol Community Meeting"
 var communityUrl = "https://zoom.us/j/697074715"
 
 // Governance/Risk Meeting - 5:00 PM UTC Thursdays
