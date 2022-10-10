@@ -20,19 +20,19 @@ const utils = ethers.utils
 const jsonFetch = url => fetch(url).then(res => res.json())
 
 const add = require('./addresses.json')
-add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0"
+add["CHIEF"] = "0x0a3f6849f78076aefaDf113F5BED87720274dDC0" // MCD_ADM
 add["GEM_PIT"] = "0x69076e44a9C70a67D5b79d95795Aba299083c275"
-add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
-add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
+add["UNISWAP_DAI"] = "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11" // replace 0x0
+add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957" // replace 0x0
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441" //v1
 add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11" //v3
-add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
-add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
-add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
-add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5"
-add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65"
-add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d"
-add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215" // confirm what is this
+add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9" // confirm what is this
+add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"  // replace 0x0
+add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5" // replace 0x0
+add["OPTIMISTIC_L1ESCROW"] = "0x467194771dAe2967Aef3ECbEDD3Bf9a310C76C65" // confirm what is this
+add["OASIS_DEX"] = "0x794e6e91555438afc3ccf1c5076a74f42133d08d" // replace 0x0
+add["BALANCER_V2"] = "0xBA12222222228d8Ba445958a75a0704d566BF2C8" // confirm what is this
 
 //add["MCD_FLIP_USDC_PSM_A"] = "0x507420100393b1Dc2e8b4C8d0F8A13B56268AC99"
 
@@ -81,36 +81,8 @@ add["EVENTS_WALLET"] = "0x3D274fbAc29C92D2F624483495C0113B44dBE7d2"
 add["KEEP3R_MANAGER"] = "0xc6A048550C9553F8Ac20fbdeB06f114c27ECcabb"
 
 add["MEDIAN_ETH"] = "0x64de91f5a373cd4c28de3600cb34c7c6ce410c85"
-add["MEDIAN_BAT"] = "0x18B4633D6E39870f398597f3c1bA8c4A41294966"
-//add["MEDIAN_USDC
 add["MEDIAN_WBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
-//add["MEDIAN_TUSD
-add["MEDIAN_ZRX"] = "0x956ecD6a9A9A0d84e8eB4e6BaaC09329E202E55e"
-add["MEDIAN_KNC"] = "0x83076a2F42dc1925537165045c9FDe9A4B71AD97"
-add["MEDIAN_MANA"] = "0x681c4F8f69cF68852BAd092086ffEaB31F5B812c"
-add["MEDIAN_USDT"] = "0x56D4bBF358D7790579b55eA6Af3f605BcA2c0C3A"
-//add["MEDIAN_PAXUSD
-add["MEDIAN_COMP"] = "0xA3421Be733125405Ea20aA853839D34b364eB524"
-add["MEDIAN_LRC"] = "0xcCe92282d9fe310F4c232b0DA9926d5F24611C7B"
-add["MEDIAN_LINK"] = "0xbAd4212d73561B240f10C56F27e6D9608963f17b"
-add["MEDIAN_BAL"] = "0x1D36d59e5a22cB51B30Bb6fA73b62D73f4A11745"
-add["MEDIAN_YFI"] = "0x89AC26C0aFCB28EC55B6CD2F6b7DAD867Fa24639"
-//add["MEDIAN_GUSD
-add["MEDIAN_UNI"] = "0x52f761908cC27B4D77AD7A329463cf08baf62153"
-add["MEDIAN_RENBTC"] = "0xe0F30cb149fAADC7247E953746Be9BbBB6B5751f"
 add["MEDIAN_AAVE"] = "0xe62872DFEbd323b03D27946f8e2491B454a69811"
-add["MEDIAN_UNIV2DAIETH"] = "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11"
-add["MEDIAN_UNIV2WBTCETH"] = "0xBb2b8038a1640196FbE3e38816F3e67Cba72D940"
-add["MEDIAN_UNIV2USDCETH"] = "0xB4e16d0168e52d35CaCD2c6185b44281Ec28C9Dc"
-add["MEDIAN_UNIV2DAIUSDC"] = "0xAE461cA67B15dc8dc81CE7615e0320dA1A9aB8D5"
-add["MEDIAN_UNIV2LINKETH"] = "0xa2107FA5B38d9bbd2C461D6EDf11B11A50F6b974"
-add["MEDIAN_UNIV2UNIETH"] = "0xd3d2E2692501A5c9Ca623199D38826e513033a17"
-add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
-add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
-add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
-add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
-
-add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2a6e4379d"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
@@ -138,24 +110,6 @@ add["MCD_FLASH_LEGACY"] = "0x1EB4CF3A948E7D72A198fe073cCb8C7a948cD853"
 add["STARKNET_DAI_BRIDGE"] = "0x659a00c33263d9254Fed382dE81349426C795BB6"
 add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 //STARKNET_ESCROW_MOM: 0xc238E3D63DfD677Fa0FA9985576f0945C581A266
-
-// -- RWA008 MIP21 components --
-add["RWA008"] = "0xb9737098b50d7c536b6416dAeB32879444F59fCA"
-add["PIP_RWA008"] = "0x2623dE50D8A6FdC2f0D583327142210b8b464bfd"
-add["MCD_JOIN_RWA008_A"] = "0x56eDD5067d89D4E65Bf956c49eAF054e6Ff0b262"
-add["RWA008_A_URN"] = "0x495215cabc630830071F80263a908E8826a66121"
-add["RWA008_A_URN_CLOSE_HELPER"] = "0xCfc4043675EE82EEAe63C90D6eb3aB2dcf833431"
-add["RWA008_A_INPUT_CONDUIT"] = "0xa397a23dDA051186F202C67148c90683c413383C"
-add["RWA008_A_OUTPUT_CONDUIT"] = "0x21CF5Ad1311788D762f9035829f81B9f54610F0C"
-// -- RWA009 MIP21 components --
-add["RWA009"] = "0x8b9734bbaA628bFC0c9f323ba08Ed184e5b88Da2"
-add["PIP_RWA009"] = "0xdc7D370A089797Fe9556A2b0400496eBb3a61E44"
-add["MCD_JOIN_RWA009_A"] = "0xEe0FC514280f09083a32AE906cCbD2FAc4c680FA"
-add["RWA009_A_URN"] = "0x1818EE501cd28e01E058E7C283E178E9e04a1e79"
-add["RWA009_A_JAR"] = "0x6C6d4Be2223B5d202263515351034861dD9aFdb6"
-add["RWA009_A_INPUT_CONDUIT"] = "0x508D982e13263Fc8e1b5A4E6bf59b335202e36b4" // NOTE RWA009 has no input conduit, explicity set to 0 below
-add["RWA009_A_OUTPUT_CONDUIT"] = "0x508D982e13263Fc8e1b5A4E6bf59b335202e36b4"
-
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -197,52 +151,17 @@ const vestDai = build(add.MCD_VEST_DAI, "DssVestSuckable")
 const vestMkr = build(add.MCD_VEST_MKR, "DssVestMintable")
 const vestMkrTreasury = build(add.MCD_VEST_MKR_TREASURY, "DssVestTransferrable")
 const weth = build(add.ETH, "ERC20")
-const bat = build(add.BAT, "ERC20")
 const usdc = build(add.USDC, "ERC20")
 const tusd = build(add.TUSD, "ERC20")
 const wbtc = build(add.WBTC, "ERC20")
-const knc = build(add.KNC, "ERC20")
-const zrx = build(add.ZRX, "ERC20")
-const mana = build(add.MANA, "ERC20")
 const pax = build(add.PAXUSD, "ERC20")
-const usdt = build(add.USDT, "ERC20")
-const comp = build(add.COMP, "ERC20")
-const lrc = build(add.LRC, "ERC20")
-const link = build(add.LINK, "ERC20")
-const bal = build(add.BAL, "ERC20")
-const yfi = build(add.YFI, "ERC20")
 const gusd = build(add.GUSD, "ERC20")
-const uni = build(add.UNI, "ERC20")
-const renbtc = build(add.RENBTC, "ERC20")
-const aave = build(add.AAVE, "ERC20")
-const univ2daieth = build(add.UNIV2DAIETH, "ERC20")
-const univ2wbtceth = build(add.UNIV2WBTCETH, "ERC20")
-const univ2usdceth = build(add.UNIV2USDCETH, "ERC20")
-const univ2daiusdc = build(add.UNIV2DAIUSDC, "ERC20")
-const univ2linketh = build(add.UNIV2LINKETH, "ERC20")
-const univ2unieth = build(add.UNIV2UNIETH, "ERC20")
-const univ2wbtcdai = build(add.UNIV2WBTCDAI, "ERC20")
-const univ2aaveeth = build(add.UNIV2AAVEETH, "ERC20")
-const guniv3daiusdc1 = build(add.GUNIV3DAIUSDC1, "ERC20")
-const guniv3daiusdc2 = build(add.GUNIV3DAIUSDC2, "ERC20")
-const rwa001 = build(add.RWA001, "ERC20")
-const rwa002 = build(add.RWA002, "ERC20")
-const rwa003 = build(add.RWA003, "ERC20")
-const rwa004 = build(add.RWA004, "ERC20")
-const rwa005 = build(add.RWA005, "ERC20")
-const rwa006 = build(add.RWA006, "ERC20")
-const rwa008 = build(add.RWA008, "ERC20")
-const rwa009 = build(add.RWA009, "ERC20")
+
 const bkr = build(add.BKR, "ERC20")
-const matic = build(add.MATIC, "ERC20")
-const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
 const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
-const psmUsdc = build(add.MCD_PSM_USDC_A, "DssPsm")
-const psmPax = build(add.MCD_PSM_PAX_A, "DssPsm")
-const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
@@ -250,73 +169,20 @@ const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
 const calc = build(add.MCD_CLIP_CALC_ETH_A, "StairstepExponentialDecrease")
-const calcLinear = build(add.MCD_CLIP_CALC_TUSD_A, "LinearDecrease")
 const flap = build(add.MCD_FLAP, "Flapper")
 const flop = build(add.MCD_FLOP, "Flopper")
 const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
 const aaveIncentive = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, "StakedTokenIncentivesController")
 const usdcPip = build(add.PIP_USDC, "DSValue")
-const tusdPip = build(add.PIP_TUSD, "DSValue")
-const paxPip = build(add.PIP_PAXUSD, "DSValue")
-const usdtPip = build(add.PIP_USDT, "DSValue")
-const gusdPip = build(add.PIP_GUSD, "DSValue")
-const rwaPip = build(add.PIP_RWA001, "DSValue")
 const pip = build(add.PIP_ETH, "OSM")
-const univ2Pip = build(add.PIP_UNIV2DAIETH, "UNIV2LPOracle")
-const univ3Pip1 = build(add.PIP_GUNIV3DAIUSDC1, "GUniLPOracle")
-const univ3Pip2 = build(add.PIP_GUNIV3DAIUSDC2, "GUniLPOracle")
-const adaiPip = build(add.PIP_ADAI, "DSValue")
 const lerp = build(add.LERP_HUMP, "Lerp")
 const ethAIlkBytes = utils.formatBytes32String("ETH-A")
 const ethBIlkBytes = utils.formatBytes32String("ETH-B")
 const ethCIlkBytes = utils.formatBytes32String("ETH-C")
-const batIlkBytes = utils.formatBytes32String("BAT-A")
-const usdcAIlkBytes = utils.formatBytes32String("USDC-A")
-const usdcBIlkBytes = utils.formatBytes32String("USDC-B")
-const tusdAIlkBytes = utils.formatBytes32String("TUSD-A")
 const wbtcAIlkBytes = utils.formatBytes32String("WBTC-A")
 const wbtcBIlkBytes = utils.formatBytes32String("WBTC-B")
 const wbtcCIlkBytes = utils.formatBytes32String("WBTC-C")
-const kncAIlkBytes = utils.formatBytes32String("KNC-A")
-const zrxAIlkBytes = utils.formatBytes32String("ZRX-A")
-const manaAIlkBytes = utils.formatBytes32String("MANA-A")
-const paxAIlkBytes = utils.formatBytes32String("PAXUSD-A")
-const usdtAIlkBytes = utils.formatBytes32String("USDT-A")
-const compAIlkBytes = utils.formatBytes32String("COMP-A")
-const lrcAIlkBytes = utils.formatBytes32String("LRC-A")
-const linkAIlkBytes = utils.formatBytes32String("LINK-A")
-const balAIlkBytes = utils.formatBytes32String("BAL-A")
-const yfiAIlkBytes = utils.formatBytes32String("YFI-A")
-const gusdAIlkBytes = utils.formatBytes32String("GUSD-A")
-const uniAIlkBytes = utils.formatBytes32String("UNI-A")
-const renbtcAIlkBytes = utils.formatBytes32String("RENBTC-A")
-const aaveAIlkBytes = utils.formatBytes32String("AAVE-A")
-const univ2daiethAIlkBytes = utils.formatBytes32String("UNIV2DAIETH-A")
-const psmusdcAIlkBytes = utils.formatBytes32String("PSM-USDC-A")
-const psmpaxAIlkBytes = utils.formatBytes32String("PSM-PAX-A")
-const psmgusdAIlkBytes = utils.formatBytes32String("PSM-GUSD-A")
-const univ2wbtcethAIlkBytes = utils.formatBytes32String("UNIV2WBTCETH-A")
-const univ2usdcethAIlkBytes = utils.formatBytes32String("UNIV2USDCETH-A")
-const univ2daiusdcAIlkBytes = utils.formatBytes32String("UNIV2DAIUSDC-A")
-const univ2linkethAIlkBytes = utils.formatBytes32String("UNIV2LINKETH-A")
-const univ2uniethAIlkBytes = utils.formatBytes32String("UNIV2UNIETH-A")
-const univ2wbtcdaiAIlkBytes = utils.formatBytes32String("UNIV2WBTCDAI-A")
-const univ2aaveethAIlkBytes = utils.formatBytes32String("UNIV2AAVEETH-A")
-const guniv3daiusdc1AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC1-A")
-const guniv3daiusdc2AIlkBytes = utils.formatBytes32String("GUNIV3DAIUSDC2-A")
-const rwa001AIlkBytes = utils.formatBytes32String("RWA001-A")
-const rwa002AIlkBytes = utils.formatBytes32String("RWA002-A")
-const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
-const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
-const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
-const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
-const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
-const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
-const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
-const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
-const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
 const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
-const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -344,6 +210,7 @@ const HOP = 3600 // assumes all OSM's have same hop
 const VEST_DAI_LEGACY_IDS = 37
 const VEST_DAI_IDS = 8
 const VEST_MKR_TREASURY_IDS = 23
+// const VEST_MKR_TREASURY_IDS = 15
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -459,128 +326,27 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
-     .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
-     .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
-     .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getIlkCall(batIlkBytes, 'BAT_A', bat, add.BAT, add.PIP_BAT))
-     .concat(this.getIlkCall(usdcAIlkBytes, 'USDC_A', usdc, add.USDC, add.PIP_USDC))
-     .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(wbtcBIlkBytes, 'WBTC_B', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(wbtcCIlkBytes, 'WBTC_C', wbtc, add.WBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(usdcBIlkBytes, 'USDC_B', usdc, add.USDC, add.PIP_USDC))
-     .concat(this.getIlkCall(tusdAIlkBytes, 'TUSD_A', tusd, add.TUSD, add.PIP_TUSD))
-     .concat(this.getIlkCall(kncAIlkBytes, 'KNC_A', knc, add.KNC, add.PIP_KNC))
-     .concat(this.getIlkCall(zrxAIlkBytes, 'ZRX_A', zrx, add.ZRX, add.PIP_ZRX))
-     .concat(this.getIlkCall(manaAIlkBytes, 'MANA_A', mana, add.MANA, add.PIP_MANA))
-     .concat(this.getIlkCall(paxAIlkBytes, 'PAXUSD_A', pax, add.PAXUSD, add.PIP_PAXUSD))
-     .concat(this.getIlkCall(usdtAIlkBytes, 'USDT_A', usdt, add.USDT, add.PIP_USDT))
-     .concat(this.getIlkCall(compAIlkBytes, 'COMP_A', comp, add.COMP, add.PIP_COMP))
-     .concat(this.getIlkCall(lrcAIlkBytes, 'LRC_A', lrc, add.LRC, add.PIP_LRC))
-     .concat(this.getIlkCall(linkAIlkBytes, 'LINK_A', link, add.LINK, add.PIP_LINK))
-     .concat(this.getIlkCall(ethBIlkBytes, 'ETH_B', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getIlkCall(balAIlkBytes, 'BAL_A', bal, add.BAL, add.PIP_BAL))
-     .concat(this.getIlkCall(yfiAIlkBytes, 'YFI_A', yfi, add.YFI, add.PIP_YFI))
-     .concat(this.getIlkCall(gusdAIlkBytes, 'GUSD_A', gusd, add.GUSD, add.PIP_GUSD))
-     .concat(this.getIlkCall(uniAIlkBytes, 'UNI_A', uni, add.UNI, add.PIP_UNI))
-     .concat(this.getIlkCall(renbtcAIlkBytes, 'RENBTC_A', renbtc, add.RENBTC, add.PIP_WBTC))
-     .concat(this.getIlkCall(aaveAIlkBytes, 'AAVE_A', aave, add.AAVE, add.PIP_AAVE))
-     .concat(this.getIlkCall(univ2daiethAIlkBytes, 'UNIV2DAIETH_A', univ2daieth, add.UNIV2DAIETH, add.PIP_UNIV2DAIETH))
-     .concat(this.getIlkCall(univ2wbtcethAIlkBytes, 'UNIV2WBTCETH_A', univ2wbtceth, add.UNIV2WBTCETH, add.PIP_UNIV2WBTCETH))
-     .concat(this.getIlkCall(univ2usdcethAIlkBytes, 'UNIV2USDCETH_A', univ2usdceth, add.UNIV2USDCETH, add.PIP_UNIV2USDCETH))
-     .concat(this.getIlkCall(univ2daiusdcAIlkBytes, 'UNIV2DAIUSDC_A', univ2daiusdc, add.UNIV2DAIUSDC, add.PIP_UNIV2DAIUSDC))
-     .concat(this.getIlkCall(univ2linkethAIlkBytes, 'UNIV2LINKETH_A', univ2linketh, add.UNIV2LINKETH, add.PIP_UNIV2LINKETH))
-     .concat(this.getIlkCall(univ2uniethAIlkBytes, 'UNIV2UNIETH_A', univ2unieth, add.UNIV2UNIETH, add.PIP_UNIV2UNIETH))
-     .concat(this.getIlkCall(univ2wbtcdaiAIlkBytes, 'UNIV2WBTCDAI_A', univ2wbtcdai, add.UNIV2WBTCDAI, add.PIP_UNIV2WBTCDAI))
-     .concat(this.getIlkCall(univ2aaveethAIlkBytes, 'UNIV2AAVEETH_A', univ2aaveeth, add.UNIV2AAVEETH, add.PIP_UNIV2AAVEETH))
-     .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
-     .concat(this.getRwaIlkCall(rwa001AIlkBytes, 'RWA001_A', rwa001, add.RWA001, add.PIP_RWA001))
-     .concat(this.getRwaIlkCall(rwa002AIlkBytes, 'RWA002_A', rwa002, add.RWA002, add.PIP_RWA002))
-     .concat(this.getRwaIlkCall(rwa003AIlkBytes, 'RWA003_A', rwa003, add.RWA003, add.PIP_RWA003))
-     .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
-     .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
-     .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
-     .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
-     .concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
-     .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
-     .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
-     .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
-     .concat(this.getPsmIlkCall(psmgusdAIlkBytes, 'PSM_GUSD_A', gusd, add.GUSD, add.PIP_GUSD, psmGusd))
-     .concat(this.getIlkCall(guniv3daiusdc1AIlkBytes, 'GUNIV3DAIUSDC1_A', guniv3daiusdc1, add.GUNIV3DAIUSDC1, add.PIP_GUNIV3DAIUSDC1))
-     .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
-     .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
-     .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
-     .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
-     .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
-     ,{blockTag: blockNumber})
+      .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
+      .concat(this.getVestingCalls(add.MCD_VEST_MKR_TREASURY, vestMkrTreasury, VEST_MKR_TREASURY_IDS))
+      .concat(this.getIlkCall(ethAIlkBytes, 'ETH_A', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getIlkCall(ethBIlkBytes, 'ETH_B', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getIlkCall(ethCIlkBytes, 'ETH_C', weth, add.ETH, add.PIP_ETH))
+      .concat(this.getIlkCall(wbtcAIlkBytes, 'WBTC_A', wbtc, add.WBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(wbtcBIlkBytes, 'WBTC_B', wbtc, add.WBTC, add.PIP_WBTC))
+      .concat(this.getIlkCall(wbtcCIlkBytes, 'WBTC_C', wbtc, add.WBTC, add.PIP_WBTC))
+      , { blockTag: blockNumber })
     let promises = [
       p1,
       this.etherscanEthSupply(),
       this.getPrice(add.PIP_ETH, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_ETH, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_BAT, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_BAT, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_WBTC, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_WBTC, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_KNC, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_KNC, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_ZRX, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_ZRX, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_MANA, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_MANA, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_USDT, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_USDT, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_COMP, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_COMP, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_LRC, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_LRC, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_LINK, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_LINK, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_BAL, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_BAL, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_YFI, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_YFI, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_UNI, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_UNI, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_AAVE, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_AAVE, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_MATIC, this.POSITION_NXT),
-      this.getPrice(add.MEDIAN_MATIC, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2DAIETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2WBTCETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2USDCETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2DAIUSDC, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2LINKETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2UNIETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2WBTCDAI, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_UNIV2AAVEETH, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC1, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
-      //this.getPrice(add.MEDIAN_GUNIV3DAIUSDC2, this.POSITION_UNIV2_NXT),
-      this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
-      this.getPrice(add.MEDIAN_WSTETH, this.POSITION_MEDIAN_VAL),
-      this.getPrice(add.PIP_CRVV1ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
-      this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
+      // this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
     ]
 
-    let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian, batPriceNxt, batPriceMedian,
-        wbtcPriceNxt, wbtcPriceMedian, kncPriceNxt, kncPriceMedian, zrxPriceNxt, zrxPriceMedian,
-        manaPriceNxt, manaPriceMedian, usdtPriceNxt, usdtPriceMedian, compPriceNxt, compPriceMedian,
-        lrcPriceNxt, lrcPriceMedian, linkPriceNxt, linkPriceMedian, balPriceNxt, balPriceMedian,
-        yfiPriceNxt, yfiPriceMedian, uniPriceNxt, uniPriceMedian, aavePriceNxt, aavePriceMedian,
-        maticPriceNxt, maticPriceMedian,
-        univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
-        univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
-        univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
-        wstethPriceMedian, crvv1ethstethPriceNext, historicalDebt] = await Promise.all(promises)
+    let [[block, res], ethSupply, ethPriceNxt, ethPriceMedian,
+      wbtcPriceNxt, wbtcPriceMedian, historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
 
@@ -673,66 +439,28 @@ class App extends Component {
     const vestingMkrTreasury = this.getVestingMaps(res, offset += (VEST_DAI_IDS * VEST_CALL_COUNT), vestMkrTreasury, VEST_MKR_TREASURY_IDS)
 
     const ilks = [
-          this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAT", "BAT-A", bat, 18, base, batPriceNxt, batPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-A", usdc, 6, base, null, null, DP10, DP7), // NOTE this dsValue is also shown for TUSD, USDP, GUSD, aDAI
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-B", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-C", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "USDC-B", usdc, 6, base, null, null, DP10, DP7),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "TUSD", "TUSD-A", tusd, 18, base, null, null, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "KNC", "KNC-A", knc, 18, base, kncPriceNxt, kncPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ZRX", "ZRX-A", zrx, 18, base, zrxPriceNxt, zrxPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "MANA", "MANA-A", mana, 18, base, manaPriceNxt, manaPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDP", "USDP-A", pax, 18, base, null, null, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "USDT", "USDT-A", usdt, 6, base, usdtPriceNxt, usdtPriceMedian, DP10, DP6),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "COMP", "COMP-A", comp, 18, base, compPriceNxt, compPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "LRC", "LRC-A", lrc, 18, base, lrcPriceNxt, lrcPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "LINK", "LINK-A", link, 18, base, linkPriceNxt, linkPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-B", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "BAL", "BAL-A", bal, 18, base, balPriceNxt, balPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "YFI", "YFI-A", yfi, 18, base, yfiPriceNxt, yfiPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUSD", "GUSD-A", gusd, 2, base, null, null, DP10, DP2),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNI", "UNI-A", uni, 18, base, uniPriceNxt, uniPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RENBTC", "RENBTC-A", renbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "AAVE", "AAVE-A", aave, 18, base, aavePriceNxt, aavePriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIETH", "UNIV2DAIETH-A", univ2daieth, 18, base, univ2daiethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCETH", "UNIV2WBTCETH-A", univ2wbtceth, 18, base, univ2wbtcethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2USDCETH", "UNIV2USDCETH-A", univ2usdceth, 18, base, univ2usdcethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2DAIUSDC", "UNIV2DAIUSDC-A", univ2daiusdc, 18, base, univ2daiusdcPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2LINKETH", "UNIV2LINKETH-A", univ2linketh, 18, base, univ2linkethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2UNIETH", "UNIV2UNIETH-A", univ2unieth, 18, base, univ2uniethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2WBTCDAI", "UNIV2WBTCDAI-A", univ2wbtcdai, 18, base, univ2wbtcdaiPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "UNIV2AAVEETH", "UNIV2AAVEETH-A", univ2aaveeth, 18, base, univ2aaveethPriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
-          this.getRwaIlkMap(res, offset += ILK_CALL_COUNT, "RWA001", "RWA001-A", rwa001, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA002", "RWA002-A", rwa002, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA003", "RWA003-A", rwa003, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
-          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
-          this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
-          // include PSM's in CollateralChart
-          this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "USDP", "PSM-USDP-A", psmPax, 18, DP10, DP18),
-          this.getPsmIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUSD", "PSM-GUSD-A", psmGusd, 2, DP2, DP10),
-          this.getIlkMap(res, offset += ILK_PSM_CALL_COUNT, "GUNIV3DAIUSDC1", "GUNIV3DAIUSDC1-A", guniv3daiusdc1, 18, base, guniv3daiusdc1PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
-        ]
+      // 267 + 17
+      this.getIlkMap(res, offset += (VEST_MKR_TREASURY_IDS * VEST_CALL_COUNT), "ETH", "ETH-A", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-B", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "ETH", "ETH-C", weth, 18, base, ethPriceNxt, ethPriceMedian, DP10),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-A", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-B", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+      this.getIlkMap(res, offset += ILK_CALL_COUNT, "WBTC", "WBTC-C", wbtc, 8, base, wbtcPriceNxt, wbtcPriceMedian, DP10, DP8),
+    ]
 
-    const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
+    const ilksByName = ilks.reduce((a, x) => ({ ...a, [x.ilk]: x }), {})
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
-    const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
-    const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
+    // const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
+    // const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
+    // const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
+    // const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
+    // ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
+
+    const d3mAdaiFeesPending = ethers.BigNumber.from("0")
+    const d3mAdaiTotalSupply = ethers.BigNumber.from("0")
     const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
-    const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
-    ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
+    const lerpHumpCurrent = ethers.BigNumber.from("0")
+    // ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
 
@@ -834,16 +562,16 @@ class App extends Component {
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
     // use pip.zzz or pip.read depending if dsvalue or osm
     if ([usdc, tusd, pax, gusd, adai].includes(gem)) {
-        pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
+      pipCall = [pipAdd, pip.interface.encodeFunctionData('read', [])]
     } else {
-        pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
+      pipCall = [pipAdd, pip.interface.encodeFunctionData('zzz', [])]
     }
 
     // locked tokens are in the rewards contract - use join.total() instead of gem.balanceOf()
     if (gem === crvv1ethsteth) {
-        lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
+      lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
     } else {
-        lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
+      lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
     }
 
     return [
@@ -868,87 +596,89 @@ class App extends Component {
     ]
   }
 
-  getIlkMap = (res, idx, token, ilkName, gem, units, base, priceNxt=null, priceMedian=null, medianDp=null, tokenDp=null) => {
+  getIlkMap = (res, idx, token, ilkName, gem, units, base, priceNxt = null, priceMedian = null, medianDp = null, tokenDp = null) => {
     var locked, zzz, price, value, valueBn;
-      // variations no autoline USDT
+    console.log("idx: ", idx)
+    console.log(res)
+    // variations no autoline USDT
     const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
     const jugIlk = jug.interface.decodeFunctionResult('ilks', res[idx++])
     const spotIlk = spot.interface.decodeFunctionResult('ilks', res[idx++])
     const autoLineIlk = autoline.interface.decodeFunctionResult('ilks', res[idx++])
     const dogIlk = dog.interface.decodeFunctionResult('ilks', res[idx++])
     if (token === 'CRVV1ETHSTETH') {
-        locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
+      locked = cropJoin.interface.decodeFunctionResult('total', res[idx++])[0]
     } else {
-        locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
+      locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
     }
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
     if (['USDC', 'TUSD', 'USDP', 'GUSD', 'ADAI'].includes(token)) {
-        zzz = null;
-        //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
-        // FIXME read fails for TUSD
-        idx++
-        // FIXME hardwired price to 1
-        price = ethers.BigNumber.from(1).mul(DP10)
-        if (tokenDp) {
-            value = locked.mul(tokenDp).mul(price)
-        } else {
-            value = locked.mul(price)
-        }
-        price = RAY
-        valueBn = value.mul(WAD)
-        value = utils.formatUnits(value, 27)
+      zzz = null;
+      //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
+      // FIXME read fails for TUSD
+      idx++
+      // FIXME hardwired price to 1
+      price = ethers.BigNumber.from(1).mul(DP10)
+      if (tokenDp) {
+        value = locked.mul(tokenDp).mul(price)
+      } else {
+        value = locked.mul(price)
+      }
+      price = RAY
+      valueBn = value.mul(WAD)
+      value = utils.formatUnits(value, 27)
     } else {
-        zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
-        price = spotIlk.mat.mul(ilk.spot).div(RAY);
+      zzz = pip.interface.decodeFunctionResult('zzz', res[idx++])
+      price = spotIlk.mat.mul(ilk.spot).div(RAY);
 
-        if (tokenDp) {
-          value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
-        } else if (medianDp) {
-          value = locked.mul(priceMedian.mul(medianDp))
-        } else {
-          value = locked.mul(priceMedian || price)
-        }
-        valueBn = value
-        value = utils.formatUnits(value, 45)
+      if (tokenDp) {
+        value = locked.mul(tokenDp).mul(priceMedian.mul(medianDp))
+      } else if (medianDp) {
+        value = locked.mul(priceMedian.mul(medianDp))
+      } else {
+        value = locked.mul(priceMedian || price)
+      }
+      valueBn = value
+      value = utils.formatUnits(value, 45)
     }
 
     const r = {
-        token: token,
-        ilk: ilkName,
-        Art:  utils.formatEther(ilk.Art),
-        rate: utils.formatUnits(ilk.rate, 27),
-        spot: utils.formatUnits(ilk.spot, 27),
-        mat: utils.formatUnits(spotIlk.mat, 27),
-        line: utils.formatUnits(ilk.line, 45),
-        dust: utils.formatUnits(ilk.dust, 45),
-        lineMax: utils.formatUnits(autoLineIlk.line, 45),
-        gap: utils.formatUnits(autoLineIlk.gap, 45),
-        ttl: autoLineIlk.ttl,
-        lastInc: this.unixToDateTime(autoLineIlk.lastInc),
-        chop: utils.formatUnits(dogIlk.chop, 18),
-        hole: utils.formatUnits(dogIlk.hole, 45),
-        dirt: utils.formatUnits(dogIlk.dirt, 45),
-        buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[idx++])[0], 27),
-        tail: clip.interface.decodeFunctionResult('tail', res[idx++])[0],
-        cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[idx++])[0], 27),
-        chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[idx++])[0], 18),
-        tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
-        count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
-        kicks: clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber(),
-        cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
-        step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
-        drip: this.unixToDateTime(jugIlk.rho.toNumber()),
-        fee: this.getFee(base, jugIlk),
-        locked: utils.formatUnits(locked, units),
-        lockedBn: locked,
-        supply: utils.formatUnits(supply, units),
-        price: utils.formatUnits(price, 27),
-        value: value,
-        valueBn: valueBn
-      };
+      token: token,
+      ilk: ilkName,
+      Art: utils.formatEther(ilk.Art),
+      rate: utils.formatUnits(ilk.rate, 27),
+      spot: utils.formatUnits(ilk.spot, 27),
+      mat: utils.formatUnits(spotIlk.mat, 27),
+      line: utils.formatUnits(ilk.line, 45),
+      dust: utils.formatUnits(ilk.dust, 45),
+      lineMax: utils.formatUnits(autoLineIlk.line, 45),
+      gap: utils.formatUnits(autoLineIlk.gap, 45),
+      ttl: autoLineIlk.ttl,
+      lastInc: this.unixToDateTime(autoLineIlk.lastInc),
+      chop: utils.formatUnits(dogIlk.chop, 18),
+      hole: utils.formatUnits(dogIlk.hole, 45),
+      dirt: utils.formatUnits(dogIlk.dirt, 45),
+      buf: utils.formatUnits(clip.interface.decodeFunctionResult('buf', res[idx++])[0], 27),
+      tail: clip.interface.decodeFunctionResult('tail', res[idx++])[0],
+      cusp: utils.formatUnits(clip.interface.decodeFunctionResult('cusp', res[idx++])[0], 27),
+      chip: utils.formatUnits(clip.interface.decodeFunctionResult('chip', res[idx++])[0], 18),
+      tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
+      count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
+      kicks: clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber(),
+      cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
+      step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
+      drip: this.unixToDateTime(jugIlk.rho.toNumber()),
+      fee: this.getFee(base, jugIlk),
+      locked: utils.formatUnits(locked, units),
+      lockedBn: locked,
+      supply: utils.formatUnits(supply, units),
+      price: utils.formatUnits(price, 27),
+      value: value,
+      valueBn: valueBn
+    };
     if (zzz) {
-        r.zzz = this.unixToTime(+zzz + HOP);
+      r.zzz = this.unixToTime(+zzz + HOP);
     }
     if (priceNxt) {
       r.priceNxt = utils.formatEther(priceNxt);
@@ -957,53 +687,6 @@ class App extends Component {
       r.priceMedian = utils.formatEther(priceMedian);
     }
     return r;
-  }
-
-  getRwaIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
-    const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
-    const conduitInAdd = add[ilkSuffix + '_INPUT_CONDUIT']
-    const conduitOutAdd = add[ilkSuffix + '_OUTPUT_CONDUIT']
-    return [
-      [add.MCD_VAT, vat.interface.encodeFunctionData('ilks', [ilkBytes])],
-      [add.MCD_JUG, jug.interface.encodeFunctionData('ilks', [ilkBytes])],
-      [pipAdd, rwaPip.interface.encodeFunctionData('read', [])],
-      [gemAdd, gem.interface.encodeFunctionData('totalSupply', [])],
-      [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])],
-      [add.MCD_DAI, gem.interface.encodeFunctionData('balanceOf', [conduitInAdd])],
-      [add.MCD_DAI, gem.interface.encodeFunctionData('balanceOf', [conduitOutAdd])],
-      [add.ILK_REGISTRY, ilkRegistry.interface.encodeFunctionData('name', [ilkBytes])],
-    ]
-  }
-
-  getRwaIlkMap = (res, idx, token, ilkName, gem, units, base) => {
-    const ilk = vat.interface.decodeFunctionResult('ilks', res[idx++])
-    const jugIlk = jug.interface.decodeFunctionResult('ilks', res[idx++])
-    const price = rwaPip.interface.decodeFunctionResult('read', res[idx++])[0]
-    const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
-    const locked = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
-    const conduitIn = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
-    const conduitOut = gem.interface.decodeFunctionResult('balanceOf', res[idx++])[0]
-    const name = ilkRegistry.interface.decodeFunctionResult('name', res[idx++])
-
-    return {
-      token: token,
-      ilk: ilkName,
-      name: String(name).replace(ilkName + ': ', ''),
-      Art:  utils.formatEther(ilk.Art),
-      rate: utils.formatUnits(ilk.rate, 27),
-      spot: utils.formatUnits(ilk.spot, 27),
-      line: utils.formatUnits(ilk.line, 45),
-      dust: utils.formatUnits(ilk.dust, 45),
-      drip: this.unixToDateTime(jugIlk.rho.toNumber()),
-      fee: this.getFee(base, jugIlk),
-      locked: utils.formatEther(locked),
-      supply: utils.formatEther(supply),
-      conduitIn: utils.formatEther(conduitIn),
-      conduitOut: utils.formatEther(conduitOut),
-      price: utils.formatEther(price),
-      value: utils.formatUnits(locked.mul(ethers.BigNumber.from(price).mul(DP10)), 45),
-      valueBn: locked.mul(ethers.BigNumber.from(price).mul(DP10)),
-    }
   }
 
   getPsmIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd, psm) => {
@@ -1111,18 +794,18 @@ class App extends Component {
   }
 
   getLerp = (start, end, startTime, duration, timestamp) => {
-      // from LerpFactory.sol:75
-      // https://etherscan.io/address/0x0239311b645a8ef91dc899471497732a1085ba8b#code#L75
-      if (timestamp.gte(startTime)) {
-          if (timestamp.lt(startTime.add(duration))) {
-              let t = timestamp.sub(startTime).mul(WAD).div(duration)
-              return end.mul(t).div(WAD).add(start).sub(start.mul(t).div(WAD))
-          } else {
-              return ethers.BigNumber.from("0")
-          }
+    // from LerpFactory.sol:75
+    // https://etherscan.io/address/0x0239311b645a8ef91dc899471497732a1085ba8b#code#L75
+    if (timestamp.gte(startTime)) {
+      if (timestamp.lt(startTime.add(duration))) {
+        let t = timestamp.sub(startTime).mul(WAD).div(duration)
+        return end.mul(t).div(WAD).add(start).sub(start.mul(t).div(WAD))
       } else {
-          return ethers.BigNumber.from("0")
+        return ethers.BigNumber.from("0")
       }
+    } else {
+      return ethers.BigNumber.from("0")
+    }
   }
 
   isLoaded = () => {
@@ -1136,10 +819,10 @@ class App extends Component {
   }
   unixToTime = stamp => new Date(stamp * 1000).toLocaleTimeString("en-US")
 
-  calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60*60*24*365) * 1 - 1;
+  calcFee = rate => parseFloat(utils.formatUnits(rate, 27)) ** (60 * 60 * 24 * 365) * 1 - 1;
 
   getFee = (base, ilk) => {
-    const {duty} = ilk;
+    const { duty } = ilk;
     const combo = duty.add(base);
     return this.calcFee(combo);
   }
@@ -1200,24 +883,24 @@ class App extends Component {
     const dsrRate = potFee / 100
 
     const mkrAnnualBurn = (
-    (  (daiFromETH * stabilityETH)
-     + (daiFromETHB * stabilityETHB)
-     + (daiFromBAT * stabilityBAT)
-     + (daiFromWBTC * stabilityWBTC)
-     + (daiFromUSDC * stabilityUSDC)
-     + (daiFromUSDCB * stabilityUSDCB)
-     + (daiFromTUSD * stabilityTUSD)
-     + (daiFromKNCA * stabilityKNCA)
-     + (daiFromZRXA * stabilityZRXA)
-     + (daiFromMANAA * stabilityMANAA)
-     + (daiFromPAXA * stabilityPAXA)
-     + (daiFromUSDTA * stabilityUSDTA)
-     + (daiFromCOMPA * stabilityCOMPA)
-     + (daiFromLRCA * stabilityLRCA)
-     + (daiFromLINKA * stabilityLINKA)
-     - (dsrDai * dsrRate)
-    )
-    / mkrPrice
+      ((daiFromETH * stabilityETH)
+        + (daiFromETHB * stabilityETHB)
+        + (daiFromBAT * stabilityBAT)
+        + (daiFromWBTC * stabilityWBTC)
+        + (daiFromUSDC * stabilityUSDC)
+        + (daiFromUSDCB * stabilityUSDCB)
+        + (daiFromTUSD * stabilityTUSD)
+        + (daiFromKNCA * stabilityKNCA)
+        + (daiFromZRXA * stabilityZRXA)
+        + (daiFromMANAA * stabilityMANAA)
+        + (daiFromPAXA * stabilityPAXA)
+        + (daiFromUSDTA * stabilityUSDTA)
+        + (daiFromCOMPA * stabilityCOMPA)
+        + (daiFromLRCA * stabilityLRCA)
+        + (daiFromLINKA * stabilityLINKA)
+        - (dsrDai * dsrRate)
+      )
+      / mkrPrice
     )
 
     return mkrAnnualBurn
@@ -1257,7 +940,7 @@ class App extends Component {
           return result
         }
       }
-    } catch(err) {
+    } catch (err) {
       console.error("Historical debt could not be obtained due to an error.", err)
     }
 
@@ -1271,7 +954,7 @@ class App extends Component {
         <Router basename="/">
           {/* <NavBar /> */}
           <div className="notification is-primary has-text-centered">
-            { /* eslint-disable-next-line */ }
+            { /* eslint-disable-next-line */}
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
             Welcome Societe Generale 🇫🇷 and H.V. BANK 🏦
@@ -1310,15 +993,15 @@ class App extends Component {
     } else {
       return (
         <section className="section">
-         <div className="container has-text-centered">
-           <figure className="image is-128x128 container">
-             <img src={daiLogo} alt="Dai Logo" />
-           </figure>
-           <br />
-           <progress className="progress is-small is-primary" max="100">15%</progress>
+          <div className="container has-text-centered">
+            <figure className="image is-128x128 container">
+              <img src={daiLogo} alt="Dai Logo" />
+            </figure>
+            <br />
+            <progress className="progress is-small is-primary" max="100">15%</progress>
             <p>{t('daistats.one_sec')}</p>
-         </div>
-       </section>
+          </div>
+        </section>
       )
     }
   }
@@ -1328,10 +1011,10 @@ const NavBar = () => {
   return (
     <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="container">
-      <div className="navbar-brand">
-        <Link className="navbar-item" to="/">Home</Link>
-        <Link className="navbar-item" to="/dai">What's the total supply of Dai?</Link>
-      </div>
+        <div className="navbar-brand">
+          <Link className="navbar-item" to="/">Home</Link>
+          <Link className="navbar-item" to="/dai">What's the total supply of Dai?</Link>
+        </div>
       </div>
     </nav>
   )
