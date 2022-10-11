@@ -91,7 +91,7 @@ const Main = (props) => {
             <Tab><p className="is-size-5">Auctions</p></Tab>
             <Tab><p className="is-size-5">Ecosystem</p></Tab>
             <Tab><p className="is-size-5">Addresses</p></Tab>
-            <Tab><p className="is-size-5">Vesting</p></Tab>
+            {/* <Tab><p className="is-size-5">Vesting</p></Tab> */}
           </TabList>
 
           <TabPanel>
@@ -758,7 +758,7 @@ const Main = (props) => {
               </div>
             </div>
           </TabPanel>
-          <TabPanel>
+          {/* <TabPanel>
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
@@ -793,7 +793,7 @@ const Main = (props) => {
                 </div>
               </div>
             </div>
-          </TabPanel>
+          </TabPanel> */}
         </Tabs>
       </div>
     </div>

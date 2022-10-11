@@ -951,7 +951,7 @@ class App extends Component {
       return (
         <Router basename="/">
           {/* <NavBar /> */}
-          <div className="notification is-primary has-text-centered">
+          <div className="notification has-text-centered">
             { /* eslint-disable-next-line */}
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
