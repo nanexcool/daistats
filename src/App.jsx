@@ -12,6 +12,9 @@ import eth from './web3';
 import Main from './Main'
 import Dai from './Dai'
 import daiLogo from './dai-pixel.png'
+import { configs } from "./config"
+const { ETHERSCAN_ETHSUPPLY_URL } = configs
+
 // import confetti from './confetti'
 
 const ethers = require('ethers')
@@ -826,7 +829,7 @@ class App extends Component {
   }
 
   etherscanEthSupply = async () => {
-    const json = await jsonFetch('https://api.etherscan.io/api?action=ethsupply&module=stats&apikey=N5TICDBVG4MHDS7CGPJ9MHXRYC1Y84963N');
+    const json = await jsonFetch(ETHERSCAN_ETHSUPPLY_URL);
     return json.result;
   }
 

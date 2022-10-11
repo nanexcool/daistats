@@ -9,8 +9,8 @@ import Vest from './components/Vest';
 import { Tab, Tabs, TabList, TabPanel } from 'react-tabs';
 import 'react-tabs/style/react-tabs.css';
 import { useLocation, useHistory } from "react-router-dom";
-
-
+import { configs } from "./config"
+const { ETHERSCAN_URL, CHAINLOG_URL } = configs
 const formatAmount = new Intl.NumberFormat('en-US', {
   style: 'decimal',
   minimumFractionDigits: 0,
@@ -310,7 +310,7 @@ const Main = (props) => {
                 <div className="box has-text-centered">
                   <h3 className="title" title={props.mkrSupply}>{formatAmount.format(props.mkrSupply)}</h3>
                   <p className="subtitle is-size-4">{t('daistats.token_supply', { token: 'GSUc' })}</p>
-                  <a href={`https://etherscan.io/address/${props.MCD_PAUSE_PROXY}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.MCD_PAUSE_PROXY}`} target="_blank" rel="noopener noreferrer">
                     <p className="subtitle is-size-6" title={props.protocolTreasury}>
                       Protocol Treasury: {formatAmount.format(props.protocolTreasury)} GSUc
                     </p>
@@ -484,7 +484,7 @@ const Main = (props) => {
                 <div className="box has-text-centered">
                   <h3 className="title" title={props.bkrSupply}>{formatAmount.format(props.bkrSupply)}</h3>
                   <p className="title subtitle is-size-4">
-                    <a href={`https://etherscan.io/token/${props.BKR}`} target="_blank" rel="noopener noreferrer">
+                    <a href={`${ETHERSCAN_URL}/token/${props.BKR}`} target="_blank" rel="noopener noreferrer">
                       {t('daistats.token_supply', { token: 'Breaker (BKR)' })}
                     </a>
                   </p>
@@ -500,18 +500,18 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.GOV_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.GOV_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> GovAlpha</h3>
                     <p className="subtitle is-size-7">{props.GOV_MULTISIG}</p>
                   </a>
-                  <a href={`https://etherscan.io/address/${props.GOV_MULTISIG_2}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.GOV_MULTISIG_2}`} target="_blank" rel="noopener noreferrer">
                     <p className="subtitle is-size-7">{props.GOV_MULTISIG_2}</p>
                   </a>
                 </div>
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.RISK_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.RISK_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Risk Core Unit</h3>
                     <p className="subtitle is-size-7">{props.RISK_MULTISIG}</p>
                   </a>
@@ -519,7 +519,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.GRO_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.GRO_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Growth Core Unit</h3>
                     <p className="subtitle is-size-7">{props.GRO_MULTISIG}</p>
                   </a>
@@ -529,7 +529,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.IN_WALLET}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.IN_WALLET}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Data Insights Core Unit</h3>
                     <p className="subtitle is-size-7">{props.IN_WALLET}</p>
                   </a>
@@ -537,11 +537,11 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.COM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.COM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Governance Communications Core Unit</h3>
                     <p className="subtitle is-size-7">{props.COM_MULTISIG}</p>
                   </a>
-                  <a href={`https://etherscan.io/address/${props.COM_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.COM_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <p className="subtitle is-size-7">{props.COM_ER_MULTISIG}</p>
                   </a>
                 </div>
@@ -550,7 +550,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.RWF_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.RWF_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Real World Core Unit</h3>
                     <p className="subtitle is-size-7">{props.RWF_MULTISIG}</p>
                   </a>
@@ -558,11 +558,11 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.CP_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.CP_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Content Production Unit</h3>
                     <p className="subtitle is-size-7">{props.CP_MULTISIG}</p>
                   </a>
-                  <a href={`https://etherscan.io/address/${props.CP_MULTISIG_2}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.CP_MULTISIG_2}`} target="_blank" rel="noopener noreferrer">
                     <p className="subtitle is-size-7">{props.CP_MULTISIG_2}</p>
                   </a>
                 </div>
@@ -571,7 +571,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SES_AUDITORS_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SES_AUDITORS_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Sustainable Ecosystem Scaling Core Unit (SES)</h3>
                     <p className="subtitle is-size-7">{props.SES_AUDITORS_MULTISIG}</p>
                   </a>
@@ -581,7 +581,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> SES Permanent Team</h3>
                     <p className="subtitle is-size-7">{props.SES_PERMANENT_TEAM_MULTISIG}</p>
                   </a>
@@ -589,7 +589,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> SES Incubation Program</h3>
                     <p className="subtitle is-size-7">{props.SES_INCUBATION_PROGRAM_MULTISIG}</p>
                   </a>
@@ -597,7 +597,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SES_PERMANENT_TEAM_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> SES Grants Program</h3>
                     <p className="subtitle is-size-7">{props.SES_GRANTS_PROGRAM_MULTISIG}</p>
                   </a>
@@ -607,7 +607,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SNE_WALLET}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SNE_WALLET}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> StarkNet Engineering Core Unit</h3>
                     <p className="subtitle is-size-7">{props.SNE_WALLET}</p>
                   </a>
@@ -615,7 +615,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.SH_WALLET}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.SH_WALLET}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Strategic Happiness Core Unit</h3>
                     <p className="subtitle is-size-7">{props.SH_WALLET}</p>
                   </a>
@@ -625,7 +625,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.PE_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.PE_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Protocol Engineering Core Unit</h3>
                     <p className="subtitle is-size-7">{props.PE_MULTISIG}</p>
                   </a>
@@ -635,7 +635,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.ORA_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.ORA_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Oracle Core Unit</h3>
                     <p className="subtitle is-size-7">{props.ORA_MULTISIG}</p>
                   </a>
@@ -643,7 +643,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.ORA_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.ORA_ER_MULTISIG}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Oracle Emergency Fund</h3>
                     <p className="subtitle is-size-7">{props.ORA_ER_MULTISIG}</p>
                   </a>
@@ -653,7 +653,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.DAIF_WALLET}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.DAIF_WALLET}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Dai Foundation Core Unit</h3>
                     <p className="subtitle is-size-7">{props.DAIF_WALLET}</p>
                   </a>
@@ -661,7 +661,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.DAIF_EF_WALLET}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.DAIF_EF_WALLET}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Dai Foundation Emergency Fund</h3>
                     <p className="subtitle is-size-7">{props.DAIF_EF_WALLET}</p>
                   </a>
@@ -672,7 +672,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/address/${props.hat}#code`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/address/${props.hat}#code`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> Hat</h3>
                     <p className="subtitle is-size-7">{props.hat}</p>
                   </a>
@@ -695,7 +695,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href="https://chainlog.makerdao.com/" target="_blank" rel="noopener noreferrer">
+                  <a href={CHAINLOG_URL} target="_blank" rel="noopener noreferrer">
                     <h3 className="title">Multi-Collateral GSUc Public Releases</h3>
                   </a>
                 </div>
@@ -704,7 +704,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/token/${props.MCD_DAI}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/token/${props.MCD_DAI}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> GSUc</h3>
                     <p className="subtitle is-size-7">{props.MCD_DAI}</p>
                   </a>
@@ -712,7 +712,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/token/${props.MCD_GOV}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/token/${props.MCD_GOV}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> GSUp</h3>
                     <p className="subtitle is-size-7">{props.MCD_GOV}</p>
                   </a>
@@ -722,7 +722,7 @@ const Main = (props) => {
             <div className="columns">
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/token/${props.ETH}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/token/${props.ETH}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> WETH</h3>
                     <p className="subtitle is-size-7">{props.ETH}</p>
                   </a>
@@ -730,7 +730,7 @@ const Main = (props) => {
               </div>
               <div className="column">
                 <div className="box has-text-centered">
-                  <a href={`https://etherscan.io/token/${props.WBTC}`} target="_blank" rel="noopener noreferrer">
+                  <a href={`${ETHERSCAN_URL}/token/${props.WBTC}`} target="_blank" rel="noopener noreferrer">
                     <h3 className="title"><i className="fal fa-file-code"></i> WBTC</h3>
                     <p className="subtitle is-size-7">{props.WBTC}</p>
                   </a>
