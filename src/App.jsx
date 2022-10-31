@@ -1322,7 +1322,7 @@ class App extends Component {
             <br />
           {/* Coming 🔜 🚀Rocket Pool ETH!🚀 */}
           <br />
-          RIP Nicolai 1993 - 2022
+          RIP Nikolai 1993 - 2022
           <br />
           Your code runs eternally
           <br />
