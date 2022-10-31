@@ -180,6 +180,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="RWA004-A" />
         <Collateral {...props} ilk="RWA005-A" />
         <Collateral {...props} ilk="RWA006-A" />
+        <Collateral {...props} ilk="RWA007-A" />
         <Collateral {...props} ilk="RWA008-A" />
         <Collateral {...props} ilk="RWA009-A" />
           </TabPanel>
@@ -305,7 +306,10 @@ const Main = (props) => {
           <Pip {...props} token="RWA006" ilk="RWA006-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
+          <Pip {...props} token="RWA007" ilk="RWA007-A" formater={formatTwoDp} />
           <Pip {...props} token="RWA008" ilk="RWA008-A" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
           <Pip {...props} token="RWA009" ilk="RWA009-A" formater={formatTwoDp} />
         </div>
 
@@ -1094,22 +1098,14 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.WSTETH}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> WSTETH</h3>
-                <p className="subtitle is-size-7">{props.WSTETH}</p>
+              <a href={`https://etherscan.io/token/${props.RWA007}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA007</h3>
+                <p className="subtitle is-size-7">{props.RWA007}</p>
               </a>
             </div>
           </div>
         </div>
         <div className="columns">
-          <div className="column">
-            <div className="box has-text-centered">
-              <a href={`https://etherscan.io/token/${props.CRVV1ETHSTETH}`} target="_blank" rel="noopener noreferrer">
-                <h3 className="title"><i className="fal fa-file-code"></i> CrvV1EthSteth</h3>
-                <p className="subtitle is-size-7">{props.CRVV1ETHSTETH}</p>
-              </a>
-            </div>
-          </div>
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.RWA008}`} target="_blank" rel="noopener noreferrer">
@@ -1128,6 +1124,22 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.WSTETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> WSTETH</h3>
+                <p className="subtitle is-size-7">{props.WSTETH}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.CRVV1ETHSTETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> CrvV1EthSteth</h3>
+                <p className="subtitle is-size-7">{props.CRVV1ETHSTETH}</p>
+              </a>
+            </div>
+          </div>
           <div className="column">
             <div className="box has-text-centered">
               <a href={`https://etherscan.io/token/${props.RETH}`} target="_blank" rel="noopener noreferrer">

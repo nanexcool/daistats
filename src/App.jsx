@@ -140,6 +140,14 @@ add["STARKNET_DAI_BRIDGE"] = "0x659a00c33263d9254Fed382dE81349426C795BB6"
 add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 //STARKNET_ESCROW_MOM: 0xc238E3D63DfD677Fa0FA9985576f0945C581A266
 
+// -- RWA007
+add["RWA007"] = "0x078fb926b041a816FaccEd3614Cf1E4bc3C723bD"
+add["PIP_RWA007"] = "0x7bb4BcA758c4006998a2769776D9E4E6D86e0Dab"
+add["MCD_JOIN_RWA007_A"] = "0x476aaD14F42469989EFad0b7A31f07b795FF0621"
+add["RWA007_A_URN"] = "0x481bA2d2e86a1c41427893899B5B0cEae41c6726"
+add["RWA007_A_JAR"] = "0xef1B095F700BE471981aae025f92B03091c3AD47"
+add["RWA007_A_INPUT_CONDUIT"] = "0x701C3a384c613157bf473152844f368F2d6EF191" // NOTE RWA007 has no input conduit, set to 0 below
+add["RWA007_A_OUTPUT_CONDUIT"] = "0x701C3a384c613157bf473152844f368F2d6EF191"
 // -- RWA008 MIP21 components --
 add["RWA008"] = "0xb9737098b50d7c536b6416dAeB32879444F59fCA"
 add["PIP_RWA008"] = "0x2623dE50D8A6FdC2f0D583327142210b8b464bfd"
@@ -254,6 +262,7 @@ const rwa003 = build(add.RWA003, "ERC20")
 const rwa004 = build(add.RWA004, "ERC20")
 const rwa005 = build(add.RWA005, "ERC20")
 const rwa006 = build(add.RWA006, "ERC20")
+const rwa007 = build(add.RWA007, "ERC20")
 const rwa008 = build(add.RWA008, "ERC20")
 const rwa009 = build(add.RWA009, "ERC20")
 const bkr = build(add.BKR, "ERC20")
@@ -334,6 +343,7 @@ const rwa003AIlkBytes = utils.formatBytes32String("RWA003-A")
 const rwa004AIlkBytes = utils.formatBytes32String("RWA004-A")
 const rwa005AIlkBytes = utils.formatBytes32String("RWA005-A")
 const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
+const rwa007AIlkBytes = utils.formatBytes32String("RWA007-A")
 const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
 const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
@@ -525,6 +535,8 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa004AIlkBytes, 'RWA004_A', rwa004, add.RWA004, add.PIP_RWA004))
      .concat(this.getRwaIlkCall(rwa005AIlkBytes, 'RWA005_A', rwa005, add.RWA005, add.PIP_RWA005))
      .concat(this.getRwaIlkCall(rwa006AIlkBytes, 'RWA006_A', rwa006, add.RWA006, add.PIP_RWA006))
+     // FIXME RWA007 has AutoLine
+     .concat(this.getRwaIlkCall(rwa007AIlkBytes, 'RWA007_A', rwa007, add.RWA007, add.PIP_RWA007))
      .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
      .concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
@@ -742,6 +754,7 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA004", "RWA004-A", rwa004, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA005", "RWA005-A", rwa005, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA006", "RWA006-A", rwa006, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA007", "RWA007-A", rwa007, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
@@ -764,6 +777,7 @@ class App extends Component {
     const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
     const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
+    ilksByName["RWA007-A"]["conduitIn"] = ethers.BigNumber.from("0") // Monetalis Clydesdale has no input conduit
     ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
 
     // if (parseInt(utils.formatUnits(res[1], 45)) >= 300000000) confetti.rain()
