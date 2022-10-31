@@ -109,6 +109,7 @@ add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
+add["MEDIAN_RETH"] = "0xeE7F0b350aA119b3d05DC733a4621a81972f7D47"
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
@@ -155,6 +156,28 @@ add["RWA009_A_URN"] = "0x1818EE501cd28e01E058E7C283E178E9e04a1e79"
 add["RWA009_A_JAR"] = "0x6C6d4Be2223B5d202263515351034861dD9aFdb6"
 add["RWA009_A_INPUT_CONDUIT"] = "0x508D982e13263Fc8e1b5A4E6bf59b335202e36b4" // NOTE RWA009 has no input conduit, explicity set to 0 below
 add["RWA009_A_OUTPUT_CONDUIT"] = "0x508D982e13263Fc8e1b5A4E6bf59b335202e36b4"
+
+// Teleport
+add["TELEPORT_JOIN"] = "0x41Ca7a7Aa2Be78Cf7CB80C0F4a9bdfBC96e81815"
+add["ORACLE_AUTH"] = "0x324a895625E7AE38Fc7A6ae91a71e7E937Caa7e6"
+add["ROUTER"] = "0xeEf8B35eD538b6Ef7DbA82236377aDE4204e5115"
+add["LINEAR_FEE"] = "0xA7C088AAD64512Eff242901E33a516f2381b8823"
+add["TELEPORT_GATEWAY_OPT"] = "0x920347f49a9dbe50865EB6161C3B2774AC046A7F"
+add["TELEPORT_L2_GATEWAY_OPT"] = "0x18d2CF2296c5b29343755E6B7e37679818913f88"
+add["MESSENGER_OPT"] = "0x25ace71c97B33Cc4729CF772ae268934F7ab5fA1"
+add["TELEPORT_GATEWAY_ARB"] = "0x22218359E78bC34E532B653198894B639AC3ed72"
+add["TELEPORT_L2_GATEWAY_ARB"] = "0x5dBaf6F2bEDebd414F8d78d13499222347e59D5E"
+add["INBOX_ARB"] = "0x4Dbd4fc535Ac27206064B68FfCf827b0A60BAB3f"
+
+add["DOMAIN_ETH"] = "ETH-MAIN-A"
+add["DOMAIN_OPT"] = "OPT-MAIN-A"
+add["DOMAIN_ARB"] = "ARB-ONE-A"
+
+add["RETH"] = "0xae78736Cd615f374D3085123A210448E74Fc6393"
+add["PIP_RETH"] = "0xeE7F0b350aA119b3d05DC733a4621a81972f7D47"
+add["MCD_JOIN_RETH_A"] = "0xC6424e862f1462281B0a5FAc078e4b63006bDEBF"
+add["MCD_CLIP_RETH_A"] = "0x27CA5E525ea473eD52Ea9423CD08cCc081d96a98"
+add["MCD_CLIP_CALC_RETH_A"] = "0xc59B62AFC96cf9737F717B5e5815070C0f154396"
 
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
@@ -237,6 +260,7 @@ const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
+const reth = build(add.RETH, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
 const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
@@ -317,6 +341,8 @@ const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
 const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
+const rethAIlkBytes = utils.formatBytes32String("RETH-A")
+const teleportAIlkBytes = utils.formatBytes32String("TELEPORT-FW-A")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -511,6 +537,8 @@ class App extends Component {
      .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
+     //.concat(this.getIlkCall(teleportAIlkBytes, 'TELEPORT_FW_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
+     .concat(this.getIlkCall(rethAIlkBytes, 'RETH_A', reth, add.RETH, add.PIP_RETH))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -568,6 +596,8 @@ class App extends Component {
       this.getPrice(add.PIP_WSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getPrice(add.MEDIAN_WSTETH, this.POSITION_MEDIAN_VAL),
       this.getPrice(add.PIP_CRVV1ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
+      this.getPrice(add.PIP_RETH, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_RETH, this.POSITION_MEDIAN_VAL),
       this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
     ]
 
@@ -580,7 +610,8 @@ class App extends Component {
         univ2daiethPriceNxt, univ2wbtcethPriceNxt, univ2usdcethPriceNxt, univ2daiusdcPriceNxt,
         univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
         univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
-        wstethPriceMedian, crvv1ethstethPriceNext, historicalDebt] = await Promise.all(promises)
+        wstethPriceMedian, crvv1ethstethPriceNext, rethPriceNxt, rethPriceMedian,
+        historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
 
@@ -723,7 +754,8 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
@@ -1274,7 +1306,7 @@ class App extends Component {
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
-            Welcome Societe Generale 🇫🇷 and H.V. BANK 🏦
+            Coming 🔜 🚀Rocket Pool ETH!🚀
             <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>

@@ -153,6 +153,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="ETH-C" supply={props.ethSupply} />
         <Collateral {...props} ilk="WSTETH-A" />
         <Collateral {...props} ilk="WSTETH-B" />
+        <Collateral {...props} ilk="RETH-A" />
         <Collateral {...props} ilk="USDC-A" />
         <Collateral {...props} ilk="WBTC-A" />
         <Collateral {...props} ilk="WBTC-B" />
@@ -268,14 +269,15 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="ETH" ilk="ETH-A" formater={formatTwoDp} />
           <Pip {...props} token="wstETH" ilk="WSTETH-A" formater={formatTwoDp} />
-          <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
+          <Pip {...props} token="rETH" ilk="RETH-A" formater={formatTwoDp} />
         </div>
         <div className="columns">
+          <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
           <Pip {...props} token="LINK" ilk="LINK-A" formater={formatTwoDp} />
           <Pip {...props} token="MANA" ilk="MANA-A" formater={formatCurrency} />
-          <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
         </div>
         <div className="columns">
+          <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
           <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
           <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
@@ -399,6 +401,7 @@ const Main = (props) => {
                   <Clip {...props} token="ETH-C" ilk="ETH-C"/>
                   <Clip {...props} token="WSTETH-A" ilk="WSTETH-A"/>
                   <Clip {...props} token="WSTETH-B" ilk="WSTETH-B"/>
+                  <Clip {...props} token="RETH-A" ilk="RETH-A"/>
                   <Clip {...props} token="WBTC-A" ilk="WBTC-A"/>
                   <Clip {...props} token="WBTC-B" ilk="WBTC-B"/>
                   <Clip {...props} token="WBTC-C" ilk="WBTC-C"/>
@@ -1120,6 +1123,16 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.RWA009}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA009</h3>
                 <p className="subtitle is-size-7">{props.RWA009}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RETH}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RETH</h3>
+                <p className="subtitle is-size-7">{props.RETH}</p>
               </a>
             </div>
           </div>
