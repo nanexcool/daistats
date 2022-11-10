@@ -37,6 +37,7 @@ const ILK_TO_COLOUR = {
     "GUSD": "hsl(187, 100%, 47%)",
     "PSM-GUSD-A": "hsl(187, 100%, 47%)",
     "RWA007-A": "hsl(21, 50%, 26%)",
+    "RWA007": "hsl(21, 50%, 26%)",
     "Others": "hsl(348, 100%, 61%)"}
 
 // bluma light
