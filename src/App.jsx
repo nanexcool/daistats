@@ -109,7 +109,7 @@ add["MEDIAN_UNIV2WBTCDAI"] = "0x231B7589426Ffe1b75405526fC32aC09D44364c4"
 add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
-add["MEDIAN_RETH"] = "0xeE7F0b350aA119b3d05DC733a4621a81972f7D47"
+add["MEDIAN_RETH"] = "0xF86360f0127f8A441Cfca332c75992D1C692b3D1"
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
@@ -768,7 +768,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base, rethPriceNxt, rethPriceMedian)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
