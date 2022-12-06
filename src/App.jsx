@@ -1316,17 +1316,11 @@ class App extends Component {
       return (
         <Router basename="/">
           {/* <NavBar /> */}
-          <div className="notification is-primary has-text-centered" style={{backgroundColor: '#000000'}}>
+          <div className="notification is-primary has-text-centered">
             { /* eslint-disable-next-line */ }
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
           {/* Coming 🔜 🚀Rocket Pool ETH!🚀 */}
-          <br />
-          RIP Nikolai 1993 - 2022
-          <br />
-          Your code runs eternally
-          <br />
-            <br />
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
