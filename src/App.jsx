@@ -142,12 +142,6 @@ add["DOMAIN_ETH"] = "ETH-MAIN-A"
 add["DOMAIN_OPT"] = "OPT-MAIN-A"
 add["DOMAIN_ARB"] = "ARB-ONE-A"
 
-// legacy StairstepExponentialDecrease addresses for interim compatibility
-add["MCD_CLIP_CALC_GUSD_A"] = "0xf7e80359cb9c4e6d178e6689ed8a6a6f91060747"
-add["MCD_CLIP_CALC_PAXUSD_A"] = "0xab98de83840b8367046383d2adef9959e130923e"
-add["MCD_CLIP_CALC_TUSD_A"] = "0x059acdf311e38aaf77139638228d393ff27639bf"
-add["MCD_CLIP_CALC_USDC_A"] = "0x0fca4ba0b80123b5d22dd3c8bf595f3e561d594d"
-
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -835,7 +829,7 @@ class App extends Component {
   }
 
   getIlkCall = (ilkBytes, ilkSuffix, gem, gemAdd, pipAdd) => {
-    var pipCall, lockedCall;
+    var pipCall, lockedCall, calcCall1, calcCall2;
     const gemJoinAdd = add['MCD_JOIN_' + ilkSuffix]
     const clipAdd = add['MCD_CLIP_' + ilkSuffix]
     const calcAdd = add['MCD_CLIP_CALC_' + ilkSuffix]
@@ -851,6 +845,14 @@ class App extends Component {
         lockedCall = [gemJoinAdd, cropJoin.interface.encodeFunctionData('total', [])]
     } else {
         lockedCall = [gemAdd, gem.interface.encodeFunctionData('balanceOf', [gemJoinAdd])]
+    }
+
+    if ([gusdAIlkBytes, usdcAIlkBytes, paxAIlkBytes, tusdAIlkBytes].includes(ilkBytes)) {
+        calcCall1 = [clipAdd, clip.interface.encodeFunctionData('kicks', [])] // dummy so call counts match
+        calcCall2 = [calcAdd, calcLinear.interface.encodeFunctionData('tau', [])]
+    } else {
+        calcCall1 = [calcAdd, calc.interface.encodeFunctionData('cut', [])]
+        calcCall2 = [calcAdd, calc.interface.encodeFunctionData('step', [])]
     }
 
     return [
@@ -870,8 +872,8 @@ class App extends Component {
       [clipAdd, clip.interface.encodeFunctionData('tip', [])],
       [clipAdd, clip.interface.encodeFunctionData('count', [])],
       [clipAdd, clip.interface.encodeFunctionData('kicks', [])],
-      [calcAdd, calc.interface.encodeFunctionData('cut', [])], // 15
-      [calcAdd, calc.interface.encodeFunctionData('step', [])],
+      calcCall1,
+      calcCall2
     ]
   }
 
@@ -943,8 +945,6 @@ class App extends Component {
         tip: utils.formatUnits(clip.interface.decodeFunctionResult('tip', res[idx++])[0], 45),
         count: clip.interface.decodeFunctionResult('count', res[idx++])[0],
         kicks: clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber(),
-        cut: utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27),
-        step: calc.interface.decodeFunctionResult('step', res[idx++])[0],
         drip: this.unixToDateTime(jugIlk.rho.toNumber()),
         fee: this.getFee(base, jugIlk),
         locked: utils.formatUnits(locked, units),
@@ -956,6 +956,13 @@ class App extends Component {
       };
     if (zzz) {
         r.zzz = this.unixToTime(+zzz + HOP);
+    }
+    if (['GUSD-A', 'USDC-A', 'USDP-A', 'TUSD-A'].includes(ilkName)) {
+        r.dummy = clip.interface.decodeFunctionResult('kicks', res[idx++])[0].toNumber() //dummy so call counts match
+        r.tau = calcLinear.interface.decodeFunctionResult('tau', res[idx++])[0]
+    } else {
+        r.cut = utils.formatUnits(calc.interface.decodeFunctionResult('cut', res[idx++])[0], 27)
+        r.step = calc.interface.decodeFunctionResult('step', res[idx++])[0]
     }
     if (priceNxt) {
       r.priceNxt = utils.formatEther(priceNxt);

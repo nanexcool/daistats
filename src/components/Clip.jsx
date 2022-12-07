@@ -43,8 +43,11 @@ function Clip(props) {
             <td className="has-text-right">{formatAmount.format(ilk.dirt)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.hole)}</td>
             <td className="has-text-right">{formatPercent.format(Math.abs(1 - ilk.chop))}</td>
-            <td className="has-text-right">{formatAmount.format(ilk.cut)}</td>
-            <td className="has-text-right">{formatAmount.format(ilk.step)}</td>
+            {ilk.tau ? <td className="has-text-right" colspan="2">{formatAmount.format(ilk.tau)} Sec to zero price</td> :
+            <>
+              <td className="has-text-right">{formatAmount.format(ilk.cut)}</td>
+              <td className="has-text-right">{formatAmount.format(ilk.step)}</td>
+            </>}
             <td className="has-text-right">{formatAmount.format(ilk.buf)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.cusp)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.tail / 60)}</td>
@@ -94,9 +97,11 @@ from clip:
     uint256 public stopped = 0;
 
 clip_calc:
-    uint256 public step; // Length of time between price drops [seconds]
-    uint256 public cut;  // Per-step multiplicative factor     [ray]
-
+    StairstepExponentialDecrease
+        uint256 public step; // Length of time between price drops [seconds]
+        uint256 public cut;  // Per-step multiplicative factor     [ray]
+    LinearDecrease
+        uint256 public tau;  // Seconds after auction start when the price reaches zero [seconds]
 */
 
 export default Clip
