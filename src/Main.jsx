@@ -193,6 +193,23 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mCompBalance}>{formatAmount.format(props.d3mCompBalance)}</h3>
+              <h4 className="title subtitle is-size-4">cDAI Supply</h4>
+              <h6 className="subtitle is-size-6" title={props.d3mCompMaxWithdraw}>Max Withdraw: {formatAmount.format(props.d3mCompMaxWithdraw)}</h6>
+            </div>
+          </div>
+        </div>
+      {/*
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.d3mCompMaxDeposit}>{formatAmount.format(props.d3mCompMaxDeposit)}</h3>
+              <h4 className="title subtitle is-size-4">cDai Maximum Deposit</h4>
+            </div>
+          </div>
+        */}
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiTargetSupply}>{formatAmount.format(props.d3mAdaiTargetSupply)}</h3>
               <h4 className="title subtitle is-size-4">aDAI Target Supply</h4>
               <h6 className="subtitle is-size-6" title={props.d3mAdaiAdjustment}>Adjustment: {formatAmount.format(props.d3mAdaiAdjustment)}</h6>

@@ -142,6 +142,19 @@ add["DOMAIN_ETH"] = "ETH-MAIN-A"
 add["DOMAIN_OPT"] = "OPT-MAIN-A"
 add["DOMAIN_ARB"] = "ARB-ONE-A"
 
+//  d3m comp ILK = "DIRECT-COMPV2-DAI";
+add["D3M_HUB"] = "0x12F36cdEA3A28C35aC8C6Cc71D9265c17C74A27F"
+add["D3M_MOM"] = "0x1AB3145E281c01a1597c8c62F9f060E8e3E02fAB"
+add["D3M_MOM_LEGACY"] = add["DIRECT_MOM_LEGACY"]
+add["D3M_COMPOUND_POOL"] = "0x621fE4Fde2617ea8FFadE08D0FF5A862aD287EC2"
+add["D3M_COMPOUND_PLAN"] = "0xD0eA20f9f9e64A3582d569c8745DaCD746274AEe"
+add["D3M_ORACLE"] = "0x0e2bf18273c953B54FE0a9dEC5429E67851D9468"
+add["D3M_CDAI"] = "0x5d3a536E4D6DbD6114cc1Ead35777bAB948E3643"
+add["D3M_COMPTROLLER"] = "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
+add["D3M_COMP"] = "0xc00e94Cb662C3520282E6f5717214004A7f26888"
+add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
+add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
+
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -243,6 +256,8 @@ const flap = build(add.MCD_FLAP, "Flapper")
 const flop = build(add.MCD_FLOP, "Flopper")
 const d3mAdai = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI, "DssDirectDepositAaveDai")
 const aaveIncentive = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, "StakedTokenIncentivesController")
+//const d3mCdai = build(add.DIRECT_AAVEV2_DAI,  "CErc20Delegator")
+const d3mCompoundPool = build(add.D3M_COMPOUND_POOL, "D3MCompoundPool")
 const usdcPip = build(add.PIP_USDC, "DSValue")
 const tusdPip = build(add.PIP_TUSD, "DSValue")
 const paxPip = build(add.PIP_PAXUSD, "DSValue")
@@ -308,6 +323,7 @@ const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 const rethAIlkBytes = utils.formatBytes32String("RETH-A")
 const teleportAIlkBytes = utils.formatBytes32String("TELEPORT-FW-A")
+const d3mcdaiIlkBytes = utils.formatBytes32String("DIRECT-COMPV2-DAI")
 window.utils = utils
 window.add = add
 window.vat = vat
@@ -447,7 +463,10 @@ class App extends Component {
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])]
+      [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
+      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('assetBalance', [])],
+      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxDeposit', [])],
+      [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxWithdraw', [])],
 
     ].concat(this.getVestingCalls(add.MCD_VEST_DAI_LEGACY, vestDai, VEST_DAI_LEGACY_IDS))
      .concat(this.getVestingCalls(add.MCD_VEST_DAI, vestDai, VEST_DAI_IDS))
@@ -660,6 +679,9 @@ class App extends Component {
     const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
     const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
     const lerpHumpDuration = lerp.interface.decodeFunctionResult('duration', res[offset++])[0]
+    const d3mCompBalance = d3mCompoundPool.interface.decodeFunctionResult('assetBalance', res[offset++])[0]
+    const d3mCompMaxDeposit = d3mCompoundPool.interface.decodeFunctionResult('maxDeposit', res[offset++])[0]
+    const d3mCompMaxWithdraw = d3mCompoundPool.interface.decodeFunctionResult('maxWithdraw', res[offset++])[0]
 
     const ILK_CALL_COUNT = 17;
     const ILK_RWA_CALL_COUNT = 8;
@@ -823,6 +845,9 @@ class App extends Component {
         lerpHumpDuration: lerpHumpDuration,
         lerpHumpCurrent: utils.formatUnits(lerpHumpCurrent, 45),
         lerpHumpAdjustment: utils.formatUnits(lerpHumpCurrent.sub(surplusBuffer), 45),
+        d3mCompBalance: utils.formatUnits(d3mCompBalance, 18),
+        d3mCompMaxDeposit: utils.formatUnits(d3mCompMaxDeposit, 18),
+        d3mCompMaxWithdraw: utils.formatUnits(d3mCompMaxWithdraw, 18),
         historicalDebt,
       }
     })
