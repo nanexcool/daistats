@@ -165,6 +165,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="GUSD-A" />
         <Collateral {...props} ilk="RENBTC-A" />
         <Collateral {...props} ilk="MATIC-A" />
+        <Collateral {...props} ilk="GNO-A" />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
@@ -183,6 +184,10 @@ const Main = (props) => {
         <Collateral {...props} ilk="RWA007-A" />
         <Collateral {...props} ilk="RWA008-A" />
         <Collateral {...props} ilk="RWA009-A" />
+        <Collateral {...props} ilk="RWA010-A" />
+        <Collateral {...props} ilk="RWA011-A" />
+        <Collateral {...props} ilk="RWA012-A" />
+        <Collateral {...props} ilk="RWA013-A" />
           </TabPanel>
           <TabPanel>
         <Psm {...props} ilk="PSM-USDC-A" />
@@ -199,6 +204,7 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        <hr />
       {/*
           <div className="column">
             <div className="box has-text-centered">
@@ -291,15 +297,16 @@ const Main = (props) => {
         </div>
         <div className="columns">
           <Pip {...props} token="BTC" ilk="WBTC-A" formater={formatTwoDp} />
+          <Pip {...props} token="GNO" ilk="GNO-A" formater={formatTwoDp} />
           <Pip {...props} token="LINK" ilk="LINK-A" formater={formatTwoDp} />
-          <Pip {...props} token="MANA" ilk="MANA-A" formater={formatCurrency} />
         </div>
         <div className="columns">
+          <Pip {...props} token="MANA" ilk="MANA-A" formater={formatCurrency} />
           <Pip {...props} token="MATIC" ilk="MATIC-A" formater={formatCurrency} />
           <Pip {...props} token="YFI" ilk="YFI-A" formater={formatTwoDp} />
-          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
         <div className="columns">
+          <Pip {...props} token="USDC, TUSD, USDP, GUSD, aDAI" ilk="USDC-A" formater={formatCurrency}/>
         </div>
         <div className="columns">
           <Pip {...props} token="UniV2UsdcEth" ilk="UNIV2USDCETH-A" formater={formatNoDecimals} />
@@ -328,6 +335,14 @@ const Main = (props) => {
         </div>
         <div className="columns">
           <Pip {...props} token="RWA009" ilk="RWA009-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA010" ilk="RWA010-A" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
+          <Pip {...props} token="RWA011" ilk="RWA011-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA012" ilk="RWA012-A" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
+          <Pip {...props} token="RWA013" ilk="RWA013-A" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
@@ -430,6 +445,7 @@ const Main = (props) => {
                   <Clip {...props} token="BAL" ilk="BAL-A"/>
                   <Clip {...props} token="BAT" ilk="BAT-A"/>
                   <Clip {...props} token="COMP" ilk="COMP-A"/>
+                  <Clip {...props} token="GNO" ilk="GNO-A"/>
                   <Clip {...props} token="KNC" ilk="KNC-A"/>
                   <Clip {...props} token="LINK" ilk="LINK-A"/>
                   <Clip {...props} token="LRC" ilk="LRC-A"/>
@@ -973,6 +989,14 @@ const Main = (props) => {
               </a>
             </div>
           </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.GNO}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> GNO</h3>
+                <p className="subtitle is-size-7">{props.GNO}</p>
+              </a>
+            </div>
+          </div>
         </div>
         <div className="columns">
           <div className="column">
@@ -1136,6 +1160,40 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.RWA009}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA009</h3>
                 <p className="subtitle is-size-7">{props.RWA009}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA010}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA010</h3>
+                <p className="subtitle is-size-7">{props.RWA010}</p>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA011}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA011</h3>
+                <p className="subtitle is-size-7">{props.RWA011}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA012}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA012</h3>
+                <p className="subtitle is-size-7">{props.RWA012}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA013}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA013</h3>
+                <p className="subtitle is-size-7">{props.RWA013}</p>
               </a>
             </div>
           </div>

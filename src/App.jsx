@@ -110,6 +110,7 @@ add["MEDIAN_UNIV2AAVEETH"] = "0xDFC14d2Af169B0D36C4EFF567Ada9b2E0CAE044f"
 add["MEDIAN_MATIC"] = "0xfe1e93840D286C83cF7401cB021B94b5bc1763d2"
 add["MEDIAN_WSTETH"] = "0x2F73b6567B866302e132273f67661fB89b5a66F2"
 add["MEDIAN_RETH"] = "0xF86360f0127f8A441Cfca332c75992D1C692b3D1"
+add["MEDIAN_GNO"] = "0x31BFA908637C29707e155Cfac3a50C9823bF8723"
 
 add["GUniLPOracleFactory"] = "0xDCbC54439ac0AF5FEa1d8394Fb177E4BFdA426f0"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE"] = "0x778a13d3eeb110a4f7bb6529f99c000119a08e92"
@@ -154,7 +155,6 @@ add["D3M_COMPTROLLER"] = "0x3d9819210A31b4961b30EF54bE2aeD79B9c9Cd3B"
 add["D3M_COMP"] = "0xc00e94Cb662C3520282E6f5717214004A7f26888"
 add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
 add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
-
 
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
@@ -233,11 +233,16 @@ const rwa006 = build(add.RWA006, "ERC20")
 const rwa007 = build(add.RWA007, "ERC20")
 const rwa008 = build(add.RWA008, "ERC20")
 const rwa009 = build(add.RWA009, "ERC20")
+const rwa010 = build(add.RWA010, "ERC20")
+const rwa011 = build(add.RWA011, "ERC20")
+const rwa012 = build(add.RWA012, "ERC20")
+const rwa013 = build(add.RWA013, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
 const adai = build(add.ADAI, "ERC20")
 const reth = build(add.RETH, "ERC20")
+const gno = build(add.GNO, "ERC20")
 const aaveLendingPool = build(add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, "AaveLendingPoolV2")
 const crvv1ethsteth = build(add.CRVV1ETHSTETH, "ERC20")
 const cropJoin = build(add.MCD_JOIN_CRVV1ETHSTETH_A, "SynthetixJoin")
@@ -316,12 +321,17 @@ const rwa006AIlkBytes = utils.formatBytes32String("RWA006-A")
 const rwa007AIlkBytes = utils.formatBytes32String("RWA007-A")
 const rwa008AIlkBytes = utils.formatBytes32String("RWA008-A")
 const rwa009AIlkBytes = utils.formatBytes32String("RWA009-A")
+const rwa010AIlkBytes = utils.formatBytes32String("RWA010-A")
+const rwa011AIlkBytes = utils.formatBytes32String("RWA011-A")
+const rwa012AIlkBytes = utils.formatBytes32String("RWA012-A")
+const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
 const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 const rethAIlkBytes = utils.formatBytes32String("RETH-A")
+const gnoAIlkBytes = utils.formatBytes32String("GNO-A")
 const teleportAIlkBytes = utils.formatBytes32String("TELEPORT-FW-A")
 const d3mcdaiIlkBytes = utils.formatBytes32String("DIRECT-COMPV2-DAI")
 window.utils = utils
@@ -513,6 +523,10 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa007AIlkBytes, 'RWA007_A', rwa007, add.RWA007, add.PIP_RWA007))
      .concat(this.getRwaIlkCall(rwa008AIlkBytes, 'RWA008_A', rwa008, add.RWA008, add.PIP_RWA008))
      .concat(this.getRwaIlkCall(rwa009AIlkBytes, 'RWA009_A', rwa009, add.RWA009, add.PIP_RWA009))
+     .concat(this.getRwaIlkCall(rwa010AIlkBytes, 'RWA010_A', rwa010, add.RWA010, add.PIP_RWA010))
+     .concat(this.getRwaIlkCall(rwa011AIlkBytes, 'RWA011_A', rwa011, add.RWA011, add.PIP_RWA011))
+     .concat(this.getRwaIlkCall(rwa012AIlkBytes, 'RWA012_A', rwa012, add.RWA012, add.PIP_RWA012))
+     .concat(this.getRwaIlkCall(rwa013AIlkBytes, 'RWA013_A', rwa013, add.RWA013, add.PIP_RWA013))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
@@ -525,6 +539,7 @@ class App extends Component {
      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      //.concat(this.getIlkCall(teleportAIlkBytes, 'TELEPORT_FW_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      .concat(this.getIlkCall(rethAIlkBytes, 'RETH_A', reth, add.RETH, add.PIP_RETH))
+     .concat(this.getIlkCall(gnoAIlkBytes, 'GNO_A', gno, add.GNO, add.PIP_GNO))
      ,{blockTag: blockNumber})
     let promises = [
       p1,
@@ -584,6 +599,8 @@ class App extends Component {
       this.getPrice(add.PIP_CRVV1ETHSTETH, this.POSITION_UNIV2_NXT), //FIXME
       this.getPrice(add.PIP_RETH, this.POSITION_NXT),
       this.getPrice(add.MEDIAN_RETH, this.POSITION_MEDIAN_VAL),
+      this.getPrice(add.PIP_GNO, this.POSITION_NXT),
+      this.getPrice(add.MEDIAN_GNO, this.POSITION_MEDIAN_VAL),
       this.getHistoricalDebt({ blockInterval: 45500 /* ≈ 7 day */, periods: 52 /* 12 months */ }),
     ]
 
@@ -597,6 +614,7 @@ class App extends Component {
         univ2linkethPriceNxt, univ2uniethPriceNxt, univ2wbtcdaiPriceNxt,
         univ2aaveethPriceNxt, guniv3daiusdc1PriceNxt, guniv3daiusdc2PriceNxt, wstethPriceNxt,
         wstethPriceMedian, crvv1ethstethPriceNext, rethPriceNxt, rethPriceMedian,
+        gnoPriceNxt, gnoPriceMedian,
         historicalDebt] = await Promise.all(promises)
 
     var offset = 0;
@@ -734,6 +752,10 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA007", "RWA007-A", rwa007, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA008", "RWA008-A", rwa008, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA009", "RWA009-A", rwa009, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA010", "RWA010-A", rwa010, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA011", "RWA011-A", rwa011, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA012", "RWA012-A", rwa012, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA013", "RWA013-A", rwa013, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
@@ -745,7 +767,8 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base, rethPriceNxt, rethPriceMedian)
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base, rethPriceNxt, rethPriceMedian),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "GNO", "GNO-A", gno, 18, base, gnoPriceNxt, gnoPriceMedian)
         ]
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
