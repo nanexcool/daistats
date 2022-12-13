@@ -156,6 +156,7 @@ add["D3M_COMP"] = "0xc00e94Cb662C3520282E6f5717214004A7f26888"
 add["D3M_TACK"] = "0xFB564da37B41b2F6B6EDcc3e56FbF523bD9F2012"
 add["D3M_DELEGATE"] = "0x3363BAe2Fc44dA742Df13CD3ee94b6bB868ea376"
 
+
 const reverseAddresses = Object.entries(add).reduce((add, [key, value]) => (add[value] = key, add), {})
 
 let provider;
@@ -1337,6 +1338,7 @@ class App extends Component {
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
           {/* Coming 🔜 🚀Rocket Pool ETH!🚀 */}
+            Welcome Gnosis and BlockTower!
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
