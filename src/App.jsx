@@ -360,8 +360,8 @@ const DP18 = ethers.BigNumber.from("1")
 const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_LEGACY_IDS = 37
-const VEST_DAI_IDS = 13
-const VEST_MKR_TREASURY_IDS = 24
+const VEST_DAI_IDS = 15
+const VEST_MKR_TREASURY_IDS = 29
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
