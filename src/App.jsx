@@ -187,7 +187,6 @@ const cat = build(add.MCD_CAT, "Cat")
 const dog = build(add.MCD_DOG, "Dog")
 const spot = build(add.MCD_SPOT, "Spotter")
 const autoline = build(add.MCD_IAM_AUTO_LINE, "DssAutoLine")
-const flashLegacy = build(add.MCD_FLASH_LEGACY, "DssFlashLegacy")
 const flash = build(add.MCD_FLASH, "DssFlash")
 const pause = build(add.MCD_PAUSE, "DSPause")
 const chief = build(add.CHIEF, "DSChief")
@@ -453,8 +452,6 @@ class App extends Component {
 
       [add.MCD_FLASH, flash.interface.encodeFunctionData('max', [])], // or use EIP 3156 maxFlashLoan(token)
       // flash toll hardwired to 0
-      [add.MCD_FLASH_LEGACY, flashLegacy.interface.encodeFunctionData('max', [])],
-      [add.MCD_FLASH_LEGACY, flashLegacy.interface.encodeFunctionData('toll', [])],
       [add.MCD_PAUSE, pause.interface.encodeFunctionData('delay', [])],
       [add.CHIEF, chief.interface.encodeFunctionData('hat', [])],
       [add.MCD_ESM, esm.interface.encodeFunctionData('min', [])],
@@ -674,8 +671,6 @@ class App extends Component {
     const dirt = dog.interface.decodeFunctionResult('Dirt', res[offset++])[0]
 
     const flashLine = flash.interface.decodeFunctionResult('max', res[offset++])[0]
-    const flashLegacyLine = flashLegacy.interface.decodeFunctionResult('max', res[offset++])[0]
-    const flashLegacyToll = flashLegacy.interface.decodeFunctionResult('toll', res[offset++])[0]
     const pauseDelay = pause.interface.decodeFunctionResult('delay', res[offset++])[0]
     const hat = chief.interface.decodeFunctionResult('hat', res[offset++])
     const esmMin = esm.interface.decodeFunctionResult('min', res[offset++])[0]
@@ -842,8 +837,6 @@ class App extends Component {
         bkrSupply: utils.formatEther(bkrSupply),
         mkrBroken: utils.formatEther(mkrBroken),
         flashLine: utils.formatEther(flashLine),
-        flashLegacyLine: utils.formatEther(flashLegacyLine),
-        flashLegacyToll: utils.formatEther(flashLegacyToll),
         pauseDelay: pauseDelay.toNumber(),
         hat: hat,
         esmMin: utils.formatEther(esmMin),
