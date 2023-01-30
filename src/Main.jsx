@@ -211,6 +211,7 @@ const Main = (props) => {
             </div>
           </div>
         */}
+      {/*
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
@@ -226,6 +227,7 @@ const Main = (props) => {
             </div>
           </div>
         </div>
+        */}
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
@@ -235,6 +237,7 @@ const Main = (props) => {
               <h6 className="title subtitle is-size-6">Stable Debt: {formatAmount.format(props.d3mAdaiTotalSupplyFixed)}</h6>
             </div>
           </div>
+      {/*
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiBar}>{formatPercent.format(props.d3mAdaiBar)}</h3>
@@ -243,28 +246,30 @@ const Main = (props) => {
               <h6 className="title subtitle is-size-6" title={props.d3mAdaiIncentive}>Incentive Balance: {formatAmount.format(props.d3mAdaiIncentive)} stkAAVE</h6>
             </div>
           </div>
+        */}
         </div>
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiDepositAPR}>{formatPercent.format(props.d3mAdaiDepositAPR)}</h3>
-              <h4 className="title subtitle is-size-4">Deposit Rate (APR)</h4>
+              <h4 className="title subtitle is-size-4">Aave Deposit Rate (APR)</h4>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiVariableBorrowAPR}>{formatPercent.format(props.d3mAdaiVariableBorrowAPR)}</h3>
-              <h4 className="title subtitle is-size-4">Variable Borrow Rate (APR)</h4>
+              <h4 className="title subtitle is-size-4">Aave Variable Borrow Rate (APR)</h4>
             </div>
           </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.d3mAdaiStableBorrowAPR}>{formatPercent.format(props.d3mAdaiStableBorrowAPR)}</h3>
-              <h4 className="title subtitle is-size-4">Stable Borrow Rate (APR)</h4>
+              <h4 className="title subtitle is-size-4">Aave Stable Borrow Rate (APR)</h4>
             </div>
           </div>
         </div>
-        <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />
+
+      {/* <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />  */}
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="AAVE-A" />

@@ -329,7 +329,7 @@ const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
-const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
+//const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 const rethAIlkBytes = utils.formatBytes32String("RETH-A")
 const gnoAIlkBytes = utils.formatBytes32String("GNO-A")
@@ -463,14 +463,14 @@ class App extends Component {
       // FIXME show  end live, when, debt
       // FIXME lookup targetInterestRate (bar), need onchain helper function so can do with one multicall
       //[add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('calculateTargetSupply', [ethers.BigNumber.from('27500000000000000000000000')])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
-      [add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
-      [add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
+      //[add.MCD_JOIN_DIRECT_AAVEV2_DAI, d3mAdai.interface.encodeFunctionData('bar', [])],
+      //[add.MCD_DAI, dai.interface.encodeFunctionData('balanceOf', [add.ADAI])],
+      //[add.MCD_VAT, vat.interface.encodeFunctionData('urns', [d3madaiIlkBytes, add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
       // FIXME shoud be erc20 for token not adai? Is a interface for each gem required?
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
-      [add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
+      //[add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
       [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
@@ -536,7 +536,7 @@ class App extends Component {
      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
-     .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
+     //.concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      //.concat(this.getIlkCall(teleportAIlkBytes, 'TELEPORT_FW_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      .concat(this.getIlkCall(rethAIlkBytes, 'RETH_A', reth, add.RETH, add.PIP_RETH))
@@ -682,10 +682,10 @@ class App extends Component {
     const esmSum = esm.interface.decodeFunctionResult('Sum', res[offset++])[0]
     const endWait = end.interface.decodeFunctionResult('wait', res[offset++])[0]
     //const d3mAdaiTargetSupply = d3mAdai.interface.decodeFunctionResult('calculateTargetSupply', res[offset++])[0]
-    const d3mAdaiTargetSupply = ethers.BigNumber.from("0")
-    const d3mAdaiBar = d3mAdai.interface.decodeFunctionResult('bar', res[offset++])[0]
-    const d3mAdaiAvailableLiquidity = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
-    const d3mAdaiDaiDebt = vat.interface.decodeFunctionResult('urns', res[offset++])[1]
+    //const d3mAdaiTargetSupply = ethers.BigNumber.from("0")
+    //const d3mAdaiBar = d3mAdai.interface.decodeFunctionResult('bar', res[offset++])[0]
+    //const d3mAdaiAvailableLiquidity = dai.interface.decodeFunctionResult('balanceOf', res[offset++])[0]
+    //const d3mAdaiDaiDebt = vat.interface.decodeFunctionResult('urns', res[offset++])[1]
     const d3mAdaiTotalSupplyVariable = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const d3mAdaiTotalSupplyFixed = adai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     //[, liquidityIndex, variableBorrowIndex, currentLiquidityRate, currentVariableBorrowRate,
@@ -693,7 +693,7 @@ class App extends Component {
     //variableDebtTokenAddress, , ] = LendingPool.getReserveData(asset.address)
     // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
     const d3mAdaiReserve = aaveLendingPool.interface.decodeFunctionResult('getReserveData', res[offset++])[0]
-    const d3mAdaiIncentive = aaveIncentive.interface.decodeFunctionResult('getRewardsBalance', res[offset++])[0]
+    //const d3mAdaiIncentive = aaveIncentive.interface.decodeFunctionResult('getRewardsBalance', res[offset++])[0]
     const lerpHumpStart = lerp.interface.decodeFunctionResult('start', res[offset++])[0]
     const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
     const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
@@ -766,7 +766,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
+          //this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base, rethPriceNxt, rethPriceMedian),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GNO", "GNO-A", gno, 18, base, gnoPriceNxt, gnoPriceMedian)
@@ -774,9 +774,10 @@ class App extends Component {
 
     const ilksByName = ilks.reduce((a, x) => ({...a, [x.ilk]: x}), {})
     const sysLocked = ilks.reduce((t, i) => t.add(i.valueBn), ethers.BigNumber.from('0'))
-    const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
-    const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
-    const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
+    //const d3mAdaiFeesPending = ilksByName["DIRECT-AAVEV2-DAI"].lockedBn.sub(d3mAdaiDaiDebt)
+    //const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
+    const d3mAdaiTotalSupply =  d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed)
+    //const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
     const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
     ilksByName["RWA007-A"]["conduitIn"] = ethers.BigNumber.from("0") // Monetalis Clydesdale has no input conduit
     ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
@@ -850,19 +851,19 @@ class App extends Component {
         endWait: endWait.toNumber(),
         optimisticDaiSupply: utils.formatEther(optimisticDaiSupply),
         starknetDaiSupply: utils.formatEther(starknetDaiSupply),
-        d3mAdaiTargetSupply: utils.formatEther(d3mAdaiTargetSupply),
-        d3mAdaiBar: utils.formatUnits(d3mAdaiBar, 27),
-        d3mAdaiAvailableLiquidity: utils.formatUnits(d3mAdaiAvailableLiquidity, 18),
-        d3mAdaiDaiDebt: utils.formatUnits(d3mAdaiDaiDebt, 18),
-        d3mAdaiFeesPending: utils.formatUnits(d3mAdaiFeesPending, 18),
+        //d3mAdaiTargetSupply: utils.formatEther(d3mAdaiTargetSupply),
+        //d3mAdaiBar: utils.formatUnits(d3mAdaiBar, 27),
+        //d3mAdaiAvailableLiquidity: utils.formatUnits(d3mAdaiAvailableLiquidity, 18),
+        //d3mAdaiDaiDebt: utils.formatUnits(d3mAdaiDaiDebt, 18),
+        //d3mAdaiFeesPending: utils.formatUnits(d3mAdaiFeesPending, 18),
         d3mAdaiTotalSupplyVariable: utils.formatUnits(d3mAdaiTotalSupplyVariable, 18),
         d3mAdaiTotalSupplyFixed: utils.formatUnits(d3mAdaiTotalSupplyFixed, 18),
         d3mAdaiTotalSupply: utils.formatUnits(d3mAdaiTotalSupply, 18),
-        d3mAdaiAdjustment: utils.formatUnits(d3mAdaiAdjustment, 18),
+        //d3mAdaiAdjustment: utils.formatUnits(d3mAdaiAdjustment, 18),
         d3mAdaiDepositAPR: utils.formatUnits(d3mAdaiReserve.currentLiquidityRate, 27),
         d3mAdaiVariableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentVariableBorrowRate, 27),
         d3mAdaiStableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentStableBorrowRate, 27),
-        d3mAdaiIncentive: utils.formatEther(d3mAdaiIncentive),
+        //d3mAdaiIncentive: utils.formatEther(d3mAdaiIncentive),
         lerpHumpStart: utils.formatUnits(lerpHumpStart, 45),
         lerpHumpEnd: utils.formatUnits(lerpHumpEnd, 45),
         lerpHumpStartTime: this.unixToDate(lerpHumpStartTime),
@@ -941,7 +942,7 @@ class App extends Component {
     }
     const supply = gem.interface.decodeFunctionResult('totalSupply', res[idx++])[0]
 
-    if (['USDC', 'TUSD', 'USDP', 'GUSD', 'ADAI'].includes(token)) {
+    if (['USDC', 'TUSD', 'USDP', 'GUSD'].includes(token)) {
         zzz = null;
         //price = pip.interface.decodeFunctionResult('read', res[idx++])[0]
         // FIXME read fails for TUSD
