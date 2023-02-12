@@ -480,7 +480,6 @@ const Main = (props) => {
                   <Clip {...props} token="PSM-USDC-A" ilk="PSM-USDC-A"/>
                   <Clip {...props} token="PSM-USDP-A" ilk="PSM-USDP-A"/>
                   <Clip {...props} token="PSM-GUSD-A" ilk="PSM-GUSD-A"/>
-                  <Clip {...props} token="DIRECT-AAVEV2-DAI" ilk="DIRECT-AAVEV2-DAI"/>
                 </tbody>
               </table>
           </div>
