@@ -43,7 +43,7 @@ function Clip(props) {
             <td className="has-text-right">{formatAmount.format(ilk.dirt)}</td>
             <td className="has-text-right">{formatAmount.format(ilk.hole)}</td>
             <td className="has-text-right">{formatPercent.format(Math.abs(1 - ilk.chop))}</td>
-            {ilk.tau ? <td className="has-text-right" colspan="2">{formatAmount.format(ilk.tau)} Sec to zero (tau)</td> :
+            {ilk.tau ? <td className="has-text-right" colSpan="2">{formatAmount.format(ilk.tau)} Sec to zero (tau)</td> :
             <>
               <td className="has-text-right">{formatAmount.format(ilk.cut)}</td>
               <td className="has-text-right">{formatAmount.format(ilk.step)}</td>
