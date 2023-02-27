@@ -269,7 +269,7 @@ const Main = (props) => {
           </div>
         </div>
 
-      {/* <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />  */}
+        <Collateral {...props} ilk="DIRECT-AAVEV2-DAI" />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="AAVE-A" />

@@ -121,6 +121,13 @@ add["MCD_JOIN_DIRECT_AAVEV2_DAI_VARIABLE"] = "0x6c3c78838c761c6ac7be9f59fe808ea2
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_POOL"] = "0x7d2768de32b0b80b7a3454c06bdac94a69ddc7a9"
 add["MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE"] = "0xd784927Ff2f95ba542BfC824c8a8a98F3495f6b5"
 
+add["AAVE_D3M_PLAN"] = "0x5846Aee09298f8F3aB5D837d540232d19e5d5813"
+add["AAVE_D3M_POOL"] = "0x66aE0574Eb28B92c82569b293B856BB99f80F040"
+add["AAVE_D3M_ORACLE"] = "0x634051fbA31829E245C616e79E289f89c8B851c2"
+//add["AAVE_DAI_STABLE_DEBT       = 0x778A13D3eeb110A4f7bb6529F99c000119a08E92"
+//add["AAVE_DAI_VARIABLE_DEBT     = 0x6C3c78838c761c6Ac7bE9F59fe808ea2A6E4379d"
+add["AAVE_DAI_INTEREST_STRATEGY"] = "0xfffE32106A68aA3eD39CcCE673B646423EEaB62a"
+
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
 
@@ -331,7 +338,7 @@ const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
-//const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
+const d3madaiIlkBytes = utils.formatBytes32String("DIRECT-AAVEV2-DAI")
 const crvv1ethstethAIlkBytes = utils.formatBytes32String("CRVV1ETHSTETH-A")
 const rethAIlkBytes = utils.formatBytes32String("RETH-A")
 const gnoAIlkBytes = utils.formatBytes32String("GNO-A")
@@ -536,7 +543,7 @@ class App extends Component {
      .concat(this.getIlkCall(guniv3daiusdc2AIlkBytes, 'GUNIV3DAIUSDC2_A', guniv3daiusdc2, add.GUNIV3DAIUSDC2, add.PIP_GUNIV3DAIUSDC2))
      .concat(this.getIlkCall(wstethAIlkBytes, 'WSTETH_A', wsteth, add.WSTETH, add.PIP_WSTETH))
      .concat(this.getIlkCall(wstethBIlkBytes, 'WSTETH_B', wsteth, add.WSTETH, add.PIP_WSTETH))
-     //.concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
+     .concat(this.getIlkCall(d3madaiIlkBytes, 'DIRECT_AAVEV2_DAI', adai, add.ADAI, add.PIP_ADAI))
      .concat(this.getIlkCall(crvv1ethstethAIlkBytes, 'CRVV1ETHSTETH_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      //.concat(this.getIlkCall(teleportAIlkBytes, 'TELEPORT_FW_A', crvv1ethsteth, add.CRVV1ETHSTETH, add.PIP_CRVV1ETHSTETH))
      .concat(this.getIlkCall(rethAIlkBytes, 'RETH_A', reth, add.RETH, add.PIP_RETH))
@@ -764,7 +771,7 @@ class App extends Component {
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GUNIV3DAIUSDC2", "GUNIV3DAIUSDC2-A", guniv3daiusdc2, 18, base, guniv3daiusdc2PriceNxt),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-A", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "WSTETH", "WSTETH-B", wsteth, 18, base, wstethPriceNxt, wstethPriceMedian, DP10),
-          //this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
+          this.getIlkMap(res, offset += ILK_CALL_COUNT, "ADAI", "DIRECT-AAVEV2-DAI", adai, 18, base),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "CRVV1ETHSTETH", "CRVV1ETHSTETH-A", crvv1ethsteth, 18, base, crvv1ethstethPriceNext),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "RETH", "RETH-A", reth, 18, base, rethPriceNxt, rethPriceMedian),
           this.getIlkMap(res, offset += ILK_CALL_COUNT, "GNO", "GNO-A", gno, 18, base, gnoPriceNxt, gnoPriceMedian)
