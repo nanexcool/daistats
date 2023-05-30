@@ -183,6 +183,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="RWA011-A" />
         <Collateral {...props} ilk="RWA012-A" />
         <Collateral {...props} ilk="RWA013-A" />
+        <Collateral {...props} ilk="RWA014-A" />
           </TabPanel>
           <TabPanel>
         <Psm {...props} ilk="PSM-USDC-A" />
@@ -348,6 +349,7 @@ const Main = (props) => {
         </div>
         <div className="columns">
           <Pip {...props} token="RWA013" ilk="RWA013-A" formater={formatTwoDp} />
+          <Pip {...props} token="RWA014" ilk="RWA014-A" formater={formatTwoDp} />
         </div>
 
           {/* <div className="column">
@@ -1196,6 +1198,14 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.RWA013}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> RWA013</h3>
                 <p className="subtitle is-size-7">{props.RWA013}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.RWA014}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> RWA014</h3>
+                <p className="subtitle is-size-7">{props.RWA014}</p>
               </a>
             </div>
           </div>

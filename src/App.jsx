@@ -127,6 +127,9 @@ add["AAVE_D3M_ORACLE"] = "0x634051fbA31829E245C616e79E289f89c8B851c2"
 //add["AAVE_DAI_STABLE_DEBT       = 0x778A13D3eeb110A4f7bb6529F99c000119a08E92"
 //add["AAVE_DAI_VARIABLE_DEBT     = 0x6C3c78838c761c6Ac7bE9F59fe808ea2A6E4379d"
 add["AAVE_DAI_INTEREST_STRATEGY"] = "0xfffE32106A68aA3eD39CcCE673B646423EEaB62a"
+add["MCD_JOIN_DIRECT_AAVEV2_DAI"] = "0xa13c0c8eb109f5a13c6c90fc26afb23beb3fb04a"
+add["MCD_CLIP_CALC_DIRECT_AAVEV2_DAI"] = "0x786dc9b69abea503fd101a2a9fa95bce82c20d0a"
+add["MCD_CLIP_DIRECT_AAVEV2_DAI"] = "0xa93b98e57dde14a3e301f20933d59dc19bf8212e"
 
 //PIP_STETH: 0x79ED6619640C1c1d9F3E64555172406FE72788B7 add this to wsteth display? add wsteth median?
 add["LERP_HUMP"] = "0x0239311b645a8ef91dc899471497732a1085ba8b"
@@ -136,6 +139,7 @@ add["STETH_PRICE"] = "0x911D7A8F87282C4111f621e2D100Aa751Bab1260"
 add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 
 add["RWA009_A_INPUT_CONDUIT"] = add["RWA009_A_OUTPUT_CONDUIT"] // NOTE RWA009 has no input conduit, explicity set to 0 below
+add["RWA014_A_INPUT_CONDUIT"] = add["RWA014_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
 
 // Teleport
 add["TELEPORT_JOIN"] = "0x41Ca7a7Aa2Be78Cf7CB80C0F4a9bdfBC96e81815"
@@ -247,6 +251,7 @@ const rwa010 = build(add.RWA010, "ERC20")
 const rwa011 = build(add.RWA011, "ERC20")
 const rwa012 = build(add.RWA012, "ERC20")
 const rwa013 = build(add.RWA013, "ERC20")
+const rwa014 = build(add.RWA014, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
@@ -335,6 +340,7 @@ const rwa010AIlkBytes = utils.formatBytes32String("RWA010-A")
 const rwa011AIlkBytes = utils.formatBytes32String("RWA011-A")
 const rwa012AIlkBytes = utils.formatBytes32String("RWA012-A")
 const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
+const rwa014AIlkBytes = utils.formatBytes32String("RWA014-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
@@ -535,6 +541,7 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa011AIlkBytes, 'RWA011_A', rwa011, add.RWA011, add.PIP_RWA011))
      .concat(this.getRwaIlkCall(rwa012AIlkBytes, 'RWA012_A', rwa012, add.RWA012, add.PIP_RWA012))
      .concat(this.getRwaIlkCall(rwa013AIlkBytes, 'RWA013_A', rwa013, add.RWA013, add.PIP_RWA013))
+     .concat(this.getRwaIlkCall(rwa014AIlkBytes, 'RWA014_A', rwa014, add.RWA014, add.PIP_RWA014))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
@@ -762,6 +769,7 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA011", "RWA011-A", rwa011, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA012", "RWA012-A", rwa012, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA013", "RWA013-A", rwa013, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA014", "RWA014-A", rwa014, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
@@ -1342,7 +1350,7 @@ class App extends Component {
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
           {/* Coming 🔜 🚀Rocket Pool ETH!🚀 */}
-            Welcome Gnosis and BlockTower!
+            Welcome Coinbase Custody!
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>
