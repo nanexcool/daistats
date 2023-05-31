@@ -157,10 +157,6 @@ const Main = (props) => {
         <Collateral {...props} ilk="WBTC-A" />
         <Collateral {...props} ilk="WBTC-B" />
         <Collateral {...props} ilk="WBTC-C" />
-        <Collateral {...props} ilk="LINK-A" />
-        <Collateral {...props} ilk="YFI-A" />
-        <Collateral {...props} ilk="MATIC-A" />
-        <Collateral {...props} ilk="GNO-A" />
           </TabPanel>
           <TabPanel>
         <Collateral {...props} ilk="UNIV2USDCETH-A" showLockedDecimals={true} />
@@ -274,10 +270,13 @@ const Main = (props) => {
         <Collateral {...props} ilk="BAL-A" />
         <Collateral {...props} ilk="BAT-A" />
         <Collateral {...props} ilk="COMP-A" />
+        <Collateral {...props} ilk="GNO-A" />
         <Collateral {...props} ilk="GUSD-A" />
         <Collateral {...props} ilk="KNC-A" />
+        <Collateral {...props} ilk="LINK-A" />
         <Collateral {...props} ilk="LRC-A" />
         <Collateral {...props} ilk="MANA-A" />
+        <Collateral {...props} ilk="MATIC-A" />
         <Collateral {...props} ilk="RENBTC-A" />
         <Collateral {...props} ilk="TUSD-A" />
         <Collateral {...props} ilk="UNI-A" />
@@ -291,6 +290,7 @@ const Main = (props) => {
         <Collateral {...props} ilk="USDC-B" />
         <Collateral {...props} ilk="USDP-A" />
         <Collateral {...props} ilk="USDT-A" />
+        <Collateral {...props} ilk="YFI-A" />
         <Collateral {...props} ilk="ZRX-A" />
           </TabPanel>
         </Tabs>
