@@ -140,6 +140,7 @@ add["STARKNET_DAI_ESCROW"] = "0x0437465dfb5B79726e35F08559B0cBea55bb585C"
 
 add["RWA009_A_INPUT_CONDUIT"] = add["RWA009_A_OUTPUT_CONDUIT"] // NOTE RWA009 has no input conduit, explicity set to 0 below
 add["RWA014_A_INPUT_CONDUIT"] = add["RWA014_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
+add["RWA015_A_INPUT_CONDUIT"] = add["RWA015_A_INPUT_CONDUIT_JAR"] // hack as now have _URN and _JAR
 
 // Teleport
 add["TELEPORT_JOIN"] = "0x41Ca7a7Aa2Be78Cf7CB80C0F4a9bdfBC96e81815"
@@ -252,6 +253,7 @@ const rwa011 = build(add.RWA011, "ERC20")
 const rwa012 = build(add.RWA012, "ERC20")
 const rwa013 = build(add.RWA013, "ERC20")
 const rwa014 = build(add.RWA014, "ERC20")
+const rwa015 = build(add.RWA015, "ERC20")
 const bkr = build(add.BKR, "ERC20")
 const matic = build(add.MATIC, "ERC20")
 const wsteth = build(add.WSTETH, "ERC20")
@@ -341,6 +343,7 @@ const rwa011AIlkBytes = utils.formatBytes32String("RWA011-A")
 const rwa012AIlkBytes = utils.formatBytes32String("RWA012-A")
 const rwa013AIlkBytes = utils.formatBytes32String("RWA013-A")
 const rwa014AIlkBytes = utils.formatBytes32String("RWA014-A")
+const rwa015AIlkBytes = utils.formatBytes32String("RWA015-A")
 const maticAIlkBytes = utils.formatBytes32String("MATIC-A")
 const wstethAIlkBytes = utils.formatBytes32String("WSTETH-A")
 const wstethBIlkBytes = utils.formatBytes32String("WSTETH-B")
@@ -376,7 +379,7 @@ const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_LEGACY_IDS = 37
 const VEST_DAI_IDS = 16
-const VEST_MKR_TREASURY_IDS = 31
+const VEST_MKR_TREASURY_IDS = 36
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
@@ -542,6 +545,7 @@ class App extends Component {
      .concat(this.getRwaIlkCall(rwa012AIlkBytes, 'RWA012_A', rwa012, add.RWA012, add.PIP_RWA012))
      .concat(this.getRwaIlkCall(rwa013AIlkBytes, 'RWA013_A', rwa013, add.RWA013, add.PIP_RWA013))
      .concat(this.getRwaIlkCall(rwa014AIlkBytes, 'RWA014_A', rwa014, add.RWA014, add.PIP_RWA014))
+     .concat(this.getRwaIlkCall(rwa015AIlkBytes, 'RWA015_A', rwa015, add.RWA015, add.PIP_RWA015))
      .concat(this.getIlkCall(maticAIlkBytes, 'MATIC_A', matic, add.MATIC, add.PIP_MATIC))
      .concat(this.getPsmIlkCall(psmusdcAIlkBytes, 'PSM_USDC_A', usdc, add.USDC, add.PIP_USDC, psmUsdc))
      .concat(this.getPsmIlkCall(psmpaxAIlkBytes, 'PSM_PAX_A', pax, add.PAXUSD, add.PIP_PAXUSD, psmPax))
@@ -770,6 +774,7 @@ class App extends Component {
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA012", "RWA012-A", rwa012, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA013", "RWA013-A", rwa013, 18, base),
           this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA014", "RWA014-A", rwa014, 18, base),
+          this.getRwaIlkMap(res, offset += ILK_RWA_CALL_COUNT, "RWA015", "RWA015-A", rwa015, 18, base),
           this.getIlkMap(res, offset += ILK_RWA_CALL_COUNT, "MATIC", "MATIC-A", matic, 18, base, maticPriceNxt, maticPriceMedian, DP10),
           // include PSM's in CollateralChart
           this.getPsmIlkMap(res, offset += ILK_CALL_COUNT, "USDC", "PSM-USDC-A", psmUsdc, 6, DP7, DP10),
@@ -1350,7 +1355,7 @@ class App extends Component {
             {t('daistats.block')}: <strong>{this.state.blockNumber}</strong> Time: <strong title={this.state.timestamp}>{this.state.timestampHHMM}</strong>. {this.state.paused ? `${t('daistats.pause')}.` : `${t('daistats.auto_updating')}.`} <a onClick={this.togglePause}>{this.state.paused ? t('daistats.restart') : t('daistats.pause')}</a>
             <br />
           {/* Coming 🔜 🚀Rocket Pool ETH!🚀 */}
-            Welcome Coinbase Custody!
+            Welcome BlockTower Andromeda!
             <div className="buttons is-centered">
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('en')}>English</button>
               <button className="button is-small is-rounded" onClick={() => this.props.toggle('es')}>Español</button>

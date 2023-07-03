@@ -42,6 +42,8 @@ const ILK_TO_COLOUR = {
     "RWA007": "hsl(21, 50%, 26%)",
     "RWA014-A": "hsl(211, 100%, 50%)",
     "RWA014": "hsl(211, 100%, 50%)",
+    "RWA015-A": "hsl(78, 76%, 55%)",
+    "RWA015": "hsl(78, 76%, 55%)",
     "MATIC": "hsl(262,75%,57%)",
     "MATIC-A": "hsl(262,75%,57%)",
     "Others": "hsl(348, 100%, 61%)"}
@@ -162,7 +164,7 @@ const CollateralChart = ({ ilks, debt, useValue, groupBy }) => {
           <Pie data={data} dataKey="value" nameKey="name"
             label={label} labelLine={false}
             animationDuration={750}
-            startAngle={70} endAngle={440}>
+            startAngle={87} endAngle={457}>
              {data.map((entry, index) => <Cell fill={ILK_TO_COLOUR[entry.name]}/>)}
           </Pie>
           {useValue && <Tooltip formatter={tooltip}/>}
