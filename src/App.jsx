@@ -379,7 +379,7 @@ const HOP = 3600 // assumes all OSM's have same hop
 
 const VEST_DAI_LEGACY_IDS = 37
 const VEST_DAI_IDS = 16
-const VEST_MKR_TREASURY_IDS = 36
+const VEST_MKR_TREASURY_IDS = 39
 
 const subgraphClient = new GraphQLClient(
   "https://api.thegraph.com/subgraphs/name/protofire/maker-protocol",
