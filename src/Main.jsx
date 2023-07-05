@@ -351,6 +351,8 @@ const Main = (props) => {
         <div className="columns">
           <Pip {...props} token="RWA013" ilk="RWA013-A" formater={formatTwoDp} />
           <Pip {...props} token="RWA014" ilk="RWA014-A" formater={formatTwoDp} />
+        </div>
+        <div className="columns">
           <Pip {...props} token="RWA015" ilk="RWA015-A" formater={formatTwoDp} />
         </div>
 
