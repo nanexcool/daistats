@@ -575,6 +575,11 @@ const Main = (props) => {
               <h3 className="title" title={props.chaiSupply}>{formatAmount.format(props.chaiSupply)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_supply', { token: 'Chai' })} <span role="img" aria-label="chai">🍵</span></p>
               <p className="subtitle is-size-6">({t('daistats.dai_brewing')}: {formatAmount.format(props.daiBrewing)})</p>
+              <p className="title subtitle is-size-6">
+                <a href="https://chai.money" target="_blank" rel="noopener noreferrer">
+                    chai.money
+                </a>
+              </p>
             </div>
           </div>
           <div className="column">
