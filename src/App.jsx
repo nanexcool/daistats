@@ -487,10 +487,6 @@ class App extends Component {
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_STABLE, adai.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_JOIN_DIRECT_AAVEV2_DAI_POOL, aaveLendingPool.interface.encodeFunctionData('getReserveData', [add.MCD_DAI])],
       //[add.MCD_JOIN_DIRECT_AAVEV2_DAI_INCENTIVE, aaveIncentive.interface.encodeFunctionData('getRewardsBalance', [[add.ADAI], add.MCD_JOIN_DIRECT_AAVEV2_DAI])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('start', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('end', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('startTime', [])],
-      [add.LERP_HUMP, lerp.interface.encodeFunctionData('duration', [])],
       [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('assetBalance', [])],
       [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxDeposit', [])],
       [add.D3M_COMPOUND_POOL, d3mCompoundPool.interface.encodeFunctionData('maxWithdraw', [])],
@@ -710,10 +706,6 @@ class App extends Component {
     // asset is the ERC20 deposited or borrowed, eg. DAI, WETH
     const d3mAdaiReserve = aaveLendingPool.interface.decodeFunctionResult('getReserveData', res[offset++])[0]
     //const d3mAdaiIncentive = aaveIncentive.interface.decodeFunctionResult('getRewardsBalance', res[offset++])[0]
-    const lerpHumpStart = lerp.interface.decodeFunctionResult('start', res[offset++])[0]
-    const lerpHumpEnd = lerp.interface.decodeFunctionResult('end', res[offset++])[0]
-    const lerpHumpStartTime = lerp.interface.decodeFunctionResult('startTime', res[offset++])[0]
-    const lerpHumpDuration = lerp.interface.decodeFunctionResult('duration', res[offset++])[0]
     const d3mCompBalance = d3mCompoundPool.interface.decodeFunctionResult('assetBalance', res[offset++])[0]
     const d3mCompMaxDeposit = d3mCompoundPool.interface.decodeFunctionResult('maxDeposit', res[offset++])[0]
     const d3mCompMaxWithdraw = d3mCompoundPool.interface.decodeFunctionResult('maxWithdraw', res[offset++])[0]
@@ -796,7 +788,6 @@ class App extends Component {
     //const d3mAdaiTotalSupply =  d3mAdaiAvailableLiquidity.add(d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed))
     const d3mAdaiTotalSupply =  d3mAdaiTotalSupplyVariable.add(d3mAdaiTotalSupplyFixed)
     //const d3mAdaiAdjustment = ethers.BigNumber.from("0") //d3mAdaiTargetSupply.sub(d3mAdaiTotalSupply)
-    const lerpHumpCurrent = this.getLerp(lerpHumpStart, lerpHumpEnd, lerpHumpStartTime, lerpHumpDuration, timestamp[0])
     ilksByName["RWA007-A"]["conduitIn"] = ethers.BigNumber.from("0") // Monetalis Clydesdale has no input conduit
     ilksByName["RWA009-A"]["conduitIn"] = ethers.BigNumber.from("0") // HV Bank has no input conduit
 
@@ -880,12 +871,6 @@ class App extends Component {
         d3mAdaiVariableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentVariableBorrowRate, 27),
         d3mAdaiStableBorrowAPR: utils.formatUnits(d3mAdaiReserve.currentStableBorrowRate, 27),
         //d3mAdaiIncentive: utils.formatEther(d3mAdaiIncentive),
-        lerpHumpStart: utils.formatUnits(lerpHumpStart, 45),
-        lerpHumpEnd: utils.formatUnits(lerpHumpEnd, 45),
-        lerpHumpStartTime: this.unixToDate(lerpHumpStartTime),
-        lerpHumpDuration: lerpHumpDuration,
-        lerpHumpCurrent: utils.formatUnits(lerpHumpCurrent, 45),
-        lerpHumpAdjustment: utils.formatUnits(lerpHumpCurrent.sub(surplusBuffer), 45),
         d3mCompBalance: utils.formatUnits(d3mCompBalance, 18),
         d3mCompMaxDeposit: utils.formatUnits(d3mCompMaxDeposit, 18),
         d3mCompMaxWithdraw: utils.formatUnits(d3mCompMaxWithdraw, 18),
