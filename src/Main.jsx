@@ -539,32 +539,6 @@ const Main = (props) => {
         <div className="columns">
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.optimisticDaiSupply}>{formatAmount.format(props.optimisticDaiSupply)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Optimism' })}</p>
-              <p className="title subtitle is-size-6">
-                <a href="https://gateway.optimism.io/" target="_blank" rel="noopener noreferrer">
-                    Optimism Gateway
-                </a>
-              </p>
-{/*<p className="subtitle is-size-6">{t('daistats.token_in_dex', { token: 'ETH', dex: 'Optimism' })}: {formatAmount.format(props.optimisticEthSupply)}</p> */}
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={props.starknetDaiSupply}>{formatAmount.format(props.starknetDaiSupply)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Starknet' })}</p>
-            </div>
-          </div>
-          <div className="column">
-            <div className="box has-text-centered">
-              <h3 className="title" title={props.balancerV2Dai}>{formatAmount.format(props.balancerV2Dai)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Balancer V2' })}</p>
-            </div>
-          </div>
-        </div>
-        <div className="columns">
-          <div className="column">
-            <div className="box has-text-centered">
               <h3 className="title" title={props.chaiSupply}>{formatAmount.format(props.chaiSupply)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_supply', { token: 'Chai' })} <span role="img" aria-label="chai">🍵</span></p>
               <p className="subtitle is-size-6">({t('daistats.dai_brewing')}: {formatAmount.format(props.daiBrewing)})</p>
@@ -577,8 +551,35 @@ const Main = (props) => {
           </div>
           <div className="column">
             <div className="box has-text-centered">
-              <h3 className="title" title={props.oasisDexDai}>{formatAmount.format(props.oasisDexDai)}</h3>
-              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Oasis Dex' })}</p>
+              <h3 className="title" title={props.sdaiSupply}>{formatTwoDp.format(props.sdaiSupply)}</h3>
+              <p className="title subtitle is-size-4">{t('daistats.token_supply', { token: 'sDai' })}</p>
+              <p className="title subtitle is-size-6">sDai Total Assets: {formatAmount.format(props.sdaiTotalAssets)}</p>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.starknetDaiSupply}>{formatAmount.format(props.starknetDaiSupply)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Starknet' })}</p>
+            </div>
+          </div>
+        </div>
+        <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.optimisticDaiSupply}>{formatAmount.format(props.optimisticDaiSupply)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Optimism' })}</p>
+              <p className="title subtitle is-size-6">
+                <a href="https://gateway.optimism.io/" target="_blank" rel="noopener noreferrer">
+                    Optimism Gateway
+                </a>
+              </p>
+{/*<p className="subtitle is-size-6">{t('daistats.token_in_dex', { token: 'ETH', dex: 'Optimism' })}: {formatAmount.format(props.optimisticEthSupply)}</p> */}
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.balancerV2Dai}>{formatAmount.format(props.balancerV2Dai)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Balancer V2' })}</p>
             </div>
           </div>
           <div className="column">
@@ -589,6 +590,12 @@ const Main = (props) => {
           </div>
         </div>
         <div className="columns">
+          <div className="column">
+            <div className="box has-text-centered">
+              <h3 className="title" title={props.oasisDexDai}>{formatAmount.format(props.oasisDexDai)}</h3>
+              <p className="subtitle is-size-4">{t('daistats.token_in_dex', { token: 'Dai', dex: 'Oasis Dex' })}</p>
+            </div>
+          </div>
           <div className="column">
             <div className="box has-text-centered">
               <h3 className="title" title={props.bkrSupply}>{formatAmount.format(props.bkrSupply)}</h3>

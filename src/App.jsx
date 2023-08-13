@@ -27,6 +27,7 @@ add["UNISWAP_MKR"] = "0x2C4Bd064b998838076fa341A83d007FC2FA50957"
 add["MULTICALL"] = "0xeefBa1e63905eF1D7ACbA5a8513c70307C1cE441" //v1
 add["MULTICALL"] = "0xcA11bde05977b3631167028862bE2a173976CA11" //v3
 add["CHAI"] = "0x06AF07097C9Eeb7fD685c692751D5C66dB49c215"
+add["SDAI"] = "0x83F20F44975D03b1b09e64809B757c47f942BEeA"
 add["BKR"] = "0x0ff5E7B1a54387458F4dD2F04CDdA7D1246C34D9"
 add["OPTIMISTIC_DAI"] = "0xda10009cbd5d07dd0cecc66161fc93d7c9000da1"
 add["OPTIMISTIC_MKR"] = "0xab7badef82e9fe11f6f33f87bc9bc2aa27f2fcb5"
@@ -269,6 +270,7 @@ const psmGusd = build(add.MCD_PSM_GUSD_A, "DssPsm")
 const dai = build(add.MCD_DAI, "Dai")
 const mkr = build(add.MCD_GOV, "DSToken")
 const chai = build(add.CHAI, "Chai")
+const sdai = build(add.SDAI, "SavingsDai")
 const manager = build(add.CDP_MANAGER, "DssCdpManager")
 const clip = build(add.MCD_CLIP_ETH_A, "Clipper") // FIXME are these all the same now?
 // NOTE one calc instance is shared between all ilks though each ilk has its own calc contract
@@ -448,6 +450,8 @@ class App extends Component {
 
       [add.MCD_POT, pot.interface.encodeFunctionData('dsr', [])],
       [add.CHAI, chai.interface.encodeFunctionData('totalSupply', [])],
+      [add.SDAI, sdai.interface.encodeFunctionData('totalSupply', [])],
+      [add.SDAI, sdai.interface.encodeFunctionData('totalAssets', [])],
       [add.MCD_GOV, mkr.interface.encodeFunctionData('totalSupply', [])],
       [add.MCD_VAT, vat.interface.encodeFunctionData('vice', [])],
 
@@ -666,6 +670,8 @@ class App extends Component {
     const dsr = pot.interface.decodeFunctionResult('dsr', res[offset++])[0]
     const chaiSupply = chai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const daiBrewing = chaiSupply.mul(pieChi)
+    const sdaiSupply = sdai.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
+    const sdaiTotalAssets = sdai.interface.decodeFunctionResult('totalAssets', res[offset++])[0]
     const mkrSupply = mkr.interface.decodeFunctionResult('totalSupply', res[offset++])[0]
     const vice = vat.interface.decodeFunctionResult('vice', res[offset++])[0]
 
@@ -840,6 +846,8 @@ class App extends Component {
         cdps: cdps.toString(),
         sysLocked: utils.formatUnits(sysLocked, 45),
         chaiSupply: utils.formatEther(chaiSupply),
+        sdaiSupply: utils.formatEther(sdaiSupply),
+        sdaiTotalAssets: utils.formatEther(sdaiTotalAssets),
         mkrSupply: utils.formatEther(mkrSupply),
         vice: utils.formatUnits(vice, 45),
         vow_dai: utils.formatUnits(vow_dai, 45),
