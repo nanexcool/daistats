@@ -554,6 +554,11 @@ const Main = (props) => {
               <h3 className="title" title={props.sdaiSupply}>{formatTwoDp.format(props.sdaiSupply)}</h3>
               <p className="title subtitle is-size-4">{t('daistats.token_supply', { token: 'sDai' })}</p>
               <p className="title subtitle is-size-6">sDai Total Assets: {formatAmount.format(props.sdaiTotalAssets)}</p>
+              <p className="title subtitle is-size-6">
+                <a href="https://app.sparkprotocol.io/sdai/" target="_blank" rel="noopener noreferrer">
+                    app.sparkprotocol.io/sdai/
+                </a>
+              </p>
             </div>
           </div>
           <div className="column">
@@ -999,6 +1004,14 @@ const Main = (props) => {
               <a href={`https://etherscan.io/token/${props.ADAI}`} target="_blank" rel="noopener noreferrer">
                 <h3 className="title"><i className="fal fa-file-code"></i> ADAI</h3>
                 <p className="subtitle is-size-7">{props.ADAI}</p>
+              </a>
+            </div>
+          </div>
+          <div className="column">
+            <div className="box has-text-centered">
+              <a href={`https://etherscan.io/token/${props.SDAI}`} target="_blank" rel="noopener noreferrer">
+                <h3 className="title"><i className="fal fa-file-code"></i> SDAI</h3>
+                <p className="subtitle is-size-7">{props.SDAI}</p>
               </a>
             </div>
           </div>
